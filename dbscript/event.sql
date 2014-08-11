@@ -124,7 +124,6 @@ begin
 	update events
 	set eTime = p_eTime where e_id = p_e_id;
 	    
-  end if;
     return 'OK';
   end;
 $$
