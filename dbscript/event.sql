@@ -92,3 +92,30 @@ $$
 $$
  
 language 'sql';
+
+create or replace function ReScedE(p_e_id int,
+	p_eDate text, p_eLocation text, 
+	p_eTime text) 
+returns text as
+$$
+declare
+  v_e_id int; 
+begin
+  select into v_e_id e_id from events
+	where e_id = p_e_id;
+  
+    update events
+
+	set eDate = p_eDate where e_id = p_e_id;
+	
+	update events
+	set eDate = p_eLocation where e_id = p_e_id;
+	
+	update events
+	set eTime = p_eTime where e_id = p_e_id;
+	    
+  end if;
+    return 'OK';
+  end;
+$$
+    language plpgsql;
