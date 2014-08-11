@@ -6,6 +6,8 @@ create table events(
     scores int
 );
 
+--HOW TO USE:
+-- SELECT loadCEvents(1);
 
 create or replace function loadCEvents(in int, out text, out text, out text) 
 
@@ -21,6 +23,9 @@ $$
 $$
  
 language 'sql';
+
+--HOW TO USE:
+-- SELECT setFixE(1, 'December 5, 2014', 'Iligan City', '9:00 - 5:00 pm');
 
 create or replace function setFixE(p_e_id int,
 	p_eDate text, p_eLocation text, 
@@ -53,6 +58,9 @@ begin
 $$
     language plpgsql;
 	
+--HOW TO USE:
+-- SELECT setScore(1, 20);
+
 create or replace function setScore(p_e_id int,
 	p_score int) 
 returns text as
@@ -77,6 +85,8 @@ begin
 $$
     language plpgsql;	
 	
+--HOW TO USE:
+-- SELECT getobj1(1);
 
 create or replace function getScore(in int, out int) 
 
