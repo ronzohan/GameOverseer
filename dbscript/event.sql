@@ -71,7 +71,7 @@ begin
   else
 	update events
 
-	set score = p_score where e_id = p_e_id;
+	set scores = p_score where e_id = p_e_id;
 	
 	    
   end if;
