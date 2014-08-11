@@ -44,13 +44,8 @@ begin
   else
 	update events
 
-	set eDate = p_eDate where e_id = p_e_id;
-	
-	update events
-	set eDate = p_eLocation where e_id = p_e_id;
-	
-	update events
-	set eTime = p_eTime where e_id = p_e_id;
+	set eDate = p_eDate,eDate = p_eLocation,eTime = p_eTime
+          where e_id = p_e_id;
 	    
   end if;
     return 'OK';
@@ -114,15 +109,9 @@ begin
   select into v_e_id e_id from events
 	where e_id = p_e_id;
   
-    update events
-
-	set eDate = p_eDate where e_id = p_e_id;
-	
-	update events
-	set eDate = p_eLocation where e_id = p_e_id;
-	
-	update events
-	set eTime = p_eTime where e_id = p_e_id;
+  update events
+	set eDate = p_eDate,eDate = p_eLocation,eTime = p_eTime
+          where e_id = p_e_id;
 	    
     return 'OK';
   end;
