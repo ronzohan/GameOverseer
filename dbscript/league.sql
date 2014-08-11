@@ -1,5 +1,5 @@
 create table league (
-     league_ id int primary key,
+     league_id int primary key,
      league_name text,
      sport_type text,
      fixture_type text
