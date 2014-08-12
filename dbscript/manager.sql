@@ -20,18 +20,8 @@ $$
              (p_manager_id, p_manager_name, p_address, p_contact_no);
       else
           update Manager
-          set manager_name = p_manager_name
+          set manager_name = p_manager_name,address = p_address,contact_no = p_contact_no
           where manager_id = p_manager_id;
-
-          update Manager
-          set address = p_address
-          where manager_id = p_manager_id;
-
-          update Manager
-          set contact_no = p_contact_no
-          where manager_id = p_manager_id;
-          
-          
       end if;   
          
       return 'OK';

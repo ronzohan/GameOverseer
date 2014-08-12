@@ -44,7 +44,11 @@ begin
   else
 	update events
 
+<<<<<<< HEAD
 	set eDate = p_eDate,eLocation = p_eLocation,eTime = p_eTime
+=======
+	set eDate = p_eDate,eDate = p_eLocation,eTime = p_eTime
+>>>>>>> fbe2489c1ae4e96fff54bd5fb1934b75f77f37aa
           where e_id = p_e_id;
 	    
   end if;
@@ -110,7 +114,11 @@ begin
 	where e_id = p_e_id;
   
   update events
+<<<<<<< HEAD
 	set eDate = p_eDate, eLocation = p_eLocation,eTime = p_eTime
+=======
+	set eDate = p_eDate,eDate = p_eLocation,eTime = p_eTime
+>>>>>>> fbe2489c1ae4e96fff54bd5fb1934b75f77f37aa
           where e_id = p_e_id;
 	    
     return 'OK';

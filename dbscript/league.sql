@@ -1,5 +1,5 @@
 create table league (
-     league_ id int primary key,
+     league_id int primary key,
      league_name text,
      sport_type text,
      fixture_type text
@@ -22,16 +22,8 @@ $$
              (p_league_id, p_league_name, p_sport_type,p_fixture_type);
       else
            update League
-           set league_name = p_league_name
-           where league_id = p_league_id;
-
-           update League
-           set sport_type = p_sport_type
-           where league_id = p_league_id;
-
-           update League
-           set fixture_type = p_fixture_type
-           where league_id = p_league_id;
+           set league_name = p_league_name,sport_type = p_sport_type,fixture_type = p_fixture_type
+             where league_id = p_league_id;
 
       end if;   
          
@@ -41,7 +33,7 @@ $$
   language 'plpgsql'; 
 
 --HOW TO USE:
--- SELECT setleague(1, 'first time');
+--SELECT setleague(1,'Bundesliga','Football','Double Elimination');;
 
 --view
 create or replace function 
