@@ -33,15 +33,19 @@ $$
   language 'plpgsql'; 
 
 --HOW TO USE:
---SELECT setleague(1,'Bundesliga','Football','Double Elimination');;
+--SELECT setleague(1,'Bundesliga','Football','Double Elimination');
 
 --view
 create or replace function 
     get_league_perid(in int, out text, out text, out text) 
 returns setof record as
 $$ 
+
      select  league_name, sport_type,fixture_type from league
      where league_id = $1;
      
 $$
+--HOW TO USE:
+--select * from get_league_perid(1);
+
  language 'sql';
