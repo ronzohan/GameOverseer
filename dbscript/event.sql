@@ -1,20 +1,3 @@
-Skip to content
- 
-This repository 
-Explore
-Gist
-Blog
-Help
-Kay Apao kay-apao25
- 
- 
-6  Unwatch 
-  Star 0
- Fork 0 ronzohan/GameOverseer
- branch: master   GameOverseer / dbscript / event.sql
-Kay Apao kay-apao25 5 minutes ago Change of the misnamed variable in event.sql
-2 contributors  Kay Apao  Ron Daryl L. Magno
-129 lines (97 sloc)  2.247 kb RawBlameHistory   
 create table events(
     e_id int primary key,
     eDate text,
@@ -145,5 +128,3 @@ begin
   end;
 $$
     language plpgsql;
- 
-Status API Training Shop Blog About © 2014 GitHub, Inc. Terms Privacy Security Contact 
