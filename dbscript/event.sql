@@ -1,3 +1,20 @@
+Skip to content
+ 
+This repository 
+Explore
+Gist
+Blog
+Help
+Kay Apao kay-apao25
+ 
+ 
+6  Unwatch 
+  Star 0
+ Fork 0 ronzohan/GameOverseer
+ branch: master   GameOverseer / dbscript / event.sql
+Kay Apao kay-apao25 5 minutes ago Change of the misnamed variable in event.sql
+2 contributors  Kay Apao  Ron Daryl L. Magno
+129 lines (97 sloc)  2.247 kb RawBlameHistory   
 create table events(
     e_id int primary key,
     eDate text,
@@ -85,7 +102,7 @@ $$
     language plpgsql;	
 	
 --HOW TO USE:
--- SELECT getobj1(1);
+-- SELECT getScore(1);
 
 create or replace function getScore(in int, out int) 
 
@@ -101,6 +118,9 @@ $$
 $$
  
 language 'sql';
+
+--HOW TO USE:
+-- SELECT ReSchedE(1, 'September 13, 2014','Cagayan','8:00 am - 4:00 pm');
 
 create or replace function ReScedE(p_e_id int,
 	p_eDate text, p_eLocation text, 
@@ -126,3 +146,4 @@ begin
 $$
     language plpgsql;
  
+Status API Training Shop Blog About © 2014 GitHub, Inc. Terms Privacy Security Contact 
