@@ -47,6 +47,6 @@ $$
   language 'sql';
 
 -- HOW TO USE:
--- select * from get_user_perid(yourpassword)
+-- select * from get_user_perid(1);
 
          
