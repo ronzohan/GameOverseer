@@ -37,14 +37,16 @@ $$
 
 --view
 create or replace function 
-    get_team_perid(in int, out text, out text) 
+    get_team_per_name(in text, out text, out text) 
 returns setof record as
 $$ 
      select name, hometown from team
-     where team_id = $1;     
+     where name = $1;     
 $$
  language 'sql';
 -- HOW TO USE:
--- select * from get_team_perid(1);
+-- select * from get_team_per_name('Chelsea');
 
+
+DROP FUNCTION get_team_perid(in int,out text,out text);
 
