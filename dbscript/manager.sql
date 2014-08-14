@@ -32,7 +32,7 @@ $$
 --SELECT setmanager(1, 'ron','ronron',1234);
 
 create or replace function 
-    get_Manager_per(in int, out text, out text, out int) 
+    get_Manager_per_id(in int, out text, out text, out int) 
 returns record as
 $$ 
      select manager_name, address, contact_no from Manager
