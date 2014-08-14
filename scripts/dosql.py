@@ -1,6 +1,6 @@
 import sys
 import psycopg2
-from globs import *
+from glob import *
 
 
 class doSql(object):
