@@ -16,4 +16,3 @@ def index(req,name):
 
     return json.dumps(result)
 
-index(1,"Chelsea")
