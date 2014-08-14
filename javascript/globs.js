@@ -89,13 +89,11 @@ function fetchmanager(manager_id)
     });
 }
 
-function fetchleague(league_name, sport_type, fixture_type)
+function fetchleague(league_id)
 {
   $.ajax({
       url: siteloc + scriptloc + "getLeague.py",
-      data: {league_name:league_name,
-             sport_type:sport_type,
-             fixture_type:fixture_type},
+      data: {league_id:league_id},
       dataType: 'json',
       success: function (res) {
                   console.log(res);
