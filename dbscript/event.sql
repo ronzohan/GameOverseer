@@ -39,21 +39,16 @@ declare
 begin
   select into v_e_id e_id from events
 	where e_id = p_e_id;
-  if v_e_id isnull then
-	insert into events(e_id, eDate, 
+  
+  insert into events(e_id, eDate, 
 	eLocation, eTime_s, eTime_e) values
 	(p_e_id, p_eDate, p_eLocation, p_eTime_s, p_eTime_e);
-  else
-	update events
-
-	set eDate = p_eDate,eLocation = p_eLocation,eTime_s = p_eTime_s,eTime_e = p_eTime_e
-          where e_id = p_e_id;
-	    
-  end if;
+      
     return 'OK';
   end;
 $$
     language plpgsql;
+    
 	
 --HOW TO USE:
 -- SELECT setScore(1, 98, 100);
