@@ -60,11 +60,12 @@ function fetchTeamInfo(name)
     });
 }
 
-function fetchleague(league_id)
+function fetchmanager(manager_id)
 {
   $.ajax({
-      url: siteloc + scriptloc + "getLeague.py",
-      data: {league_id:league_id},
+      url: siteloc + scriptloc + "manager.py",
+      data: {manager_id:manager_id,
+             },
       dataType: 'json',
       success: function (res) {
                   console.log(res);
@@ -87,3 +88,5 @@ function fetchleague(league_id)
               }
     });
 }
+
+
