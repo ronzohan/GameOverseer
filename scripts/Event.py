@@ -1,6 +1,6 @@
 from dosql import *
 import cgi
-import json
+import simplejson as json
 
 def index(req, ide):
     ide = cgi.escape(ide)
