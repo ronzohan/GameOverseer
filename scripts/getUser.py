@@ -3,7 +3,7 @@ import cgi
 try:
     import json
 except ImportError:
-	import simplejson as json
+    import simplejson as json
 
 def index(req, userid):
     id = cgi.escape(userid) 
