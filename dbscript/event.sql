@@ -11,13 +11,13 @@ create table events(
 --HOW TO USE:
 -- SELECT loadCEvents(1);
 
-create or replace function loadCEvents(in int, out text, out text, out time, out time) 
+create or replace function loadCEvents(in int, out text, out text, out time, out time, out int, out int) 
 
 	returns setof record as
 
 $$ 
      
-	select eDate, eLocation, eTime_s, eTime_e from events
+	select eDate, eLocation, eTime_s, eTime_e, scoret1, scoret2 from events
     
                 where e_id = $1;
     

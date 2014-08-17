@@ -2,15 +2,15 @@ from dosql import *
 import cgi
 import simplejson as json
 
-def index(req, ide):
-    ide = cgi.escape(ide)
+def index(req, userid):
+    id = cgi.escape(userid) 
     x = doSql()
-    rets = x.execqry("select * from loadCEvents('" + ide + "');", False)
+    rets = x.execqry("select * from get_users_perid('" + id + "');", False)
     result = []
     for ret in rets:
         stringed = map(str, ret)
         result.append(stringed)
 
     return json.dumps(result)
-	
-	
+
+	 

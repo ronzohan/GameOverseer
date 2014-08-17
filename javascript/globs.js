@@ -2,6 +2,7 @@
 var siteloc = "http://localhost/GameOverseer";
 var scriptloc = "/scripts/"
 
+ 
 function fetchEvent(ide)
 {
   $.ajax({
