@@ -78,4 +78,4 @@ $$
   language 'sql';
 
 -- HOW TO USE:
--- select * from get_user_perid(userid)
+-- select * from get_users_perid(userid)
