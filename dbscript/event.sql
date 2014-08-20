@@ -47,7 +47,7 @@ begin
     return 'OK';
   end;
 $$
-    language plpgsql;
+    language 'plpgsql';
     
 	
 --HOW TO USE:
@@ -75,7 +75,7 @@ begin
     return 'OK';
   end;
 $$
-    language plpgsql;	
+    language 'plpgsql';	
 	
 --HOW TO USE:
 -- SELECT getScore(1);
