@@ -2,8 +2,8 @@ create table events(
     e_id int primary key,
     eDate text,
     eLocation text,
-    eTime_s time,
-	eTime_e time,
+    eTime_start time,
+    eTime_end time,
     scoret1 int,
 	scoret2 int
 );
