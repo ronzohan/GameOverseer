@@ -23,7 +23,7 @@ $$
       else
           update Manager
           set first_name = p_first_name,last_name = p_last_name,address = p_address,contact_no = p_contact_no
-          where manager_id = p_manager_id;
+          where userid_fk = p_userid;
       end if;   
          
       return 'OK';
