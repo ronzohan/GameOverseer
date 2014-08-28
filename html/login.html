@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Example of Twitter Bootstrap 3 Static Navbar</title>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<style type="text/css">
+    .bs{
+	     
+    	margin: 1px;
+		float: none;
+    }
+	
+	.bs-login{
+	     float: none;
+		 display: table; 
+		 margin: 300px; 
+	     margin-left: 650px;
+		 width: 500px;
+		 height: 500px;
+	}
+	.navbar-default .navbar-brand {
+    color: white;
+	font-size: 24px;
+	}
+	.navbar-default {
+	background-color: #4e2727;
+	border-color: #31111c; 
+}
+  	/* set the background-color to red */
+	.navbar 
+	{
+		background-color: #cb1818;
+		/* remove the gradient */
+		background-image: none;
+		/* set font color to white */
+		color: white;
+	}	
+
+	/* menu items */
+
+		/* set the background of the menu items to pink and default color to white */
+
+			.navbar .nav > li > a {
+			  background-color: #cb1818;	
+			  color: white;
+
+			}
+
+
+		/* set hover and focus to lightblue */
+		.navbar .nav > li > a:focus,
+		.navbar .nav > li > a:hover {
+		  background-color: lightblue;
+		  color: white;
+		}
+			 
+		.navbar .nav > .active > a,
+        .navbar .nav > .active > a:hover,
+        .navbar .nav > .active > a:focus {
+         color: #005526;
+         background-color: white;
+        }
+		/* set font color and background of the project name (brand) */
+		
+		.navbar .brand 
+		{
+			background-color: orange;
+			color: navy;
+		}
+
+        .bs-login .btn[
+		color: black;
+		}
+ 
+}
+	
+	
+</style>
+</head> 
+
+
+<body>
+<div class="bs">
+    <nav role="navigation" class="navbar navbar-default">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span> <!--<span> tag is used to group inline-elements in a document and add a hook to a part of a tet.-->
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="#" class="navbar-brand">GameOverseer</a> <!--(Hypertext REFerence) The HTML code used to create a link to another page. example --<a href="http://www.w3schools.com">Visit W3Schools</a> -->
+        </div>
+		
+        <!-- Collection of nav links and other content for toggling -->
+        <div id="navbarCollapse" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav"> <!--The <ul> tag defines an unordered (bulleted) list.-->
+                <li><a href="#">Home</a></li> <!--The <li> tag defines a list item.-->
+                <li><a href="#">Manage</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="bs-login">
+    <nav role="navigation" class="navbar navbar-default">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <form>
+        <div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox"> Remember me</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    </nav>
+</div>
+ 
+  
+</body>
+</html>                                		
