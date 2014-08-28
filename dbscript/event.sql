@@ -1,9 +1,9 @@
 create table events(
-    e_id int primary key,
-    eDate text,
+    e_id serial primary key,
+    eDate date,
     eLocation text,
-    eTime_start time,
-    eTime_end time,
+    eTime_start time with time zone,
+    eTime_end time with time zone,
     scoret1 int,
 	scoret2 int
 );
@@ -11,13 +11,13 @@ create table events(
 --HOW TO USE:
 -- SELECT loadCEvents(1);
 
-create or replace function loadCEvents(in int, out text, out text, out time, out time, out int, out int) 
+create or replace function loadCEvents(in int, out date, out text, out time with time zone, out time with time zone, out int, out int) 
 
 	returns setof record as
 
 $$ 
      
-	select eDate, eLocation, eTime_s, eTime_e, scoret1, scoret2 from events
+	select eDate, eLocation, eTime_start, eTime_end, scoret1, scoret2 from events
     
                 where e_id = $1;
     
@@ -27,22 +27,21 @@ $$
 language 'sql';
 
 --HOW TO USE:
--- SELECT setFixE(1, 'December 5, 2014', 'Iligan City', '08:00 AM', '04:00 PM');
+-- SELECT setFixE('December 5, 2014', 'Iligan City', '08:00 AM', '04:00 PM');
 
-create or replace function setFixE(p_e_id int,
-	p_eDate text, p_eLocation text, 
-	p_eTime_s time, p_eTime_e time) 
+create or replace function setFixE(p_eDate date, p_eLocation text, 
+	p_eTime_start time with time zone, p_eTime_end time with time zone) 
 returns text as
 $$
 declare
   v_e_id int; 
 begin
   select into v_e_id e_id from events
-	where e_id = p_e_id;
+	where eDate = p_eDate;
   
-  insert into events(e_id, eDate, 
-	eLocation, eTime_s, eTime_e) values
-	(p_e_id, p_eDate, p_eLocation, p_eTime_s, p_eTime_e);
+  insert into events(eDate, 
+	eLocation, eTime_start, eTime_end) values
+	( p_eDate, p_eLocation, p_eTime_start, p_eTime_end);
       
     return 'OK';
   end;
@@ -99,8 +98,8 @@ language 'sql';
 -- SELECT ReSchedE(1, 'September 13, 2014','Cagayan','06:00 AM','03:00 PM');
 
 create or replace function ReSchedE(p_e_id int,
-	p_eDate text, p_eLocation text, 
-	p_eTime_s time, p_eTime_e time) 
+	p_eDate date, p_eLocation text, 
+	p_eTime_start time with time zone, p_eTime_end time with time zone) 
 returns text as
 $$
 declare
@@ -110,7 +109,7 @@ begin
 	where e_id = p_e_id;
   
   update events
-	set eDate = p_eDate,eLocation = p_eLocation,eTime_s = p_eTime_s, eTime_e = p_eTime_e
+	set eDate = p_eDate,eLocation = p_eLocation,eTime_start = p_eTime_start, eTime_end = p_eTime_end
           where e_id = p_e_id;
 	    
     return 'OK';
