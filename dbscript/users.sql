@@ -1,8 +1,8 @@
 
 CREATE EXTENSION pgcrypto;
 CREATE TABLE users(
-	userid int primary key,
-	username text,
+	userid serial primary key,
+	username text unique,
 	password text
 );
 
@@ -40,21 +40,21 @@ $$
 
 
 create or replace function
-   setuser(p_userid int,p_username text, p_password text)
+   setuser(p_username text, p_password text)
      returns text as
 $$
    declare
       userid1 int;
    begin
       select into userid1 userid from users
-         where userid = p_userid;
+         where username = p_username;
 	  
       if userid1 isnull then
-         insert into users(userid,username,password) values
-            (p_userid,p_username,crypt(p_password, gen_salt('bf')));
+         insert into users(username,password) values
+            (p_username,crypt(p_password, gen_salt('bf')));
      else
           update users
-			set userid = p_userid,username = p_username, password = crypt(p_password, gen_salt('bf')) 
+			set username = p_username, password = crypt(p_password, gen_salt('bf')) 
 			--this gen_salt generates a new random salt string
 			-- crypt() does the hashing
 			where username = p_username;
@@ -64,7 +64,7 @@ $$
 $$
 language 'plpgsql';
 -- HOW TO USE :
--- SELECT setuser(userid,'yourUsername','yourPassword'); 
+-- SELECT setuser('yourUsername','yourPassword'); 
 
 --view
 create or replace function
