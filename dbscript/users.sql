@@ -6,7 +6,6 @@ CREATE TABLE users(
 	password text
 );
 
- 
 
 create or replace function 
    login(p_usernameinput text, p_passwordinput text)
@@ -17,7 +16,6 @@ $$
   declare 
 	 originalpassword text;
 	 passwordhasher text;
-	 v_userid int;
 	 originalpassword1 text; -- for the meantime original password
   begin
   -- to store password to original password
@@ -25,10 +23,9 @@ $$
 		where username = p_usernameinput;  
   -- to store original password to original password1
 	 originalpassword1 = originalpassword;
-	 originalpassword= crypt(p_passwordinput, originalpassword); 
-     select into v_userid userid from users where username = p_usernameinput;
+	 originalpassword= crypt(p_passwordinput, originalpassword);
      if originalpassword1 = originalpassword then
-		 return v_userid;
+		 return 'User Exist in the database, You are able to login';
 		 
 	else
         return 'Your password did not match';
