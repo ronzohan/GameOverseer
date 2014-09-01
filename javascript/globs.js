@@ -76,7 +76,6 @@ function fetchUser(userid)
               }
     });
 }
-
 function fetchTeamInfo(name)
 {
   $.ajax({
@@ -162,5 +161,25 @@ function fetchleague(league_id)
               }
     });
 }
+function login(username,password)
+{
+   $.ajax({
+      url: siteloc + scriptloc + "login.py",
+      data: {username:username,
+	     password:password
+},
+      dataType: 'json',
+      success: function (res) {
+		if (res[0][0] != 'None') //if login is successful redirect page
+		{
+			window.location.replace("index.html")
+		}
+		else
+		{
+			alert("first try")
+		}
+      }
+   });
 
+}
 
