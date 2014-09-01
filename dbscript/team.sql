@@ -30,7 +30,7 @@ $$
 
 
 --HOW TO USE:
--- SELECT setteam('Chelsea','London,England')
+-- SELECT setteam(1, 'Chelsea','London,England')
 
 
 
@@ -48,5 +48,5 @@ $$
 -- select * from get_team_per_name('Chelsea');
 
 
-DROP FUNCTION get_team_perid(in int,out text,out text);
+--DROP FUNCTION get_team_perid(in int,out text,out text);
 

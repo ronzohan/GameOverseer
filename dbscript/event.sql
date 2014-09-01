@@ -1,9 +1,9 @@
 create table events(
     e_id serial primary key,
     teamID1_FK serial references team (team_id),
-	teamID2_FK serial references team (team_id),
-	leagueID_FK serial references league (league_id),
-	eDate date,
+    teamID2_FK serial references team (team_id),
+    leagueID_FK serial references league (league_id),
+    eDate date,
     eLocation text,
     eTime_start time with time zone,
     eTime_end time with time zone,
@@ -30,9 +30,9 @@ $$
 language 'sql';
 
 --HOW TO USE:
--- SELECT setFixE('December 5, 2014', 'Iligan City', '08:00 AM', '04:00 PM');
+-- SELECT setFixE(1,1,1,'December 5, 2014', 'Iligan City', '08:00 AM', '04:00 PM');
 
-create or replace function setFixE(p_teamID1_FK int, p_teamID2_FK int, p_leagueID1_FK int, p_eDate date, p_eLocation text, 
+create or replace function setFixE(p_teamID1_FK int, p_teamID2_FK int, p_leagueID_FK int, p_eDate date, p_eLocation text, 
 	p_eTime_start time with time zone, p_eTime_end time with time zone) 
 returns text as
 $$
