@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="css/custom.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="javascript/jqinit.js"></script>
+<script src="javascript/globs.js"></script>
 </head> 
 
 <body>
@@ -41,9 +43,9 @@
 				<ul class="dropdown-menu">
 				     <li> <a href="#">Onna Piando</a></li>
 				     <li> <a href="#">Jennie Ramos</a></li>
-					 <li> <a href="#">Kay Apao</a></li>
-					 <li> <a href="#">Ron Daryl Magno</a></li>
-					 <li> <a href="#">Diofel Pallega</a></li>
+				     <li> <a href="#">Kay Apao</a></li>
+				     <li> <a href="#">Ron Daryl Magno</a></li>
+			             <li> <a href="#">Diofel Pallega</a></li>
 				</ul>
 			</li>
 			    <li><a href="http://localhost/GameOverseer/register.html"">Register</a></li>
@@ -56,13 +58,11 @@
 
 <div class="container">
 
-	<form class="form-login">
-		<h1 class="form-login-heading text-muted">Manage</h1>
-		<input type="text" class="form-control" placeholder="Username" required="" autofocus="">
-		<input type="password" class="form-control" placeholder="Password" required="">
-		<button class="btn btn-lg btn-block" type="submit"  >
-			log In
-		</button>
+	<form id="formLogin" class="form-login" onsubmit="login($('#username').val(),$('#password').val());">
+		<h1 class="form-login-heading text-muted">Manager</h1>
+		<input id="username" type="text" class="form-control" placeholder="Username" required="" autofocus="">
+		<input id="password" type="password" class="form-control" placeholder="Password" required="">
+		<button class="btn btn-lg btn-block" type="submit">Log In</button>
 	</form>
 
 </div>
@@ -76,6 +76,8 @@
 		</div>
 	</div>
 </div>
+
+ 
 
 </body>
 </html>                                		
