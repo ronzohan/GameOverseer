@@ -161,7 +161,7 @@
             <ul class="nav navbar-nav"> <!--The <ul> tag defines an unordered (bulleted) list.-->
                 <li ><a href="#">Home</a></li> <!--The <li> tag defines a list item.-->
                 <li><a href="#">Manage</a></li>
-                <li><a href="http://localhost/AboutUs.html">About Us</a></li>
+                <li><a href="http://localhost/GameOverseer/html/AboutUs.html">About Us</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
 			 <li class="dropdown">
@@ -175,8 +175,8 @@
 					 <li> <a href="#">Diofel Pallega</a></li>
 				</ul>
 			</li>
-			    <li><a href = "http://localhost/register.html" >Register</a></li>
-                <li class = "active" ><a href = "http://localhost/login.html" >Login</a></li>
+			    <li><a href = "http://localhost/GameOverseer/html/register.html" >Register</a></li>
+                <li class = "active" ><a href = "http://localhost/GameOverseer/html/login.html" >Login</a></li>
             </ul>
         </div>
     </nav>
