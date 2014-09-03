@@ -25,7 +25,7 @@ def getBracketInfo(req,league_id):
     ##doesnt need to map rets to str  since the needed data is int[]
     return json.dumps(rets)
   
-def getLeagueInfoByManager(managerid):
+def getLeagueInfoByManager(req,managerid):
     managerid = cgi.escape(managerid)
 
     x = doSql()
