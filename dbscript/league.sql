@@ -3,7 +3,7 @@ create table league (
      managerid_fk serial references manager (Manager_id),
      name text,
      sport_type text,
-     fixture_type text
+     fixture_type text,
 );
 
 --create language plpgsql;
@@ -49,4 +49,25 @@ $$
 --HOW TO USE:
 --select * from get_league_perid(1);
 
+--view
+create or replace function 
+    get_league_bracket_info(in int, out int[],out text[]) 
+returns setof record as
+ 
+$$ 
+     select  results,teams from league
+     where league_id = $1;
+     
+$$
+create or replace function 
+    get_league_by_manager(in int,out int, out text,out text,out text) 
+returns setof record as
+--if only 1 out, change setof records to setof <datatype>
+$$ 
+     select  league_id,name, sport_type,fixture_type from league
+     where managerid_fk = $1;
+     
+$$
  language 'sql';
+ --HOW TO USE:
+--select * from get_league_by_manager(1);

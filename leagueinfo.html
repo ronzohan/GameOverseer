@@ -1,0 +1,28 @@
+<html>
+   <head>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+	<link href="css/jquery.bracket.min.css" rel="stylesheet">
+   </head>
+   <body style="overflow-y:scroll;">
+	<div id="fullscreen_bg" class="fullscreen_bg"/> 
+   	<div id="header"></div> 
+   	<div class="container"   id="leagueinfo">	  
+	</div>
+   </body>
+        <script src="javascript/jquery.js"></script>
+	<script src="javascript/bootstrap.min.js"></script>
+	<script src="javascript/globs.js"></script>
+        <script src="javascript/jqinit.js"></script>  
+        <script src="javascript/jquery.bracket.min.js"></script>
+	<script>
+	  $(function(){
+	    $("#header").load("header.html"); 
+	  });
+	  
+	  $(document).ready(fetchLeagueBracketInfo(getParameterByName('id'))); //parameter depends on who's the user
+   	</script>	  
+</html>
+
+ 
