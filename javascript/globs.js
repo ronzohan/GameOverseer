@@ -263,7 +263,7 @@ function getParameterByName(name)
         results = regex.exec(location.search);
     return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
-+function insertUser()
+function insertUser()
 {
   $.ajax({
       url: siteloc + scriptloc + "insertUser.py",
