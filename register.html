@@ -7,6 +7,11 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="javascript/globs.js"></script>
+<script src="javascript/jqinit.js"></script> 
+
+ 
+</script>
 <style type="text/css">
 
    
@@ -134,6 +139,7 @@
     text-align: center;
     text-shadow: 0 2px 2px rgba(0,2,2,0.5);
     
+	
 </style>
 </head> 
 
@@ -186,10 +192,12 @@
 
 	<form class="form-register">
 		<h1 class="form-register-heading text-muted">Fill Up!</h1>
-		<input type="text" class="form-control" placeholder="Desired Username" required="" autofocus="">
-		<input type="password" class="form-control" placeholder="Desired Password" required="">
-		<button class="btn btn-lg btn-block" type="submit"  >  
-			Register
+		<input type="text" id="desiredUsername" class="form-control" placeholder="Desired Username" required="" autofocus="">
+		<input type="text" id="desiredPassword" class="form-control" placeholder="Desired Password" required="">
+		<button  
+					class="btn btn-lg btn-block"  
+					onclick="insertUser( );"> 
+					Register
 		</button>
 	</form>
 
