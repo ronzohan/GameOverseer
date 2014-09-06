@@ -59,20 +59,12 @@ function fetchUser(userid)
                   console.log(res);
                   if(res[0][0] != "None")
                   {
-					  table = '<table border="1">';
-					  for (i = 0; i < res.length; i++)
-					  {
-						  row = res[i];
-						  table += "<tr>";
-						  for (j = 0; j < row.length; j++)
-						  {
-							  table += "<td>" + row[j] + "</td>";
-						  }
-						  table += "</tr>";
-					  }
-					  table += "</table>";
-					  $("#target").html(table); 
-				  } // end if
+		    setCookie("username",res[0][1],2);
+		  }
+		  else
+		  {
+		      alert("Failed");
+		  }
               }
     });
 }
@@ -243,13 +235,16 @@ function login(username,password)
 },
       dataType: 'json',
       success: function (res) {
-		if (res[0][0] != 'None') //if login is successful redirect page
+		if (res[0][0] != 'Error') //if login is successful redirect page
 		{
-			window.location.replace("index.html")
+			alert(res[0][0]);
+			setCookie("username",username,2);
+			setCookie("userid",res[0][0],2);
+			window.location.replace("index.html");
 		}
 		else
 		{
-			alert("first try")
+			alert("first try");
 		}
       }
    });
@@ -273,3 +268,34 @@ function insertUser()
 	    } 
     });
 }
+function isloggin()
+{
+    if (getCookie("username") == "" && getCookie("userid") == "")
+      window.location.replace("login.html");
+    else
+      $("#username").append(getCookie("username"));
+    
+}
+function logout()
+{
+    setCookie("username","",-1);
+    setCookie("userid","",-1);
+    window.location.replace("login.html")
+}
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+    }
+    return "";
+}
+
