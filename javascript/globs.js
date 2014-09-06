@@ -237,7 +237,6 @@ function login(username,password)
       success: function (res) {
 		if (res[0][0] != 'Error') //if login is successful redirect page
 		{
-			alert(res[0][0]);
 			setCookie("username",username,2);
 			setCookie("userid",res[0][0],2);
 			window.location.replace("index.html");
