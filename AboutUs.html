@@ -3,89 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>GameOverseer</title> 
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+ <link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="css/custom.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<style type="text/css">
+<script src="javascript/jqinit.js"></script>
+<script src="javascript/globs.js"></script>
 
-   
-   .navbar-nav > li > a {padding-top:5px !important; padding-bottom:5px !important;}
-   .navbar {min-height:32px !important}
-    .bs .navbar-default{
-		height: 5px;
-		}
-		
-    .btn {
-	background-color: #e1e1e1;
-	color: #9c043d;
-	}
-	
-	 .navbar .nav > li > a:focus,
-	.navbar .nav > li > a:hover 
-	{
-	background-color: #650529;
-	color: white;
-	}
-	
-	.navbar-default .navbar-brand { 
-	margin:-11px;
-    color: black;
-	font-size: 24; 
-
-	}
-	
-	.bs-login{
-	     float: none;
-		 display: table; 
-		 margin: 300px; 
-	     margin-left: 450px;
-		 width: 400px;
-		 height: 400px;
-	}
-
- 
-  	<!--set the background-color to white -->
-	.navbar 
-	{  
-		background-color: black;
-		<!-- remove the gradient -->
-		background-image: none;
-		<!-- set font color to white -->
-		color: black;
-	}	
-
-    
- 
- 
-	
-	<!-- css for loginbar -->
-    .btn 
-  {
-   outline:0;
-   border:none;
-   border-top:none;
-   border-bottom:none;
-   border-left:none;
-   border-right:none;
-   box-shadow:inset 2px -3px rgba(0,0,0,0.15);
-  }
-  
- 
-  .fullscreen_bg {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-size: cover;
-    background-position: 50% 50%;
-    background-image: url('http://localhost/GameOverseer/picture/all.jpg');
-    background-repeat:repeat;
-  }
- 
- 
-
+ <style type="text/css">
+     
  .block-update-card {
   height: 80%;
   border: 1px #FFFFFF solid;
@@ -103,20 +31,16 @@
   width: 70px;
   height: 70px;
 }
- 
-
- 
+        
 </style>
 </head> 
 
 
 <body>
-
-<div id="fullscreen_bg" class="fullscreen_bg"/> 
-
+    
 
 <div class="bs">
-    <nav role="navigation" class="navbar navbar-default">
+    <nav role="navigation"   class="navbar navbar-default  navbar-fixed-top">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -155,25 +79,33 @@
 </div>
  
    
-
- <div class="media block-update-card">
-  <h1 align="center"> Email us !! </h1>
-  <a class="pull-left" href="#">
+ 
+	<div class="container">
+		<div class="jumbotron">
+	      
+		 
+			<div  >
+				<h1 align="center"> Email us !! </h1>
+						<a class="pull-left" href="#">
     
-    <img class="media-object update-card-MDimentions" src="http://localhost/GameOverseer/picture/onna.jpg" alt="..."> 
-    <img class="media-object update-card-MDimentions" src="http://localhost/GameOverseer/picture/diofel.jpg" alt="...">
-  </a>
-  <div class="media-body update-card-body">
-    <h4 >Onna Piando</h4> 
-    <p>	<a href="https://www.facebook.com/onnanapiando">Visit my FB </a>  <br><br>  </p>  
-	<h4 > Diofel Pallega</h4> 
-	<p>  <a href ="https://www.facebook.com/nyxnice.guy"> Visit my FB</a> </p>   
-    </div>
-  </div>
-  </div>
-  
+								<img class="img-responsive" src="http://localhost/GameOverseer/picture/onna.jpg" alt="res"> 
+								<p><br><br> </p>
+								<img class="media-object update-card-MDimentions" src="http://localhost/GameOverseer/picture/diofel.jpg" alt="...">
+						</a>
+					 
+				<div  >
+						<h4 >Onna Piando</h4> 
+								<p>	<a href="https://www.facebook.com/onnanapiando">Visit my FB </a>  </p>  
+								<p>	<a href="https://www.facebook.com/onnanapiando">Email me on my gmail account</a>  <br><br> <br><br> </p>  
+						<h4 > <br><br><br> Diofel Pallega  </h4> 
+								<p>  <a href ="https://www.facebook.com/nyxnice.guy"> Visit my FB</a> </p>
+                                <p>	<a href="diofel.pallega@gmail.com">Email me on my gmail account</a>  <br><br>  </p>  								
+				</div>
+			</div>
+		</div>  
+	</div>
+	
  
-  
- 
+   
 </body>
 </html>                                		
