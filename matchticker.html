@@ -162,14 +162,21 @@
   <div class="media-body update-card-body">
     <h4 align = "center">
 		<font color = "white">insertTN1 vs insertTN2 
-		<script language = "JavaScript">
-			var TargetDate = "10/3/2014 2:01 PM";
-			var TimerID = "timer";
+		<div id='timer'><script language="JavaScript" src="javascript/Timer.js"></script></div>
+		<script language="JavaScript">
+			TargetDate = "10/6/2014 11:14 AM";
+			TimerID = "timer";
 			FinishMessage = "Live";
+			var dtarg = new Date(TargetDate);
+			var dnow = new Date();
+			diff = new Date(dtarg - dnow);
+			Time = Math.floor(diff.valueOf()/1000);
+			if(diff < 0){
+				Time = 0;
+			}
+			new CreateTimer(TimerID, Time);
 		</script>
-	<div id = 'timer'>
-  	<script language="JavaScript" src="javascript/Timer.js"></script>
-	</div>
+		
 		</font>
 	</h4>
 	
@@ -177,13 +184,21 @@
 	
 	<h4 align = "center">
 		<font color = "white">insertTN3 vs insertTN4 
-		<script language = "JavaScript">
-			var TargetDate = "11/3/2014 2:01 PM";
-			var TimerID = "timer1";
+		<div id='timer1'><script language="JavaScript" src="javascript/Timer.js"></script></div>
+		<script language="JavaScript">
+			TargetDate = "09/6/2014 11:16 AM";
+			TimerID = "timer1";
 			FinishMessage = "Live";
+			var dtarg = new Date(TargetDate);
+			var dnow = new Date();
+			diff = new Date(dtarg - dnow);
+			Time = Math.floor(diff.valueOf()/1000);
+			if(diff < 0){
+				Time = 0;
+			}
+			new CreateTimer(TimerID, Time);
 		</script>
-	<div id = 'timer1'>
-  	<script language="JavaScript" src="javascript/Timer.js"></script>
+		
 	</div>
 	</font>
 	</h4>
@@ -191,20 +206,26 @@
 	
 	<h4 align = "center">
 		<font color = "white">insertTN5 vs insertTN6 
-		<script language = "JavaScript">
-			var TargetDate = "12/3/2014 2:01 PM";
-			var TimerID = "timer2";
+		<div id='timer2'><script language="JavaScript" src="javascript/Timer.js"></script></div>
+		<script language="JavaScript">
+			TargetDate = "12/6/2014 11:14 AM";
+			TimerID = "timer2";
 			FinishMessage = "Live";
+			var dtarg = new Date(TargetDate);
+			var dnow = new Date();
+			diff = new Date(dtarg - dnow);
+			Time = Math.floor(diff.valueOf()/1000);
+			if(diff < 0){
+				Time = 0;
+			}
+			new CreateTimer(TimerID, Time);
 		</script>
-	<div id = 'timer2'>
-  	<script language="JavaScript" src="javascript/Timer.js"></script>
-	</div>
 		</font>
 	</h4>
 	
-	<div id = 'timer'>
-  	<script language="JavaScript" src="javascript/Timer.js"></script>
-	</div>
+	<h4 align = "center">
+		<font color = "white">Recent Matches 
+		
 	
 		</font>
 	</h4>
