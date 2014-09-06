@@ -46,8 +46,6 @@ function fetchEvent()
     });
 }
 
-
- 
 function fetchUser(userid)
 {
   $.ajax({
@@ -128,7 +126,7 @@ function fetchmanager(manager_id)
 function fetchleague(league_id)
 {
   $.ajax({
-      url: siteloc + scriptloc + "getLeague.py",
+      url: siteloc + scriptloc + "league.py",
       data: {league_id:league_id},
       dataType: 'json',
       success: function (res) {
@@ -152,10 +150,33 @@ function fetchleague(league_id)
               }
     });
 }
+function setleague(managerid,leaguename,fixturetype,sport)
+{
+	$.ajax({
+      url: siteloc + scriptloc + "getLeague/setleague",
+      data: {managerid:managerid,
+      		 leaguename:leaguename,
+				 fixturetype:fixturetype,      
+      		 sport:sport
+      },
+      dataType: 'json',
+      success: function (res) {
+                  console.log(res);
+                  if(res[0][0] != "None")
+                  {
+					 		if (res[0][0] == "Successfully Created")
+					 			alert(res[0][0]);
+					 		else 
+					 			alert(res[0][0]);
+				  		} // end if
+              }
+    });
+
+}
 function fetchLeagueByManagerId(managerid)
 {
   $.ajax({
-      url: siteloc + scriptloc + "getLeague/getLeagueInfoByManager?",
+      url: siteloc + scriptloc + "getLeague/getLeagueInfoByManager",
       data: {managerid:managerid},
       dataType: 'json',
       success: function (res) {
@@ -165,10 +186,10 @@ function fetchLeagueByManagerId(managerid)
 		    for (i=0;i<res.length;i++)
 		    {
 		      row = res[i];
-		      $("#name").attr("href","leagueinfo?id="+row[0]);
-		      $("#name").append(row[1]);
-		      $("#sporttype").append(row[2]);
-		      $("#fixturetype").append(row[3]);
+		      $("#leaguetable").append('<tr><td><a href=leagueinfo?id='+row[0]+'>'+row[1]+'</a></td>'
+		      	  + '<td>'+row[2]+'</td>' + '<td>'+row[3]+'</td><td><a href="#" class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
+		      	  + '<a href="#" class="glyphicon glyphicon-remove">Remove</a></td></tr>');
+ 
 		    }
 		  } // end if
               }
@@ -188,32 +209,8 @@ function fetchLeagueBracketInfo(league_id)
                   if(res[0][0] != "None")
                   {
 		    var minimalData = {
-		      teams : [
-    ["Team 1",  "Team 2" ],
-    ["Team 3",  "Team 4" ],
-    ["Team 5",  "Team 6" ],
-    ["Team 7",  "Team 8" ],
-    ["Team 9",  "Team 10"],
-    ["Team 11", "Team 12"],
-    ["Team 13", "Team 14"],
-    ["Team 15", "Team 16"]
-  ],
-  results : [[ /* WINNER BRACKET */
-    [[3,5], [2,4], [6,3], [2,3], [1,5], [5,3], [7,2], [1,2]],
-    [[1,2], [3,4], [5,6], [7,8]],
-    [[9,1], [8,2]],
-    [[1,3]]
-  ], [         /* LOSER BRACKET */
-    [[5,1], [1,2], [3,2], [6,9]],
-    [[8,2], [1,2], [6,2], [1,3]],
-    [[1,2], [3,1]],
-    [[3,0], [1,9]],
-    [[3,2]],
-    [[4,2]]
-  ], [         /* FINALS */
-    [[3,8], [1,2]],
-    [[2,1]]
-  ]]
+		      teams : t,
+  results :r  
 		    }
 		    $(function(){
 		      $('#leagueinfo').bracket(
@@ -237,6 +234,7 @@ function login(username,password)
       success: function (res) {
 		if (res[0][0] != 'Error') //if login is successful redirect page
 		{
+
 			setCookie("username",username,2);
 			setCookie("userid",res[0][0],2);
 			window.location.replace("index.html");
