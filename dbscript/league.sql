@@ -12,23 +12,24 @@ create or replace
     function setleague(p_managerid_fk int,p_name text,p_sport_type text, p_fixture_type text) 
     returns text as
 $$
-  declare
-     v_name text;
+  declare     
+     v_id int;
   begin
-      select into v_name name from league 
+      select into v_id id  from league 
          where managerid_fk = p_managerid_fk and name = p_name and sport_type = p_sport_type and fixture_type = p_fixture_type;
          
-      if v_name isnull then
+      if v_id isnull then
           insert into league(managerid_fk,name, sport_type,fixture_type) values
              (p_managerid_fk, p_name, p_sport_type,p_fixture_type);
+          return 'Successfully Created';	
       else
            update League
            set name = p_name,sport_type = p_sport_type,fixture_type = p_fixture_type
-             where managerid_fk = p_managerid_fk;
-
+             where managerid_fk = p_managerid_fk and league_id = v_id;
+			  return 'Successfull Updated';
       end if;   
          
-      return 'OK';
+    
   end;
 $$
   language 'plpgsql'; 
