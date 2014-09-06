@@ -24,7 +24,7 @@ def getBracketInfo(req,league_id):
     rets = x.execqry("select * from get_league_bracket_info('" + league_id +  "');", False)
     ##doesnt need to map rets to str  since the needed data is int[]
     return json.dumps(rets)
-  
+
 def getLeagueInfoByManager(req,managerid):
     managerid = cgi.escape(managerid)
 
@@ -36,3 +36,17 @@ def getLeagueInfoByManager(req,managerid):
         result.append(stringed)
 
     return json.dumps(result)
+
+def setleague(req,managerid,leaguename,fixturetype,sport):
+    leaguename = cgi.escape(leaguename)
+    fixturetype = cgi.escape(fixturetype)
+    sport = cgi.escape(sport)
+    x = doSql()
+    rets = x.execqry("select * from setleague('" + managerid +  "','"+leaguename+"','"+sport+"','"+fixturetype+"');", True)
+    result = []
+    for ret in rets:
+        stringed = map(str, ret)
+        result.append(stringed)
+	return json.dumps(result)
+	
+	
