@@ -1,43 +1,94 @@
-   .navbar {min-height:32px !important}
  
-    .btn {
-	background-color: #e1e1e1;
-	color: #9c043d;
-	}
-	
-	 .navbar .nav > li > a:focus,
-	.navbar .nav > li > a:hover 
-	{
-	background-color: #650529;
-	color: white;
-	}
-	
-	.navbar-default .navbar-brand { 
-    color: black;
+body {
+	background: url('http://localhost/GameOverseer/picture/all.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;  
+  	font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
+}
+
+a:link, a:visited {
+	color:green;
+}
+
+.jumbotron {
+  margin-bottom: 0px;
+  height: 1000px;
+  color: white;
+  text-shadow: black 0.3em 0.3em 0.3em;
+    background: rgb(150, 154, 154); /* This is for ie8 and below */
+   background: rgba(150, 154, 154, 0.5); 
+  
+}
+
+.block {
+	background-color:rgba(0,0,0,0.2);
+    height:370px;
+  	padding-left:12px;
+  	padding-right:12px;
+}
+
+.block-sm {
+    height:180px;
+}
+
+.btn-flat {
+  	font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
+	border-radius:0px;
+  	border-width:0;
+  	background-image:none;
+  	padding:16px;
+  	margin:0 auto;
+  	margin-top:15px;
+  	width:70%;
+    font-size:20pt;
+}
+
+/* mini carousel */
+.carousel-inner img {
+	width:100%;
+  	height:100%;
+}
+
+#myCarousel {
+	font-size:90%;
+}
+
+.carousel-controls-mini {
+	margin-left:42%;
+}
+
+.carousel-controls-mini > a {
+	border:1px solid #eee;
+  	margin:1px;
+  	width:20px;
+    display:block;
+  	float:left;
+    text-align:center;
+}
+
+#carousel-bounding-box {
+  margin:0 auto;
+  width:300px;
+}
 
 
-	}
-	
-	.bs-login{
-	     float: none;
-		 display: table; 
-		 margin: 300px; 
-	     margin-left: 450px;
-		 width: 400px;
-		 height: 400px;
-	}
 
- 
-  	<!--set the background-color to white -->
-	.navbar 
-	{  
-		background-color: black;
-		<!-- remove the gradient -->
-		background-image: none;
-		<!-- set font color to white -->
-		color: black;
-	}	
 
+ <!-- For fullscreen background-->
+  
+  .fullscreen_bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-size: cover;j
+    background-position: 50% 50%;
+    background-image: url('http://localhost/GameOverseer/picture/all.jpg');
+    background-repeat:repeat;
+  }
     
  
  
@@ -70,6 +121,17 @@
     background-image: url('http://localhost/GameOverseer/picture/all.jpg');
     background-repeat:repeat;
   }
+  
+  	.bs-login{
+	     float: none;
+		 display: table; 
+		 margin: 300px; 
+	     margin-left: 450px;
+		 width: 400px;
+		 height: 400px;
+	}
+
+	
   .form-login {
     max-width: 280px;
     padding: 15px;
@@ -110,3 +172,58 @@
     text-shadow: 0 2px 2px rgba(0,2,2,0.5);
 }
     
+	<!-- css for register -->
+
+	  	.bs-register{
+	     float: none;
+		 display: table; 
+		 margin: 300px; 
+	     margin-left: 450px;
+		 width: 400px;
+		 height: 400px;
+	}
+	
+  .form-register {
+   max-width: 280px;
+    padding: 15px;
+    margin: 0 auto;
+    margin-top:50px;
+  }
+  .form-register .form-register-heading, .form-register {
+    margin-bottom: 10px;
+  }
+  
+ 
+  .form-register  .form-control:focus {
+    z-index: 2;
+  }
+  .form-register input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: none;
+    border-left-style: solid;
+    border-color: #000;
+  }
+  .form-register input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-top-style: none;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-color: rgb(0,0,0);
+    border-top:1px solid rgba(0,1,2,0.08);
+  }
+  .form-register-heading { 
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 2px 2px rgba(0,2,2,0.5);
+    
+     }
+	 
+	 
+ 
