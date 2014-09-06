@@ -38,7 +38,7 @@
 	    $("#header").load("header.html"); 
 	  });
 	  
-	  $(document).ready(fetchLeagueByManagerId(3)); //parameter depends on who's the user
+	  $(document).ready(fetchLeagueByManagerId(getCookie('userid'))); //parameter depends on who's the user
    	</script>	  
 </html>
 
