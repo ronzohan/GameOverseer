@@ -12,14 +12,43 @@ a:link, a:visited {
 	color:green;
 }
 
-.jumbotron {
-  margin-bottom: 0px;
-  height: 1000px;
-  color: white;
-  text-shadow: black 0.3em 0.3em 0.3em;
-    background: rgb(150, 154, 154); /* This is for ie8 and below */
-   background: rgba(150, 154, 154, 0.5); 
-  
+.form-control{
+
+    width:100px;
+}
+.input-xlarge{
+	width: 240px;
+
+}
+.center {
+     float: none;
+     margin-left: auto;
+     margin-right: auto;
+}
+
+.form-horizontal{
+	margin-right:10px;
+
+}
+
+.sakto{
+	width:60px;
+	height:60px;
+
+}
+
+.input-xlarge{
+
+height:50px;
+
+} 
+ 
+
+
+.isbug{
+
+margin-left:  36px;
+
 }
 
 .block {
@@ -110,17 +139,7 @@ a:link, a:visited {
    -webkit-outline:0;
    -moz-outline:0;
   }
-  .fullscreen_bg {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-size: cover;
-    background-position: 50% 50%;
-    background-image: url('http://localhost/GameOverseer/picture/all.jpg');
-    background-repeat:repeat;
-  }
+   
   
   	.bs-login{
 	     float: none;
@@ -131,6 +150,13 @@ a:link, a:visited {
 		 height: 400px;
 	}
 
+	
+	.form-actions{
+			height: 90px;
+			width:  90px; 
+	}
+	
+	
 	
   .form-login {
     max-width: 280px;
