@@ -3,13 +3,12 @@ create table league (
      managerid_fk serial references manager (Manager_id),
      name text,
      sport_type text,
-     fixture_type text,
+     fixture_type text
 );
 
 --create language plpgsql;
 -- controller
-create or replace 
-    function setleague(p_managerid_fk int,p_name text,p_sport_type text, p_fixture_type text) 
+create or replace function setleague(p_managerid_fk int,p_name text,p_sport_type text, p_fixture_type text) 
     returns text as
 $$
   declare
@@ -37,30 +36,15 @@ $$
 --SELECT setleague(1,'Bundesliga','Football','Double Elimination');
 
 --view
-create or replace function 
-    get_league_perid(in int, out text, out text, out text) 
+create or replace function get_league_perid(in int, out text, out text, out text) 
 returns setof record as
 $$ 
 
      select  name, sport_type,fixture_type from league
      where league_id = $1;
      
-$$
---HOW TO USE:
---select * from get_league_perid(1);
 
---view
-create or replace function 
-    get_league_bracket_info(in int, out int[],out text[]) 
-returns setof record as
- 
-$$ 
-     select  results,teams from league
-     where league_id = $1;
-     
-$$
-create or replace function 
-    get_league_by_manager(in int,out int, out text,out text,out text) 
+create or replace function get_league_by_manager(in int,out int, out text,out text,out text) 
 returns setof record as
 --if only 1 out, change setof records to setof <datatype>
 $$ 
