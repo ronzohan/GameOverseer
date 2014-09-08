@@ -239,19 +239,15 @@ function login(username,password)
 },
       dataType: 'json',
       success: function (res) {
-		if (res[0][0] == "OK") //if login is successful redirect page
+		if (res[0][0] != "Error") //if login is successful redirect page
 		{
 			setCookie("username",username,2);
 			setCookie("userid",res[0][0],2);
 			window.location.replace("index.html");
 		}
-		else if(res[0][0] == "Your password did not match"){
-		
-		     window.location.replace("wronginput.html");
-		}
 		else
 		{
-			alert("first try");
+			$('#status').append("Login error.");
 		}
       }
    });
