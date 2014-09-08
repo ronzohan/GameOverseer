@@ -2,7 +2,7 @@
 ####TODO
 - [ ] complete database implementation
 - [ ] complete ajax get/set functions on database operations
-- [ ] matchmaker python script
+- [ ] matchmaker script
   - [ ] single elimination
   - [ ] double elimination
 - [ ] HTML/CSS design

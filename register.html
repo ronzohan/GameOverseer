@@ -1,26 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+<head> 
 	<title>GameOverseer</title>
+	
+     <meta charset="UTF-8">
+	 
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
-	<link rel="stylesheet" href="css/custom.css"> 
+	<link rel="stylesheet" href="css/custom.css">  
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script src="javascript/globs.js"></script>
 	<script src="javascript/jqinit.js"></script> 
-	 
+    <script   src="javascript/jquery-1.10.2.min.js"></script>
+    <script  src="javascript/jquery.validate.min.js"></script>
+	
+	<style>
+ 
+
+ 
+        .registernabox {
+            background-color: #9a7c8c;
+			background: rgba(150, 154, 154, 0.8);
+            border: 11px solid #620c0c;
+            padding: 45px 15px 15px;
+            position: relative; 
+			top:50px;
+			right:39%;
+		    left:5%;  
+			margin  :65px; 
+			float:none;
+        }
+        label.error {
+            color: #630707;
+            font-size: 14px;
+            font-weight: normal;
+            position: absolute;
+        }
+	label.success {
+			width: 34px;
+			height: 34px;
+			background: url(picture/valid.png) center center no-repeat;
+            color: #ffffff;
+            font-size: 0px;
+            font-weight: normal;
+            position: absolute;
+        }
+  
+	
+ 
+ 
+	</style>
 </head> 
 
 
 <body>
-
-<div id="fullscreen_bg" class="fullscreen_bg"/> 
+ 
 
 
 <div class="bs">
-    <nav role="navigation" class="navbar navbar-default">
+    <nav role="navigation" class="navbar navbar-default navbar-fixed-top">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
@@ -59,22 +98,104 @@
     </nav>
 </div>
  
-
-<div class="container">
-
-	<form class="form-register">
-		<h1 class="form-register-heading text-muted">Fill Up!</h1>
-		<input type="text" id="desiredUsername" class="form-control" placeholder="Desired Username" required="" autofocus="">
-		<input type="text" id="desiredPassword" class="form-control" placeholder="Desired Password" required="">
-		<button  
-					class="btn btn-lg btn-block"  
-					onclick="insertUser( );"> 
-					Register
-		</button>
-	</form>
+ <div class="container">
+ <div    class="registernabox col-sm-6">
+ <h1  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FILL UP THE FORM ! <br><br> </h1>
+   <form class="form-horizontal" role="form" id="register">
+           
+                <div class="form-group">
+                    <label for="lastname" class="col-sm-4 control-label">Full Name :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <input type="text" class="form-control" name="fullname" placeholder="fullname">
+                        </div>
+                        <label class="error" for="lastname"></label>
+                    </div>
+                </div>
+				
+				
+                <div class="form-group">
+                    <label for="username" class="col-sm-4 control-label">Username :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                            <input type="text" class="form-control" name="username" placeholder="Username">
+                        </div>
+                        <label class="error" for="username"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Password1" class="col-sm-4 control-label">Password :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
+                            </span>
+                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+                        </div>
+                        <label class="error" for="password1"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password2" class="col-sm-4 control-label">Confirm Password :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
+                            </span>
+                            <input type="password" class="form-control" name="password2" placeholder="Confirm Password">
+                        </div>
+                        <label class="error" for="password2"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail" class="col-sm-4 control-label">Email :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                            </span>
+                            <input type="email" class="form-control" name="inputEmail" placeholder="Email">
+                        </div>
+                        <label class="error" for="inputEmail"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="col-sm-4 control-label">Phone :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span>
+                            </span>
+                            <input type="tel" class="form-control" name="phone" placeholder="Valid contact number">
+                        </div>
+                        <label class="error" for="phone"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-6">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="agree">Please accept our policy
+                            </label>
+                        </div>
+                        <label class="error" for="agree"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-6">
+                        <button type="button" class="btn btn-default signup">Signup</button>
+			<input type="hidden" name="register" />
+			<label class="result"></label>
+                    </div>
+                </div>
+				
+				
+  </form>
+  
+  
+</div>  
 
 </div>
-  
- 
-</body>
+</body> 
+ 	<script src="javascript/script.js"></script>
 </html>                                		
