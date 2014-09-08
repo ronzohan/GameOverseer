@@ -1,11 +1,6 @@
 //define functions and global variables here...
 var siteloc = "http://localhost/GameOverseer";
-var scriptloc = "/scripts/"
-
- 
- 
- 
- 
+var scriptloc = "/scripts/";
  
 function fetchEvent()
 {
@@ -18,34 +13,31 @@ function fetchEvent()
                   console.log(res);
                   if(res[0][0] != "None")
                   {
-				      table = '<div class="table-responsive">';
-					  table += '<table class="table table-condensed">';
-					  table += '<thead>' +
-					           '<tr>' +
-							     '<th>Date</th>' +
-								 '<th>Venue</th>' +
-								 '<th>Starting Time</th>' +
-								 '<th>Ending Time</th>' +
-								 '<th>Score (Team 1)</th>' +
-								 '<th>Score (Team 2)</th>' +
-							   '</tr>' +
-					           '</thead>';
-					  table += "<tbody>";		   
-					  for (i = 0; i < res.length; i++)
-					  {
-						  row = res[i];
-						  table += "<tr>";
-						  for (j = 0; j < row.length; j++)
-						  {
-							  table += "<td>" + row[j] + "</td>";
-						  }
-						  table += "</tr>";
-					  }
-					  table += "</tbody>";
-					  table += "</table>";
-					  table += "</div>";
-					  $("#target").html(table); 
-				  } // end if
+					      table = '<div class="table-responsive">';
+		  				   table += '<table class="table table-condensed">';
+						   table += '<thead>' +'<tr>' + '<th>Date</th>' +'<th>Venue</th>' +
+									   '<th>Starting Time</th>' + '<th>Ending Time</th>' + 
+									   '<th>Score (Team 1)</th>' +
+									   '<th>Score (Team 2)</th>' + '</tr>' + '</thead>';
+						   table += "<tbody>";
+					   		   
+						   for (i = 0; i < res.length; i++)
+						   {
+						   	
+							   row = res[i];
+							   table += "<tr>";
+	
+							   for (j = 0; j < row.length; j++)
+								   table += "<td>" + row[j] + "</td>";
+	
+							   table += "</tr>";
+						   }
+						   
+						   table += "</tbody>";
+						   table += "</table>";
+						   table += "</div>";
+						   $("#target").html(table); 
+					   }
               }
     });
 }
@@ -61,17 +53,19 @@ function fetchUser(userid)
       dataType: 'json',
       success: function (res) {
                   console.log(res);
+                  
                   if(res[0][0] != "None")
                   {
-		    setCookie("username",res[0][1],2);
-		  }
-		  else
-		  {
-		      alert("Failed");
-		  }
-              }
+		    				setCookie("username",res[0][1],2);
+		  				}                                                                                                                       
+					   else
+					   {
+					      alert("Failed");
+					  	}
+         }
     });
 }
+
 function fetchTeamInfo(name)
 {
   $.ajax({
@@ -82,21 +76,8 @@ function fetchTeamInfo(name)
       success: function (res) {
                   console.log(res);
                   if(res[0][0] != "None")
-                  {
-					  table = '<table border="1">';
-					  for (i = 0; i < res.length; i++)
-					  {
-						  row = res[i];
-						  table += "<tr>";
-						  for (j = 0; j < row.length; j++)
-						  {
-							  table += "<td>" + row[j] + "</td>";
-						  }
-						  table += "</tr>";
-					  }
-					  table += "</table>";
-					  $("#target").html(table); 
-				  } // end if
+                  {  
+				      } 
               }
     });
 }
@@ -112,23 +93,12 @@ function fetchmanager(manager_id)
                   console.log(res);
                   if(res[0][0] != "None")
                   {
-					  table = '<table border="1">';
-					  for (i = 0; i < res.length; i++)
-					  {
-						  row = res[i];
-						  table += "<tr>";
-						  for (j = 0; j < row.length; j++)
-						  {
-							  table += "<td>" + row[j] + "</td>";
-						  }
-						  table += "</tr>";
-					  }
-					  table += "</table>";
-					  $("#target").html(table); 
-				  } // end if
+					   
+				  		}
               }
     });
 }
+
 function fetchleague(league_id)
 {
   $.ajax({
@@ -137,25 +107,12 @@ function fetchleague(league_id)
       dataType: 'json',
       success: function (res) {
                   console.log(res);
+                  
                   if(res[0][0] != "None")
-                  {
-					  table = '<table border="1">';
-					  for (i = 0; i < res.length; i++)
-					  {
-						  row = res[i];
-						  table += "<tr>";
-						  for (j = 0; j < row.length; j++)
-						  {
-							  table += "<td>" + row[j] + "</td>";
-						  }
-						  table += "</tr>";
-					  }
-					  table += "</table>";
-					  $("#target").html(table); 
-				  } // end if
-              }
+                  {}
     });
 }
+
 function fetchLeagueByManagerId(managerid)
 {
   $.ajax({
@@ -163,18 +120,19 @@ function fetchLeagueByManagerId(managerid)
       data: {managerid:managerid},
       dataType: 'json',
       success: function (res) {
-                  console.log(res);
-                  if(res[0][0] != "None")
+                  console.log(res); 
+                  if(res[0][0] != "None")                  
                   {
-		    for (i=0;i<res.length;i++)
-		    {
-		      row = res[i];
-		      $("#name").attr("href","leagueinfo?id="+row[0]);
-		      $("#name").append(row[1]);
-		      $("#sporttype").append(row[2]);
-		      $("#fixturetype").append(row[3]);
-		    }
-		  } // end if
+						   for (i=0;i<res.length;i++)
+						   {
+						      row = res[i];
+						      
+						      $("#name").attr("href","leagueinfo?id="+row[0]);
+						      $("#name").append(row[1]);
+						      $("#sporttype").append(row[2]);
+						      $("#fixturetype").append(row[3]);
+						   }
+		            } // end if
               }
   });
   
@@ -238,28 +196,35 @@ function login(username,password)
 	     password:password
 },
       dataType: 'json',
-      success: function (res) {
+      success: function (res) 
+	  {
+	  
 		if (res[0][0] != "Error") //if login is successful redirect page
 		{
 			setCookie("username",username,2);
 			setCookie("userid",res[0][0],2);
 			window.location.replace("index.html");
+			
 		}
 		else
 		{
 			$('#status').append("Login error.");
 		}
+		
       }
-   });
-
+	  
+   }); 
 }
-//get values in the url
+ 
+ 
 function getParameterByName(name)
 {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]"); 
+	    
+		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		
+		return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 
@@ -318,13 +283,15 @@ function logout()
 {
     setCookie("username","",-1);
     setCookie("userid","",-1);
-    window.location.replace("login.html")
+    
+    window.location.replace("login.html");
 }
 
 
 function setCookie(cname, cvalue, exdays) {
     var d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    
     var expires = "expires="+d.toUTCString();
     document.cookie = cname + "=" + cvalue + "; " + expires;
 }
@@ -333,11 +300,14 @@ function setCookie(cname, cvalue, exdays) {
 function getCookie(cname) {
     var name = cname + "=";
     var ca = document.cookie.split(';');
+    
     for(var i=0; i<ca.length; i++) {
         var c = ca[i];
-        while (c.charAt(0)==' ') c = c.substring(1);
-        if (c.indexOf(name) != -1) return c.substring(name.length, c.length);
+        while (c.charAt(0)==' ') 
+        	c = c.substring(1);
+        	
+        if (c.indexOf(name) != -1) 
+        	return c.substring(name.length, c.length);
     }
-    return "";
 }
 
