@@ -73,3 +73,26 @@ $$
      
 $$
 language 'sql';
+
+-- controller
+create or replace function deleteLeague(p_league_id int,p_managerid_fk int) 
+    returns text as
+$$
+  declare     
+     v_id int;
+  begin
+      select into v_id league_id  from league 
+         where managerid_fk = p_managerid_fk;
+         
+      if v_id isnull then
+          return 'Failed to delete';	
+      else
+      	     delete from league 
+             where managerid_fk = p_managerid_fk and league_id = v_id;
+			  return 'Successfully Deleted!';
+      end if;   
+         
+    
+  end;
+$$
+  language 'plpgsql'; 
