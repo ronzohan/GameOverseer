@@ -48,8 +48,9 @@ def setleague(req,managerid,leaguename,fixturetype,sport):
     leaguename = cgi.escape(leaguename)
     fixturetype = cgi.escape(fixturetype)
     sport = cgi.escape(sport)
+
     x = doSql()
-    rets = x.execqry("select * from setleague('" + managerid +  "' ," \
+    rets = x.execqry("select * from setleague('" + managerid +  "'," \
     " '"+leaguename+"','"+sport+"','"+fixturetype+"');", True)
     result = []
     
@@ -59,4 +60,11 @@ def setleague(req,managerid,leaguename,fixturetype,sport):
     
     return json.dumps(result)
 	
-	
+def deleteLeague(req,leagueid,managerid):
+    leagueid = cgi.escape(leagueid)
+    managerid = cgi.escape(managerid)
+
+    x = doSql()
+    rets = x.execqry("select * from deleteLeague("+leagueid+"," + managerid+");",True)
+    return json.dumps(rets)
+ 
