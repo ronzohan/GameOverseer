@@ -28,7 +28,7 @@ $$
 	 originalpassword= crypt(p_passwordinput, originalpassword); 
      select into v_userid userid from users where username = p_usernameinput;
      if originalpassword1 = originalpassword then
-		 return v_userid;
+		 return 'OK';
 		 
 	else
         return 'Your password did not match';

@@ -60,27 +60,27 @@
 	    $("#header").load("header.html"); 
 	  });
 	  
-	  $(document).ready(fetchLeagueByManagerId(getCookie('userid'))); //parameter depends on who's the user
-	  	$(document).ready(function () {
-        $("#dialog").dialog({ autoOpen: false,
-		  		height: 250,
-            width: 300,
-            modal: true,
-            resize: false,
-            buttons: {
-                DelUser:{ 
-                    text: 'Create',
-                    click : function (){
-                        setleague(getCookie('userid'),$('#leaguename').val(),$('#fixturetype').val(),$('#sport').val())	;
-                    }
-                },
-                
+		$(document).ready(fetchLeagueByManagerId(getCookie('userid'))); //parameter depends on who's the user
+		$(document).ready(function () {
+        	$("#dialog").dialog({ autoOpen: false,
+			height: 250,
+            		width: 300,
+            		modal: true,
+            		resize: false,
+            	buttons: {
+                	DelUser:{ 
+                    		text: 'Create',
+                    		click : function (){
+                        		setleague(getCookie('userid'),$('#leaguename').val(),$('#fixturetype').val(),$('#sport').val())	;
+                    			}
+                	},
                 Close: function () {
                     $(this).dialog("close");
                 }
             }
       
         });
+
         $("#newleague").click(
             function () {
                 $("#dialog").dialog('open');

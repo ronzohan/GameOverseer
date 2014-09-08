@@ -15,4 +15,5 @@ def index(req, league_id):
     for ret in rets:
         stringed = map(str, ret)
         result.append(stringed)
-	return json.dumps(result)
+    
+    return json.dumps(result)

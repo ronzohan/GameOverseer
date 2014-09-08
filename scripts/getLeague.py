@@ -16,7 +16,8 @@ def index(req, league_id):
     for ret in rets:
         stringed = map(str, ret)
         result.append(stringed)
-	return json.dumps(result)
+
+    return json.dumps(result)
 	
 
 def getBracketInfo(req,league_id):
@@ -39,7 +40,8 @@ def getLeagueInfoByManager(req,managerid):
     for ret in rets:
         stringed = map(str, ret)
         result.append(stringed)
-	return json.dumps(result)
+
+    return json.dumps(result)
 	
 
 def setleague(req,managerid,leaguename,fixturetype,sport):
@@ -54,6 +56,7 @@ def setleague(req,managerid,leaguename,fixturetype,sport):
     for ret in rets:
         stringed = map(str, ret)
         result.append(stringed)
-	return json.dumps(result)
+    
+    return json.dumps(result)
 	
 	
