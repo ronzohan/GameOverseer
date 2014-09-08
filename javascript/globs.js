@@ -138,6 +138,22 @@ function fetchLeagueByManagerId(managerid)
   
 }
 
+function getScore()
+{
+  $.ajax({
+      url: siteloc + scriptloc + "getScore.py",
+      data: {e:$("#e").val(),
+             },
+	  success: function (res) {
+                  $("p").html(" ");
+				  $("p").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ");
+				  $("p").append(res);
+                  
+				  }
+	})
+}
+
+
 function fetchLeagueBracketInfo(league_id)
 {
    $.ajax({
