@@ -238,28 +238,35 @@ function login(username,password)
 	     password:password
 },
       dataType: 'json',
-      success: function (res) {
+      success: function (res) 
+	  {
+	  
 		if (res[0][0] != "Error") //if login is successful redirect page
 		{
 			setCookie("username",username,2);
 			setCookie("userid",res[0][0],2);
 			window.location.replace("index.html");
+			
 		}
 		else
 		{
 			$('#status').append("Login error.");
 		}
+		
       }
-   });
-
+	  
+   }); 
 }
-//get values in the url
+ 
+ 
 function getParameterByName(name)
 {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]"); 
+	    
+		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		
+		return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 

@@ -7,10 +7,13 @@ except ImportError:
 
 def index(req, ide):
     ide = cgi.escape(ide)
-    x = doSql()
+    
+	x = doSql()
     rets = x.execqry("select * from loadCEvents('" + ide + "');", False)
-    result = []
-    for ret in rets:
+    
+	result = []
+    
+	for ret in rets:
         stringed = map(str, ret)
         result.append(stringed)
 

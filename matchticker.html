@@ -118,27 +118,34 @@
 <div class="bs">
     <nav role="navigation" class="navbar navbar-default">
         <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+        
+		<div class="navbar-header">
+            
+			<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span> <!--<span> tag is used to group inline-elements in a document and add a hook to a part of a tet.-->
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="#" class="navbar-brand">GameOverseer</a> <!--(Hypertext REFerence) The HTML code used to create a link to another page. example --<a href="http://www.w3schools.com">Visit W3Schools</a> -->
+            
+			<a href="#" class="navbar-brand">GameOverseer</a> <!--(Hypertext REFerence) The HTML code used to create a link to another page. example --<a href="http://www.w3schools.com">Visit W3Schools</a> -->
         </div>
 		 
         <!-- Collection of nav links and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav"> <!--The <ul> tag defines an unordered (bulleted) list.-->
+            
+			<ul class="nav navbar-nav"> <!--The <ul> tag defines an unordered (bulleted) list.-->
                 <li ><a href="http://localhost/GameOverseer/index.html">Home</a></li> <!--The <li> tag defines a list item.-->
                 <li><a href="#">Manage</a></li>
                 <li><a href="http://localhost/AboutUs.html">About Us</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-			 <li class="dropdown">
+            
+			<ul class="nav navbar-nav navbar-right">
+			
+			<li class="dropdown">
 			 
 			    <a href= "#" class = "dropdown-toggle" data-toggle = "dropdown">Developers <b class="caret"></b> </a>
+				
 				<ul class="dropdown-menu">
 				     <li> <a href="#">Onna Piando</a></li>
 				     <li> <a href="#">Jennie Ramos</a></li>
@@ -146,95 +153,115 @@
 					 <li> <a href="#">Ron Daryl Magno</a></li>
 					 <li> <a href="#">Diofel Pallega</a></li>
 				</ul>
+			
 			</li>
-			    <li><a href = "http://localhost/GameOverseer/register.html" >Register</a></li>
+			    
+				<li><a href = "http://localhost/GameOverseer/register.html" >Register</a></li>
                 <li  ><a href = "http://localhost/GameOverseer/login.html" >Login</a></li>
-            </ul>
+            
+			</ul>
         </div>
-    </nav>
+    
+	</nav>
+
 </div>
  
    
 
  <div class="media block-update-card">
-  <h1 align="center"><font size = "5"> <font color = "white"> Matchticker </font></font></h1>
-  </thead>
-  <div class="media-body update-card-body">
-    <h4 align = "center">
-		<font color = "white">insertTN1 vs insertTN2 
-		<div id='timer'><script language="JavaScript" src="javascript/Timer.js"></script></div>
-		<script language="JavaScript">
-			TargetDate = "10/6/2014 11:14 AM";
-			TimerID = "timer";
-			FinishMessage = "Live";
-			var dtarg = new Date(TargetDate);
-			var dnow = new Date();
-			diff = new Date(dtarg - dnow);
-			Time = Math.floor(diff.valueOf()/1000);
-			if(diff < 0){
-				Time = 0;
-			}
-			new CreateTimer(TimerID, Time);
-		</script>
+	<h1 align="center"><font size = "5"> <font color = "white"> Matchticker </font></font></h1>
 		
-		</font>
-	</h4>
+	<div class="media-body update-card-body">
+			<h4 align = "center">
+			<font color = "white">insertTN1 vs insertTN2 
+			
+			<div id='timer'><script language="JavaScript" src="javascript/Timer.js"></script></div>
+			
+			<script language="JavaScript">
+				TargetDate = "10/6/2014 11:14 AM";
+				TimerID = "timer";
+				FinishMessage = "Live";
+				
+				var dtarg = new Date(TargetDate);
+				var dnow = new Date();
+				
+				diff = new Date(dtarg - dnow);
+				Time = Math.floor(diff.valueOf()/1000);
+				
+				if(diff < 0){
+					Time = 0;
+				}
+			
+				new CreateTimer(TimerID, Time);
+			</script>
+		
+			</font>
+			</h4>
 	
 	<br>
 	
-	<h4 align = "center">
-		<font color = "white">insertTN3 vs insertTN4 
-		<div id='timer1'><script language="JavaScript" src="javascript/Timer.js"></script></div>
-		<script language="JavaScript">
-			TargetDate = "09/6/2014 11:16 AM";
-			TimerID = "timer1";
-			FinishMessage = "Live";
-			var dtarg = new Date(TargetDate);
-			var dnow = new Date();
-			diff = new Date(dtarg - dnow);
-			Time = Math.floor(diff.valueOf()/1000);
-			if(diff < 0){
-				Time = 0;
-			}
-			new CreateTimer(TimerID, Time);
-		</script>
+			<h4 align = "center">
+			<font color = "white">insertTN3 vs insertTN4 
 		
+			<div id='timer1'><script language="JavaScript" src="javascript/Timer.js"></script></div>
+		
+			<script language="JavaScript">
+				TargetDate = "09/6/2014 11:16 AM";
+				TimerID = "timer1";
+				FinishMessage = "Live";
+				
+				var dtarg = new Date(TargetDate);
+				var dnow = new Date();
+				
+				diff = new Date(dtarg - dnow);
+				Time = Math.floor(diff.valueOf()/1000);
+				
+				if(diff < 0){
+					Time = 0;
+				}
+				
+				new CreateTimer(TimerID, Time);
+			</script>
+		
+			</font>
+			</h4>
+	
+	<br>
+	
+			<h4 align = "center">
+			<font color = "white">insertTN5 vs insertTN6 
+		
+			<div id='timer2'><script language="JavaScript" src="javascript/Timer.js"></script></div>
+		
+			<script language="JavaScript">
+				TargetDate = "12/6/2014 11:14 AM";
+				TimerID = "timer2";
+				FinishMessage = "Live";
+				
+				var dtarg = new Date(TargetDate);
+				var dnow = new Date();
+				
+				diff = new Date(dtarg - dnow);
+				Time = Math.floor(diff.valueOf()/1000);
+				
+				if(diff < 0){
+					Time = 0;
+				}
+				
+				new CreateTimer(TimerID, Time);
+			</script>
+			
+			</font>
+			</h4>
+	
+	<br>
+	
+			<h4 align = "center">
+			<font color = "white">Recent Matches</font>
+			</h4>
+
 	</div>
-	</font>
-	</h4>
-	<br>
-	
-	<h4 align = "center">
-		<font color = "white">insertTN5 vs insertTN6 
-		<div id='timer2'><script language="JavaScript" src="javascript/Timer.js"></script></div>
-		<script language="JavaScript">
-			TargetDate = "12/6/2014 11:14 AM";
-			TimerID = "timer2";
-			FinishMessage = "Live";
-			var dtarg = new Date(TargetDate);
-			var dnow = new Date();
-			diff = new Date(dtarg - dnow);
-			Time = Math.floor(diff.valueOf()/1000);
-			if(diff < 0){
-				Time = 0;
-			}
-			new CreateTimer(TimerID, Time);
-		</script>
-		</font>
-	</h4>
-	
-	<h4 align = "center">
-		<font color = "white">Recent Matches 
-		
-	
-		</font>
-	</h4>
 
 </div>
-  </div>
-  
- 
-  
- 
 </body>
 </html>                                		
