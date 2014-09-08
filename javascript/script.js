@@ -1,4 +1,8 @@
-  $('form#register').validate({
+var siteloc = "http://localhost/GameOverseer";
+var scriptloc = "/scripts/";
+  
+  
+$('form#register').validate({
 	   success: function(label) {
 		label.text("ok!").addClass("success"); 
 	    },
@@ -59,16 +63,44 @@
         });
 		
 		
-		  $("button.signup").click(function () {
-            var register = $('#register').valid(); 
-            if (register) {
+		   $("button.signup").click(function () {
+             var register = $('#register').valid(); 
+             if (register) {
                 $.ajax({
                     type: "POST",
                     url: "register.html",
-                    data: $('form#register').serialize(), 
-                    success: function (msg) {
-                       $("label.result").html(msg);      
-                    }
+                     data: $('form#register').serialize(), 
+                     success: function (msg) {
+                        $("label.result").html(msg);       
+                     }
                 });
-            }
-        });
+             }
+         });
+
+		
+		
+		
+	function goon(){			   
+		
+		$.ajax({ 
+		 
+				url: siteloc + scriptloc + "insertUser.py",
+        data: 
+				{
+				
+					username:$("#username").val(),
+					password:$("#password").val(),
+					fullname:$("#fullname").val(),
+					email:$("#email").val(),
+					contactno:$("#contactno").val(),
+					address:$("#address").val(),
+				} ,
+					dataType: 'json',
+					success: function (res) {
+					return res;
+				 
+				 }
+				});
+	         
+        }        
+		
