@@ -3,7 +3,11 @@ CREATE EXTENSION pgcrypto;
 CREATE TABLE users(
 	userid serial primary key,
 	username text unique,
-	password text
+	password text,
+	fullname text,
+	email text,
+	contactno text,
+	address text
 );
 
  
@@ -43,7 +47,7 @@ $$
 
 
 create or replace function
-   setuser(p_username text, p_password text)
+   setuser(p_username text, p_password text,p_fullname text,p_email text ,p_contactno text ,p_address text)
      returns text as
 $$
    declare
@@ -53,11 +57,12 @@ $$
          where username = p_username;
 	  
       if userid1 isnull then
-         insert into users(username,password) values
-            (p_username,crypt(p_password, gen_salt('bf')));
+         insert into users(username,password,fullname,email,contactno,address) values
+            (p_username,crypt(p_password, gen_salt('bf')),p_fullname,p_email,p_contactno,p_address);
      else
           update users
-			set username = p_username, password = crypt(p_password, gen_salt('bf')) 
+			set username = p_username, password = crypt(p_password, gen_salt('bf')) , 
+			fullname= p_fullname, email = p_email, contactno = p_contactno, address = p_address
 			--this gen_salt generates a new random salt string
 			-- crypt() does the hashing
 			where username = p_username;
@@ -67,14 +72,14 @@ $$
 $$
 language 'plpgsql';
 -- HOW TO USE :
--- SELECT setuser('yourUsername','yourPassword'); 
+-- SELECT setuser('p_username' , 'p_password','p_fullname' ,'p_email ','p_contactno ' ,'p_address ')
 
 --view
 create or replace function
-   get_users_perid(in int, out int, out text)
+   get_users_perid(in int, out int, out text, out text, out text, out text, out text)
 returns setof record as
 $$
-	select userid,username from users
+	select userid,username,fullname,email,contactno,address from users
 	where userid = $1;
 
 $$
