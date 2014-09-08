@@ -59,8 +59,9 @@ function fetchUser(userid)
 	       	  }                                                                                                                       
 		  else
 		  {
-		  	alert("Failed");					  	}
+		  	alert("Failed");					  	
          	  }
+	       }
     });
 }
 
@@ -108,6 +109,7 @@ function fetchleague(league_id)
                   
                   if(res[0][0] != "None")
                   {}
+		}
     });
 }
 
