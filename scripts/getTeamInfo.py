@@ -13,9 +13,9 @@ def index(req,name):
     print query
     items = a.execqry(query,False)
     result = []
+    
     for item in items:
         stringed = map(str,item)
         result.append(stringed)
-
     return json.dumps(result)
 
