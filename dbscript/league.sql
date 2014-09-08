@@ -1,4 +1,12 @@
-
+create table league (
+     league_id serial primary key,
+     managerid_fk serial references manager (Manager_id),
+     name text,
+     sport_type text,
+     fixture_type text,
+     results int[],
+     teams text[]
+);
 
 --create language plpgsql;
 -- controller
