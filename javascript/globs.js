@@ -300,12 +300,10 @@ function insertUser()
 function isloggin()
 {
 
-    if (getCookie("username") == "" && getCookie("userid") == "")
-		window.location.replace("login.html");
-		
-    else
-      $("#username").append(getCookie("username"));
-    
+	if (!getCookie("username") && !getCookie("userid"))
+		return false;
+    	else
+		return true;	
 }
 
 
