@@ -13,31 +13,30 @@ function fetchEvent()
                   console.log(res);
                   if(res[0][0] != "None")
                   {
-					      table = '<div class="table-responsive">';
-		  				   table += '<table class="table table-condensed">';
-						   table += '<thead>' +'<tr>' + '<th>Date</th>' +'<th>Venue</th>' +
-									   '<th>Starting Time</th>' + '<th>Ending Time</th>' + 
-									   '<th>Score (Team 1)</th>' +
-									   '<th>Score (Team 2)</th>' + '</tr>' + '</thead>';
-						   table += "<tbody>";
+		  	table = '<div class="table-responsive">';
+			table += '<table class="table table-condensed">';
+			table += '<thead>' +'<tr>' + '<th>Date</th>' +'<th>Venue</th>' +
+			         '<th>Starting Time</th>' + '<th>Ending Time</th>' + 
+			         '<th>Score (Team 1)</th>' +
+			         '<th>Score (Team 2)</th>' + '</tr>' + '</thead>';
+			table += "<tbody>";
 					   		   
-						   for (i = 0; i < res.length; i++)
-						   {
-						   	
-							   row = res[i];
-							   table += "<tr>";
+			for (i = 0; i < res.length; i++)
+			{
+				row = res[i];
+			        table += "<tr>";
 	
-							   for (j = 0; j < row.length; j++)
-								   table += "<td>" + row[j] + "</td>";
+			        for (j = 0; j < row.length; j++)
+					table += "<td>" + row[j] + "</td>";
 	
-							   table += "</tr>";
-						   }
+				table += "</tr>";
+			}
 						   
-						   table += "</tbody>";
-						   table += "</table>";
-						   table += "</div>";
-						   $("#target").html(table); 
-					   }
+			table += "</tbody>";
+			table += "</table>";
+			table += "</div>";
+			$("#target").html(table); 
+		}
               }
     });
 }
