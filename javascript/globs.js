@@ -55,13 +55,12 @@ function fetchUser(userid)
                   
                   if(res[0][0] != "None")
                   {
-		    				setCookie("username",res[0][1],2);
-		  				}                                                                                                                       
-					   else
-					   {
-					      alert("Failed");
-					  	}
-         }
+		  	setCookie("username",res[0][1],2);
+	       	  }                                                                                                                       
+		  else
+		  {
+		  	alert("Failed");					  	}
+         	  }
     });
 }
 
@@ -122,16 +121,16 @@ function fetchLeagueByManagerId(managerid)
                   console.log(res); 
                   if(res[0][0] != "None")                  
                   {
-						   for (i=0;i<res.length;i++)
-						   {
-						      row = res[i];
-						      
-						      $("#name").attr("href","leagueinfo?id="+row[0]);
-						      $("#name").append(row[1]);
-						      $("#sporttype").append(row[2]);
-						      $("#fixturetype").append(row[3]);
-						   }
-		            } // end if
+			for (i=0;i<res.length;i++)
+			{
+				row = res[i];
+				      
+				$("#name").attr("href","leagueinfo?id="+row[0]);
+				$("#name").append(row[1]);
+				$("#sporttype").append(row[2]);
+				$("#fixturetype").append(row[3]);
+			}
+		   } // end if
               }
   });
   
