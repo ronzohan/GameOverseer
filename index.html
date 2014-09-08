@@ -9,7 +9,11 @@
         <script src="javascript/jqinit.js"></script>   
 	<script>
 		$(function(){
-			$("#header").load("header.html"); 
+			if (isloggin())
+      				$("#header").load("header.html");
+  			else 
+				window.location.replace("login.html");
+				 
 		});
    	</script>
    </head>
