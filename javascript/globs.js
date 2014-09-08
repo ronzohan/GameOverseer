@@ -116,7 +116,7 @@ function fetchleague(league_id)
 function fetchLeagueByManagerId(managerid)
 {
   $.ajax({
-      url: siteloc + scriptloc + "getLeague/getLeagueInfoByManager?",
+      url: siteloc + scriptloc + "getLeague/getLeagueInfoByManager",
       data: {managerid:managerid},
       dataType: 'json',
       success: function (res) {
@@ -126,17 +126,18 @@ function fetchLeagueByManagerId(managerid)
 			for (i=0;i<res.length;i++)
 			{
 				row = res[i];
-				      
-				$("#name").attr("href","leagueinfo?id="+row[0]);
-				$("#name").append(row[1]);
-				$("#sporttype").append(row[2]);
-				$("#fixturetype").append(row[3]);
+				     
+				$("#leaguetable").append('<tr><td><a href=leagueinfo?id='+row[0]+'>'+row[1]+'</a></td>'
+		      	  		+ '<td>'+row[2]+'</td>' + '<td>'+row[3]
+					+'</td><td><a href="#" class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
+		      	  		+'<a href="#" class="glyphicon glyphicon-remove">Remove</a></td></tr>');
 			}
-		   } // end if
+		   }
               }
   });
   
 }
+
 function fetchLeagueBracketInfo(league_id)
 {
    $.ajax({
@@ -311,3 +312,26 @@ function getCookie(cname) {
     }
 }
 
+function setleague(managerid,leaguename,fixturetype,sport)
+{
+	$.ajax({
+	url: siteloc + scriptloc + "getLeague/setleague",
+	data: {
+		managerid:managerid,
+      		leaguename:leaguename,
+		fixturetype:fixturetype,      
+      		sport:sport
+      	},
+      	dataType: 'json',
+      	success: function (res) {
+			console.log(res);
+                  	if(res[0][0] != "None")
+                  	{
+				if (res[0][0] == "Successfully Created")
+					alert(res[0][0]);
+				else 
+					alert(res[0][0]);
+	 		} 
+              	}
+	});
+}
