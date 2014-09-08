@@ -130,7 +130,7 @@ function fetchLeagueByManagerId(managerid)
 				$("#leaguetable").append('<tr><td><a href=leagueinfo?id='+row[0]+'>'+row[1]+'</a></td>'
 		      	  		+ '<td>'+row[2]+'</td>' + '<td>'+row[3]
 					+'</td><td><a href="#" class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
-		      	  		+'<a href="#" class="glyphicon glyphicon-remove">Remove</a></td></tr>');
+		      	  		+'<a href="#" onClick = deleteLeague('+row[0]+','+getCookie("userid")+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
 			}
 		   }
               }
@@ -154,35 +154,9 @@ function fetchLeagueBracketInfo(league_id)
                   if(res[0][0] != "None")
                   {
 		    var minimalData = {
-		      teams : [
-			
-			["Team 1",  "Team 2" ],
-			["Team 3",  "Team 4" ],
-			["Team 5",  "Team 6" ],
-			["Team 7",  "Team 8" ],
-			["Team 9",  "Team 10"],
-			["Team 11", "Team 12"],
-			["Team 13", "Team 14"],
-			["Team 15", "Team 16"]
-							],
-			results : [[ /* WINNER BRACKET */
-			[[3,5], [2,4], [6,3], [2,3], [1,5], [5,3], [7,2], [1,2]],
-			[[1,2], [3,4], [5,6], [7,8]],
-			[[9,1], [8,2]],
-			[[1,3]]
-							],
-						 [/* LOSER BRACKET */
-			[[5,1], [1,2], [3,2], [6,9]],
-			[[8,2], [1,2], [6,2], [1,3]],
-			[[1,2], [3,1]],
-			[[3,0], [1,9]],
-			[[3,2]],
-			[[4,2]]
-							],
-						[/* FINALS */
-			[[3,8], [1,2]],
-			[[2,1]]
-							]]
+		      teams :t,
+			results : r
+				
 		    }
 		    $(function()
 			{
@@ -226,17 +200,12 @@ function login(username,password)
       }); 
 }
  
- 
 function getParameterByName(name)
 {
-
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]"); 
-	    
-		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]"); 	    
+	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
         results = regex.exec(location.search); 
-		
-		return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-		
+	return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));	
 }
 
 
@@ -352,4 +321,27 @@ function setleague(managerid,leaguename,fixturetype,sport)
 	 		} 
               	}
 	});
+}
+
+function deleteLeague(leagueid,managerid)
+{
+	$.ajax({
+	url: siteloc + scriptloc + "getLeague/deleteLeague",
+	data: {
+		leagueid:leagueid,
+		managerid:managerid
+      	},
+      	dataType: 'json',
+      	success: function (res) {
+			console.log(res);
+                  	if(res[0][0] != "None")
+                  	{
+				if (!res[0][0])
+					alert("Successfully deleted");
+				else 
+					alert("Failed to delete");
+	 		} 
+              	}
+	});
+
 }
