@@ -2,53 +2,46 @@
    <head>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-theme.min.css" rel="stylesheet">	
+		<link rel="stylesheet" href="css/custom.css"> 
 		<link href="https://assets-cdn.github.com/assets/github-0ee9064842419bc947ae49576d87065a9fa954d5.css" media="all" rel="stylesheet" type="text/css" />
-		<link href="https://assets-cdn.github.com/assets/github2-fdf72e5a92bee3dcbf0220f2d727814f13d53277.css" media="all" rel="stylesheet" type="text/css" />
+		<link href="https://assets-cdn.github.com/assets/github2-fdf72e5a92bee3dcbf0220f2d727814f13d53277.css" media="all" rel="stylesheet" type="text/css" />	
 	
+	<style type ="text/css">
+	</style>
    </head>
    <body>
+		<div id="fullscreen_bg" class="fullscreen_bg"/> 
 		<div id="header"> </div>
-		<div id="target">	   	   
+		<div id="target"></div>
 
+        <div id="container" data-pjax-container>
+			<div class="container codesearch-cols">
+			<div class="aside">
+			<div class="search-menu-container">
+			<div class="menu-container">
+				<ul class="menu" data-pjax>
+					<li><a href="dbscript/league.sql">League</a></li>
+					<li><a href="dbscript/users.sql">Users</a></li>
+				</ul>
 			</div>
-
-           <div id="container" data-pjax-container>
-
-  <div class="container codesearch-cols">
-    <div class="aside">
-      <div class="search-menu-container">
-        <div class="menu-container">
-          <ul class="menu" data-pjax>
-            <li><a href="https://github.com/search?q=asasasquery&amp;type=Repositories&amp;utf8=%E2%9C%93" class="selected">League</a></li>
-            <li><a href="https://github.com/search?q=asasasquery&amp;type=Code&amp;utf8=%E2%9C%93">Users<span class="js-deferred-content" data-url="https://github.com/search/count?q=asasasquery&amp;type=Code&amp;utf8=%E2%9C%93"></span></a></li>
+			</div>
+			</div>
 			
-          </ul>
-        </div>
-      </div>
-      
-      <p class="meta-search-links">
-    </div>
-    <div class="main-content">
-        
-<div class="blankslate">
-
-  <h3>We couldn&#39;t find any League or Users matching &#39;asasasquery&#39;</h3>
-
-</div>
-</div>
-</div>
-</div>
-
-</div>
-
-
-	   
+		<div class="main-content">
+			<div class="blankslate">
+			<h3>results not found.</h3>
+			</div>
+		</div>
+		</div>
+		</div>	   
    </body>
    
    	<script src="javascript/jquery.js"></script>
     <script src="javascript/bootstrap.min.js"></script>
 	<script src="javascript/globs.js"></script>
     <script src="javascript/jqinit.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		
 	<script>
 	  $(function(){
