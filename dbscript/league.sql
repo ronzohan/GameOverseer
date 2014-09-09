@@ -7,7 +7,7 @@ create table league (
      results int[],
      teams text[]
 );
-
+ 
 --create language plpgsql;
 -- controller
 create or replace function setleague(p_managerid_fk int,p_name text,p_sport_type text, p_fixture_type text) 
@@ -82,7 +82,7 @@ $$
      v_id int;
   begin
       select into v_id league_id  from league 
-         where managerid_fk = p_managerid_fk;
+         where managerid_fk = p_managerid_fk and league_id = p_league_id;
          
       if v_id isnull then
           return 'Failed to delete';	

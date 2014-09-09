@@ -123,6 +123,7 @@ function fetchLeagueByManagerId(managerid)
                   console.log(res); 
                   if(res[0][0] != "None")                  
                   {
+			$("#leaguetable tr").remove();
 			for (i=0;i<res.length;i++)
 			{
 				row = res[i];
@@ -130,7 +131,7 @@ function fetchLeagueByManagerId(managerid)
 				$("#leaguetable").append('<tr><td><a href=leagueinfo?id='+row[0]+'>'+row[1]+'</a></td>'
 		      	  		+ '<td>'+row[2]+'</td>' + '<td>'+row[3]
 					+'</td><td><a href="#" class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
-		      	  		+'<a href="#" onClick = deleteLeague('+row[0]+','+getCookie("userid")+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
+		      	  		+'<a href="#" onClick = verifydelete('+row[0]+','+getCookie("userid")+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
 			}
 		   }
               }
@@ -325,15 +326,24 @@ function setleague(managerid,leaguename,fixturetype,sport)
 		fixturetype:fixturetype,      
       		sport:sport
       	},
-      	dataType: 'json',
+      	dataType: 'json',	
       	success: function (res) {
-			console.log(res);
                   	if(res[0][0] != "None")
                   	{
 				if (res[0][0] == "Successfully Created")
-					alert(res[0][0]);
-				else 
-					alert(res[0][0]);
+				{
+					$("#create").hide();
+					$("#status").empty();
+					$("#status").css('color','#00FF00');
+					$("#status").append("Successfully Created!");					
+					$("input").prop('disabled', true); //disable all inputs since leauge was been successfully created
+				}
+ 				else
+				{
+					$("#status").empty();
+					$("#status").css('color','#FF0000');
+					$("#status").append("Duplicate Entry.");
+				}	 
 	 		} 
               	}
 	});
@@ -352,12 +362,24 @@ function deleteLeague(leagueid,managerid)
 			console.log(res);
                   	if(res[0][0] != "None")
                   	{
-				if (!res[0][0])
-					alert("Successfully deleted");
+				if (res[0][0])
+				{
+					fetchLeagueByManagerId(getCookie('userid'));
+				}				
 				else 
 					alert("Failed to delete");
 	 		} 
               	}
 	});
+
+}
+
+function verifydelete(leagueid,managerid)
+{
+	//pass the needed parameters by the dialogbox for deleteleague call later
+	$("#dialog-confirm")
+		.data('leagueid',leagueid)
+		.data('managerid',managerid)
+		.dialog('open');
 
 }
