@@ -1,6 +1,6 @@
-  $('form#register').validate({ // initialize the plugin
+  $('form#register').validate({
 	   success: function(label) {
-		label.text("ok!").addClass("success"); //if valid add class
+		label.text("ok!").addClass("success"); 
 	    },
  	   validClass: "success",
 	   rules: {
@@ -60,14 +60,14 @@
 		
 		
 		  $("button.signup").click(function () {
-            var register = $('#register').valid(); // Checking valid form
+            var register = $('#register').valid(); 
             if (register) {
                 $.ajax({
                     type: "POST",
                     url: "register.html",
-                    data: $('form#register').serialize(), //serialize form
+                    data: $('form#register').serialize(), 
                     success: function (msg) {
-                       $("label.result").html(msg);       // Get status from process.php
+                       $("label.result").html(msg);      
                     }
                 });
             }
