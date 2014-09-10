@@ -139,18 +139,19 @@ function fetchLeagueByManagerId(managerid)
   
 }
 
-function getScore()
+function getScore(ide)
 {
   $.ajax({
       url: siteloc + scriptloc + "getScore.py",
-      data: {e:$("#e").val(),
+      data: {ide:ide
              },
 	  success: function (res) {
-                  $("p").html(" ");
-				  $("p").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ");
-				  $("p").append(res);
-                  
-				  }
+                  //console.log(res[3][0]);
+				  if(res[3][0] == "N" )
+                  {
+					 $("p").append("Show Results");
+				  } // end !if
+              }
 	})
 }
 
@@ -200,7 +201,7 @@ function login(username,password)
 
 	  function (res) 
 	  {
-	  
+			console.log(res[0][0]);
 			if (res[0][0] != "Error") //if login is successful redirect page
 			{
 				setCookie("username",username,2);
