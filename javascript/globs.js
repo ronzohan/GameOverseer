@@ -130,7 +130,7 @@ function fetchLeagueByManagerId(managerid)
 				     
 				$("#leaguetable").append('<tr><td><a href=leagueinfo?id='+row[0]+'>'+row[1]+'</a></td>'
 		      	  		+ '<td>'+row[2]+'</td>' + '<td>'+row[3]
-					+'</td><td><a href="#" class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
+					+'</td><td><a href="#" onClick=editLeague('+getCookie('userid')+','+row[0]+') class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
 		      	  		+'<a href="#" onClick = verifydelete('+row[0]+','+getCookie("userid")+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
 			}
 		   }
@@ -210,7 +210,9 @@ function login(username,password)
 			
 			else
 			{
+				$('#status').empty();
 				$('#status').append("Login error.");
+				$('#status').css('color','#FF0000');
 			}
 		
       } 
@@ -272,7 +274,7 @@ function isloggin()
 
 	if (!getCookie("username") && !getCookie("userid"))
 		return false;
-    	else
+    else
 		return true;	
 }
 
@@ -316,6 +318,32 @@ function getCookie(cname)
 	 
 }
 
+function editLeague(managerid,leagueid)
+{
+	
+	$("#editleaguename").empty();
+	$("#editsport").empty();
+	$("#editfixturetype").empty();
+	
+	$.ajax({
+      url: siteloc + scriptloc + "getLeague.py",
+      data: {league_id:leagueid,
+		  },
+      dataType: 'json',
+      success: function (res) {
+                  console.log(res);
+					
+                  if(res[0][0] != "None")
+                  {
+					$("#editleaguename").val(res[0][0]);
+					$("#editsport").val(res[0][1]);
+					$("#editdialog select").val(res[0][2]);
+					$("#editdialog").dialog('open');
+				  }
+		}
+    });
+	
+}
 function setleague(managerid,leaguename,fixturetype,sport)
 {
 	$.ajax({

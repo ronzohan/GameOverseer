@@ -50,9 +50,17 @@
 	</div>
 	
 	<div id="editdialog" title="Edit League Info">
-		
-	
-	
+			League Name:&nbsp<input type="text" name="League Name" id="editleaguename"/><br><br>
+
+			Sport:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+			<input type="text" name="Sport" id="editsport"/><br><br>
+
+			Fixture Type:&nbsp 
+
+			<select id="editfixturetype">
+				<option value="Single Elimination">Single Elimination</option>
+				<option value="Double Elimination">Double Elimination</option>						 
+			</select>	
 	</div>
 
 	<div id="dialog-confirm" title="Confirm Delete">
@@ -91,13 +99,35 @@
 
 	$("#newleague").click(
             function () {
-		$("#create").show();
-		$("#status").empty();
+				$("#create").show();
+				$("#status").empty();
                 $("#adddialog").dialog('open');
                 return false;
             }
         );
-
+	
+	$("#editdialog").dialog({ 
+			autoOpen: false,
+			height: 280,
+            		width: 350,
+            		modal: true,
+            		resizable: false,
+		    	buttons: {
+		        	CreateLeague:{ 
+		            		text: 'Update',
+					id : 'update',
+		            		click : function (){		                			 					
+		            			}
+		        	},
+		        Close: function () {
+				fetchLeagueByManagerId(getCookie('userid'));
+				$("input").prop('disabled', false);
+			        $(this).dialog("close");
+		        }
+            		}
+      
+        	});
+	
 	$("#adddialog").dialog({ 
 			autoOpen: false,
 			height: 280,
