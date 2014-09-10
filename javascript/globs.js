@@ -147,9 +147,9 @@ function getScore(ide)
              },
 	  success: function (res) {
                   //console.log(res[3][0]);
-				  if(res[3][0] == "N" )
+				  if(res[3][0] != "N" )
                   {
-					 $("p").append("Show Results");
+					 $("p").append("Show Results ");
 				  } // end !if
               }
 	})

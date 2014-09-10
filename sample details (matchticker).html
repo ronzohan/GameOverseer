@@ -91,8 +91,8 @@
   height: 90%;
   border: 1px silver solid;
   width: 380px;
-  float: right;
-  margin-right: 10px;
+  float: none;
+  margin-right: 1000px;
   margin-top: 0;
   padding: 0;
   box-shadow: 1px 1px 8px silver;
@@ -167,108 +167,36 @@
  
    
 
- <div class="media block-update-card">
-	<h1 align="center"><font size = "5"> <font color = "white"> Matchticker </font></font></h1>
+ <div class="container">
 		
-	<div class="media-body update-card-body">
-			<h4 align = "center">
-			<font color = "white"><a href ="http://localhost/GameOverseer/tN1vstN2.html">insertTN1 vs insertTN2 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			
-			<span id='timer'><script language="JavaScript" src="javascript/Timer.js"></script></span>
-			
-			<script language="JavaScript">
-				TargetDate = "10/6/2014 11:14 AM";
-				TimerID = "timer";
-				FinishMessage = "Live";
-				
-				var dtarg = new Date(TargetDate);
-				var dnow = new Date();
-				
-				diff = new Date(dtarg - dnow);
-				Time = Math.floor(diff.valueOf()/1000);
-				
-				if(diff < 0){
-					Time = 0;
-				}
-			
-				new CreateTimer(TimerID, Time);
-			</script>
-		
-			</font>
-			</h4>
-	
-	<br>
-	
-			<h4 align = "center">
-			<font color = "white"><a href =" #">insertTN3 vs insertTN4 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-		
-			<span id='timer1'><script language="JavaScript" src="javascript/Timer.js"></script></span>
-		
-			<script language="JavaScript">
-				TargetDate = "12/12/2014 11:16 AM";
-				TimerID = "timer1";
-				FinishMessage = "Live";
-				
-				var dtarg = new Date(TargetDate);
-				var dnow = new Date();
-				
-				diff = new Date(dtarg - dnow);
-				Time = Math.floor(diff.valueOf()/1000);
-				
-				if(diff < 0){
-					Time = 0;
-				}
-				
-				new CreateTimer(TimerID, Time);
-			</script>
-		
-			</font>
-			</h4>
-	
-	<br>
-	
-			<h4 align = "center">
-			<font color = "white"><a href =" #">insertTN5 vs insertTN6 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		
-			<span id='timer2'><script language="JavaScript" src="javascript/Timer.js"></script></s>
-			<script language="JavaScript" src="javascript/globs.js"></script>
-			<script language="JavaScript">
-				TargetDate = "12/6/2014 11:14 AM";
-				TimerID = "timer2";
-				FinishMessage = "Live";
-				ide  = 2;
-				
-				var dtarg = new Date(TargetDate);
-				var dnow = new Date();
-				
-				diff = new Date(dtarg - dnow);
-				Time = Math.floor(diff.valueOf()/1000);
-				
-				if(diff < 0){
-					Time = 0;
-				}
-				
-				new CreateTimer(TimerID, Time);
-				
-			</script>
-			</font>
-			
-			</h4>
-			
-	
-	<br>
-			<h4 align = "center">
-			<font color = "white">Recent Matches
-		
+	<div class="panel panel-default" >
+		<div class="panel-heading" >
+			<div class="panel-title"><h4 align = "center">TN1 vs TN2</h4></div>
+		</div>	
+		<div class = "panel-body" style = "background-color:gray">
+		<table>
+		<tr>
+		<td><img hspace="95" src = "http://localhost/GameOverseer/picture/download.jpg" style="max-height: 270px; max-width: 270px;"/ >
+			<div class = "opp1-det">
+			<h4 align = "center">Rank #__</h4>
+			</div>
+		</td>
+		<td><p align = "center">Details:
 			<br>
-			<br>		
-			
-			<a href = "#">insertTN3 vs insertTN4</a>
-		
-			</font>
-			</h4>
+			October 6, 2014 @ 11:00 AM
+			</p>
+		</td>
+		<td><img hspace="95" src = "http://localhost/GameOverseer/picture/world-connection.jpg" style="max-height: 260px; max-width: 260px;"/ >
+			<div class = "opp2-det">
+			<h4 align = "center">Rank #__</h4>
+			</div>
+		</td>
+		</tr>
+		</table>
+		</div>
 	</div>
-
 </div>
+
+
 </body>
 </html>                                		

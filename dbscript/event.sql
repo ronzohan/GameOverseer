@@ -105,6 +105,18 @@ $$
  
 	language 'sql';
 
+--HOW TO USE:
+-- SELECT getScore(1);
+
+create or replace function getStart(in int, out date, out time with time zone) 
+	returns record as
+
+$$ 
+    select eDate, eTime_start from events
+				where e_id = $1;
+$$
+ 
+	language 'sql';
 	
 --HOW TO USE:
 -- SELECT ReSchedE(1, 'September 13, 2014','Cagayan','06:00 AM','03:00 PM');
