@@ -1,5 +1,3 @@
-
-
 from dosql import *
 import cgi
 try:
@@ -7,15 +5,16 @@ try:
 except ImportError:
     import simplejson as json
 
-def index(req,username):
-    username= cgi.escape(username)    
-    x = doSql() 
-    rets = x.execqry("select  get_username('" + username + "');",False)
+def index(req, ide):
+    id = cgi.escape(ide) 
+    #i = int(id)
+    x = doSql()
+    query = "select * from getStart('" + id + "');"
+    rets = x.execqry(query, False)
     result = []
+	
     for ret in rets:
         stringed = map(str, ret)
         result.append(stringed)
-		
-    return json.dumps(result)
 
-	  
+    return json.dumps(result)
