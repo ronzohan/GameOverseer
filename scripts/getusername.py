@@ -8,9 +8,9 @@ except ImportError:
     import simplejson as json
 
 def index(req,username):
-    username= cgi.escape(name)    
+    username= cgi.escape(username)    
     x = doSql() 
-    rets = x.execqry("select  get_username('" + username+" '');",False)
+    rets = x.execqry("select  get_username('" + username + "');",False)
     result = []
     for ret in rets:
         stringed = map(str, ret)
