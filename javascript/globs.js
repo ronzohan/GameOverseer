@@ -155,6 +155,23 @@ function getScore(ide)
 	})
 }
 
+function getStart(ide)
+{
+  $.ajax({
+      url: siteloc + scriptloc + "getStart.py",
+      data: {ide:ide
+             },
+	  success: function (res) {
+                  //console.log(res[3][0]);
+				  if(res[0][0] != "None" )
+                  {
+					 $("p").append(res);
+				  } // end !if
+              }
+	})
+}
+
+
 
 function fetchLeagueBracketInfo(league_id)
 {
