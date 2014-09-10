@@ -17,4 +17,4 @@ def index(req, ide):
         stringed = map(str, ret)
         result.append(stringed)
 
-    return json.dumps(result)co
+    return json.dumps(result)
