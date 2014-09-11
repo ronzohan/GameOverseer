@@ -204,22 +204,99 @@ function getScore(ide)
 	})
 }
 
-function getStart(ide)
+function getStart(ide, timer)
 {
-  $.ajax({
+	$.ajax({
       url: siteloc + scriptloc + "getStart.py",
       data: {ide:ide
              },
 	  success: function (res) {
-                  //console.log(res[3][0]);
-				  if(res[0][0] != "None" )
-                  {
-					 $("p").append(res);
-				  } // end !if
-              }
+                  var t1 = res[17][0] + res[18][0];
+				  var t2 = res[19][0] + res[20][0] + res[21][0];
+				  var string = "";
+				  for (i = 0; i < (res.length - 12); i++)
+					{
+						row = res[i];
+						
+						for (j = 0; j < row.length ; j++)
+							if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"'  && row[j] != '+' )
+								string += row[j];		
+							
+					}
+					var date = new Date(string);
+					var string = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) + "/" + date.getFullYear() + " " + t1 + t2;
+				
+					if(t1 < 12)
+						string += " " + "AM";
+					else
+						string += " " + "PM";
+
+					string = '"' + string + '"';
+				
+					var TargetDate = "";
+					TargetDate += string;
+					TimerID = timer;
+					//TimerID = "timer2";
+					FinishMessage = "Live";
+					//ide  = 2;
+				
+					var dtarg = new Date(TargetDate);
+					var dnow = new Date();
+				
+					diff = new Date(dtarg - dnow);
+					Time = Math.floor(diff.valueOf()/1000);
+				
+					if(diff < 0){
+						Time = 0;
+					}
+				
+					new CreateTimer(TimerID, Time);
+			}
+			
 	})
+	
+	
 }
 
+var Timer;
+var TotalSeconds;
+
+function CreateTimer(TimerID, Time){
+    var oop=this;
+	this.Timer = document.getElementById(TimerID);
+	this.TotalSeconds = Time;
+	this.update();
+	oop.to=setTimeout(function(){ oop.tick(); }, 1000);
+}
+
+CreateTimer.prototype={
+
+ tick:function(){
+    var oop=this;
+	if (this.TotalSeconds <= 0){
+		this.Timer.innerHTML = FinishMessage;
+		return;
+	}
+	this.TotalSeconds -= 1;
+	this.update()
+	oop.to=setTimeout(function(){ oop.tick(); }, 1000);
+ },
+
+ update:function(){
+ 	var Seconds = this.TotalSeconds,Days = Math.floor(Seconds / 86400);
+	Seconds -= Days * 86400;
+	var Hours = Math.floor(Seconds / 3600);
+	Seconds -= Hours * (3600);
+	var Minutes = Math.floor(Seconds / 60);
+	Seconds -= Minutes * (60);
+	var TimeStr = ((Days > 0) ? Days + " days " : "") + (((Hours > 0) && (Days <= 0)) ? Hours + " h " : "") + (((Minutes > 0) && (Days <= 0)) ? Minutes + " m " : "") + (((Seconds > 0) && (Days <= 0) && (Hours <= 0) && (Minutes <= 0)) ? Seconds + " s " : "");
+	this.Timer.innerHTML = TimeStr;
+ }
+ 
+
+ 
+
+}
 
 
 function fetchLeagueBracketInfo(league_id)
