@@ -236,29 +236,6 @@ function getStart(ide, timer)
 	
 }
 
-/*function passStart(string){
-	var TargetDate = "";
-	TargetDate += string;
-	TimerID = "timer2";
-	FinishMessage = "Live";
-	ide  = 2;
-				
-	var dtarg = new Date(TargetDate);
-	var dnow = new Date();
-				
-	diff = new Date(dtarg - dnow);
-	Time = Math.floor(diff.valueOf()/1000);
-				
-	if(diff < 0){
-			Time = 0;
-	}
-				
-	return new CreateTimer(TimerID, Time);
-				
-				//getStart(1);
-	
-}*/
-
 var Timer;
 var TotalSeconds;
 
@@ -298,10 +275,6 @@ CreateTimer.prototype={
  
 
 }
-
-	
-
-
 
 
 function fetchLeagueBracketInfo(league_id)
