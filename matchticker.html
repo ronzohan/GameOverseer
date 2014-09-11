@@ -172,28 +172,14 @@
 		
 	<div class="media-body update-card-body">
 			<h4 align = "center">
-			<font color = "white"><a href ="http://localhost/GameOverseer/tN1vstN2.html">insertTN1 vs insertTN2 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<font color = "white"><a href ="http://localhost/GameOverseer/sample details (matchticker).html">insertTN1 vs insertTN2 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			
-			<span id='timer'><script language="JavaScript" src="javascript/Timer.js"></script></span>
+			<span id='timer'></span>
+			
 			
 			<script language="JavaScript">
-				TargetDate = "10/6/2014 11:14 AM";
-				TimerID = "timer";
-				FinishMessage = "Live";
-				
-				var dtarg = new Date(TargetDate);
-				var dnow = new Date();
-				
-				diff = new Date(dtarg - dnow);
-				Time = Math.floor(diff.valueOf()/1000);
-				
-				if(diff < 0){
-					Time = 0;
-				}
-			
-				new CreateTimer(TimerID, Time);
+				getStart(2, "timer");				
 			</script>
-		
 			</font>
 			</h4>
 	
@@ -202,24 +188,10 @@
 			<h4 align = "center">
 			<font color = "white"><a href =" #">insertTN3 vs insertTN4 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
 		
-			<span id='timer1'><script language="JavaScript" src="javascript/Timer.js"></script></span>
-		
+			<span id='timer1'></span>
+			<script language="JavaScript" src="javascript/globs.js"></script>
 			<script language="JavaScript">
-				TargetDate = "12/12/2014 11:16 AM";
-				TimerID = "timer1";
-				FinishMessage = "Live";
-				
-				var dtarg = new Date(TargetDate);
-				var dnow = new Date();
-				
-				diff = new Date(dtarg - dnow);
-				Time = Math.floor(diff.valueOf()/1000);
-				
-				if(diff < 0){
-					Time = 0;
-				}
-				
-				new CreateTimer(TimerID, Time);
+				getStart(1, "timer1");				
 			</script>
 		
 			</font>
@@ -230,45 +202,32 @@
 			<h4 align = "center">
 			<font color = "white"><a href =" #">insertTN5 vs insertTN6 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		
-			<span id='timer2'><script language="JavaScript" src="javascript/Timer.js"></script></s>
-			<script language="JavaScript" src="javascript/globs.js"></script>
+			<span id='timer2'></span>
 			<script language="JavaScript">
-				TargetDate = "12/6/2014 11:14 AM";
-				TimerID = "timer2";
-				FinishMessage = "Live";
-				ide  = 2;
-				
-				var dtarg = new Date(TargetDate);
-				var dnow = new Date();
-				
-				diff = new Date(dtarg - dnow);
-				Time = Math.floor(diff.valueOf()/1000);
-				
-				if(diff < 0){
-					Time = 0;
-				}
-				
-				new CreateTimer(TimerID, Time);
-				
+				getStart(1, "timer2");				
 			</script>
+			
 			</font>
 			
 			</h4>
-			
-	
 	<br>
-			<h4 align = "center">
-			<font color = "white">Recent Matches
-		
-			<br>
-			<br>		
+	
 			
-			<a href = "#">insertTN3 vs insertTN4</a>
+
+	
+	<h4 align = "center">
+		<font color = "white">Recent Matches
 		
-			</font>
-			</h4>
+		<br>
+		<br>		
+			
+		<a href = "#">insertTN3 vs insertTN4</a>
+		
+		</font>
+	</h4>
 	</div>
 
 </div>
+
 </body>
 </html>                                		
