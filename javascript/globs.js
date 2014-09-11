@@ -77,21 +77,23 @@ function fetchusername()
    $.ajax({
       url: siteloc + scriptloc + "getusername.py",
 	  
-      data: {username:$("#username").val()},
+      data: {username:$("#usename").val()},
 	  
       dataType: 'json',
       
 		success: function (res) {
-			console.log(res);
-            if(res[0] != "None")
+            console.log(res);
+			if(res[0][0] != "None")
             {
-				ret = res[0];
+				window.location.replace("searchresult.html");
+				//ret = res[0];
 				$('<p>').append(ret);
 				
+				
 	 		} else{
-				$('#status').append("not found.");
+				//$('#status').append("not found.");
             }	
-		
+			//$("p").append(res);
 		
       } 
       }); 
