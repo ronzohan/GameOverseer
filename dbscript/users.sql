@@ -3,8 +3,9 @@ CREATE EXTENSION pgcrypto;
 CREATE TABLE users(
 	userid serial primary key,
 	username text unique,
-	password text,
-	fullname text,
+	firstname text,
+	lastname text,
+	password text, 
 	email text,
 	contactno text,
 	address text
@@ -47,7 +48,7 @@ $$
 
 
 create or replace function
-   setuser(p_username text, p_password text,p_fullname text,p_email text ,p_contactno text ,p_address text)
+   setuser(p_username text, p_password text,p_firstname text,p_lastname text,p_email text ,p_contactno text ,p_address text)
      returns text as
 $$
    declare
@@ -57,12 +58,12 @@ $$
          where username = p_username;
 	  
       if userid1 isnull then
-         insert into users(username,password,fullname,email,contactno,address) values
-            (p_username,crypt(p_password, gen_salt('bf')),p_fullname,p_email,p_contactno,p_address);
+         insert into users(username,password,firstname,lastname,email,contactno,address) values
+            (p_username,crypt(p_password, gen_salt('bf')),p_firstname,p_lastname,p_email,p_contactno,p_address);
      else
           update users
 			set username = p_username, password = crypt(p_password, gen_salt('bf')) , 
-			fullname= p_fullname, email = p_email, contactno = p_contactno, address = p_address
+			firstname= p_firstname,lastname = p_lastname, email = p_email, contactno = p_contactno, address = p_address
 			--this gen_salt generates a new random salt string
 			-- crypt() does the hashing
 			where username = p_username;
@@ -72,14 +73,14 @@ $$
 $$
 language 'plpgsql';
 -- HOW TO USE :
--- SELECT setuser('p_username' , 'p_password','p_fullname' ,'p_email ','p_contactno ' ,'p_address ')
+-- SELECT setuser('p_username' , 'p_password','p_firstname','p_lastname' ,'p_email ','p_contactno ' ,'p_address ')
 
 --view
 create or replace function
-   get_users_perid(in int, out int, out text, out text, out text, out text, out text)
+   get_users_perid(in int, out int,out text, out text, out text, out text, out text, out text)
 returns setof record as
 $$
-	select userid,username,fullname,email,contactno,address from users
+	select userid,username,firstname,lastname,email,contactno,address from users
 	where userid = $1;
 
 $$
@@ -87,16 +88,3 @@ $$
 
 -- HOW TO USE:
 -- select * from get_users_perid(userid)
-
-create or replace function
-   get_username(in text, out text)
-returns text as
-$$
-	select username from users
-	where username = $1;
-    
-$$
-  language 'sql';
-
--- HOW TO USE:
--- select * from get_username(username)
