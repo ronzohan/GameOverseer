@@ -65,6 +65,33 @@ function fetchUser(userid)
     });
 }
 
+
+function fetchusername()
+{
+   $.ajax({
+      url: siteloc + scriptloc + "getusername.py",
+	  
+      data: {username:$("#username").val()},
+	  
+      dataType: 'json',
+      
+		success: function (res) {
+			console.log(res);
+            if(res[0] != "None")
+            {
+				ret = res[0];
+				$('<p>').append(ret);
+				
+	 		} else{
+				$('#status').append("not found.");
+            }	
+		
+		
+      } 
+      }); 
+}
+
+
 function fetchTeamInfo(name)
 {
   $.ajax({
