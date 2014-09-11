@@ -195,13 +195,13 @@ function getScore(ide)
       data: {ide:ide
              },
 	  success: function (res) {
-                  //console.log(res[3][0]);
-				  if(res[3][0] != "N" )
+                  if(res[0][0] != "None" )
                   {
-					 $("p").append("Show Results ");
+					 
 				  } // end !if
               }
 	})
+	return "okay";
 }
 
 function getStart(ide, timer)
@@ -236,10 +236,8 @@ function getStart(ide, timer)
 					var TargetDate = "";
 					TargetDate += string;
 					TimerID = timer;
-					//TimerID = "timer2";
 					FinishMessage = "Live";
-					//ide  = 2;
-				
+					
 					var dtarg = new Date(TargetDate);
 					var dnow = new Date();
 				
@@ -289,13 +287,9 @@ CreateTimer.prototype={
 	Seconds -= Hours * (3600);
 	var Minutes = Math.floor(Seconds / 60);
 	Seconds -= Minutes * (60);
-	var TimeStr = ((Days > 0) ? Days + " days " : "") + (((Hours > 0) && (Days <= 0)) ? Hours + " h " : "") + (((Minutes > 0) && (Days <= 0)) ? Minutes + " m " : "") + (((Seconds > 0) && (Days <= 0) && (Hours <= 0) && (Minutes <= 0)) ? Seconds + " s " : "");
+	var TimeStr = ((Days > 0) ? Days + " day(s) " : "") + (((Hours > 0) && (Days <= 0)) ? Hours + " h " : "") + (((Minutes > 0) && (Days <= 0)) ? Minutes + " m " : "") + (((Seconds > 0) && (Days <= 0) && (Hours <= 0) && (Minutes <= 0)) ? Seconds + " s " : "");
 	this.Timer.innerHTML = TimeStr;
  }
- 
-
- 
-
 }
 
 
