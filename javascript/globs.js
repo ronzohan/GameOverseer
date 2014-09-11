@@ -410,7 +410,7 @@ function insertUser()
 }
 
 
-function isloggin()
+function isloggedin()
 {
 
 	if (!getCookie("username") && !getCookie("userid"))
