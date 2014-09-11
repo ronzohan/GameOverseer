@@ -74,6 +74,19 @@ $$
 $$
 language 'sql';
 
+--view
+create or replace function 
+    get_league_byManagerLeagueID(in int, in int,out text,out text,out text) 
+returns setof record as
+ 
+$$ 
+     select  results,teams from league
+     where league_id = $1;
+     
+$$
+language 'sql';
+
+
 -- controller
 create or replace function deleteLeague(p_league_id int,p_managerid_fk int) 
     returns text as

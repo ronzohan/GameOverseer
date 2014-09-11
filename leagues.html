@@ -50,17 +50,19 @@
 	</div>
 	
 	<div id="editdialog" title="Edit League Info">
+			<p id="editstatus"></p>
+			<p id="editleagueid" hidden></p>
 			League Name:&nbsp<input type="text" name="League Name" id="editleaguename"/><br><br>
 
 			Sport:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 			<input type="text" name="Sport" id="editsport"/><br><br>
-
+			
 			Fixture Type:&nbsp 
-
-			<select id="editfixturetype">
+			<select id="edit_fixturetype">
 				<option value="Single Elimination">Single Elimination</option>
 				<option value="Double Elimination">Double Elimination</option>						 
-			</select>	
+			</select>	 
+
 	</div>
 
 	<div id="dialog-confirm" title="Confirm Delete">
@@ -71,7 +73,7 @@
 	<script src="javascript/bootstrap.min.js"></script>
 	<script src="javascript/globs.js"></script>
 	<script src="javascript/jqinit.js"></script>   
-        <script src="javascript/jquery-ui.min.js"></script> 
+    <script src="javascript/jquery-ui.min.js"></script> 
 	<script>
 	  $(function(){
 	    $("#header").load("header.html"); 
@@ -83,7 +85,7 @@
 		autoOpen: false,
 		resizable: false,
 		modal: true,
-		title: "Modal",
+		title: "Confirm",
 		height: 200,
 		width: 400,
 		buttons: {
@@ -97,14 +99,7 @@
 		}
 	});
 
-	$("#newleague").click(
-            function () {
-				$("#create").show();
-				$("#status").empty();
-                $("#adddialog").dialog('open');
-                return false;
-            }
-        );
+
 	
 	$("#editdialog").dialog({ 
 			autoOpen: false,
@@ -116,12 +111,12 @@
 		        	CreateLeague:{ 
 		            		text: 'Update',
 					id : 'update',
-		            		click : function (){		                			 					
-		            			}
+		            		click : function (){
+								editLeague(getCookie('userid'),$("#editleagueid").text());
+		            		}
 		        	},
 		        Close: function () {
 				fetchLeagueByManagerId(getCookie('userid'));
-				$("input").prop('disabled', false);
 			        $(this).dialog("close");
 		        }
             		}
