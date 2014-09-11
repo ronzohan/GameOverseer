@@ -109,3 +109,14 @@ $$
   end;
 $$
   language 'plpgsql'; 
+  
+-- controller
+create or replace function addTeamsInLeague(p_league_id int,p_managerid_fk int,teams text[]) 
+    returns text as
+$$
+	
+    
+  end;
+$$
+  language 'plpgsql'; 
+
