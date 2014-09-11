@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head> 
-
 	<title>GameOverseer</title>
 	
      <meta charset="UTF-8">
@@ -10,7 +9,39 @@
 	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="css/custom.css">  
 
-	 
+	
+	<style> 
+	
+        .registernabox {
+            background-color: #9a7c8c;
+			background: rgba(150, 154, 154, 0.8);
+            border: 11px solid #620c0c;
+            padding: 45px 15px 15px;
+            position: relative; 
+			top:50px;
+			right:39%;
+		    left:5%;  
+			margin  :65px; 
+			float:none;
+        }
+        label.error {
+            color: #630707;
+            font-size: 14px;
+            font-weight: normal;
+            position: absolute;
+        }
+    	label.success {
+			width: 34px;
+			height: 34px;
+			background: url(picture/valid.png) center center no-repeat;
+            color: #ffffff;
+            font-size: 0px;
+            font-weight: normal;
+            position: absolute;
+        }
+   
+ 
+	</style>
 </head> 
 
 
@@ -61,29 +92,24 @@
 								
  <div class="container">
  <div    class="registernabox col-sm-6">
- <h1  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; FILL UP THE FORM ! <br><br> </h1>
+ <h1  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Profile <br><br> </h1>
    <form class="form-horizontal" role="form" id="register">
            
 		   
                 <div class="form-group">
-                    <label for="firstname" class="col-sm-4 control-label">First Name :</label>
+                    <label for="lastname" class="col-sm-4 control-label">Full Name :</label>
+					
                     <div class="controls form-inline">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                            <input id="firstname" type="firstname" class="form-control" name="firstname" placeholder="firstname">
-                        </div>
-                        <label class="error" for="firstname"></label>
-                    </div>
-                </div>
-				
-				<div class="form-group">
-                    <label for="lastname" class="col-sm-4 control-label">Last Name :</label>
-                    <div class="controls form-inline">
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
-                            </span>
-                            <input id="lastname" type="lastname" class="form-control" name="lastname" placeholder="lastname">
+							  <span  class="form-control" name="username" id = "fullname1">
+							  <script language = "JavaScript">
+							  fetchmanager(1);
+							  </script>
+							  </span>
+
+
                         </div>
                         <label class="error" for="lastname"></label>
                     </div>
@@ -96,7 +122,11 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                            <input id="username" type="text" class="form-control" name="username" placeholder="Username">
+							<span  class="form-control" name="username" id = "username1">
+							<script language = "JavaScript">
+							 fetchmanager(1);
+							 </script>
+							</span>
                         </div>
                         <label class="error" for="username"></label>
                     </div>
@@ -109,24 +139,16 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
                             </span>
-                            <input type="password" class="form-control" id="password1" name="password1" placeholder="Password">
+                           <span  class="form-control" name="username" id="password1">
+						   	<script language = "JavaScript">
+							fetchmanager(1);
+							</script>
+							</span>
                         </div>
                         <label class="error" for="password1"></label>
                     </div>
                 </div>
 				
-				
-                <div class="form-group">
-                    <label for="password2" class="col-sm-4 control-label">Confirm Password :</label>
-                    <div class="controls form-inline">
-                        <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
-                            </span>
-                            <input type="password" class="form-control" name="password2" placeholder="Confirm Password">
-                        </div>
-                        <label class="error" for="password2"></label>
-                    </div>
-                </div>
 				
 				
                 <div class="form-group">
@@ -135,7 +157,11 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                             </span>
-                            <input type="email" class="form-control" id = "email" name="inputEmail" placeholder="Email">
+                            <span  class="form-control" name="username" id="emailadd1">
+							<script language = "JavaScript">
+							fetchmanager(1);
+							</script>
+							</span>
                         </div>
                         <label class="error" for="inputEmail"></label>
                     </div>
@@ -144,14 +170,18 @@
 				
 				
                 <div class="form-group">
-                    <label for="address" class="col-sm-4 control-label">Address :</label>
+                    <label for="lastname" class="col-sm-4 control-label">Address :</label>
                     <div class="controls form-inline">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                            <input id="address" type="address" class="form-control" name="address" placeholder="Address">
+                            <span  class="form-control" name="username" id = "address1">
+							<script language = "JavaScript">
+							fetchmanager(1);
+							</script>
+							</span>
                         </div>
-                        <label class="error" for="address"></label>
+                        <label class="error" for="lastname"></label>
                     </div>
                 </div>
 				
@@ -162,38 +192,17 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span>
                             </span>
-                            <input type="tel" class="form-control" id="contactno" name="phone" placeholder="Valid contact number">
+							<span  class="form-control" name="username" id = "phone1">
+							<script language= "JavaScript">
+							fetchmanager(1);
+							</script>
+							</span>
                         </div>
                         <label class="error" for="phone"></label>
                     </div>
                 </div>
 				
-				
-				
-				
-                <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-6">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" name="agree">Please accept our policy
-                            </label>
-                        </div>
-                        <label class="error" for="agree"></label>
-                    </div>
-                </div>
-
-				
-                <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-6">
-							<button 
-							type="button" 
-							class="btn btn-default signup">
-							Signup
-							</button>
-							<input type="hidden" name="register" />
-							<label class="result"></label>
-                    </div>
-                </div>
+			
 				
 				
   </form>
@@ -202,8 +211,8 @@
 
 </body> 
 
-	<script src="javascript/jquery.js"></script>
-	<script src="javascript/bootstrap.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	<script src="javascript/globs.js"></script>
 	<script src="javascript/jqinit.js"></script> 
     <script   src="javascript/jquery-1.10.2.min.js"></script>

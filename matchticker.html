@@ -171,17 +171,18 @@
 	<h1 align="center"><font size = "5"> <font color = "white"> Matchticker </font></font></h1>
 		
 	<div class="media-body update-card-body">
+			<div id = "t1">
 			<h4 align = "center">
-			<font color = "white"><a href ="http://localhost/GameOverseer/sample details (matchticker).html">insertTN1 vs insertTN2 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<font color = "white"><a href ="http://localhost/GameOverseer/sample details (matchticker).html">insertTN1 vs insertTN2 </a></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			
 			<span id='timer'></span>
-			
 			
 			<script language="JavaScript">
 				getStart(2, "timer");				
 			</script>
 			</font>
 			</h4>
+			
 	
 	<br>
 	
@@ -204,7 +205,7 @@
 		
 			<span id='timer2'></span>
 			<script language="JavaScript">
-				getStart(1, "timer2");				
+				getStart(3, "timer2");				
 			</script>
 			
 			</font>
@@ -212,19 +213,25 @@
 			</h4>
 	<br>
 	
-			
-
-	
 	<h4 align = "center">
 		<font color = "white">Recent Matches
 		
 		<br>
 		<br>		
 			
-		<a href = "#">insertTN3 vs insertTN4</a>
+		<div id="r1"><a href = "#"></a></div>
+		<script language="JavaScript">
+				if(getScore(1) == "okay"){
+					 $('#r1').append($('#t1').html());
+					 $("#timer").remove();
+					 $("#t1").remove();	 
+				}		
+		</script>
+		
 		
 		</font>
 	</h4>
+	
 	</div>
 
 </div>

@@ -8,7 +8,9 @@ $('form#register').validate({
 	    },
  	   validClass: "success",
 	   rules: {
-                fullname: "required",  
+                firstname: "required",  
+				lastname: "required",
+				
                 username: {
                     required: true,
                     minlength: 6
@@ -19,7 +21,7 @@ $('form#register').validate({
                 },
                 password2: {
                     required: true,
-		    minlength: 5,
+		            minlength: 5,
                     equalTo: "#password1"
                 },
                 inputEmail: {
@@ -30,77 +32,67 @@ $('form#register').validate({
                 phone: {
                     required: true,
                     digits: true,
-                    minlength: 10,
-                    maxlength: 10
-
-                }
+                    minlength: 11,
+                    maxlength: 11
+                },
+				address: "required"
+				
             },
             messages: {
                 firstname: "Enter your firstname",
                 lastname: "Enter your lastname",
                 username: {
-                    required: "Please Enter username",
-                    minlength: "Enter at least 2 characters"
+                    required:    "Please Enter username",
+                    minlength: "Enter at least 6 characters"
                 },
                 password1: {
-                    required: "Please confirm your password",
+                    required:    "Please confirm your password",
                     minlength: "Your password must be at least 5 characters long"
                 },
                 password2: {
-                    required: "Please provide a password",
-		    minlength: "Your password must be at least 5 characters long",
-                    equalTo: "Please enter the same password as above"
+                    required:   "Please provide a password",
+					minlength: "Your password must be at least 5 characters long",
+                    equalTo:    "Please enter the same password as above"
                 },
                 email: "Please enter a valid email address",
                 agree: "Please accept our policy",
                 phone: {
-                    required: "Please enter phone number",
-                    digits: "Please enter only digits",
-                    minlength: "Please specify a valid phone number",
-                    maxlength: "Please specify a valid phone number"
+                    required:     "Please enter phone number",
+                    digits:         "Please enter only digits",
+                    minlength:  "Please specify a valid phone number    ex. '09309134970' ",
+                    maxlength: "Please specify a valid phone number   ex. '09309134970' "
                 }
+			 
             }
         });
 		
 		
-		   $("button.signup").click(function () {
-             var register = $('#register').valid(); 
-             if (register) {
-                $.ajax({
-                    type: "POST",
-                    url: "register.html",
-                     data: $('form#register').serialize(), 
-                     success: function (msg) {
-                        $("label.result").html(msg);       
-                     }
-                });
-             }
-         });
-
-		
-		
-		
-	function goon(){			   
-		
-		$.ajax({ 
-		 
+		   $("button.signup").click(
+		   
+		   function () {
+		   
+           $.ajax({ 
 				url: siteloc + scriptloc + "insertUser.py",
-        data: 
+			data: 
 				{
 				
 					username:$("#username").val(),
-					password:$("#password").val(),
-					fullname:$("#fullname").val(),
+					password:$("#password1").val(),
+					firstname:$("#firstname").val(),
+					lastname:$("#lastname").val(),
 					email:$("#email").val(),
 					contactno:$("#contactno").val(),
 					address:$("#address").val(),
 				} ,
 					dataType: 'json',
 					success: function (res) {
+					console.log("haaahaa");
 					return res;
 				 
 				 }
 				});
-	         
-        }        
+	        } );
+
+		
+		 
 		

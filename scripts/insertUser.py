@@ -6,18 +6,20 @@ except ImportError:
     import simplejson as json
 
 
-def index(req,username,password,fullname,email,contactno,address):
+def index(req,username,password,firstname,lastname,email,contactno,address):
     username = cgi.escape(username)
     password = cgi.escape(password)
-	fullname = cgi.escape(fullname)
+    firstname= cgi.escape(firstname)
+    lastname = cgi.escape(lastname)
     email = cgi.escape(email)
-	contactno = cgi.escape(contactno)
+    contactno = cgi.escape(contactno)
     address = cgi.escape(address)
+     
 	
     a = doSql()
-    query = "SELECT * FROM setuser('"+ username+"','"+ password+"','"+fullname+"','"+email+"','"+contactno+"','"+address+"');"
+    query = "SELECT setuser('"+ username+"','"+ password+"','"+firstname+"','"+lastname+"','"+email+"','"+contactno+"','"+address+"');"
     print query
-    items = a.execqry(query,False)
+    items = a.execqry(query,True)
     result = []
     for item in items:
         stringed = map(str,item)

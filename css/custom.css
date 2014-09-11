@@ -8,7 +8,10 @@ body {
   	font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
 }
 
- 
+a:link, a:visited {
+	color:green;
+}
+
 .form-control{
 
     width:100px;
@@ -249,4 +252,32 @@ margin-left:  36px;
      }
 	 
 	 
+        .registernabox {
+            background-color: #9a7c8c;
+			background: rgba(150, 154, 154, 0.8);
+            border: 11px solid #620c0c;
+            padding: 45px 15px 15px;
+            position: relative; 
+			top:50px;
+			right:39%;
+		    left:5%;  
+			margin  :65px; 
+			float:none;
+        }
+        label.error {
+            color: #630707;
+            font-size: 14px;
+            font-weight: normal;
+            position: absolute;
+        }
+    	label.success {
+			width: 34px;
+			height: 34px;
+			background: url('http://localhost/GameOverseer/picture/valid.png') center center no-repeat;
+            color: #ffffff;
+            font-size: 0px;
+            font-weight: normal;
+            position: absolute;
+        }
+   
  
