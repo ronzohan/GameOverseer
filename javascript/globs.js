@@ -119,8 +119,12 @@ function fetchmanager(manager_id)
                   console.log(res);
                   if(res[0][0] != "None")
                   {
-					   
-				  		}
+					   $("#fullname1").append(res);
+					   $("#username1").append(res);
+					   $("#emailadd1").append(res);
+					   $("#address1").append(res);
+					   $("#phone1").append(res);
+				  }
               }
     });
 }
