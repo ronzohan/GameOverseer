@@ -64,15 +64,17 @@ $$
 
 --view
 create or replace function 
-    get_league_bracket_info(in int, out int[],out text[]) 
+    get_league_bracket_info(in int, out text,out int[],out text[]) 
 returns setof record as
  
 $$ 
-     select  results,teams from league
+     select  name,results,teams from league
      where league_id = $1;
      
 $$
 language 'sql';
+--HOW TO USE:
+--select * from get_league_bracket_info(1)
 
 --view
 create or replace function 
@@ -115,8 +117,7 @@ create or replace function addTeamsInLeague(p_league_id int,p_managerid_fk int,t
     returns text as
 $$
 	
-    
-  end;
+ 
 $$
   language 'plpgsql'; 
 

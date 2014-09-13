@@ -307,25 +307,29 @@ function fetchLeagueBracketInfo(league_id)
 	  
 	  function (res)
 	  {
-		  var r = new Array(res[0][0]);
-		  var t = res[0][1];
-		  console.log(t);
-                  if(res[0][0] != "None")
+		  var r = new Array(res[0][1]);
+		  var t = res[0][2];
+ 
+          if(res[0][0] != "None" && r[0] != null)
                   {
-		    var minimalData = {
-		      teams :t,
-			results : r
-				
-		    }
-		    $(function()
-			{
-			
-					$('#leagueinfo').bracket
-					    ({
-							init:minimalData
-						})
-		    })
-		  } // end if
+					var minimalData = {
+					  teams :t,
+					results : r
+						
+					}
+					$(function()
+					{				
+							$('#leagueinfo').bracket
+								({
+									init:minimalData
+								});		
+					})
+				   } 
+				   else
+				   {
+						$('#leaguetitle').empty();
+						$('#leaguetitle').append(res[0][0]);
+				   }
         }
    }); 
 }
