@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head> 
+
 	<title>GameOverseer</title>
 	
      <meta charset="UTF-8">
@@ -8,48 +9,8 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="css/custom.css">  
-	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-	<script src="javascript/globs.js"></script>
-	<script src="javascript/jqinit.js"></script> 
-    <script   src="javascript/jquery-1.10.2.min.js"></script>
-    <script  src="javascript/jquery.validate.min.js"></script>
- 	<script src="javascript/script.js"></script>
 
-	
-	<style> 
-	
-        .registernabox {
-            background-color: #9a7c8c;
-			background: rgba(150, 154, 154, 0.8);
-            border: 11px solid #620c0c;
-            padding: 45px 15px 15px;
-            position: relative; 
-			top:50px;
-			right:39%;
-		    left:5%;  
-			margin  :65px; 
-			float:none;
-        }
-        label.error {
-            color: #630707;
-            font-size: 14px;
-            font-weight: normal;
-            position: absolute;
-        }
-    	label.success {
-			width: 34px;
-			height: 34px;
-			background: url(picture/valid.png) center center no-repeat;
-            color: #ffffff;
-            font-size: 0px;
-            font-weight: normal;
-            position: absolute;
-        }
-   
- 
-	</style>
+	 
 </head> 
 
 
@@ -100,25 +61,35 @@
 								
  <div class="container">
  <div    class="registernabox col-sm-6">
- <h1  >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Profile <br><br> </h1>
+ <h1   face="Comic sans MS"   align="center"   style="color:#400e1b;  "   > <font face="Comic sans MS">   Profile </font><br><br> </h1>
    <form class="form-horizontal" role="form" id="register">
            
 		   
                 <div class="form-group">
-                    <label for="lastname" class="col-sm-4 control-label">Full Name :</label>
-					
+                    <label for="firstname" class="col-sm-4 control-label">First Name :</label>
                     <div class="controls form-inline">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-							  <span  class="form-control" name="username" id = "fullname1">
+							  <span  class="form-control" name="username" id = "firstname1">
 							  <script language = "JavaScript">
 							  fetchmanager(1);
 							  </script>
-							  
-							  </span>
-
-
+                        </div>
+                        <label class="error" for="firstname"></label>
+                    </div>
+                </div>
+				
+				<div class="form-group">
+                    <label for="lastname" class="col-sm-4 control-label">Last Name :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                              <span  class="form-control" name="username" id = "lastname1">
+							  <script language = "JavaScript">
+							  fetchmanager(1);
+							  </script>
                         </div>
                         <label class="error" for="lastname"></label>
                     </div>
@@ -131,15 +102,31 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-							<span  class="form-control" name="username" id = "username1">
-							<script language = "JavaScript">
-							 fetchmanager(1);
-							 </script>
-							</span>
+                               <span  class="form-control" name="username" id = "username1">
+							  <script language = "JavaScript">
+							  fetchmanager(1);
+							  </script>
                         </div>
                         <label class="error" for="username"></label>
                     </div>
                 </div>
+				
+				
+                <div class="form-group">
+                    <label for="Password1" class="col-sm-4 control-label">Password :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span>
+                            </span>
+                               <span  class="form-control" name="username" id = "passwordname1">
+							  <script language = "JavaScript">
+							  fetchmanager(1);
+							  </script>
+                        </div>
+                        <label class="error" for="password1"></label>
+                    </div>
+                </div>
+				
 				
 				
                 <div class="form-group">
@@ -148,11 +135,10 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                             </span>
-                            <span  class="form-control" name="username" id="emailadd1">
-							<script language = "JavaScript">
-							fetchmanager(1);
-							</script>
-							</span>
+                            <span  class="form-control" name="username" id = "emailadd1">
+							  <script language = "JavaScript">
+							  fetchmanager(1);
+							  </script>
                         </div>
                         <label class="error" for="inputEmail"></label>
                     </div>
@@ -161,19 +147,17 @@
 				
 				
                 <div class="form-group">
-                    <label for="lastname" class="col-sm-4 control-label">Address :</label>
+                    <label for="address" class="col-sm-4 control-label">Address :</label>
                     <div class="controls form-inline">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                            <span  class="form-control" name="username" id = "address1">
-							<script language = "JavaScript">
-							fetchmanager(1);
-							</script>
-							
-							</span>
+                              <span  class="form-control" name="username" id = "address1">
+							  <script language = "JavaScript">
+							  fetchmanager(1);
+							  </script>
                         </div>
-                        <label class="error" for="lastname"></label>
+                        <label class="error" for="address"></label>
                     </div>
                 </div>
 				
@@ -184,17 +168,14 @@
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span>
                             </span>
-							<span  class="form-control" name="username" id = "phone1">
-							<script language= "JavaScript">
-							fetchmanager(1);
-							</script>
-							
-							</span>
+                              <span  class="form-control" name="username" id = "phone1">
+							  <script language = "JavaScript">
+							  fetchmanager(1);
+							  </script>
                         </div>
                         <label class="error" for="phone"></label>
                     </div>
                 </div>
-				
 			
 				
 				
@@ -204,7 +185,13 @@
 
 </body> 
 
-
+	<script src="javascript/jquery.js"></script>
+	<script src="javascript/bootstrap.min.js"></script>
+	<script src="javascript/globs.js"></script>
+	<script src="javascript/jqinit.js"></script> 
+    <script   src="javascript/jquery-1.10.2.min.js"></script>
+    <script  src="javascript/jquery.validate.min.js"></script>
+ 	<script src="javascript/script.js"></script>
 	
 	
 </html>                                		
