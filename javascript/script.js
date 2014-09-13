@@ -86,9 +86,23 @@ $('form#register').validate({
 				} ,
 					dataType: 'json',
 					success: function (res) {
-					console.log("haaahaa");
-					return res;
-				 
+					console.log("haaahaa");  
+					$("#container1").html(
+					
+					'<h1   face="Comic sans MS"   align="left"   style="color:#352c2c;  "   > ' +
+					'<font  > Dear ' +  
+					'<mark> '+$("#firstname").val()  +'</mark>'  + 
+					' , <br><br>  </font>' +
+					' <br>  </h1>'+
+					'<p   align="left"  style="font-size:20px" " style="color:#595959;  "> ' +
+ 			 
+					'You are now officialy registered ! ,You can now log in to your account'+
+					' to start creating and managing your leagues anytime with GameOverseer! </p>'+
+					 '<br><br><br>'+
+					' <p align="right"  style="font-size:20px" " style="color:#595959; " > '+
+					' Thankyou for choosing  <br>  GameOverseer, <br> <mark>  Teamoga </mark> </p> '); 
+					
+					
 				 }
 				});
 	        } );
