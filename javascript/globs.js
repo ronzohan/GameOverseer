@@ -147,7 +147,7 @@ function fetchleague(league_id)
 function fetchLeagueByManagerId(managerid)
 {
   $.ajax({
-      url: siteloc + scriptloc + "getLeague/getLeagueInfoByManager",
+      url: siteloc + scriptloc + "getLeague.py/getLeagueInfoByManager",
       data: {managerid:managerid},
       dataType: 'json',
       success: function (res) {
