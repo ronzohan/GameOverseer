@@ -147,7 +147,7 @@ function fetchleague(league_id)
 function fetchLeagueByManagerId(managerid)
 {
   $.ajax({
-      url: siteloc + scriptloc + "getLeague/getLeagueInfoByManager",
+      url: siteloc + scriptloc + "getLeague.py/getLeagueInfoByManager",
       data: {managerid:managerid},
       dataType: 'json',
       success: function (res) {
@@ -159,7 +159,7 @@ function fetchLeagueByManagerId(managerid)
 			{
 				row = res[i];
 				     
-				$("#leaguetable").append('<tr><td><a href=leagueinfo?id='+row[0]+'>'+row[1]+'</a></td>'
+					$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='+row[0]+'>'+row[1]+'</a></td>'
 		      	  		+ '<td>'+row[2]+'</td>' + '<td>'+row[3]
 					+'</td><td><a href="#" onClick=editLeague('+getCookie('userid')+','+row[0]+') class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
 		      	  		+'<a href="#" onClick = verifydelete('+row[0]+','+getCookie("userid")+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
