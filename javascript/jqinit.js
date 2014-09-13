@@ -1,5 +1,10 @@
 $(function() 
 {
+	if (isloggedin())
+		$("#header").load("header.html");
+  	else 
+		window.location.replace("login.html");
+ 
 	$("#newleague").click(
 		function () {
 			$("#create").show();
@@ -14,4 +19,7 @@ $(function()
 			$("#addteamdialog").dialog('open');
 		}
     );
+ 
+	
+ 
 }); 
