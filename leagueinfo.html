@@ -21,9 +21,9 @@
 		</div>
 		
 		<div class="container">
-			<div class="panel panel-default">
+			<div class="panel panel-default" id="teampanel">
 				<div class="panel-heading clearfix"> 
-					<h4 class="panel-title pull-left" style="padding-top: 7.5px;">Teams in the League</h4>
+					<h4 class="panel-title pull-left" style="padding-top: 7.5px;" id="leaguetitle"> </h4>
 					<div class="btn-group pull-right">
 						<a href="#" class="btn btn-default btn-sm glyphicon glyphicon-plus" id="addteams"> Add Teams</a>
 						<a href="#" class="btn btn-default btn-sm glyphicon glyphicon-ok" id="confirmteams"> Confirm Teams</a>
@@ -47,9 +47,7 @@
     <script src="javascript/jquery.bracket.min.js"></script>
     <script src="javascript/jquery-ui.min.js"></script> 
 	<script>
-	  $(function(){
-	    $("#header").load("header.html"); 
-	  });
+ 
 	  
 	  $(document).ready(fetchLeagueBracketInfo(getParameterByName('id'))); 
 	  //parameter depends on who's the user
@@ -65,14 +63,28 @@
 		            	text: 'Add Team',
 						id : 'addteam',
 						click: function(){
-							$("#teamcollection").append('<tr value="'+$("#teamname").val()
-							+'" placeholder='+$("#teamname").val()+'><td>'+$("#teamname").val()+'</td></tr>')
+							var teamname = $('#teamname').val(); 
 							
+							if (teamname)
+							{
+								$("#teamcollection").append('<tr value="'+ teamname
+								+'"></tr><td>'+teamname+'</td></tr>');
+								
+								$('#teamname').val('');
+							}
+						}						
+		            },	
+		            close:{
+						text:'Close',
+						click: function(){
+							$('#teamname').val('');	
+							$(this).dialog('close');
 						}
-		            }	
+						
+					}
 		        	}
 	});
- 
+	
    	</script>
  
 </html>
