@@ -78,7 +78,7 @@ language 'sql';
 
 --view
 create or replace function 
-    get_league_byManagerLeagueID(in int, in int,out text,out text,out text) 
+    get_league_byManagerLeagueID(in int, in int,out int[],out text[])
 returns setof record as
  
 $$ 
@@ -112,12 +112,3 @@ $$
 $$
   language 'plpgsql'; 
   
--- controller
-create or replace function addTeamsInLeague(p_league_id int,p_managerid_fk int,teams text[]) 
-    returns text as
-$$
-	
- 
-$$
-  language 'plpgsql'; 
-

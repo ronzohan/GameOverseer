@@ -256,13 +256,15 @@ margin-left:  36px;
             background-color: #9a7c8c;
 			background: rgba(150, 154, 154, 0.8);
             border: 11px solid #620c0c;
-            padding: 45px 15px 15px;
-            position: relative; 
+            padding: 45px 15px 15px; 
 			top:50px;
-			right:39%;
-		    left:5%;  
+			right:30%;
+		    left:2%;  
 			margin  :65px; 
 			float:none;
+			margin-left: auto;
+            margin-right: auto;
+
         }
         label.error {
             color: #630707;
