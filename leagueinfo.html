@@ -17,28 +17,41 @@
 		</div>
 		
 		<div id="teamdraft" class="container">
- 			
-		</div>
-		
-		<div class="container">
+ 				
+		<div class="container col-md-6">
 			<div class="panel panel-default" id="teampanel">
 				<div class="panel-heading clearfix"> 
 					<h4 class="panel-title pull-left" style="padding-top: 7.5px;" id="leaguetitle"> </h4>
 					<div class="btn-group pull-right">
 						<a href="#" class="btn btn-default btn-sm glyphicon glyphicon-plus" id="addteams"> Add Teams</a>
-						<a href="#" class="btn btn-default btn-sm glyphicon glyphicon-ok" id="confirmteams"> Confirm Teams</a>
+						<a href="#" class="btn btn-default btn-sm glyphicon glyphicon-ok" id="confirmteams"> Confirm Added Teams</a>
 					</div>	    
 				</div>
 	    
 				<table id="teamcollection" class="table table-striped table-bordered table-condensed">	
+				<thead><tr><th class="teamnameHeader col-md-8">Team Name</th><th class="col-md-4">Edit</th></tr></thead>
+				<tbody>
+					
+				</tbody>
+			</table>
+			</div>		 
+		</div>
+		
+		<div class="container col-md-6">
+			<div class="panel panel-default" id="confirmedteampanel">
+				<div class="panel-heading clearfix"> 
+					<h4 class="panel-title pull-left" style="padding-top: 7.5px;" id="confirmedleaguetitle">Confirmed Teams</h4>
+				</div>
+	    
+				<table id="confirmedteamcollection" class="table table-striped table-bordered table-condensed">	
 				<thead><tr><th>Team Name</th></tr></thead>
 				<tbody>
 					
 				</tbody>
 			</table>
-			</div>
+			</div>		 
 		</div>
-	
+		</div>
     </body>
     <script src="javascript/jquery.js"></script>
 	<script src="javascript/bootstrap.min.js"></script>
@@ -46,13 +59,13 @@
     <script src="javascript/jqinit.js"></script>  
     <script src="javascript/jquery.bracket.min.js"></script>
     <script src="javascript/jquery-ui.min.js"></script> 
+    
 	<script>
  
 	  
-	  $(document).ready(fetchLeagueBracketInfo(getParameterByName('id'))); 
-	  //parameter depends on who's the user
+ 
 	  
-	  
+	
 	$("#addteamdialog").dialog({ 
 			autoOpen: false,
 			height: 160,
@@ -67,9 +80,10 @@
 							
 							if (teamname)
 							{
-								$("#teamcollection").append('<tr value="'+ teamname
-								+'"></tr><td>'+teamname+'</td></tr>');
+								var s = '<tr value="'+ teamname
+								+'"><td>'+teamname+'</td><td><a href="#" class="removeteams">Remove</a></td></tr>';
 								
+								$("#teamcollection").append(s);
 								$('#teamname').val('');
 							}
 						}						
@@ -84,9 +98,13 @@
 					}
 		        	}
 	});
-	
+
+ 
+
+
    	</script>
  
+	
 </html>
 
  
