@@ -33,7 +33,7 @@ $$
 	 originalpassword= crypt(p_passwordinput, originalpassword); 
      select into v_userid userid from users where username = p_usernameinput;
      if originalpassword1 = originalpassword then
-		 return 'OK';
+		 return v_userid;
 		 
 	else
         return 'Your password did not match';
