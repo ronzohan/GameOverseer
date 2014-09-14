@@ -91,6 +91,51 @@ function fetchusername()
       }); 
 }
 
+function displayinfo(userid)
+{
+   $.ajax({
+      url: siteloc + scriptloc + "getUser.py",
+      data: {userid:userid,
+             },
+      dataType: 'json',
+      success: function (res) {
+                  var k = 1;
+      if(res[0][0] != "None")
+                  {
+     for (i=0;i<res.length;i++){
+      row = res[i];
+      for (j = 1; j < row.length ; j++){
+       if(k == 1)
+        $("#firstname1").append(row[j]);
+		
+       if(k == 2)
+        $("#lastname1").append(row[j]); 
+       
+       if(k == 3)
+        $("#username1").append(row[j]);
+        
+       if(k == 4)
+        $("#password1").append(row[j]);
+        
+       if(k == 5)
+        $("#emailadd1").append(row[j]);
+       
+       if(k == 6)
+        $("#address1").append(row[j]);
+		
+		if(k == 7)
+        $("#phone1").append(row[j]);
+       
+       k = k+1;      
+      }  
+      
+     }
+      }
+              }
+    });
+ 
+}
+
 
 function fetchTeamInfo(name)
 {
