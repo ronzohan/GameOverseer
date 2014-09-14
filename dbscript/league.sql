@@ -5,7 +5,8 @@ create table league (
      sport_type text,
      fixture_type text,
      results int[],
-     teams text[]
+     teams text[],
+     participantsteam text[]
 );
  
 --create language plpgsql;
@@ -112,3 +113,26 @@ $$
 $$
   language 'plpgsql'; 
   
+
+create or replace function addTeamsInLeague(p_league_id int,p_managerid_fk int,p_participants_team text[]) 
+    returns text as
+$$
+  declare     
+     v_id int;
+  begin
+      select into v_id league_id  from league 
+         where managerid_fk = p_managerid_fk and league_id = p_league_id;
+         
+      if v_id isnull then
+		return 'Failed';	
+      else
+        update League
+           set participants = p_participants_team
+             where managerid_fk = p_managerid_fk and league_id = v_id;
+        return 'Success';
+      end if;  
+       
+    
+  end;
+$$
+  language 'plpgsql'; 
