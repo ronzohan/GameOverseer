@@ -2,7 +2,7 @@ var siteloc = "http://localhost/GameOverseer";
 var scriptloc = "/scripts/";
   
   
-$('form#register').validate({
+$('#register').validate({
 	   success: function(label) {
 		label.text("ok!").addClass("success"); 
 	    },
