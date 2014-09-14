@@ -158,7 +158,7 @@ function fetchLeagueByManagerId(managerid)
 					$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='+row[0]+'>'+row[1]+'</a></td>'
 		      	  		+ '<td>'+row[2]+'</td>' + '<td>'+row[3]
 					+'</td><td><a href="#" onClick=editLeague('+getCookie('userid')+','+row[0]+') class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
-		      	  		+'<a href="#" onClick = verifydelete('+row[0]+','+getCookie("userid")+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
+		      	  		+'<a href="#" onClick = verifydelete('+row[0]+','+getCookie("userid")+') id="delete" class="glyphicon glyphicon-remove">Remove</a></td></tr>');
 			}
 		   }
               }
@@ -555,4 +555,36 @@ function verifydelete(leagueid,managerid)
 		.data('managerid',managerid)
 		.dialog('open');
 
+}
+
+function confirmAddTeamsInLeague(leagueid,managerid,participantTeams)
+{
+	redirect_ifNotloggedin();
+	console.log(participantTeams);
+	$.ajax({
+		 
+		url: siteloc + scriptloc + "getLeague/addTeamsInLeague",
+		data: {
+			leagueid:leagueid,
+      		managerid:managerid,
+			participantTeams:participantTeams,      
+      	},
+      	
+      	dataType: 'json',	
+      	success: function (res) {
+                  	if(res[0][0] != "Fail")
+                  	{
+						alert(res[0][0]);
+					} 
+              	}
+	});
+}
+
+function redirect_ifNotloggedin()
+{
+	if (isloggedin())
+		$("#header").load("header.html");
+  	else 
+		window.location.replace("login.html");
+	
 }
