@@ -65,29 +65,23 @@ function fetchUser(userid)
     });
 }
 
-
-function fetchusername()
+   
+function displayinfo(userid)
 {
- $("#container").load("searchresult.html");
    $.ajax({
-      url: siteloc + scriptloc + "getusername.py",
-   
-      data: {username:$("#usename").val()
-   
-   },
-   
+      url: siteloc + scriptloc + "getUser.py",
+      data: {userid:userid,
+             },
       dataType: 'json',
       success: function (res) {
-   
-   if(res[0][0] != "None")
-            {
-    for (i = 0; i < res.length; i++)
-     {
+                  var k = 1;
+      if(res[0][0] != "None")
+                  {
+     for (i=0;i<res.length;i++){
       row = res[i];
       for (j = 1; j < row.length ; j++){
        if(k == 1)
         $("#username1").append(row[j]);
-		
        if(k == 2)
         $("#firstname1").append(row[j]); 
        
@@ -96,29 +90,22 @@ function fetchusername()
         
        if(k == 4)
         $("#emailadd1").append(row[j]);
-       
+        
        if(k == 5)
         $("#phone1").append(row[j]);
-		
-		if(k == 6)
+       
+       if(k == 6)
         $("#address1").append(row[j]);
        
        k = k+1;      
       }  
       
-      for (j = 0; j < row.length ; j++)
-       if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-        $("h3").append(row[j]);  
-       
-     } 
-     
-   } else{
-    window.location.replace("noresult.html");
-            } 
-   } 
-      }); 
+     }
+      }
+              }
+    });
+ 
 }
-
 
 function fetchTeamInfo(name)
 {
@@ -572,7 +559,6 @@ function deleteLeague(leagueid,managerid)
 	 		} 
               	}
 	});
-
 }
 
 function verifydelete(leagueid,managerid)
