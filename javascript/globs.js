@@ -68,72 +68,34 @@ function fetchUser(userid)
 
 function fetchusername()
 {
+ $("#container").load("searchresult.html");
    $.ajax({
       url: siteloc + scriptloc + "getusername.py",
-	  
-      data: {username:$("#username").val()},
-	  
-      dataType: 'json',
-      
-		success: function (res) {
-			console.log(res);
-            if(res[0] != "None")
-            {
-				ret = res[0];
-				$('<p>').append(ret);
-				
-	 		} else{
-				$('#status').append("not found.");
-            }	
-		
-		
-      } 
-      }); 
-}
-
-function displayinfo(userid)
-{
-   $.ajax({
-      url: siteloc + scriptloc + "getUser.py",
-      data: {userid:userid,
-             },
+   
+      data: {username:$("#usename").val()
+   
+   },
+   
       dataType: 'json',
       success: function (res) {
-                  var k = 1;
-      if(res[0][0] != "None")
-                  {
-     for (i=0;i<res.length;i++){
+   
+   if(res[0][0] != "None")
+            {
+    for (i = 0; i < res.length; i++)
+     {
       row = res[i];
-      for (j = 1; j < row.length ; j++){
-       if(k == 1)
-        $("#firstname1").append(row[j]);
-		
-       if(k == 2)
-        $("#lastname1").append(row[j]); 
-       
-       if(k == 3)
-        $("#username1").append(row[j]);
-        
-       if(k == 4)
-        $("#password1").append(row[j]);
-        
-       if(k == 5)
-        $("#emailadd1").append(row[j]);
-       
-       if(k == 6)
-        $("#address1").append(row[j]);
-		
-		if(k == 7)
-        $("#phone1").append(row[j]);
-       
-       k = k+1;      
-      }  
       
-     }
-      }
-              }
-    });
- 
+      for (j = 0; j < row.length ; j++)
+       if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
+        $("h3").append(row[j]);  
+       
+     } 
+     
+   } else{
+    window.location.replace("noresult.html");
+            } 
+   } 
+      }); 
 }
 
 
@@ -203,7 +165,7 @@ function fetchLeagueByManagerId(managerid)
 					$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='+row[0]+'>'+row[1]+'</a></td>'
 		      	  		+ '<td>'+row[2]+'</td>' + '<td>'+row[3]
 					+'</td><td><a href="#" onClick=editLeague('+getCookie('userid')+','+row[0]+') class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
-		      	  		+'<a href="#" onClick = verifydelete('+row[0]+','+getCookie("userid")+') id="delete" class="glyphicon glyphicon-remove">Remove</a></td></tr>');
+		      	  		+'<a href="#" onClick = verifydelete('+row[0]+','+getCookie("userid")+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
 			}
 		   }
               }
@@ -600,36 +562,4 @@ function verifydelete(leagueid,managerid)
 		.data('managerid',managerid)
 		.dialog('open');
 
-}
-
-function confirmAddTeamsInLeague(leagueid,managerid,participantTeams)
-{
-	redirect_ifNotloggedin();
-	console.log(participantTeams);
-	$.ajax({
-		 
-		url: siteloc + scriptloc + "getLeague/addTeamsInLeague",
-		data: {
-			leagueid:leagueid,
-      		managerid:managerid,
-			participantTeams:participantTeams,      
-      	},
-      	
-      	dataType: 'json',	
-      	success: function (res) {
-                  	if(res[0][0] != "Fail")
-                  	{
-						alert(res[0][0]);
-					} 
-              	}
-	});
-}
-
-function redirect_ifNotloggedin()
-{
-	if (isloggedin())
-		$("#header").load("header.html");
-  	else 
-		window.location.replace("login.html");
-	
 }
