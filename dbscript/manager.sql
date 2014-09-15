@@ -4,11 +4,12 @@ CREATE TABLE Manager(
     first_name text,
     last_name text,
     address text,
-    contact_no int
+    contact_no text,
+	email text
     );
 
 create or replace 
-    function setmanager(p_userid int,p_first_name text,p_last_name text,p_address text, p_contact_no int) 
+    function setmanager(p_userid int,p_first_name text,p_last_name text,p_address text, p_contact_no text,p_email text) 
     returns text as
 $$
   declare
@@ -18,11 +19,11 @@ $$
          where userid_fk = p_userid;
          
       if v_manager_id isnull then
-          insert into Manager(userid_fk,first_name,last_name,address,contact_no) values
-             (p_userid,p_first_name,p_last_name, p_address, p_contact_no);
+          insert into Manager(userid_fk,first_name,last_name,address,contact_no,email) values
+             (p_userid,p_first_name,p_last_name, p_address, p_contact_no, p_email);
       else
           update Manager
-          set first_name = p_first_name,last_name = p_last_name,address = p_address,contact_no = p_contact_no
+          set first_name = p_first_name,last_name = p_last_name,address = p_address,contact_no = p_contact_no, email = p_email
           where userid_fk = p_userid;
       end if;   
          
@@ -31,13 +32,15 @@ $$
   $$
   language 'plpgsql';
 
---SELECT setmanager(1, 'ron','magno','iligan city',1234);
+--SELECT setmanager(1, 'ron','magno','iligan city',1234,ron@yolo.com);
+
+ 
 
 create or replace function 
-    get_Manager_per_id(in int,out text,out text,out text, out int) 
+    get_Manager_per_id(in int,out text,out text,out text, out text,out text) 
 returns record as
 $$ 
-     select first_name,last_name, address, contact_no from Manager
+     select first_name,last_name, address, contact_no,email from Manager
      where manager_id = $1;
      
 $$
