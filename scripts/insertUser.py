@@ -16,14 +16,37 @@ def index(req,username,password,firstname,lastname,email,contactno,address):
     address = cgi.escape(address)
      
 	
+	
     a = doSql()
-    query = "SELECT setuser('"+ username+"','"+ password+"','"+firstname+"','"+lastname+"','"+email+"','"+contactno+"','"+address+"');"
+  
+   
+    query = "SELECT setuser('"+username+"','"+ password+"','"+firstname+"','"+lastname+"','"+email+"','"+contactno+"','"+address+"');"
     print query
     items = a.execqry(query,True)
     result = []
     for item in items:
         stringed = map(str,item)
-        result.append(stringed)
+        result.append(stringed) 
+	
+    b = doSql()	
+	
+    query = "SELECT login('"+ username+"','"+ password+"');" 
+    items = b.execqry(query,False)
+    for item in items:
+        stringed = map(int,item)
+        [a] =  stringed
 
-    return json.dumps(result)
+    id = str(a)
+	
+   
+	
+							
+		
+    query = "SELECT setmanager("+id+" ,'"+firstname+"','"+lastname+"','"+address+"','"+contactno+"','"+email+"');"
+    items = b.execqry(query,True)
+    result2 = []
+    for item in items:
+        stringed = map(str,item)
+        result2.append(stringed)
 
+    return json.dumps(result2)
