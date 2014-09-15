@@ -106,25 +106,22 @@ function displayinfo(userid)
       row = res[i];
       for (j = 1; j < row.length ; j++){
        if(k == 1)
-        $("#firstname1").append(row[j]);
+        $("#username1").append(row[j]);
 		
        if(k == 2)
-        $("#lastname1").append(row[j]); 
+        $("#firstname1").append(row[j]); 
        
        if(k == 3)
-        $("#username1").append(row[j]);
+        $("#lastname1").append(row[j]);
         
        if(k == 4)
-        $("#password1").append(row[j]);
-        
-       if(k == 5)
         $("#emailadd1").append(row[j]);
        
-       if(k == 6)
-        $("#address1").append(row[j]);
-		
-		if(k == 7)
+       if(k == 5)
         $("#phone1").append(row[j]);
+		
+		if(k == 6)
+        $("#address1").append(row[j]);
        
        k = k+1;      
       }  
