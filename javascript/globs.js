@@ -609,8 +609,8 @@ function fetchusername()
  $("#container").load("searchresult.html");
    $.ajax({
       url: siteloc + scriptloc + "getusername.py",
-   
-      data: {username:$("#usename").val()
+     
+      data: {username:$("#usename").val().toLowerCase()
    
    },
    
