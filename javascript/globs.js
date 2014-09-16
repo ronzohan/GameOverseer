@@ -149,7 +149,7 @@ function confirmAddTeamsInLeague(leagueid,managerid,participantTeams)
      	success: function (res) {
                  	if(res[0][0] != "Fail")
 						alert(res[0][0]);
-             	
+        }     	
 	});
 }
 
@@ -244,7 +244,8 @@ function getStart(ide, timer)
       data: {ide:ide
              },
 	  success: function (res) {
-                  var t1 = res[17][0] + res[18][0];
+                  createDiv();
+				  var t1 = res[17][0] + res[18][0];
 				  var t2 = res[19][0] + res[20][0] + res[21][0];
 				  var string = "";
 				  
