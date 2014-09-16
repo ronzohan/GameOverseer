@@ -609,7 +609,11 @@ function fetchusername()
  $("#container").load("searchresult.html");
    $.ajax({
       url: siteloc + scriptloc + "getusername.py",
+<<<<<<< HEAD
      
+=======
+   
+>>>>>>> 6b16f93e27a9cd27bdda9caac31e2d9bf26a69cb
       data: {username:$("#usename").val().toLowerCase()
    
    },
