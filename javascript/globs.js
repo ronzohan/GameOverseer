@@ -570,3 +570,35 @@ function verifydelete(leagueid,managerid)
 		.dialog('open');
 
 }
+
+function fetchusername()
+{
+ $("#container").load("searchresult.html");
+   $.ajax({
+      url: siteloc + scriptloc + "getusername.py",
+   
+      data: {username:$("#usename").val()
+   
+   },
+   
+      dataType: 'json',
+      success: function (res) {
+   
+   if(res[0][0] != "None")
+            {
+    for (i = 0; i < res.length; i++)
+     {
+      row = res[i];
+      
+      for (j = 0; j < row.length ; j++)
+       if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
+        $("h3").append(row[j]);  
+       
+     } 
+     
+   } else{
+    window.location.replace("noresult.html");
+            } 
+   } 
+      }); 
+}
