@@ -155,6 +155,39 @@ function fetchleague(league_id)
     });
 }
 
+function redirect_ifNotloggedin()
+{
+	if (isloggedin())
+		$("#header").load("header.html");
+ 	else 
+		window.location.replace("login.html");
+	
+}
+
+
+function confirmAddTeamsInLeague(leagueid,managerid,participantTeams)
+{
+	redirect_ifNotloggedin();
+	console.log(participantTeams);
+	$.ajax({
+		 
+		url: siteloc + scriptloc + "getLeague/addTeamsInLeague",
+		data: {
+			leagueid:leagueid,
+     		managerid:managerid,
+			participantTeams:participantTeams,      
+     	},
+     	
+     	dataType: 'json',	
+     	success: function (res) {
+                 	if(res[0][0] != "Fail")
+                  	{
+						alert(res[0][0]);
+					} 
+             	}
+	});
+}
+
 function fetchLeagueByManagerId(managerid)
 {
   $.ajax({
