@@ -13,36 +13,12 @@ function fetchEvent()
                   console.log(res);
                   if(res[0][0] != "None")
                   {
-		  	table = '<div class="table-responsive">';
-			table += '<table class="table table-condensed">';
-			table += '<thead>' +'<tr>' + '<th>Date</th>' +'<th>Venue</th>' +
-			         '<th>Starting Time</th>' + '<th>Ending Time</th>' + 
-			         '<th>Score (Team 1)</th>' +
-			         '<th>Score (Team 2)</th>' + '</tr>' + '</thead>';
-			table += "<tbody>";
-					   		   
-			for (i = 0; i < res.length; i++)
-			{
-				row = res[i];
-			        table += "<tr>";
-	
-			        for (j = 0; j < row.length; j++)
-					table += "<td>" + row[j] + "</td>";
-	
-				table += "</tr>";
-			}
-						   
-			table += "</tbody>";
-			table += "</table>";
-			table += "</div>";
-			$("#target").html(table); 
-		}
-              }
+				  }
+      }
     });
 }
 
 
- 
 function fetchUser(userid)
 {
   $.ajax({
@@ -51,17 +27,12 @@ function fetchUser(userid)
 	    },
       dataType: 'json',
       success: function (res) {
-                  console.log(res);
-                  
-                  if(res[0][0] != "None")
-                  {
-		  	setCookie("username",res[0][1],2);
-	       	  }                                                                                                                       
-		  else
-		  {
-		  	alert("Failed");					  	
-         	  }
-	       }
+				console.log(res);
+                if(res[0][0] != "None")
+					setCookie("username",res[0][1],2);                                                                                                                      
+				else
+					alert("Failed");					  	
+	  }
     });
 }
 
@@ -74,35 +45,35 @@ function displayinfo(userid)
              },
       dataType: 'json',
       success: function (res) {
-                  var k = 1;
-      if(res[0][0] != "None")
-                  {
-     for (i=0;i<res.length;i++){
-      row = res[i];
-      for (j = 1; j < row.length ; j++){
-       if(k == 1)
-        $("#username1").append(row[j]);
-       if(k == 2)
-        $("#firstname1").append(row[j]); 
-       
-       if(k == 3)
-        $("#lastname1").append(row[j]);
+				var k = 1;
+				if(res[0][0] != "None")
+                {
+					for (i=0;i<res.length;i++){
+						row = res[i];
+					for (j = 1; j < row.length ; j++){
+						if(k == 1)
+							$("#username1").append(row[j]);
+						
+						if(k == 2)
+							$("#firstname1").append(row[j]); 
+       					
+						if(k == 3)
+							$("#lastname1").append(row[j]);
         
-       if(k == 4)
-        $("#emailadd1").append(row[j]);
+						if(k == 4)
+							$("#emailadd1").append(row[j]);
         
-       if(k == 5)
-        $("#phone1").append(row[j]);
+						if(k == 5)
+							$("#phone1").append(row[j]);
        
-       if(k == 6)
-        $("#address1").append(row[j]);
+						if(k == 6)
+							$("#address1").append(row[j]);
        
-       k = k+1;      
-      }  
-      
-     }
-      }
-              }
+						k = k+1;      
+					 }  
+					}
+				}
+        }
     });
  
 }
@@ -117,9 +88,8 @@ function fetchTeamInfo(name)
       success: function (res) {
                   console.log(res);
                   if(res[0][0] != "None")
-                  {  
-				      } 
-              }
+                   
+        }
     });
 }
 
@@ -133,10 +103,7 @@ function fetchmanager(manager_id)
       success: function (res) {
                   console.log(res);
                   if(res[0][0] != "None")
-                  {
-
-				  }
-              }
+        }
     });
 }
 
