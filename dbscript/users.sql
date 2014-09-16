@@ -89,7 +89,7 @@ create or replace function
 returns text as
 $$
 	select username from users
-	where username = $1;
+	where LOWER(username)= $1;
     
 $$
   language 'sql';
