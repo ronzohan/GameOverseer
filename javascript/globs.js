@@ -88,7 +88,7 @@ function fetchTeamInfo(name)
       success: function (res) {
                   console.log(res);
                   if(res[0][0] != "None")
-                   
+                  {} 
         }
     });
 }
@@ -103,6 +103,7 @@ function fetchmanager(manager_id)
       success: function (res) {
                   console.log(res);
                   if(res[0][0] != "None")
+				  {}
         }
     });
 }
@@ -114,10 +115,9 @@ function fetchleague(league_id)
       data: {league_id:league_id},
       dataType: 'json',
       success: function (res) {
-                  console.log(res);
-                  
-                  if(res[0][0] != "None")
-                  {}
+                console.log(res);
+                if(res[0][0] != "None")
+                {}
 		}
     });
 }
@@ -148,10 +148,8 @@ function confirmAddTeamsInLeague(leagueid,managerid,participantTeams)
      	dataType: 'json',	
      	success: function (res) {
                  	if(res[0][0] != "Fail")
-                  	{
 						alert(res[0][0]);
-					} 
-             	}
+             	
 	});
 }
 
@@ -165,18 +163,22 @@ function fetchLeagueByManagerId(managerid)
                   console.log(res); 
                   if(res[0][0] != "None")                  
                   {
-			$("#leaguetable tr").remove();
-			for (i=0;i<res.length;i++)
-			{
-				row = res[i];
+					$("#leaguetable tr").remove();
+					for (i=0;i<res.length;i++)
+					{
+						row = res[i];
 				     
-					$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='+row[0]+'>'+row[1]+'</a></td>'
-		      	  		+ '<td>'+row[2]+'</td>' + '<td>'+row[3]
-					+'</td><td><a href="#" onClick=editLeague('+getCookie('userid')+','+row[0]+') class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
-		      	  		+'<a href="#" onClick = verifydelete('+row[0]+','+getCookie("userid")+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
-			}
-		   }
-              }
+						$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='
+												+row[0]+'>'+row[1]+'</a></td>'
+											+'<td>'+row[2]+'</td>' + '<td>'+row[3]
+											+'</td><td><a href="#" onClick=editLeague('
+											+getCookie('userid')+','+row[0]
+											+') class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
+											+'<a href="#" onClick = verifydelete('+row[0]+','+getCookie("userid")
+											+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
+					}
+				  }
+        }
   });
   
 }
@@ -189,9 +191,7 @@ function checkScore(ide)
              },
 	  success: function (res) {
                   if(res[0][0] != "None" )
-                  {
-						
-				  } // end !if
+                  {}
               }
 	})
 	return "okay";
@@ -214,10 +214,9 @@ function getScore(ide)
 						for (j = 0; j < row.length ; j++)
 							if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
 								$("p").append(row[j]);		
-							
 					}	
 				  } // end !if
-              }
+         }
 	})
 	
 }
@@ -226,7 +225,7 @@ function createDiv()
 	{
         var divTag = document.createElement("div");
         
-        divTag.id = "div1" ;
+		divTag.id = "div1" ;
         
         divTag.setAttribute("align","right");
         
@@ -248,6 +247,7 @@ function getStart(ide, timer)
                   var t1 = res[17][0] + res[18][0];
 				  var t2 = res[19][0] + res[20][0] + res[21][0];
 				  var string = "";
+				  
 				  for (i = 0; i < (res.length - 12); i++)
 					{
 						row = res[i];
@@ -258,7 +258,8 @@ function getStart(ide, timer)
 							
 					}
 					var date = new Date(string);
-					var string = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) + "/" + date.getFullYear() + " " + t1 + t2;
+					var string = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) 
+									+ "/" + date.getFullYear() + " " + t1 + t2;
 				
 					if(t1 < 12)
 						string += " " + "AM";
@@ -269,6 +270,7 @@ function getStart(ide, timer)
 				
 					var TargetDate = "";
 					TargetDate += string;
+					
 					TimerID = timer;
 					FinishMessage = "Live";
 					
@@ -283,10 +285,9 @@ function getStart(ide, timer)
 					}
 				
 					new CreateTimer(TimerID, Time);
-			}
+		}
 			
-	})
-	
+	});
 	
 }
 
@@ -295,8 +296,10 @@ var TotalSeconds;
 
 function CreateTimer(TimerID, Time){
     var oop=this;
+	
 	this.Timer = document.getElementById(TimerID);
 	this.TotalSeconds = Time;
+	
 	this.update();
 	oop.to=setTimeout(function(){ oop.tick(); }, 1000);
 }
@@ -309,18 +312,23 @@ CreateTimer.prototype={
 		this.Timer.innerHTML = FinishMessage;
 		return;
 	}
+	
 	this.TotalSeconds -= 1;
 	this.update()
+	
 	oop.to=setTimeout(function(){ oop.tick(); }, 1000);
  },
 
  update:function(){
  	var Seconds = this.TotalSeconds,Days = Math.floor(Seconds / 86400);
 	Seconds -= Days * 86400;
+	
 	var Hours = Math.floor(Seconds / 3600);
 	Seconds -= Hours * (3600);
+	
 	var Minutes = Math.floor(Seconds / 60);
 	Seconds -= Minutes * (60);
+	
 	var TimeStr = ((Days > 0) ? Days + " day(s) " : "") + (((Hours > 0) && (Days <= 0)) ? Hours + " h " : "") + (((Minutes > 0) && (Days <= 0)) ? Minutes + " m " : "") + (((Seconds > 0) && (Days <= 0) && (Hours <= 0) && (Minutes <= 0)) ? Seconds + " s " : "");
 	this.Timer.innerHTML = TimeStr;
  }
@@ -333,33 +341,33 @@ function fetchLeagueBracketInfo(league_id)
       url: siteloc + scriptloc + "getLeague/getBracketInfo?",
       data: {league_id:league_id},
       dataType: 'json',
-      success: 
+      success:
 	  
-	  function (res)
-	  {
+	  function (res){
 		  var r = new Array(res[0][1]);
 		  var t = res[0][2];
  
           if(res[0][0] != "None" && r[0] != null)
-                  {
-					var minimalData = {
-					  teams :t,
-					results : r
+            {
+				var minimalData = {
+				
+				teams :t,
+				results : r
 						
-					}
-					$(function()
-					{				
-							$('#leagueinfo').bracket
-								({
-									init:minimalData
-								});		
-					})
-				   } 
-				   else
-				   {
-						$('#leaguetitle').empty();
-						$('#leaguetitle').append(res[0][0]);
-				   }
+				}
+		  $(function()
+		  {				
+			$('#leagueinfo').bracket
+			({
+				init:minimalData
+			});		
+		  })
+			} 
+			else
+			{
+				$('#leaguetitle').empty();
+				$('#leaguetitle').append(res[0][0]);
+			}
         }
    }); 
 }
@@ -397,9 +405,10 @@ function login(username,password)
  
 function getParameterByName(name)
 {
-        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]"); 	    
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]"); 	    
 	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search); 
+    
+	results = regex.exec(location.search); 
 	return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));	
 }
 
@@ -407,35 +416,35 @@ function getParameterByName(name)
 function insertUser()
 {
 
-				 username:$("#desiredUsername").val();
-				 password:$("#desiredPassword").val();
-				 verifypassword:$("#verifyPassword").val();
-				 fullname:$("#fullname").val();
-				 address:$("#address").val();
-				 contactno:$("#contactno").val();
+	username:$("#desiredUsername").val();
+	password:$("#desiredPassword").val();
+	
+	verifypassword:$("#verifyPassword").val();
+	fullname:$("#fullname").val();
+	
+	address:$("#address").val();
+	contactno:$("#contactno").val();
 				 
 				 
-				 if(password != verifypassword){
-				  
-								window.location.replace("login.html");
-				 }
-				 if (!username || !password|| !verifypassword ||  !fullname    || !address   || !contactno) 
-					{
-
-						        window.location.replace("login.html")
-
-					}
-				else{
+	if(password != verifypassword)
+		window.location.replace("login.html");
+				 
+	if (!username || !password|| !verifypassword ||  !fullname    || !address   || !contactno) 
+		window.location.replace("login.html")
+	
+	else{
 				
-  $.ajax({ 
+		$.ajax({ 
 		 
 		url: siteloc + scriptloc + "insertUser.py",
         data: 
 				{
 				 username:$("#desiredUsername").val(),   
 				 password:$("#desiredPassword").val(),
+				 
 				 verifypassword:$("#verifyPassword").val(),
 				 fullname:$("#fullname").val(),
+				 
 				 address:$("#address").val(),
 				 contactno:$("#contactno").val()
 				}  
@@ -447,7 +456,6 @@ function insertUser()
 
 function isloggedin()
 {
-
 	if (!getCookie("username") && !getCookie("userid"))
 		return false;
     else
@@ -460,8 +468,7 @@ function logout()
     setCookie("username","",-1);
     setCookie("userid","",-1);
     
-    window.location.replace("login.html");
-	
+    window.location.replace("login.html");	
 }
 
 
@@ -476,29 +483,27 @@ function setCookie(cname, cvalue, exdays) {
 
 function getCookie(cname) 
 {
-
     var name = cname + "=";
     var ca = document.cookie.split(';');
     
     for(var i=0; i<ca.length; i++) 
 	{
-	
-        var c = ca[i];
-			while (c.charAt(0)==' ') 
-					c = c.substring(1);
+	    var c = ca[i];
+		
+		while (c.charAt(0)==' ') 
+			c = c.substring(1);
         	
         if (c.indexOf(name) != -1) 
         	return c.substring(name.length, c.length);
 			
-     }
-	 
+    } 
 }
 
 function editLeague(managerid,leagueid)
 {
-	
 	$("#editleaguename").empty();
 	$("#editsport").empty();
+	
 	$("#editfixturetype").empty();
 	
 	$.ajax({
@@ -508,11 +513,12 @@ function editLeague(managerid,leagueid)
       dataType: 'json',
       success: function (res) {
                   console.log(res);
-					
+				
                   if(res[0][0] != "None")
                   {
 					$("#editleaguename").val(res[0][0]);
 					$("#editsport").val(res[0][1]);
+					
 					$("#editdialog select").val(res[0][2]);
 					$("#editdialog").dialog('open');
 				  }
@@ -524,32 +530,32 @@ function setleague(managerid,leaguename,fixturetype,sport)
 {
 	$.ajax({
 	url: siteloc + scriptloc + "getLeague/setleague",
-	data: {
-		managerid:managerid,
-      		leaguename:leaguename,
-		fixturetype:fixturetype,      
-      		sport:sport
+	data: {managerid:managerid,
+      	   leaguename:leaguename,
+		   fixturetype:fixturetype,      
+		   sport:sport
       	},
-      	dataType: 'json',	
-      	success: function (res) {
-                  	if(res[0][0] != "None")
-                  	{
-				if (res[0][0] == "Successfully Created")
-				{
-					$("#create").hide();
-					$("#status").empty();
-					$("#status").css('color','#00FF00');
-					$("#status").append("Successfully Created!");					
-					$("input").prop('disabled', true); //disable all inputs since leauge was been successfully created
-				}
- 				else
-				{
-					$("#status").empty();
-					$("#status").css('color','#FF0000');
-					$("#status").append("Duplicate Entry.");
-				}	 
-	 		} 
-              	}
+    dataType: 'json',	
+    success: function (res) {
+                if(res[0][0] != "None")
+                {
+					if (res[0][0] == "Successfully Created")
+					{
+						$("#create").hide();
+						$("#status").empty();
+						
+						$("#status").css('color','#00FF00');
+						$("#status").append("Successfully Created!");					
+						$("input").prop('disabled', true); //disable all inputs since league was been successfully created
+					}
+					else
+					{
+						$("#status").empty();
+						$("#status").css('color','#FF0000');
+						$("#status").append("Duplicate Entry.");
+					}	 
+				} 
+        }
 	});
 }
 
@@ -557,23 +563,20 @@ function deleteLeague(leagueid,managerid)
 {
 	$.ajax({
 	url: siteloc + scriptloc + "getLeague/deleteLeague",
-	data: {
-		leagueid:leagueid,
-		managerid:managerid
-      	},
-      	dataType: 'json',
-      	success: function (res) {
-			console.log(res);
-                  	if(res[0][0] != "None")
-                  	{
-				if (res[0][0])
-				{
-					fetchLeagueByManagerId(getCookie('userid'));
-				}				
-				else 
-					alert("Failed to delete");
-	 		} 
-              	}
+	data: {leagueid:leagueid,
+		   managerid:managerid
+		  },
+    dataType: 'json',
+    success: function (res) {
+				console.log(res);
+                if(res[0][0] != "None")
+                {
+					if (res[0][0])
+						fetchLeagueByManagerId(getCookie('userid'));
+					else 
+						alert("Failed to delete");
+				} 
+        }
 	});
 }
 
@@ -592,29 +595,25 @@ function fetchusername()
  $("#container").load("searchresult.html");
    $.ajax({
       url: siteloc + scriptloc + "getusername.py",
-
-      data: {username:$("#usename").val().toLowerCase()
-   
-   },
+      data: {username:$("#usename").val().toLowerCase()},
    
       dataType: 'json',
       success: function (res) {
    
-   if(res[0][0] != "None")
-            {
-    for (i = 0; i < res.length; i++)
-     {
-      row = res[i];
+				if(res[0][0] != "None")
+				{
+					for (i = 0; i < res.length; i++)
+					{
+						row = res[i];
       
-      for (j = 0; j < row.length ; j++)
-       if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-        $("h3").append(row[j]);  
+						for (j = 0; j < row.length ; j++)
+						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
+						$("h3").append(row[j]);  
        
-     } 
-     
-   } else{
-    window.location.replace("noresult.html");
-            } 
-   } 
-      }); 
+					} 
+				}
+				else
+					window.location.replace("noresult.html");
+		} 
+    }); 
 }
