@@ -255,6 +255,22 @@ function getScore(ide)
 	
 }
 
+function createDiv()
+	{
+        var divTag = document.createElement("div");
+        
+        divTag.id = "div1" ;
+        
+        divTag.setAttribute("align","right");
+        
+        divTag.style.margin = "20px auto";
+        
+        divTag.innerHTML = "insertTN1 vs insertTN2";
+        
+        $('#r').append(document.body.appendChild(divTag));
+    }
+
+
 function getStart(ide, timer)
 {
 	$.ajax({
