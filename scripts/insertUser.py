@@ -20,7 +20,7 @@ def index(req,username,password,firstname,lastname,email,contactno,address):
     a = doSql()
   
    
-    query = "SELECT setuser('"+username+"','"+ password+"','"+firstname+"','"+lastname+"','"+email+"','"+contactno+"','"+address+"');"
+    query = "SELECT setuser('"+username+"','"+ password+"');"
     print query
     items = a.execqry(query,True)
     result = []
