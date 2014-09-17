@@ -16,3 +16,14 @@ def index(req,manager_id):
         result.append(stringed)
 
     return json.dumps(result)
+
+def getManagerPerUserId(userid):
+    userid = cgi.escape(userid)
+    x = doSql()
+    rets = x.execqry("select * from getManagerPerUserId(" + userid+ ");", False)
+    result = []
+    for ret in rets:
+        stringed = map(str, ret)
+        result.append(stringed)
+
+    return json.dumps(result)
