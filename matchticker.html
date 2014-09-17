@@ -67,6 +67,8 @@
   height: 70px;
 }
 
+
+
 </style>
 </head> 
 
@@ -141,28 +143,28 @@
 			
 			<script language = "JavaScript">
 				for(i = 1; i < 4; i++){ 
-					getStart(i, createDiv());
+					createDiv();
+					getStart(i, "div" + i);
 				}
 			</script>
 	
 	<br>
 	<br>
 	<br>
-	
 			
 			
 	Recent Matches
 		
 	<br>
 	<br>		
-	
+		
 			
-		<a href = "#"><div id="k1"></div></a>
+		<div id="k1"><a href = "#"></a></div>
 		<script language="JavaScript">
-				if(checkScore(1) == "okay"){
-					 $('#k1').append($('#div1').html());
-					 $("#div1").remove();
-				}		
+				//if(checkScore(1) == "okay"){
+					 //alert(checkScore(1));
+				$('#k1').append($('#div1').html());
+				$("#div1").remove();
 		</script>
 		
 		
