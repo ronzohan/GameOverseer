@@ -270,70 +270,11 @@ function createDiv()
     }
 */
 
-function getStart(ide, timer)
-{
-	//createDiv();
-	//createD(timer);
-	//createD();
-	$.ajax({
-      url: siteloc + scriptloc + "getStart.py",
-      data: {ide:ide
-             },
-	  success: function (res) {
-				  var t1 = res[17][0] + res[18][0];
-				  var t2 = res[19][0] + res[20][0] + res[21][0];
-				  var string = "";
-				  
-				  for (i = 0; i < (res.length - 12); i++)
-					{
-						row = res[i];
-						
-						for (j = 0; j < row.length ; j++)
-							if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"'  && row[j] != '+' )
-								string += row[j];		
-							
-					}
-					var date = new Date(string);
-					var string = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) 
-									+ "/" + date.getFullYear() + " " + t1 + t2;
-				
-					if(t1 < 12)
-						string += " " + "AM";
-					else
-						string += " " + "PM";
-
-					string = '"' + string + '"';
-				
-					var TargetDate = "";
-					TargetDate += string;
-					
-					TimerID = timer;
-					FinishMessage = "Live";
-					
-					var dtarg = new Date(TargetDate);
-					var dnow = new Date();
-				
-					diff = new Date(dtarg - dnow);
-					Time = Math.floor(diff.valueOf()/1000);
-				
-					if(diff < 0){
-						Time = 0;
-					}
-					
-					createDiv();
-					//new CreateTimer(TimerID, Time);
-					$("#div1").append(new CreateTimer(TimerID, Time));
-		}
-			
-	});
-	
-}
-
 //var k = 1;
 //var ;
 var Time;
 //var string = "";
-function getS(ide, timer)
+function getStart(ide, timer)
 {
 	//createDiv();
 	//createD(timer);
