@@ -190,12 +190,15 @@ function checkScore(ide)
       data: {ide:ide
              },
 	  success: function (res) {
-                  if(res[0][0] != "None" )
-                  {}
+                  if(res[3][0] != "N" )
+                  {
+					//$('#k1').append($('#div1').html());
+					//$("#div1").remove();
+				  }
               }
-	})
-	return "okay";
+	});
 }
+
 
 function getScore(ide)
 {
@@ -221,22 +224,30 @@ function getScore(ide)
 	
 }
 
+
+var k = 1;
 function createDiv()
 	{
-        var divTag = document.createElement("div");
+		
+		divTag = document.createElement("div");
         
-		divTag.id = "div1" ;
+		divTag.id = "div" + k ;
         
-        divTag.setAttribute("align","right");
+		divTag.setAttribute("align","right");
         
         divTag.style.margin = "20px auto";
         
-        divTag.innerHTML = "insertTN1 vs insertTN2";
-        
-        $('#r').append(document.body.appendChild(divTag));
-    }
-
-
+        if(k == 1)
+			divTag.innerHTML = '<a href ="http://localhost/GameOverseer/sample details (matchticker).html"> insertTN' + (k) + 'vs insertTN' + (k+1) + '</a>';  
+		else
+			divTag.innerHTML = '<a href ="#"> insertTN' + (k+1) + 'vs insertTN' + (k+2) + '</a>'; 
+		
+		$('#r').append(document.body.appendChild(divTag));
+		
+		k++;
+	}
+	
+var Time;
 function getStart(ide, timer)
 {
 	$.ajax({
@@ -244,7 +255,6 @@ function getStart(ide, timer)
       data: {ide:ide
              },
 	  success: function (res) {
-                  createDiv();
 				  var t1 = res[17][0] + res[18][0];
 				  var t2 = res[19][0] + res[20][0] + res[21][0];
 				  var string = "";
@@ -258,6 +268,7 @@ function getStart(ide, timer)
 								string += row[j];		
 							
 					}
+					
 					var date = new Date(string);
 					var string = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) 
 									+ "/" + date.getFullYear() + " " + t1 + t2;
@@ -284,20 +295,21 @@ function getStart(ide, timer)
 					if(diff < 0){
 						Time = 0;
 					}
-				
+					
 					new CreateTimer(TimerID, Time);
 		}
 			
 	});
-	
 }
+
 
 var Timer;
 var TotalSeconds;
-
+var p;
 function CreateTimer(TimerID, Time){
-    var oop=this;
-	
+    p = 0;
+	var oop=this;
+	//alert(TimerID);
 	this.Timer = document.getElementById(TimerID);
 	this.TotalSeconds = Time;
 	
@@ -309,8 +321,10 @@ CreateTimer.prototype={
 
  tick:function(){
     var oop=this;
+	
 	if (this.TotalSeconds <= 0){
-		this.Timer.innerHTML = FinishMessage;
+		this.Timer.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FinishMessage;
+		$('#r').append(document.body.appendChild(this.Timer));
 		return;
 	}
 	
@@ -331,8 +345,12 @@ CreateTimer.prototype={
 	Seconds -= Minutes * (60);
 	
 	var TimeStr = ((Days > 0) ? Days + " day(s) " : "") + (((Hours > 0) && (Days <= 0)) ? Hours + " h " : "") + (((Minutes > 0) && (Days <= 0)) ? Minutes + " m " : "") + (((Seconds > 0) && (Days <= 0) && (Hours <= 0) && (Minutes <= 0)) ? Seconds + " s " : "");
-	this.Timer.innerHTML = TimeStr;
- }
+	if (p == 0){
+		this.Timer.innerHTML += "&nbsp;&nbsp;&nbsp;" + TimeStr;
+		$('#r').append(document.body.appendChild(this.Timer));
+		p++;
+	}
+ }	
 }
 
 
@@ -590,6 +608,36 @@ function verifydelete(leagueid,managerid)
 		.dialog('open');
 
 }
+
+function addTeamsInLeague(leagueid,managerid,participantTeam)
+{
+	redirect_ifNotloggedin();
+	$.ajax({
+		 
+		url: siteloc + scriptloc + "getLeague/addTeamsInLeague",
+		data: {
+			leagueid:leagueid,
+      		managerid:managerid,
+			participantTeam:participantTeam,      
+      	},
+      	
+      	dataType: 'json',	
+      	success: function (res) {
+                  	if(res[0][0] != "Fail")
+                  	{
+						alert(res[0][0]);
+					} 
+              	}
+	});
+}
+
+
+function redirect_ifNotloggedin()
+{
+	if (isloggedin())
+		$("#header").load("header.html");
+  	else 
+		window.location.replace("login.html");
 
 function fetchusername()
 {
