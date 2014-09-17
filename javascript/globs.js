@@ -172,9 +172,9 @@ function fetchLeagueByManagerId(managerid)
 												+row[0]+'>'+row[1]+'</a></td>'
 											+'<td>'+row[2]+'</td>' + '<td>'+row[3]
 											+'</td><td><a href="#" onClick=editLeague('
-											+getCookie('userid')+','+row[0]
+											+$.cookie('managerid')+','+row[0]
 											+') class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
-											+'<a href="#" onClick = verifydelete('+row[0]+','+getCookie("userid")
+											+'<a href="#" onClick = verifydelete('+row[0]+','+$.cookie("managerid")
 											+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
 					}
 				  }
@@ -427,11 +427,11 @@ function login(username,password)
 
 	  function (res) 
 	  {
-			console.log(res[0][0]);
 			if (res[0][0] != "Error") //if login is successful redirect page
 			{
-				setCookie("username",username,2);
-				setCookie("userid",res[0][0],2);
+				$.cookie("username",username);
+				$.cookie("userid",res[0][0]);
+ 
 				window.location.replace("index.html"); 
 			}
 			
@@ -499,7 +499,7 @@ function insertUser()
 
 function isloggedin()
 {
-	if (!getCookie("username") && !getCookie("userid"))
+	if (!$.cookie("username") && !$.cookie("userid"))
 		return false;
     else
 		return true;	
@@ -510,6 +510,7 @@ function logout()
 {
     setCookie("username","",-1);
     setCookie("userid","",-1);
+    setCookie("managerid","",-1);
     
     window.location.replace("login.html");	
 }
@@ -615,7 +616,7 @@ function deleteLeague(leagueid,managerid)
                 if(res[0][0] != "None")
                 {
 					if (res[0][0])
-						fetchLeagueByManagerId(getCookie('userid'));
+						fetchLeagueByManagerId($.cookie('managerid'));
 					else 
 						alert("Failed to delete");
 				} 
@@ -650,6 +651,8 @@ function addTeamsInLeague(leagueid,managerid,participantTeam)
                   	if(res[0][0] != "Fail")
                   	{
 						alert(res[0][0]);
+						$("#teamcollection tbody").remove();
+						viewParticipantsInLeague(leagueid);
 					} 
               	}
 	});
@@ -692,3 +695,65 @@ function fetchusername()
     }); 
 }
 
+function viewParticipantsInLeague(league_id)
+{
+	$.ajax({
+		url: siteloc + scriptloc + "getLeague/getBracketInfo?",
+		data: {league_id:league_id},
+		dataType: 'json',
+		success:
+		function (res){
+ 
+			row = res[0][3];
+			if (row)
+			{ 
+				table = "";
+				for (i = 0;i<row.length;i++)
+				{
+					table += "<tr><td>"+row[i]+"</td><td>"
+					+'<a href="#" onClick = deleteTeamsInLeague("'+row[i]+'",'+$.cookie("managerid")
+					+','+getParameterByName('id')+') class="glyphicon glyphicon-remove">Remove</a></td></tr>)';
+				}
+				$("#teamcollection").append(table);
+			}
+		}
+   }); 
+}
+
+function deleteTeamsInLeague(participantTeam,managerid,leagueid)
+{
+	$.ajax({
+		url: siteloc + scriptloc + "getLeague/deleteTeamInLeague?",
+		data: {leagueid:leagueid,
+			   managerid:managerid,
+			   participantTeam:participantTeam
+		},
+		dataType: 'json',
+		success:
+		function (res){
+			 $("#teamcollection tbody").remove();
+			 viewParticipantsInLeague(leagueid);
+		}
+   }); 
+	
+	
+}
+
+function getManagerPerUserId(userid)
+{
+	$.ajax({
+		url: siteloc + scriptloc + "manager/getManagerPerUserId?",
+		data: {userid:userid
+		},
+		dataType: 'json',
+		success:
+		function (res){
+			 
+			 $.cookie("managerid",res[0][0]);
+			//setCookie("managerid",res[0][0],2);
+		}
+   }); 
+	
+	
+	
+}
