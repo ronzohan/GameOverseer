@@ -3,7 +3,7 @@ CREATE EXTENSION pgcrypto;
 CREATE TABLE users(
 	userid serial primary key,
 	username text unique,
-	password text, 
+	password text
 
 );
 
