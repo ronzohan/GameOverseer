@@ -638,7 +638,8 @@ function redirect_ifNotloggedin()
 		$("#header").load("header.html");
   	else 
 		window.location.replace("login.html");
-
+}
+		
 function fetchusername()
 {
  $("#container").load("searchresult.html");
@@ -666,3 +667,4 @@ function fetchusername()
 		} 
     }); 
 }
+
