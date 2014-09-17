@@ -165,72 +165,79 @@
 
 </div>
  
+
    
 
  <div class="media block-update-card">
 	<h1 align="center"><font size = "5"> <font color = "white"> Matchticker </font></font></h1>
-	
-	<div class="media-body update-card-body">
+
+	<span class="media-body update-card-body">
 		<h4 align = "center">
 		  <font color = "white">
+			<!--<div id = "time">
+			</div>-->
 			
-			<div id = "t1">
-			<a href ="http://localhost/GameOverseer/sample details (matchticker).html">insertTN1 vs insertTN2 </a>
-			
-	<br>
-	<br>
-			
+			<div id ="r" style="margin-right:50px;">
 			</div>
+			<!--<div id ="r1"></div>
 			
-			<span id='timer'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
 			
-			<script language="JavaScript">
-				getStart(2, "timer");				
+			<div id = "r2"></div>-->
+			
+			
+			
+			<script language = "JavaScript">
+				for(i = 1; i < 4; i++){ 
+					//createDiv("timer", 90);
+					//var id = createDiv(); 
+					getStart(i, createDiv());
+				}
+				/*for(i = 1; i < 3; i++){ 
+					getStart(1, "r1");
+				}*/
+				
+				//getStart(1, "r1");
 			</script>
 			
-			<a href =" #">insertTN3 vs insertTN4 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-			<span id='timer1'></span>
+			<!--<button 
+			class="btn btn-default"
+			onclick="createDiv();">
+			<span class="glyphicon glyphicon-search">
+			</span> 
+			</button>-->
 			
-			<script language="JavaScript">
-				getStart(1, "timer1");				
-			</script>
-			
+	<br>
 	<br>
 	<br>
 	
-	
-			<a href =" #">insertTN5 vs insertTN6 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<span id='timer2'></span>
-			
-			<script language="JavaScript">
-				getStart(3, "timer2");				
-			</script>
-			
-	<br>
-	<br>
-	<br>
-	
 			
 			
-					Recent Matches
+	Recent Matches
 		
 	<br>
 	<br>		
 	
 			
-		<div id="r1"><a href = "#"></a></div>
+		<div id="k1"><a href = "#"></a></div>
 		<script language="JavaScript">
+				//alert(checkScore(1));
 				if(checkScore(1) == "okay"){
-					 $('#r1').append($('#t1').html());
-					 $("#timer").remove();
-					 $("#t1").remove();	 
+					 //alert(checkScore(1));
+					 $('#k1').append($('#div1').html());
+					 //$("#timer").remove();
+					 $("#div1").remove();
+					 //alert(checkScore(1));					 
 				}		
 		</script>
 		
+		
+
 	</font>
 	</h4>
+			
 	
-  </div>
+	</span>
+
 
 </div>
 
