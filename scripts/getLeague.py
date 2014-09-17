@@ -69,11 +69,19 @@ def deleteLeague(req,leagueid,managerid):
     return json.dumps(rets)
  
 def addTeamsInLeague(req,leagueid,managerid,participantTeam):
- 
     leagueid = cgi.escape(leagueid)
     managerid = cgi.escape(managerid)
     participantTeam = cgi.escape(participantTeam)
 	
     x = doSql()
     rets = x.execqry("select addTeamsInLeague("+leagueid+"," + managerid+",'"+participantTeam+"');",True)
+    return json.dumps(rets)
+
+def deleteTeamInLeague(req,leagueid,managerid,participantTeam):
+    leagueid = cgi.escape(leagueid)
+    managerid = cgi.escape(managerid)
+    participantTeam = cgi.escape(participantTeam)
+    
+    x = doSql()
+    rets = x.execqry("select deleteTeamsInLeague("+leagueid+"," + managerid+",'"+participantTeam+"');",True)
     return json.dumps(rets)
