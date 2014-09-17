@@ -221,30 +221,65 @@ function getScore(ide)
 	
 }
 
+var k = 1;
+var divTag;
 function createDiv()
 	{
-        var divTag = document.createElement("div");
+		
+		divTag = document.createElement("div");
         
-		divTag.id = "div1" ;
+		//divTag.id = "div1" ;
+		divTag.id = '"div' + k + '"' ;
         
+		//alert(divTag.id);
+		
         divTag.setAttribute("align","right");
         
         divTag.style.margin = "20px auto";
         
-        divTag.innerHTML = "insertTN1 vs insertTN2";
+        divTag.innerHTML = '<a href ="http://localhost/GameOverseer/sample details (matchticker).html"> insertTN1 vs insertTN2 <a>'; //+ 
+							//new CreateTimer(TimerID, Time);
         
-        $('#r').append(document.body.appendChild(divTag));
+		//new CreateTimer(TimerID, Time);
+		//i++;
+		$('#r').append(document.body.appendChild(divTag));
+		
+		k++;
+		return divTag.id;
+		//return '#r';
+		//createD(document.body.appendChild(divTag))
+		//new CreateTimer(TimerID, Time);
     }
-
+	
+/*function createD(div)
+	{
+        var divT = document.createElement("div");
+        
+		divT.id = "div2" ;
+        
+        divT.setAttribute("align","right");
+        
+        divT.style.margin = "20px auto";
+		
+		//divTag.innerHTML = new CreateTimer(TimerID, Time);
+		 //"<a href ='http://localhost/GameOverseer/sample details (matchticker).html'> insertTN1 vs insertTN2 <a>";
+        
+        $('#r').append(document.body.appendChild(divT));
+		
+		//divTag.innerHTML = new CreateTimer(timer, time);
+    }
+*/
 
 function getStart(ide, timer)
 {
+	//createDiv();
+	//createD(timer);
+	//createD();
 	$.ajax({
       url: siteloc + scriptloc + "getStart.py",
       data: {ide:ide
              },
 	  success: function (res) {
-                  createDiv();
 				  var t1 = res[17][0] + res[18][0];
 				  var t2 = res[19][0] + res[20][0] + res[21][0];
 				  var string = "";
@@ -284,21 +319,114 @@ function getStart(ide, timer)
 					if(diff < 0){
 						Time = 0;
 					}
-				
-					new CreateTimer(TimerID, Time);
+					
+					createDiv();
+					//new CreateTimer(TimerID, Time);
+					$("#div1").append(new CreateTimer(TimerID, Time));
 		}
 			
 	});
 	
 }
 
-var Timer;
-var TotalSeconds;
+//var k = 1;
+//var ;
+var Time;
+//var string = "";
+function getS(ide, timer)
+{
+	//createDiv();
+	//createD(timer);
+	//createD();
+	$.ajax({
+      url: siteloc + scriptloc + "getStart.py",
+      data: {ide:ide
+             },
+	  success: function (res) {
+				  //createDiv();
+				  //alert(res[3][0]);
+				  var t1 = res[17][0] + res[18][0];
+				  var t2 = res[19][0] + res[20][0] + res[21][0];
+				  var string = "";
+				  
+				  for (i = 0; i < (res.length - 12); i++)
+					{
+						row = res[i];
+						
+						for (j = 0; j < row.length ; j++)
+							if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"'  && row[j] != '+' )
+								string += row[j];		
+							
+					}
+					var date = new Date(string);
+					var string = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) 
+									+ "/" + date.getFullYear() + " " + t1 + t2;
+				
+					if(t1 < 12)
+						string += " " + "AM";
+					else
+						string += " " + "PM";
 
-function CreateTimer(TimerID, Time){
-    var oop=this;
+					string = '"' + string + '"';
+				
+					/*var divTag = document.createElement("div");
+        
+					
+					divTag.id = '"div' + k + '"' ;
+        
+					divTag.setAttribute("align","right");
+        
+					divTag.style.margin = "20px auto";
+        
+					divTag.innerHTML = '<a href ="http://localhost/GameOverseer/sample details (matchticker).html"> insertTN1 vs insertTN2 <a>'; //+ 
+					
+					$('#r').append(document.body.appendChild(divTag));
+					
+					k++;*/
+					
+					var TargetDate = "";
+					TargetDate += string;
+					
+					//TimerID = divTag;
+					TimerID = timer;
+					FinishMessage = "Live";
+					
+					var dtarg = new Date(TargetDate);
+					var dnow = new Date();
+				
+					diff = new Date(dtarg - dnow);
+					Time = Math.floor(diff.valueOf()/1000);
+				
+					if(diff < 0){
+						Time = 0;
+					}
+					
+					//var str = '"#' + divTag.id + '"';
+					//p = 0;
+					
+					new CreateTimer(TimerID, Time);
+					//new CreateTimer(createDiv(), Time);
+					//new CreateTimer(divTag, Time);
+					//p = 0;
+					//createDiv();
+					//divTag1.innerHTML = new CreateTimer(TimerID, Time);
+					//$("#div1").append(document.body.appendChild(divTag1));
+		}
+			
+	});
+	//alert(string);
+
 	
+}
+var Timer;
+//var TimeStr;
+var TotalSeconds;
+var p;
+function CreateTimer(TimerID, Time){
+    p = 0;
+	var oop=this;
 	this.Timer = document.getElementById(TimerID);
+	//this.TimerID = TimerID;
 	this.TotalSeconds = Time;
 	
 	this.update();
@@ -309,11 +437,14 @@ CreateTimer.prototype={
 
  tick:function(){
     var oop=this;
+	
 	if (this.TotalSeconds <= 0){
-		this.Timer.innerHTML = FinishMessage;
+		this.Timer.innerHTML += "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + FinishMessage;
+		$('#r').append(document.body.appendChild(this.Timer));
+		//p = 0;
 		return;
 	}
-	
+	//p = 0;
 	this.TotalSeconds -= 1;
 	this.update()
 	
@@ -331,8 +462,16 @@ CreateTimer.prototype={
 	Seconds -= Minutes * (60);
 	
 	var TimeStr = ((Days > 0) ? Days + " day(s) " : "") + (((Hours > 0) && (Days <= 0)) ? Hours + " h " : "") + (((Minutes > 0) && (Days <= 0)) ? Minutes + " m " : "") + (((Seconds > 0) && (Days <= 0) && (Hours <= 0) && (Minutes <= 0)) ? Seconds + " s " : "");
-	this.Timer.innerHTML = TimeStr;
+	//p = 0;
+	if (p == 0){
+		this.Timer.innerHTML += "&nbsp;&nbsp;&nbsp;" + TimeStr;
+		$('#r').append(document.body.appendChild(this.Timer));
+		p++;
+	}
+	//$('#r').append(document.body.appendChild(this.TimerID));
+	
  }
+	
 }
 
 
