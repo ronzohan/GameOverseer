@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+
+	<title>GameOverseer</title>
+	
+     <meta charset="UTF-8">
+	 
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/custom.css">  
+
+	 
+	<script src="javascript/jquery.js"></script>
+	<script src="javascript/bootstrap.min.js"></script>
+	<script src="javascript/globs.js"></script>
+    <script src="javascript/jquery-1.10.2.min.js"></script>
+    <script src="javascript/jquery.validate.min.js"></script>
+ 	<script src="javascript/script.js"></script>
+	
+	
+	<style>
+	        .registernabox2 {
+            background-color: #9a7c8c;
+			background: rgba(150, 154, 154, 0.9);
+            border: 11px solid #620c0c;
+            padding: 45px 15px 15px; 
+			top:50px;
+			margin  :65px; 
+			float:left;
+	</style>
+	
+</head> 
+
+
+<body> 
+
+<div class="bs">
+		<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
+        <!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+						<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span> <!--<span> tag is used to group inline-elements in a document and add a hook to a part of a tet.-->
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+						</button>
+					<a href="#" class="navbar-brand">GameOverseer</a> <!--(Hypertext REFerence) The HTML code used to create a link to another page. example --<a href="http://www.w3schools.com">Visit W3Schools</a> -->
+                </div>
+		 
+        <!-- Collection of nav links and other content for toggling -->
+         
+		 <div id="navbarCollapse" class="collapse navbar-collapse"> 
+			
+			  <ul class="nav navbar-nav"> <!--The <ul> tag defines an unordered (bulleted) list.-->
+                <li ><a href="http://localhost/GameOverseer/index.html">Home</a></li> <!--The <li> tag defines a list item.-->
+                <li><a href="http://localhost/GameOverseer/AboutUs.html">About Us</a></li>
+             </ul>
+																	
+             <ul class="nav navbar-nav navbar-right">
+				<li class="dropdown"> 
+						<a href= "#" class = "dropdown-toggle" data-toggle = "dropdown">Developers <b class="caret"></b> </a>
+							<ul class="dropdown-menu">
+									<li> <a href="#">Onna Piando</a></li>
+									<li> <a href="#">Jennie Ramos</a></li>
+									<li> <a href="#">Kay Apao</a></li>
+									<li> <a href="#">Ron Daryl Magno</a></li>
+									<li> <a href="#">Diofel Pallega</a></li>
+						   </ul>
+			    </li> 
+			    <li class="active" ><a href = "http://localhost/GameOverseer/register.html" >Register</a></li>
+                <li><a href = "http://localhost/GameOverseer/login.html" >Login</a></li> 
+			</ul>
+			
+         </div> 
+		
+    </nav>
+</div>
+ 
+								
+ <div class="container">
+ <div    class="registernabox2 col-sm-6">
+ <h1   face="Comic sans MS"   align="center"   style="color:#400e1b;  "   > <font face="Comic sans MS">   Profile </font><br><br> </h1>
+   <form class="form-horizontal" role="form" id="register">
+        <script language = "JavaScript">
+			displayinfo(3);
+		</script>
+		   
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-4 control-label">First Name :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span> 
+							  <span  class="form-control" name="username" id = "firstname1">
+							  <input id="firstname1" type="firstname" class="form-control" name="firstname">
+                        </div>
+                        <label class="error" for="firstname"></label>
+                    </div>
+                </div>
+				
+				<div class="form-group">
+                    <label for="lastname" class="col-sm-4 control-label">Last Name :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                              <span  class="form-control" name="username" id = "lastname1">
+							  <input id="lastname1" type="firstname" class="form-control" name="lastname">
+                        </div>
+                        <label class="error" for="lastname"></label>
+                    </div>
+                </div>
+				
+				
+                <div class="form-group">
+                    <label for="username" class="col-sm-4 control-label">Username :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                               <span  class="form-control" name="username" id = "username1">
+							   <input id="username" type="firstname" class="form-control" name="username">
+                        </div>
+                        <label class="error" for="username"></label>
+                    </div>
+                </div>
+				
+				
+                <div class="form-group">
+                    <label for="inputEmail" class="col-sm-4 control-label">Email :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
+                            </span>
+                            <span  class="form-control" name="username" id = "emailadd1">
+							<input id="emailadd1" type="firstname" class="form-control" name="emailadd">
+                        </div>
+                        <label class="error" for="inputEmail"></label>
+                    </div>
+                </div>
+				
+				
+				
+                <div class="form-group">
+                    <label for="address" class="col-sm-4 control-label">Address :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+                            </span>
+                              <span  class="form-control" name="username" id = "address1">
+							  <input id="address1" type="firstname" class="form-control" name="address">
+                        </div>
+                        <label class="error" for="address"></label>
+                    </div>
+                </div>
+				
+				
+                <div class="form-group">
+                    <label for="phone" class="col-sm-4 control-label">Phone :</label>
+                    <div class="controls form-inline">
+                        <div class="input-group">
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span>
+                            </span>
+                              <span  class="form-control" name="username" id = "phone1">
+							  <input id="phone1" type="firstname" class="form-control" name="phone">
+                        </div>
+                        <label class="error" for="phone"></label>
+                    </div>
+                </div>
+			
+				
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-6">
+							<button 
+							type="button" 
+							class="btn btn-default signup">
+							Save Changes
+							</button>
+                    </div>
+                </div>
+  </form>
+</div>   
+</div>
+
+</body> 
+
+	
+	
+</html>                                		

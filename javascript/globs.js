@@ -639,7 +639,7 @@ function redirect_ifNotloggedin()
   	else 
 		window.location.replace("login.html");
 }
-		
+
 function fetchusername()
 {
  $("#container").load("searchresult.html");
