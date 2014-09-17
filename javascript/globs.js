@@ -602,17 +602,16 @@ function verifydelete(leagueid,managerid)
 
 }
 
-function confirmAddTeamsInLeague(leagueid,managerid,participantTeams)
+function addTeamsInLeague(leagueid,managerid,participantTeam)
 {
 	redirect_ifNotloggedin();
-	console.log(participantTeams);
 	$.ajax({
 		 
 		url: siteloc + scriptloc + "getLeague/addTeamsInLeague",
 		data: {
 			leagueid:leagueid,
       		managerid:managerid,
-			participantTeams:participantTeams,      
+			participantTeam:participantTeam,      
       	},
       	
       	dataType: 'json',	
@@ -624,6 +623,7 @@ function confirmAddTeamsInLeague(leagueid,managerid,participantTeams)
               	}
 	});
 }
+
 
 function redirect_ifNotloggedin()
 {

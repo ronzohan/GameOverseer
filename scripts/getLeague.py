@@ -26,7 +26,7 @@ def getBracketInfo(req,league_id):
     x = doSql()
     rets = x.execqry("select * from get_league_bracket_info('" \
     + league_id +  "');", False)
-    ##doesnt need to map rets to str  since the needed data is int[]
+    
     return json.dumps(rets)
 
 def getLeagueInfoByManager(req,managerid):
@@ -68,12 +68,12 @@ def deleteLeague(req,leagueid,managerid):
     rets = x.execqry("select * from deleteLeague("+leagueid+"," + managerid+");",True)
     return json.dumps(rets)
  
-def addTeamsInLeague(req,leagueid,managerid,participantTeams):
+def addTeamsInLeague(req,leagueid,managerid,participantTeam):
  
     leagueid = cgi.escape(leagueid)
     managerid = cgi.escape(managerid)
-	##need to sanitize participantTeams array
+    participantTeam = cgi.escape(participantTeam)
 	
     x = doSql()
-    rets = x.execqry("select * from addTeamsInLeague("+leagueid+"," + managerid+","+participantTeams+");",True)
+    rets = x.execqry("select addTeamsInLeague("+leagueid+"," + managerid+",'"+participantTeam+"');",True)
     return json.dumps(rets)

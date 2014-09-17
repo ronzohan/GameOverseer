@@ -6,7 +6,7 @@ create table league (
      fixture_type text,
      results int[],
      teams text[],
-     participantsteam text[]
+     participants text[]
 );
  
 --create language plpgsql;
@@ -79,11 +79,11 @@ language 'sql';
 
 --view
 create or replace function 
-    get_league_byManagerLeagueID(in int, in int,out int[],out text[])
+    get_league_byManagerLeagueID(in int, in int,out int[],out text[],out text[])
 returns setof record as
  
 $$ 
-     select  results,teams from league
+     select  results,teams,participants from league
      where league_id = $1;
      
 $$
@@ -114,20 +114,20 @@ $$
   language 'plpgsql'; 
   
 
-create or replace function addTeamsInLeague(p_league_id int,p_managerid_fk int,p_participants_team text[]) 
+create or replace function addTeamsInLeague(p_league_id int,p_managerid_fk int,p_participant_team text) 
     returns text as
 $$
   declare     
      v_id int;
   begin
-      select into v_id league_id  from league 
+      select into v_id league_id from league 
          where managerid_fk = p_managerid_fk and league_id = p_league_id;
          
       if v_id isnull then
 		return 'Failed';	
       else
         update League
-           set participants = p_participants_team
+           set participants = participants || p_participant_team
              where managerid_fk = p_managerid_fk and league_id = v_id;
         return 'Success';
       end if;  
@@ -135,4 +135,27 @@ $$
     
   end;
 $$
-  language 'plpgsql'; 
+  language 'plpgsql';
+
+create or replace function deleteTeamsInLeague(p_league_id int,p_managerid_fk int,p_participant_team text) 
+    returns text as
+$$
+  declare     
+     v_id int;
+  begin
+      select into v_id league_id from league 
+         where managerid_fk = p_managerid_fk and league_id = p_league_id;
+         
+      if v_id isnull then
+		return 'Failed';	
+      else 
+        update league
+           set participants = array_remove(participants,p_participant_team)
+             where managerid_fk = p_managerid_fk and league_id = v_id;
+        return 'Success';
+      end if;  
+       
+    
+  end;
+$$
+  language 'plpgsql';
