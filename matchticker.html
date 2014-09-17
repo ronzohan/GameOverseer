@@ -142,9 +142,14 @@
 			<div id ="r" style="margin-right:50px;"></div>
 			
 			<script language = "JavaScript">
-				for(i = 1; i < 4; i++){ 
+				var n = getNumMatches(1);
+				for(i = 1; i <= n; i++){ 
 					createDiv();
 					getStart(i, "div" + i);
+					if(checkScore(1) == "okay"){
+						$('#k1').append($('#div1').html());
+						$("#div1").remove();
+					}
 				}
 			</script>
 	
@@ -157,18 +162,9 @@
 		
 	<br>
 	<br>		
-		
 			
-		<div id="k1"><a href = "#"></a></div>
-		<script language="JavaScript">
-				//if(checkScore(1) == "okay"){
-					 //alert(checkScore(1));
-				$('#k1').append($('#div1').html());
-				$("#div1").remove();
-		</script>
+		<div id="k1"></div>
 		
-		
-
 	</font>
 	</h4>
 			
