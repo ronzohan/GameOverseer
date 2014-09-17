@@ -185,18 +185,21 @@ function fetchLeagueByManagerId(managerid)
 
 function checkScore(ide)
 {
+  var string;
   $.ajax({
       url: siteloc + scriptloc + "getScore.py",
-      data: {ide:ide
+	  async:false,
+	  data: {ide:ide
              },
+	  dataType: 'json',
 	  success: function (res) {
-                  if(res[3][0] != "N" )
+                  if(res[0][0] != "None" )
                   {
-					//$('#k1').append($('#div1').html());
-					//$("#div1").remove();
+					string = "okay";
 				  }
               }
 	});
+	return string;
 }
 
 
@@ -222,6 +225,27 @@ function getScore(ide)
          }
 	})
 	
+}
+
+
+var num = 0;
+function getNumMatches(ide)
+{
+  $.ajax({
+      url: siteloc + scriptloc + "getStart.py",
+	  async:false,
+	  data: {ide:ide
+             },
+	  dataType: 'json',
+	  success: function (res) {
+                  if(res[0][0] != "None" )
+                  {
+					num++;
+					getNumMatches(ide+1);
+				  }
+              }
+	});
+	return num;
 }
 
 
@@ -667,3 +691,4 @@ function fetchusername()
 		} 
     }); 
 }
+

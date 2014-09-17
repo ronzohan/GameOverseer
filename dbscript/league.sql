@@ -159,3 +159,17 @@ $$
   end;
 $$
   language 'plpgsql';
+  
+  
+   create or replace function
+   get_leaguename(in text, out text)
+returns text as
+$$
+	select name from league
+	where LOWER(name)= $1;
+    
+$$
+  language 'sql';
+
+-- HOW TO USE:
+-- select * from get_leaguename(name)
