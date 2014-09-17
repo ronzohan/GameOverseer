@@ -96,3 +96,17 @@ $$
 
 -- HOW TO USE:
 -- select * from get_username(username)
+
+create or replace function
+   getManagerPerUserId(in int, out int)
+returns int as
+$$
+	select manager_id from manager
+	where userid_fk = $1
+    
+$$
+  language 'sql';
+
+-- HOW TO USE:
+-- select * from getManagerPerUserId(1)
+
