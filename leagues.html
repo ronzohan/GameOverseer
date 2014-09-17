@@ -74,13 +74,9 @@
 	<script src="javascript/globs.js"></script>
 	<script src="javascript/jqinit.js"></script>   
     <script src="javascript/jquery-ui.min.js"></script> 
+	<script src="javascript/jquery.cookie.js"></script> 
 	<script>
-	  $(function(){
-	    $("#header").load("header.html"); 
-	  });
-	  
-		$(document).ready(fetchLeagueByManagerId(getCookie('userid'))); //parameter depends on who's the user
-		 
+	 
 		$("#dialog-confirm").dialog({
 		autoOpen: false,
 		resizable: false,
@@ -112,11 +108,11 @@
 		            		text: 'Update',
 					id : 'update',
 		            		click : function (){
-								editLeague(getCookie('userid'),$("#editleagueid").text());
+								editLeague($.cookie('userid'),$("#editleagueid").text());
 		            		}
 		        	},
 		        Close: function () {
-				fetchLeagueByManagerId(getCookie('userid'));
+				fetchLeagueByManagerId($.cookie('managerid'));
 			        $(this).dialog("close");
 		        }
             		}
@@ -134,12 +130,12 @@
 		            		text: 'Create',
 					id : 'create',
 		            		click : function (){
-		                			setleague(getCookie('userid'),$('#leaguename').val(),
+		                			setleague($.cookie('managerid'),$('#leaguename').val(),
 							$('#fixturetype').val(),$('#sport').val());						
 		            			}
 		        	},
 		        Close: function () {
-				fetchLeagueByManagerId(getCookie('userid'));
+				fetchLeagueByManagerId($.cookie('managerid'));
 				$("input").prop('disabled', false);
 			        $(this).dialog("close");
 		        }
