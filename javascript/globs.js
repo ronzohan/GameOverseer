@@ -190,12 +190,15 @@ function checkScore(ide)
       data: {ide:ide
              },
 	  success: function (res) {
-                  if(res[0][0] != "None" )
-                  {}
+                  if(res[3][0] != "N" )
+                  {
+					//$('#k1').append($('#div1').html());
+					//$("#div1").remove();
+				  }
               }
-	})
-	return "okay";
+	});
 }
+
 
 function getScore(ide)
 {
@@ -221,25 +224,27 @@ function getScore(ide)
 	
 }
 
+
 var k = 1;
-var divTag;
 function createDiv()
 	{
 		
 		divTag = document.createElement("div");
         
-		divTag.id = '"div' + k + '"' ;
+		divTag.id = "div" + k ;
         
 		divTag.setAttribute("align","right");
         
         divTag.style.margin = "20px auto";
         
-        divTag.innerHTML = '<a href ="http://localhost/GameOverseer/sample details (matchticker).html"> insertTN1 vs insertTN2 <a>';  
+        if(k == 1)
+			divTag.innerHTML = '<a href ="http://localhost/GameOverseer/sample details (matchticker).html"> insertTN' + (k) + 'vs insertTN' + (k+1) + '</a>';  
+		else
+			divTag.innerHTML = '<a href ="#"> insertTN' + (k+1) + 'vs insertTN' + (k+2) + '</a>'; 
 		
 		$('#r').append(document.body.appendChild(divTag));
 		
 		k++;
-		return divTag.id;
 	}
 	
 var Time;
@@ -263,6 +268,7 @@ function getStart(ide, timer)
 								string += row[j];		
 							
 					}
+					
 					var date = new Date(string);
 					var string = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) 
 									+ "/" + date.getFullYear() + " " + t1 + t2;
@@ -277,7 +283,6 @@ function getStart(ide, timer)
 					var TargetDate = "";
 					TargetDate += string;
 					
-					//TimerID = divTag;
 					TimerID = timer;
 					FinishMessage = "Live";
 					
@@ -297,12 +302,14 @@ function getStart(ide, timer)
 	});
 }
 
+
 var Timer;
 var TotalSeconds;
 var p;
 function CreateTimer(TimerID, Time){
     p = 0;
 	var oop=this;
+	//alert(TimerID);
 	this.Timer = document.getElementById(TimerID);
 	this.TotalSeconds = Time;
 	
