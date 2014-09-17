@@ -3,12 +3,8 @@ CREATE EXTENSION pgcrypto;
 CREATE TABLE users(
 	userid serial primary key,
 	username text unique,
-	firstname text,
-	lastname text,
 	password text, 
-	email text,
-	contactno text,
-	address text
+
 );
 
  
@@ -39,7 +35,7 @@ $$
         return 'Your password did not match';
      end if;
 
-     return 'OK';
+     return v_userid;
   end;
 $$
   language 'plpgsql';
@@ -48,7 +44,7 @@ $$
 
 
 create or replace function
-   setuser(p_username text, p_password text,p_firstname text,p_lastname text,p_email text ,p_contactno text ,p_address text)
+   setuser(p_username text, p_password text)
      returns text as
 $$
    declare
@@ -58,12 +54,11 @@ $$
          where username = p_username;
 	  
       if userid1 isnull then
-         insert into users(username,password,firstname,lastname,email,contactno,address) values
-            (p_username,crypt(p_password, gen_salt('bf')),p_firstname,p_lastname,p_email,p_contactno,p_address);
+         insert into users(username,password) values
+            (p_username,crypt(p_password, gen_salt('bf')));
      else
           update users
-			set username = p_username, password = crypt(p_password, gen_salt('bf')) , 
-			firstname= p_firstname,lastname = p_lastname, email = p_email, contactno = p_contactno, address = p_address
+			set username = p_username, password = crypt(p_password, gen_salt('bf')) 
 			--this gen_salt generates a new random salt string
 			-- crypt() does the hashing
 			where username = p_username;
@@ -73,7 +68,7 @@ $$
 $$
 language 'plpgsql';
 -- HOW TO USE :
--- SELECT setuser('p_username' , 'p_password','p_firstname','p_lastname' ,'p_email ','p_contactno ' ,'p_address ')
+-- SELECT setuser('p_username' , 'p_password')
 
 --view
 create or replace function
@@ -94,7 +89,7 @@ create or replace function
 returns text as
 $$
 	select username from users
-	where username = $1;
+	where LOWER(username)= $1;
     
 $$
   language 'sql';

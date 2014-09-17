@@ -17,18 +17,7 @@
 		height: 5px;
 		}
 		
-    .btn {
-	background-color: #e1e1e1;
-	color: #9c043d;
-	}
-	
-	 .navbar .nav > li > a:focus,
-	.navbar .nav > li > a:hover 
-	{
-	background-color: #650529;
-	color: white;
-	}
-	
+    
 	.navbar-default .navbar-brand { 
 	margin:-11px;
     color: black;
@@ -36,17 +25,7 @@
 
 	}
 	
-	.bs-login{
-	     float: none;
-		 display: table; 
-		 margin: 300px; 
-	     margin-left: 450px;
-		 width: 400px;
-		 height: 400px;
-	}
-
- 
-  	<!--set the background-color to white -->
+	<!--set the background-color to white -->
 	.navbar 
 	{  
 		background-color: black;
@@ -56,24 +35,7 @@
 		color: black;
 	}	
 
-    
- 
- 
-	
-	<!-- css for loginbar -->
-    .btn 
-  {
-   outline:0;
-   border:none;
-   border-top:none;
-   border-bottom:none;
-   border-left:none;
-   border-right:none;
-   box-shadow:inset 2px -3px rgba(0,0,0,0.15);
-  }
-  
- 
-  .fullscreen_bg {
+    .fullscreen_bg {
     position: fixed;
     top: 0;
     right: 0;
@@ -104,6 +66,8 @@
   width: 70px;
   height: 70px;
 }
+
+
 
 </style>
 </head> 
@@ -165,74 +129,52 @@
 
 </div>
  
+
    
 
  <div class="media block-update-card">
 	<h1 align="center"><font size = "5"> <font color = "white"> Matchticker </font></font></h1>
-		
-	<div class="media-body update-card-body">
-			<div id = "t1">
-			<h4 align = "center">
-			<font color = "white"><a href ="http://localhost/GameOverseer/sample details (matchticker).html">insertTN1 vs insertTN2 </a></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+	<span class="media-body update-card-body">
+		<h4 align = "center">
+		  <font color = "white">
 			
-			<span id='timer'></span>
+			<div id ="r" style="margin-right:50px;"></div>
 			
-			<script language="JavaScript">
-				getStart(2, "timer");				
+			<script language = "JavaScript">
+				for(i = 1; i < 4; i++){ 
+					createDiv();
+					getStart(i, "div" + i);
+				}
 			</script>
-			</font>
-			</h4>
-			
 	
 	<br>
-	
-			<h4 align = "center">
-			<font color = "white"><a href =" #">insertTN3 vs insertTN4 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-		
-			<span id='timer1'></span>
-			<script language="JavaScript" src="javascript/globs.js"></script>
-			<script language="JavaScript">
-				getStart(1, "timer1");				
-			</script>
-		
-			</font>
-			</h4>
-	
 	<br>
-	
-			<h4 align = "center">
-			<font color = "white"><a href =" #">insertTN5 vs insertTN6 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		
-			<span id='timer2'></span>
-			<script language="JavaScript">
-				getStart(3, "timer2");				
-			</script>
-			
-			</font>
-			
-			</h4>
 	<br>
-	
-	<h4 align = "center">
-		<font color = "white">Recent Matches
-		
-		<br>
-		<br>		
 			
-		<div id="r1"><a href = "#"></a></div>
+			
+	Recent Matches
+		
+	<br>
+	<br>		
+		
+			
+		<div id="k1"><a href = "#"></a></div>
 		<script language="JavaScript">
-				if(checkScore(1) == "okay"){
-					 $('#r1').append($('#t1').html());
-					 $("#timer").remove();
-					 $("#t1").remove();	 
-				}		
+				//if(checkScore(1) == "okay"){
+					 //alert(checkScore(1));
+				$('#k1').append($('#div1').html());
+				$("#div1").remove();
 		</script>
 		
 		
-		</font>
+
+	</font>
 	</h4>
+			
 	
-	</div>
+	</span>
+
 
 </div>
 
