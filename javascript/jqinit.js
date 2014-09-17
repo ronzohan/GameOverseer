@@ -2,10 +2,16 @@ $(function()
 {
 	redirect_ifNotloggedin();
 	
-	fetchLeagueBracketInfo(getParameterByName('id'))
+	fetchLeagueBracketInfo(getParameterByName('id'));
 	//parameter depends on who's the user, used on leagueinfo.html
 	
+	if (getParameterByName('id'))
+		viewParticipantsInLeague(getParameterByName('id'));
 	
+	getManagerPerUserId($.cookie('userid'));
+	
+	if ($.cookie('managerid'))
+		fetchLeagueByManagerId($.cookie('managerid'));
 	
 	$("#newleague").click(
 		function () {
