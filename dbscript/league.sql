@@ -65,11 +65,11 @@ $$
 
 --view
 create or replace function 
-    get_league_bracket_info(in int, out text,out int[],out text[]) 
+    get_league_bracket_info(in int, out text,out int[],out text[],out text[]) 
 returns setof record as
  
 $$ 
-     select  name,results,teams from league
+     select  name,results,teams,participants from league
      where league_id = $1;
      
 $$
@@ -173,3 +173,4 @@ $$
 
 -- HOW TO USE:
 -- select * from get_leaguename(name)
+
