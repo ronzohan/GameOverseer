@@ -3,7 +3,7 @@ CREATE EXTENSION pgcrypto;
 CREATE TABLE users(
 	userid serial primary key,
 	username text unique,
-	password text, 
+	password text 
 
 );
 
@@ -72,10 +72,10 @@ language 'plpgsql';
 
 --view
 create or replace function
-   get_users_perid(in int, out int,out text, out text, out text, out text, out text, out text)
+   get_users_perid(in int, out int,out text )
 returns setof record as
 $$
-	select userid,username,firstname,lastname,email,contactno,address from users
+	select userid,username  from users
 	where userid = $1;
 
 $$
