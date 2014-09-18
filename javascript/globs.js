@@ -780,20 +780,3 @@ function shuffle( array ) {
     }
     return array;
 }
-
-function lockTeams(userid,leagueid,managerid)
-{
-	$.ajax({
-		url: siteloc + scriptloc + "getLeague/lockLeague?",
-		data: {userid:userid,
-			   leagueid:leagueid,
-			   managerid:managerid
-		},
-		dataType: 'json',
-		success:
-		function (res){
-			 console.log(res);
-		}
-   }); 
-	
-}
