@@ -9,6 +9,29 @@ CREATE TABLE users(
 
  
 
+create or replace function
+   checkusername(p_username text)
+     returns text as
+$$
+   declare
+      userid1 int;
+   begin
+      select into userid1 userid from users
+         where username = p_username;
+	  
+      if userid1 isnull then
+         return 'true';
+		 
+     else
+          return 'false';
+      end if; 
+  end;
+$$
+language 'plpgsql';
+-- HOW TO USE :
+-- SELECT checkusername('p_username')
+ 
+ 
 create or replace function 
    login(p_usernameinput text, p_passwordinput text)
      returns text as
