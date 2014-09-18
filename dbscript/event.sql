@@ -5,8 +5,8 @@ create table events(
     leagueID_FK serial references league (league_id),
     eDate date,
     eLocation text,
-    eTime_start time with time zone,
-    eTime_end time with time zone,
+    eTime_start time,
+    eTime_end time,
     scoret1 int,
 	scoret2 int
 );
@@ -16,8 +16,8 @@ create table events(
 -- SELECT loadCEvents(1);
 
 create or replace function loadCEvents(in int, out date, out text, 
-									   out time with time zone, 
-									   out time with time zone, 
+									   out time, 
+									   out time, 
 									   out int, out int) 
 	returns setof record as
 
@@ -34,8 +34,8 @@ $$
 
 create or replace function setFixE(p_teamID1_FK int, p_teamID2_FK int, 
 								   p_leagueID_FK int, p_eDate date, 
-								   p_eLocation text, p_eTime_start time with time zone, 
-								   p_eTime_end time with time zone) 
+								   p_eLocation text, p_eTime_start time, 
+								   p_eTime_end time) 
 returns text as
 
 $$
@@ -106,9 +106,9 @@ $$
 	language 'sql';
 
 --HOW TO USE:
--- SELECT getScore(1);
+-- SELECT getStart(1);
 
-create or replace function getStart(in int, out date, out time with time zone) 
+create or replace function getStart(in int, out date, out time) 
 	returns record as
 
 $$ 
@@ -121,11 +121,9 @@ $$
 --HOW TO USE:
 -- SELECT ReSchedE(1, 'September 13, 2014','Cagayan','06:00 AM','03:00 PM');
 
-create or replace function ReSchedE(p_e_id int, p_teamID1_FK int, 
-									p_teamID2_FK int, p_leagueID1_FK int,
-									p_eDate date, p_eLocation text, 
-									p_eTime_start time with time zone, 
-									p_eTime_end time with time zone) 
+create or replace function ReSchedE(p_e_id int, p_eDate date, p_eLocation text, 
+									p_eTime_start time, 
+									p_eTime_end time) 
 returns text as
 
 $$
@@ -134,17 +132,13 @@ declare
 
 begin
   select into v_e_id e_id from events
-	where e_id = p_e_id and teamID1_FK = p_teamID1_FK 
-						and teamID2_FK = p_teamID2_FK 
-						and leagueID_FK = p_leagueID_FK;
+	where e_id = p_e_id
   
   update events
-	set teamID1_FK = p_teamID1_FK, teamID2_FK = p_teamID2_FK, 
-		leagueID_FK = p_leagueID_FK, eDate = p_eDate,eLocation = p_eLocation,
+	set eDate = p_eDate,eLocation = p_eLocation,
 		eTime_start = p_eTime_start, eTime_end = p_eTime_end
         where 
-		e_id = p_e_id and teamID1_FK = p_teamID1_FK 
-		and teamID2_FK = p_teamID2_FK and leagueID_FK = p_leagueID_FK;
+		e_id = p_e_id ;
 	    
     return 'OK';
 end;

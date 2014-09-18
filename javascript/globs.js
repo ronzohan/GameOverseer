@@ -46,12 +46,12 @@ function fetchProfileInfo(userid, userid_fk)
       dataType: 'json',
       success: function (res) {
 				var k = 1;
-				alert(res[0][0]);
+				//alert(res);
 				if(res[0][0] != "None")
                 {
 					for (i=0;i<res.length;i++){
 						row = res[i];
-					for (j = 1; j < row.length ; j++){
+					for (j = 0; j < row.length ; j++){
 						if(k == 1)
 							$("#username1").append(row[j]);
 						
@@ -62,13 +62,13 @@ function fetchProfileInfo(userid, userid_fk)
 							$("#lastname1").append(row[j]);
         
 						if(k == 4)
-							$("#emailadd1").append(row[j]);
+							$("#address1").append(row[j]);
         
 						if(k == 5)
 							$("#phone1").append(row[j]);
        
 						if(k == 6)
-							$("#address1").append(row[j]);
+							$("#emailadd1").append(row[j]);
        
 						k = k+1;      
 					 }  
