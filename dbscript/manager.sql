@@ -47,3 +47,16 @@ $$
  language 'sql';
 
 --select * from  get_Manager_per_id(1);
+
+create or replace function
+   getManagerPerUserId(in int, out int)
+returns int as
+$$
+	select manager_id from manager
+	where userid_fk = $1
+    
+$$
+  language 'sql';
+
+-- HOW TO USE:
+-- select * from getManagerPerUserId(1)
