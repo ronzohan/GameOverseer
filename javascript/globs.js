@@ -794,7 +794,24 @@ function getManagerPerUserId(userid)
 			//setCookie("managerid",res[0][0],2);
 		}
    }); 
-	
-	
-	
+}
+
+function randomPairs( teams ) {
+    shuffle( teams );
+    var output = [];
+    for( var i = 0, n = teams.length;  i < n;  i += 2 ) {
+        output.push([ teams[i], teams[i+1] ]);
+    }
+    return output;
+}
+
+// Shuffle an array in place using the Fisher-Yates algorithm,
+function shuffle( array ) {
+    for( var m = array.length;  m; ) {
+        var i = Math.floor( Math.random() * m-- );
+        var t = array[m];
+        array[m] = array[i];
+        array[i] = t;
+    }
+    return array;
 }
