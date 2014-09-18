@@ -78,6 +78,47 @@ function displayinfo(userid)
  
 }
 
+function fetchProfileInfo(userid, Manager_id)
+{
+   $.ajax({
+      url: siteloc + scriptloc + "getProfileInfo.py",
+      data: {userid:userid, Manager_id:Manager_id,
+             },
+      dataType: 'json',
+      success: function (res) {
+				var k = 1;
+				if(res[0][0] != "None")
+                {
+					for (i=0;i<res.length;i++){
+						row = res[i];
+					for (j = 1; j < row.length ; j++){
+						if(k == 1)
+							$("#username1").append(row[j]);
+						
+						if(k == 2)
+							$("#firstname1").append(row[j]); 
+       					
+						if(k == 3)
+							$("#lastname1").append(row[j]);
+        
+						if(k == 4)
+							$("#emailadd1").append(row[j]);
+        
+						if(k == 5)
+							$("#phone1").append(row[j]);
+       
+						if(k == 6)
+							$("#address1").append(row[j]);
+       
+						k = k+1;      
+					 }  
+					}
+				}
+        }
+    });
+ 
+}
+
 function fetchTeamInfo(name)
 {
   $.ajax({
