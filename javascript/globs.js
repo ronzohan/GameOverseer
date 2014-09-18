@@ -226,7 +226,7 @@ function fetchLeagueByManagerId(managerid)
 
 function checkScore(ide)
 {
-  var string;
+  var string = "";
   $.ajax({
       url: siteloc + scriptloc + "getScore.py",
 	  async:false,
