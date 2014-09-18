@@ -85,3 +85,12 @@ def deleteTeamInLeague(req,leagueid,managerid,participantTeam):
     x = doSql()
     rets = x.execqry("select deleteTeamsInLeague("+leagueid+"," + managerid+",'"+participantTeam+"');",True)
     return json.dumps(rets)
+
+def lockLeague(req,leagueid,managerid,userid):
+    leagueid = cgi.escape(leagueid)
+    managerid = cgi.escape(managerid)
+    userid = cgi.escape(userid);
+    
+    x = doSql()
+    rets = x.execqry("select lockleague("+leagueid+"," + managerid+","+userid+");",True)
+    return json.dumps(rets)

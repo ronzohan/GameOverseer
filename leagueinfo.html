@@ -24,7 +24,7 @@
 					<h4 class="panel-title pull-left" style="padding-top: 7.5px;" id="leaguetitle"> </h4>
 					<div class="btn-group pull-right">
 						<a href="#" class="btn btn-default btn-sm glyphicon glyphicon-plus" id="addteams"> Add Teams</a>
-						<a href="#" class="btn btn-default btn-sm glyphicon glyphicon-ok" id="confirmteams"> Lock Teams</a>
+						<a href="#" class="btn btn-default btn-sm glyphicon glyphicon-ok" id="lockteams"> Lock Teams</a>
 					</div>	    
 				</div>
 	    
@@ -37,6 +37,9 @@
 			</div>		 
 		</div>
 		
+		<div id="confirm-dialog" title="Confirm Delete">
+			<p id="confirm-message">Are all the teams set?</p>
+		</div>
 		
     </body>
     <script src="javascript/jquery.js"></script>
@@ -64,7 +67,7 @@
 						click: function(){
 							var teamname = $('#teamname').val(); 
 							
-							addTeamsInLeague(getParameterByName('id'),getCookie('userid'),teamname);
+							addTeamsInLeague(getParameterByName('id'),$.cookie('managerid'),teamname);
 							
 						}						
 		            },	
@@ -79,7 +82,23 @@
 		        	}
 	});
 
- 
+	$("#confirm-dialog").dialog({
+		autoOpen: false,
+		resizable: false,
+		modal: true,
+		title: "Confirm",
+		height: 200,
+		width: 400,
+		buttons: {
+		    "Yes": function () {
+		        $(this).dialog('close');
+		        lockTeams($.cookie('userid'),getParameterByName('id'),$.cookie('managerid'));
+		    },
+		        "No": function () {
+		        $(this).dialog('close');
+		    }
+		}
+	});
 
 
    	</script>
