@@ -7,15 +7,14 @@ except ImportError:
 
 def index(req, userid, userid_fk):
     id = cgi.escape(userid) 
-	id2 = cgi.escape(userid_fk)
+    id2 = cgi.escape(userid_fk)
     x = doSql()
-    rets = x.execqry("select * from get_users_perid('" + id \
-	+ "'), get_Manager_per_id('" + id + "') WHERE userid = userid_fk;", False)
+    rets = x.execqry("SELECT users.userid, users.username, userid_fk, \
+    first_name, last_name, address, contact_no, email FROM users \
+    INNER JOIN manager ON users.userid = manager.userid_fk;", False)
     result = []
     for ret in rets:
         stringed = map(str, ret)
         result.append(stringed)
 
     return json.dumps(result)
-
-	 
