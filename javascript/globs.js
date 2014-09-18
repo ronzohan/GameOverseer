@@ -46,7 +46,6 @@ function fetchProfileInfo(userid, userid_fk)
       dataType: 'json',
       success: function (res) {
 				var k = 1;
-				//alert(res);
 				if(res[0][0] != "None")
                 {
 					for (i=0;i<res.length;i++){
@@ -339,7 +338,7 @@ var p;
 function CreateTimer(TimerID, Time){
     p = 0;
 	var oop=this;
-	//alert(TimerID);
+	
 	this.Timer = document.getElementById(TimerID);
 	this.TotalSeconds = Time;
 	
