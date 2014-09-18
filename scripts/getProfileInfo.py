@@ -5,9 +5,9 @@ try:
 except ImportError:
     import simplejson as json
 
-def index(req, userid, Manager_id):
+def index(req, userid, userid_fk):
     id = cgi.escape(userid) 
-	id2 = cgi.escape(Manager_id) 
+	id2 = cgi.escape(userid_fk)
     x = doSql()
     rets = x.execqry("select * from get_users_perid('" + id \
 	+ "'), get_Manager_per_id('" + id + "') WHERE userid = userid_fk;", False)
