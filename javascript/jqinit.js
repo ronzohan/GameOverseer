@@ -28,6 +28,12 @@ $(function()
 		}
     );
 	
+	$("#lockteams").click(
+		function(){
+			$("#confirm-dialog").dialog('open');
+		}
+	
+	);
 		
 	$(document).on("click", "a.removeteams", function(){
 		 $(this).parent().parent().remove();

@@ -6,7 +6,8 @@ create table league (
      fixture_type text,
      results int[],
      teams text[],
-     participants text[]
+     participants text[],
+     locked int
 );
  
 --create language plpgsql;
@@ -174,3 +175,27 @@ $$
 -- HOW TO USE:
 -- select * from get_leaguename(name)
 
+
+create or replace function lockleague(p_league_id int,p_managerid_fk int,p_userid int) 
+    returns text as
+$$
+  declare     
+     v_id int;
+  begin
+      
+      select into v_id league_id
+		from league inner join users on users.userid=$3 
+		where league_id = $1 and managerid_fk =$2;
+         
+      if v_id isnull then
+		return 'Failed';	
+      else 
+		update league set locked = $3 where league_id = $1;
+		return 'Success';
+      end if;  
+  end;
+$$
+  language 'plpgsql';
+ 
+-- HOW TO USE:
+-- select * from lockleague(1,1,1) 
