@@ -771,21 +771,21 @@ function randomPairs( teams ) {
 }
 
 function lockTeams(userid,leagueid,managerid)
--{
--	$.ajax({
--		url: siteloc + scriptloc + "getLeague/lockLeague?",
--		data: {userid:userid,
--			   leagueid:leagueid,
--			   managerid:managerid
--		},
--		dataType: 'json',
--		success:
--		function (res){
--			 console.log(res);
--		}
--   }); 
--	
--}
+{
+	$.ajax({
+		url: siteloc + scriptloc + "getLeague/lockLeague?",
+		data: {userid:userid,
+			   leagueid:leagueid,
+			   managerid:managerid
+		},
+		dataType: 'json',
+		success:
+		function (res){
+			 console.log(res);
+		}
+   }); 
+	
+}
 
 // Shuffle an array in place using the Fisher-Yates algorithm,
 function shuffle( array ) {
