@@ -4,16 +4,26 @@ var scriptloc = "/scripts/";
   
 $('#register').validate({
 	   success: function(label) {
-		label.text("ok!").addClass("success"); 
+		label.text("ok!").addClass("success");  
 	    },
  	   validClass: "success",
 	   rules: {
-                firstname: "required",  
-				lastname: "required",
-				
+                firstname: {
+					required: true,
+					minlength: 1
+					} ,  
+				lastname: {
+					required: true,
+					minlength: 1  
+				},
                 username: {
                     required: true,
-                    minlength: 6
+                    minlength: 6,
+					remote: { 
+					url: siteloc + scriptloc + "checkusername.py",
+					data: 
+						{username:$("#username").val() } 
+                     }
                 },
                 password1: {
                     required: true,
@@ -35,42 +45,58 @@ $('#register').validate({
                     minlength: 11,
                     maxlength: 11
                 },
-				address: "required"
+				address: {
+					required: true,
+					minlength: 1  
+				}
 				
             },
             messages: {
-                firstname: "Enter your firstname",
-                lastname: "Enter your lastname",
+			
+                email: "Invalid email",
+				address:  {
+                    required:  "Enter Address",
+                    minlength: "Block no. Purok Province City"
+                },
+                firstname:  {
+                    required:    "Enter Firstname",
+                    minlength: "Enter Firstname"
+                },
+                lastname:  {
+                    required:    "Enter Lastname",
+                    minlength: "Please Enter lastname"
+                },
                 username: {
-                    required:    "Please Enter username",
-                    minlength: "Enter at least 6 characters"
+                    required:    "Enter Username",
+                    minlength: "Enter at least 6 characters",
+					remote: "Username already exist"
                 },
                 password1: {
-                    required:    "Please confirm your password",
-                    minlength: "Your password must be at least 5 characters long"
+                    required:    "Enter password",
+                    minlength: "Must be at least 5 characters long"
                 },
                 password2: {
-                    required:   "Please provide a password",
-					minlength: "Your password must be at least 5 characters long",
-                    equalTo:    "Please enter the same password as above"
+                    required:   "Please confirm your password",
+					minlength: "Must at least 5 characters long",
+                    equalTo:    "Enter the same password as above"
                 },
-                email: "Please enter a valid email address",
-                agree: "Please accept our policy",
+                agree: "Check it",
                 phone: {
-                    required:     "Please enter phone number",
-                    digits:         "Please enter only digits",
-                    minlength:  "Please specify a valid phone number    ex. '09309134970' ",
-                    maxlength: "Please specify a valid phone number   ex. '09309134970' "
+                    required:"Please enter phone number",
+                    digits: "Please enter only digits",
+                    minlength:"Must be a valid phone number    ex. '09309134970' ",
+                    maxlength:"Must be a valid phone number    ex. '09309134970' "
                 }
 			 
             }
         });
-		
-		
-		   $("button.signup").click(
+		 
+		 $("button.signup").click(
 		   
-		   function () {
-		   
+		  function () {
+		  var register = $('#register').valid(); 
+		  
+		 if (register) {
            $.ajax({ 
 				url: siteloc + scriptloc + "insertUser.py",
 			data: 
@@ -105,8 +131,7 @@ $('#register').validate({
 					
 				 }
 				});
-	        } );
+				}
+	        });
 
-		
-		 
-		
+			  
