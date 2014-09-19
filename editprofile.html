@@ -18,6 +18,11 @@
     <script src="javascript/jquery.validate.min.js"></script>
  	<script src="javascript/script.js"></script>
 	
+	<script>
+		  $(function(){
+	    $("#header").load("header.html"); 
+	  });
+	</script>
 	
 	<style>
 	        .registernabox2 {
@@ -34,48 +39,7 @@
 
 
 <body> 
-
-<div class="bs">
-		<nav role="navigation" class="navbar navbar-default navbar-fixed-top">
-        <!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-						<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-								<span class="sr-only">Toggle navigation</span>
-								<span class="icon-bar"></span> <!--<span> tag is used to group inline-elements in a document and add a hook to a part of a tet.-->
-								<span class="icon-bar"></span>
-								<span class="icon-bar"></span>
-						</button>
-					<a href="#" class="navbar-brand">GameOverseer</a> <!--(Hypertext REFerence) The HTML code used to create a link to another page. example --<a href="http://www.w3schools.com">Visit W3Schools</a> -->
-                </div>
-		 
-        <!-- Collection of nav links and other content for toggling -->
-         
-		 <div id="navbarCollapse" class="collapse navbar-collapse"> 
-			
-			  <ul class="nav navbar-nav"> <!--The <ul> tag defines an unordered (bulleted) list.-->
-                <li ><a href="http://localhost/GameOverseer/index.html">Home</a></li> <!--The <li> tag defines a list item.-->
-                <li><a href="http://localhost/GameOverseer/AboutUs.html">About Us</a></li>
-             </ul>
-																	
-             <ul class="nav navbar-nav navbar-right">
-				<li class="dropdown"> 
-						<a href= "#" class = "dropdown-toggle" data-toggle = "dropdown">Developers <b class="caret"></b> </a>
-							<ul class="dropdown-menu">
-									<li> <a href="#">Onna Piando</a></li>
-									<li> <a href="#">Jennie Ramos</a></li>
-									<li> <a href="#">Kay Apao</a></li>
-									<li> <a href="#">Ron Daryl Magno</a></li>
-									<li> <a href="#">Diofel Pallega</a></li>
-						   </ul>
-			    </li> 
-			    <li class="active" ><a href = "http://localhost/GameOverseer/register.html" >Register</a></li>
-                <li><a href = "http://localhost/GameOverseer/login.html" >Login</a></li> 
-			</ul>
-			
-         </div> 
-		
-    </nav>
-</div>
+<div id="header"></div>
  
 								
  <div class="container">
