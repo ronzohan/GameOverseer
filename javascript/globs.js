@@ -701,11 +701,45 @@ function fetchusername()
        
 					} 
 				}
-				else
-					window.location.replace("noresult.html");
+							 else {
+				    fetchleaguename();
+				 }
+				
+				
 		} 
     }); 
 }
+
+function fetchleaguename()
+{
+$("#container").load("searchresult.html");
+   $.ajax({
+      url: siteloc + scriptloc + "getleaguename.py",
+     data: {name:$("#usename").val().toLowerCase()},
+   
+      dataType: 'json',
+      success: function (res) {
+   
+				if(res[0][0] != "None")
+				{
+					for (i = 0; i < res.length; i++)
+					{
+						row = res[i];
+      
+						for (j = 0; j < row.length ; j++)
+						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
+						$("h3").append(row[j]);  
+       
+					} 
+                 }
+				 
+				 else{
+				  window.location.replace("noresult.html");
+				
+				}
+				} 
+     }); 
+ }
 
 function viewParticipantsInLeague(league_id)
 {
