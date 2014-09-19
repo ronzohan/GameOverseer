@@ -52,22 +52,22 @@ function fetchProfileInfo(userid, userid_fk)
 						row = res[i];
 					for (j = 0; j < row.length ; j++){
 						if(k == 1)
-							$("#username1").append(row[j]);
+							document.getElementById("username1").value = row[j];
 						
 						if(k == 2)
-							$("#firstname1").append(row[j]); 
+							document.getElementById("firstname1").value = row[j]; 
        					
 						if(k == 3)
-							$("#lastname1").append(row[j]);
+							document.getElementById("lastname1").value = row[j];
         
 						if(k == 4)
-							$("#address1").append(row[j]);
-        
+							document.getElementById("address1").value = row[j];
+
 						if(k == 5)
-							$("#phone1").append(row[j]);
+							document.getElementById("phone1").value = row[j];
        
 						if(k == 6)
-							$("#emailadd1").append(row[j]);
+							document.getElementById("emailadd1").value = row[j];
        
 						k = k+1;      
 					 }  
