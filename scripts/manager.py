@@ -20,7 +20,7 @@ def index(req,manager_id):
 def getManagerPerUserId(userid):
     userid = cgi.escape(userid)
     x = doSql()
-    rets = x.execqry("select * from getManagerPerUserId(" + userid+ ");", False)
+    rets = x.execqry("select * from getmanagerperuserid(" + userid+ ");", False)
     result = []
     for ret in rets:
         stringed = map(str, ret)
