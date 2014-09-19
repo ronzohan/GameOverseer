@@ -36,6 +36,27 @@ function fetchUser(userid)
     });
 }
 
+function postMethod(id)
+{
+	var x = ["Chelsea","Liverpool"];
+	
+	$.ajax({
+		url: "scripts/getgradesheet.py",
+		type: "get",
+		data: {
+			x:id
+     	},
+		traditional:true,
+     	dataType: 'json',	
+     	success: function (res) {
+                console.log(res)
+        }     	
+	});
+
+
+
+}
+
    
 function fetchProfileInfo(userid, userid_fk)
 {
