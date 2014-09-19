@@ -52,22 +52,22 @@ function fetchProfileInfo(userid, userid_fk)
 						row = res[i];
 					for (j = 0; j < row.length ; j++){
 						if(k == 1)
-							document.getElementById('username1').value=row[j] ; 
-							
+							$("#username1").append(row[j]);
+						
 						if(k == 2)
-							document.getElementById('firstname1').value=row[j] ;
+							$("#firstname1").append(row[j]); 
        					
 						if(k == 3)
-							document.getElementById('lastname1').value=row[j] ;
+							$("#lastname1").append(row[j]);
         
 						if(k == 4)
-							document.getElementById('address1').value=row[j] ;
+							$("#address1").append(row[j]);
         
 						if(k == 5)
-							document.getElementById('phone1').value=row[j] ;
+							$("#phone1").append(row[j]);
        
 						if(k == 6)
-							document.getElementById('emailadd1').value=row[j] ;
+							$("#emailadd1").append(row[j]);
        
 						k = k+1;      
 					 }  
@@ -75,6 +75,7 @@ function fetchProfileInfo(userid, userid_fk)
 				}
         }
     });
+ 
 }
 
 function fetchTeamInfo(name)
@@ -227,20 +228,25 @@ function getScore(ide)
 }
 
 
-var num = 0;
-function getNumMatches(ide)
+function getNumMatches()
 {
+  var num = "";
   $.ajax({
-      url: siteloc + scriptloc + "getStart.py",
+      url: siteloc + scriptloc + "getNumMatch.py",
 	  async:false,
-	  data: {ide:ide
-             },
 	  dataType: 'json',
 	  success: function (res) {
-                  if(res[0][0] != "None" )
+				if(res[0][0] != "None" )
                   {
-					num++;
-					getNumMatches(ide+1);
+					
+					for (i = 0; i < res.length; i++)
+					{
+						row = res[i];
+      
+						for (j = 0; j < row.length ; j++)
+							if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
+								num += row[j];  
+					} 
 				  }
               }
 	});
@@ -268,9 +274,10 @@ function createDiv()
 		$('#r').append(document.body.appendChild(divTag));
 		
 		k++;
+		
+		return divTag.id;
 	}
 	
-//var Time;
 function getStart(ide, timer)
 {
 	var Time;
@@ -323,21 +330,20 @@ function getStart(ide, timer)
 					if(diff < 0){
 						Time = 0;
 					}
-					
-					new CreateTimer(TimerID, Time);
+					p = 0;
+					new CreateTimer(TimerID, Time, p);
 			}
 		}
 			
 	});
-	return Time;
 }
 
 
 var Timer;
 var TotalSeconds;
 var p;
-function CreateTimer(TimerID, Time){
-    p = 0;
+function CreateTimer(TimerID, Time, p){
+    //p = 0;
 	var oop=this;
 	
 	this.Timer = document.getElementById(TimerID);
@@ -376,9 +382,9 @@ CreateTimer.prototype={
 	
 	var TimeStr = ((Days > 0) ? Days + " day(s) " : "") + (((Hours > 0) && (Days <= 0)) ? Hours + " h " : "") + (((Minutes > 0) && (Days <= 0)) ? Minutes + " m " : "") + (((Seconds > 0) && (Days <= 0) && (Hours <= 0) && (Minutes <= 0)) ? Seconds + " s " : "");
 	if (p == 0){
+		p++;
 		this.Timer.innerHTML += "&nbsp;&nbsp;&nbsp;" + TimeStr;
 		$('#r').append(document.body.appendChild(this.Timer));
-		p++;
 	}
  }	
 }
