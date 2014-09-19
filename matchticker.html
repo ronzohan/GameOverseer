@@ -143,10 +143,9 @@
 			<div id ="r" style="margin-right:50px;"></div>
 			
 			<script language = "JavaScript">
-				var n = getNumMatches(1);
+				var n = getNumMatches();
 				for(i = 1; i <= n; i++){ 
-					createDiv();
-					getStart(i, "div" + i);
+					getStart(i, createDiv());
 				}
 			</script>
 	
@@ -162,7 +161,7 @@
 			
 		<div id="k1"></div>
 		<script language = "JavaScript">
-				var n = getNumMatches(1);
+				var n = getNumMatches();
 				for(i = 1; i <= n; i++){ 
 					if(checkScore(1) == "okay"){
 						$('#k1').append($('#div1').html());
