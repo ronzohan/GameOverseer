@@ -7,8 +7,7 @@
 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-<script src="javascript/globs.js"></script>
-<script src="javascript/jquery.js"></script>
+<script src="javascript/globs1.js"></script>
 <style type="text/css">
 
     
@@ -18,7 +17,18 @@
 		height: 5px;
 		}
 		
-    
+    .btn {
+	background-color: #e1e1e1;
+	color: #9c043d;
+	}
+	
+	 .navbar .nav > li > a:focus,
+	.navbar .nav > li > a:hover 
+	{
+	background-color: #650529;
+	color: white;
+	}
+	
 	.navbar-default .navbar-brand { 
 	margin:-11px;
     color: black;
@@ -26,7 +36,17 @@
 
 	}
 	
-	<!--set the background-color to white -->
+	.bs-login{
+	     float: none;
+		 display: table; 
+		 margin: 300px; 
+	     margin-left: 450px;
+		 width: 400px;
+		 height: 400px;
+	}
+
+ 
+  	<!--set the background-color to white -->
 	.navbar 
 	{  
 		background-color: black;
@@ -36,7 +56,24 @@
 		color: black;
 	}	
 
-    .fullscreen_bg {
+    
+ 
+ 
+	
+	<!-- css for loginbar -->
+    .btn 
+  {
+   outline:0;
+   border:none;
+   border-top:none;
+   border-bottom:none;
+   border-left:none;
+   border-right:none;
+   box-shadow:inset 2px -3px rgba(0,0,0,0.15);
+  }
+  
+ 
+  .fullscreen_bg {
     position: fixed;
     top: 0;
     right: 0;
@@ -54,8 +91,8 @@
   height: 90%;
   border: 1px silver solid;
   width: 380px;
-  float: right;
-  margin-right: 10px;
+  float: none;
+  margin-right: 1000px;
   margin-top: 0;
   padding: 0;
   box-shadow: 1px 1px 8px silver;
@@ -67,8 +104,6 @@
   width: 70px;
   height: 70px;
 }
-
-
 
 </style>
 </head> 
@@ -130,65 +165,30 @@
 
 </div>
  
-
    
 
- <div class="media block-update-card">
-	<h1 align="center"><font size = "5"> <font color = "white"> Matchticker </font></font></h1>
-
-	<span class="media-body update-card-body">
-		<h4 align = "center">
-		  <font color = "white">
-			
-			<div id ="r" style="margin-right:50px;"></div>
-			<div id = "extra"></div>
+ <div class="container">
+		
+	<div class="panel panel-default" >
+		<div class="panel-heading" >
+			<div class="panel-title"><h4 align = "center">Matches</h4></div>
+		</div>	
+		<div class = "panel-body" style = "background-color:black">
+		<h3 align = "center">
+			<div id = "r" style = "margin-right:380px;"></div>
 			<script language = "JavaScript">
 				var n = getNumMatches();
-				for(i = 1; i <= n; i++){ 
-					getStart(i, createDiv());
-				}
-				if ((i-3) > 4)
-					$('#extra').append('<a href ="match.html">More Matches</a>');
-					
-			</script>
-	
-	<br>
-	<br>
-			
-			
-	Recent Matches
-		
-	<br>
-	<br>		
-			
-		<div id ="k1" style="margin:20px auto;"></div>
-		<div id = "more"></div>
-		<script language = "JavaScript">
-				var n = getNumMatches();
-				var s = '#div';
-				var k = 0;
-				for(i = 1; i <= n; i++){ 
-					if(checkScore(i) == "okay"){
-						k++;
-						$('#k1').append($(s + i).html());
-						$('#k1').append('<br><br>');
-						$(s + i).remove();
+					for(i = 1; i <= n; i++){ 
+						getStart(i, createDiv());
 					}
-					if (k > 4){
-						n = 0;
-						$('#more').append('<a href ="#">More Matches</a>');
-					}
-				}
-		</script>
-		
-	</font>
-	</h4>
-			
-	
-	</span>
-
-
+					$("#div1").remove();
+					$("#div2").remove();
+				</script>
+		</h3>
+		</div>
+	</div>
 </div>
+
 
 </body>
 </html>                                		
