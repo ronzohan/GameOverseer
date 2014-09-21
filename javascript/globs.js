@@ -338,7 +338,7 @@ function getStart(ide, timer)
 					
 					FinishMessage = "Live";
 					
-					var dtarg = new Date(TargetDate);
+					var dtarg = new Date(string);
 					var dnow = new Date();
 				
 					diff = new Date(dtarg - dnow);
