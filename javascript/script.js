@@ -10,10 +10,12 @@ $('#register').validate({
 	   rules: {
                 firstname: {
 					required: true,
+					textOnly: true,
 					minlength: 1
 					} ,  
 				lastname: {
 					required: true,
+					textOnly: true,
 					minlength: 1  
 				},
                 username: {
@@ -60,10 +62,12 @@ $('#register').validate({
                 },
                 firstname:  {
                     required:    "Enter Firstname",
+					textOnly: "Enter Valid firstname",
                     minlength: "Enter Firstname"
                 },
                 lastname:  {
                     required:    "Enter Lastname",
+					textOnly: "Enter Valid Lastname",
                     minlength: "Please Enter lastname"
                 },
                 username: {
