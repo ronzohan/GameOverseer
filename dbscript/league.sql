@@ -190,7 +190,7 @@ $$
       if v_id isnull then
 		return 'Failed';	
       else 
-		update league set locked = $3 where league_id = $1;
+		update league set locked = 1 where league_id = $1;
 		return 'Success';
       end if;  
   end;
