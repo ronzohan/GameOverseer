@@ -36,6 +36,27 @@ function fetchUser(userid)
     });
 }
 
+function postMethod(id)
+{
+	var x = ["Chelsea","Liverpool"];
+	
+	$.ajax({
+		url: "scripts/getgradesheet.py",
+		type: "get",
+		data: {
+			x:id
+     	},
+		traditional:true,
+     	dataType: 'json',	
+     	success: function (res) {
+                console.log(res)
+        }     	
+	});
+
+
+
+}
+
    
 function fetchProfileInfo(userid, userid_fk)
 {
@@ -52,22 +73,22 @@ function fetchProfileInfo(userid, userid_fk)
 						row = res[i];
 					for (j = 0; j < row.length ; j++){
 						if(k == 1)
-							$("#username1").append(row[j]);
+							document.getElementById("username1").value = row[j];
 						
 						if(k == 2)
-							$("#firstname1").append(row[j]); 
+							document.getElementById("firstname1").value = row[j]; 
        					
 						if(k == 3)
-							$("#lastname1").append(row[j]);
+							document.getElementById("lastname1").value = row[j];
         
 						if(k == 4)
-							$("#address1").append(row[j]);
-        
+							document.getElementById("address1").value = row[j];
+
 						if(k == 5)
-							$("#phone1").append(row[j]);
+							document.getElementById("phone1").value = row[j];
        
 						if(k == 6)
-							$("#emailadd1").append(row[j]);
+							document.getElementById("emailadd1").value = row[j];
        
 						k = k+1;      
 					 }  
@@ -185,8 +206,7 @@ function fetchLeagueByManagerId(managerid)
 
 function checkScore(ide)
 {
-  var string = "";
-  var k = 0;
+  var string;
   $.ajax({
       url: siteloc + scriptloc + "getScore.py",
 	  async:false,
@@ -194,9 +214,7 @@ function checkScore(ide)
              },
 	  dataType: 'json',
 	  success: function (res) {
-                  k++;
-				  
-				  if(res[0][0] != "None" )
+                  if(res[0][0] != "None" )
                   {
 					string = "okay";
 				  }
@@ -281,7 +299,6 @@ function createDiv()
 		return divTag.id;
 	}
 	
-
 function getStart(ide, timer)
 {
 	var Time;
@@ -319,33 +336,31 @@ function getStart(ide, timer)
 
 					string = '"' + string + '"';
 					
-					
 					FinishMessage = "Live";
 					
-					var dtarg = new Date(string);
+					var dtarg = new Date(TargetDate);
 					var dnow = new Date();
 				
 					diff = new Date(dtarg - dnow);
 					Time = Math.floor(diff.valueOf()/1000);
 				
-					if(diff < 0)
+					if(diff < 0){
 						Time = 0;
-						
+					}
 					p = 0;
 					new CreateTimer(timer, Time, p);
-					
 			}
 		}
 			
 	});
 }
 
+
 var Timer;
 var TotalSeconds;
 var p;
 function CreateTimer(TimerID, Time, p){
-    //p = 0;
-	var oop=this;
+    var oop=this;
 	
 	this.Timer = document.getElementById(TimerID);
 	this.TotalSeconds = Time;
@@ -702,11 +717,45 @@ function fetchusername()
        
 					} 
 				}
-				else
-					window.location.replace("noresult.html");
+							 else {
+				    fetchleaguename();
+				 }
+				
+				
 		} 
     }); 
 }
+
+function fetchleaguename()
+{
+$("#container").load("searchresult.html");
+   $.ajax({
+      url: siteloc + scriptloc + "getleaguename.py",
+     data: {name:$("#usename").val().toLowerCase()},
+   
+      dataType: 'json',
+      success: function (res) {
+   
+				if(res[0][0] != "None")
+				{
+					for (i = 0; i < res.length; i++)
+					{
+						row = res[i];
+      
+						for (j = 0; j < row.length ; j++)
+						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
+						$("h3").append(row[j]);  
+       
+					} 
+                 }
+				 
+				 else{
+				  window.location.replace("noresult.html");
+				
+				}
+				} 
+     }); 
+ }
 
 function viewParticipantsInLeague(league_id)
 {
