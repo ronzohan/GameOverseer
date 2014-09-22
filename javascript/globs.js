@@ -109,9 +109,32 @@ function fetchTeamInfo(name)
       success: function (res) {
                   console.log(res);
                   if(res[0][0] != "None")
-                  {} 
+                  {
+					  
+				  } 
         }
     });
+}
+
+function fetchAllTeamInfo(handleData)
+{
+	var x = [];
+  $.ajax({
+      url: siteloc + scriptloc + "getTeamInfo.py",
+      data: {
+	    },
+      dataType: 'json',
+      success: function (res) {
+      
+                  if(res[0][0] != "None")
+                  {
+					 handleData(res);
+ 
+				  } 
+        }
+    });
+   
+    return x;
 }
 
 function fetchmanager(manager_id)
@@ -122,7 +145,7 @@ function fetchmanager(manager_id)
              },
       dataType: 'json',
       success: function (res) {
-                  console.log(res);
+ 
                   if(res[0][0] != "None")
 				  {}
         }
@@ -475,7 +498,8 @@ function fetchLeagueBracketInfo(league_id)
    }); 
 }
 function onclickbracket(data) {
-  alert("onclick(data: '" + data + "')")
+  alert("onclick(data: '" + data[0]['name'] +" vs "+data[1]['name']+" MatchID: "+ data[2][2]+"')");
+  console.log(data);
 }
  
  
@@ -925,5 +949,20 @@ function setbracketinfo(userid,leagueid,managerid,results,participants)
 			console.log(res);
 		}
    });
-	
 }
+
+function searchAutocomplete()
+{
+	fetchAllTeamInfo(function(output)
+	{
+		var availableTags = [];
+		for (i=0;i<output.length;i++)
+			availableTags.push(output[i][1]);
+		
+		$( "#teamname" ).autocomplete({
+		  source: availableTags
+    });
+		
+	});
+
+ }
