@@ -66,11 +66,11 @@ $$
 
 --view
 create or replace function 
-    get_league_bracket_info(in int, out text,out int[],out text[],out text[]) 
+    get_league_bracket_info(in int, out text,out int[],out text[],out text[],out int) 
 returns setof record as
  
 $$ 
-     select  name,results,teams,participants from league
+     select  name,results,teams,participants,locked from league
      where league_id = $1;
      
 $$
@@ -199,3 +199,28 @@ $$
  
 -- HOW TO USE:
 -- select * from lockleague(1,1,1) 
+
+create or replace function setbracketinfo(p_league_id int,p_managerid_fk int,p_userid int,p_results int[], p_teams text[]) 
+    returns text as
+$$
+  declare     
+     v_id int;
+  begin
+      
+      select into v_id league_id
+		from league inner join users on users.userid=$3 
+		where league_id = $1 and managerid_fk =$2;
+         
+            
+      if v_id isnull then
+		return 'Failed';	
+      else 
+		update league set results = p_results,teams=p_teams where league_id = $1;
+		return 'Success';
+      end if;  
+  end;
+$$
+  language 'plpgsql';
+
+-- HOW TO USE:
+-- select * from setbracketinfo(1,1,1,*,*) 
