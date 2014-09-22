@@ -434,8 +434,8 @@ CreateTimer.prototype={
 	}
  }	
 }
-
-
+ 
+ 
 function fetchLeagueBracketInfo(league_id)
 {
    $.ajax({
@@ -455,15 +455,15 @@ function fetchLeagueBracketInfo(league_id)
 				teams :t,
 				results : r
 						
-			}
-			  $(function()
-			  {				
+				}			
 				$('#leagueinfo').bracket
 				({
-					init:minimalData
+					init:minimalData,
+					onMatchClick: onclickbracket,
+ 
 				});		
 				$('#teamdraft').empty();
-			  })
+ 
 			} 
 			else
 			{
@@ -473,7 +473,11 @@ function fetchLeagueBracketInfo(league_id)
         }
    }); 
 }
-
+function onclickbracket(data) {
+  alert("onclick(data: '" + data + "')")
+}
+ 
+ 
 
 function login(username,password)
 {
@@ -857,6 +861,7 @@ function lockTeams(userid,leagueid,managerid)
 			{ 
 				participants = randomPairs(participants);
 				setbracketinfo(userid,leagueid,managerid,results,participants)
+				location.reload();
 			}
 		}
    });
