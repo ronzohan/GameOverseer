@@ -37,10 +37,10 @@ $$
 
 --view
 create or replace function 
-    get_team_per_name(in text, out text, out text) 
+    get_team_per_name(in text,out int,out text, out text) 
 returns setof record as
 $$ 
-     select name, hometown from team
+     select team_id,name, hometown from team
      where name = $1;     
 $$
  language 'sql';
@@ -48,5 +48,13 @@ $$
 -- select * from get_team_per_name('Chelsea');
 
 
---DROP FUNCTION get_team_perid(in int,out text,out text);
-
+--view
+create or replace function 
+    get_allTeams(out int,out text, out text) 
+returns setof record as
+$$ 
+     select team_id,name, hometown from team   
+$$
+ language 'sql';
+-- HOW TO USE:
+-- select * from get_team_per_name('Chelsea');

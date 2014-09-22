@@ -6,11 +6,14 @@ except ImportError:
     import simplejson as json
 
 
-def index(req,name):
-    name = cgi.escape(name)
+def index(req,name = None):
+		if name is None:
+        query = "SELECT * FROM get_allTeams();"
+    else:
+        name = cgi.escape(name)
+        query = "SELECT * FROM get_team_per_name('"+ name +"');"
+   
     a = doSql()
-    query = "SELECT * FROM get_team_per_name('"+ name +"');"
-    print query
     items = a.execqry(query,False)
     result = []
     
