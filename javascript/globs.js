@@ -233,7 +233,7 @@ function getScore(ide)
 	  success: function (res) {
                   if(res[0][0] != "None" )
                   {
-					$("p").append("Score: ");
+					$("p").append("<br>Score: ");
 					for (i = 0; i < res.length; i++)
 					{
 						row = res[i];
@@ -276,6 +276,7 @@ function getNumMatches()
 
 
 var k = 1;
+var e = 1;
 function createDiv()
 	{
 		
@@ -288,18 +289,40 @@ function createDiv()
         divTag.style.margin = "20px auto";
         
         if(k == 1)
-			divTag.innerHTML = '<a href ="http://localhost/GameOverseer/sample details (matchticker).html"> insertTN' + (k) + 'vs insertTN' + (k+1) + '</a>';  
+			divTag.innerHTML = '<a href ="http://localhost/GameOverseer/details.html"> insertTN' + (e) + 'vs insertTN' + (e+1) + '</a>';  
 		else
-			divTag.innerHTML = '<a href ="#"> insertTN' + (k+1) + 'vs insertTN' + (k+2) + '</a>'; 
+			divTag.innerHTML = '<a href ="#"> insertTN' + (e) + 'vs insertTN' + (e+1) + '</a>'; 
 		
 		$('#r').append(document.body.appendChild(divTag));
 		
 		k++;
 		
+		e += 2;
+		
 		return divTag.id;
 	}
 	
-function getStart(ide, timer)
+function createD()
+{
+		
+	divTag = document.createElement("div");
+        
+	divTag.id = "d" + k ;
+        
+	divTag.setAttribute("align","right");
+        
+    divTag.style.margin = "20px auto";
+        
+    divTag.innerHTML = 'insertTN' + (k) + ' vs insertTN' + (k+1); 
+		
+	$('#k').append(document.body.appendChild(divTag));
+		
+	k += 2;
+		
+}
+	
+	
+function getStart(ide, timer, o)
 {
 	var Time;
 	$.ajax({
@@ -334,21 +357,28 @@ function getStart(ide, timer)
 					else
 						string += " " + "PM";
 
-					string = '"' + string + '"';
+					if(o == "okay")
+						$("p").append('<br>' + string);
 					
-					FinishMessage = "Live";
 					
-					var dtarg = new Date(string);
-					var dnow = new Date();
+					else{
+						string = '"' + string + '"';
+					
+						FinishMessage = "Live";
+					
+						var dtarg = new Date(string);
+						var dnow = new Date();
 				
-					diff = new Date(dtarg - dnow);
-					Time = Math.floor(diff.valueOf()/1000);
+						diff = new Date(dtarg - dnow);
+						Time = Math.floor(diff.valueOf()/1000);
 				
-					if(diff < 0){
-						Time = 0;
+						if(diff < 0){
+							Time = 0;
+						}
+						
+						p = 0;
+						new CreateTimer(timer, Time, p);
 					}
-					p = 0;
-					new CreateTimer(timer, Time, p);
 			}
 		}
 			
