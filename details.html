@@ -106,6 +106,12 @@
 }
 
 </style>
+<script>
+	$(document).ready(function(){
+		var k = document.URL.match(/\d+/g);
+		div(k);
+	});
+</script>
 </head> 
 
 
@@ -181,11 +187,6 @@
 			<h4 align = "center">Rank #__</h4>
 			</div>
 		</td>
-		<script language = "JavaScript">
-			createD();
-			getStart(1, createDiv(), 'okay');
-			getScore(1);
-		</script>
 		<td><p align = "center">Details:
 			</p>
 		</td>
