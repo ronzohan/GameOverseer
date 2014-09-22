@@ -288,10 +288,7 @@ function createDiv()
         
         divTag.style.margin = "20px auto";
         
-        if(k == 1)
-			divTag.innerHTML = '<a href ="http://localhost/GameOverseer/details.html"> insertTN' + (e) + 'vs insertTN' + (e+1) + '</a>';  
-		else
-			divTag.innerHTML = '<a href ="#"> insertTN' + (e) + 'vs insertTN' + (e+1) + '</a>'; 
+        divTag.innerHTML = '<a href = "http://localhost/GameOverseer/details.html?k=' + k + '"> insertTN' + (e) + 'vs insertTN' + (e+1) + '</a>';
 		
 		$('#r').append(document.body.appendChild(divTag));
 		
@@ -302,25 +299,29 @@ function createDiv()
 		return divTag.id;
 	}
 	
-function createD()
+function div(e){   
+    createD(parseInt(e));
+}
+	
+function createD(w)
 {
-		
 	divTag = document.createElement("div");
         
-	divTag.id = "d" + k ;
+	divTag.id = "d" + w ;
         
 	divTag.setAttribute("align","right");
         
     divTag.style.margin = "20px auto";
         
-    divTag.innerHTML = 'insertTN' + (k) + ' vs insertTN' + (k+1); 
+    divTag.innerHTML = 'insertTN' + w + ' vs insertTN' + (w+1); 
 		
 	$('#k').append(document.body.appendChild(divTag));
 		
-	k += 2;
-		
-}
+	getStart(w, createDiv(), "okay"); 
 	
+	getScore(w);
+		
+}	
 	
 function getStart(ide, timer, o)
 {
@@ -578,6 +579,32 @@ function logout()
     window.location.replace("login.html");	
 }
 
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + "; " + expires;
+}
+
+ 
+function getCookie(cname) 
+{
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    
+    for(var i=0; i<ca.length; i++) 
+	{
+	    var c = ca[i];
+		
+		while (c.charAt(0)==' ') 
+			c = c.substring(1);
+        	
+        if (c.indexOf(name) != -1) 
+        	return c.substring(name.length, c.length);
+			
+    } 
+}
 
 
  

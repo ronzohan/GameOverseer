@@ -130,9 +130,6 @@
 
 </div>
  
-
-   
-
  <div class="media block-update-card">
 	<h1 align="center"><font size = "5"> <font color = "white"> Matchticker </font></font></h1>
 
@@ -145,12 +142,11 @@
 			<script language = "JavaScript">
 				var n = getNumMatches();
 				
-				
 				for(i = 1; i <= n; i++){ 
 					getStart(i, createDiv());
 
 					if ((i-1) > 4){
-						$('#extra').append('<a href ="match.html">More Matches</a>');
+						$('#extra').append('<a href ="match.html">More Upcoming Matches</a>');
 						i = 8;						
 					}
 				}	
@@ -180,7 +176,7 @@
 					}
 					if (k > 4){
 						n = 0;
-						$('#more').append('<a href ="#">More Matches</a>');
+						$('#more').append('<a href ="#">More Recent Matches</a>');
 					}
 				}
 		</script>
