@@ -144,12 +144,16 @@
 			<div id = "extra"></div>
 			<script language = "JavaScript">
 				var n = getNumMatches();
+				
+				
 				for(i = 1; i <= n; i++){ 
 					getStart(i, createDiv());
-				}
-				if ((i-3) > 4)
-					$('#extra').append('<a href ="match.html">More Matches</a>');
-					
+
+					if ((i-1) > 4){
+						$('#extra').append('<a href ="match.html">More Matches</a>');
+						i = 8;						
+					}
+				}	
 			</script>
 	
 	<br>
