@@ -94,3 +94,15 @@ def lockLeague(req,leagueid,managerid,userid):
     x = doSql()
     rets = x.execqry("select lockleague("+leagueid+"," + managerid+","+userid+");",True)
     return json.dumps(rets)
+
+def setBracketInfo(req,leagueid,managerid,userid,results,participants):
+    leagueid = cgi.escape(leagueid)
+    managerid = cgi.escape(managerid)
+    userid = cgi.escape(userid)
+    
+    participants = participants.replace('[', '{').replace(']', '}').replace('\'', '\"')
+    x = doSql()
+    query = "select setbracketinfo("+leagueid+"," + managerid+","+userid+",Array[]::integer[],'"+participants+"'"
+    rets = x.execqry("select setbracketinfo("+leagueid+"," + managerid+","+userid+",Array[]::integer[],'"+participants+"');",True)
+   
+    return json.dumps(rets)
