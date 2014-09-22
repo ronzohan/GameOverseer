@@ -8,10 +8,10 @@ except ImportError:
 def index(req, username):
     username = cgi.escape(username) 
     x = doSql()
-    rets = x.execqry("SELECT league.name, sport_type, fixture_type from league\
-    NATURAL JOIN users\
-    NATURAL JOIN manager\
-    WHERE username = " + username + ";", False)
+    rets = x.execqry("SELECT league.name, sport_type, fixture_type from manager\
+    INNER JOIN users ON users.userid = manager.userid_fk\
+    INNER JOIN league ON manager.manager_id = league.managerid_fk\
+    where users.username = " + username + ";", False)
     result = []
     for ret in rets:
         stringed = map(str, ret)
