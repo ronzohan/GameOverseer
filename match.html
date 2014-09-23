@@ -178,11 +178,15 @@
 			<div id = "r" style = "margin-right:380px;"></div>
 			<script language = "JavaScript">
 				var n = getNumMatches();
+				var s = '#div';
 					for(i = 1; i <= n; i++){ 
 						getStart(i, createDiv());
+						if(checkScore(i) == "okay"){
+							$('#k1').append($(s + i).html());
+							$('#k1').append('<br><br>');
+							$(s + i).remove();
+						}
 					}
-					$("#div1").remove();
-					$("#div2").remove();
 				</script>
 		</h3>
 		</div>
