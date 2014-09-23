@@ -109,32 +109,9 @@ function fetchTeamInfo(name)
       success: function (res) {
                   console.log(res);
                   if(res[0][0] != "None")
-                  {
-					  
-				  } 
+                  {} 
         }
     });
-}
-
-function fetchAllTeamInfo(handleData)
-{
-	var x = [];
-  $.ajax({
-      url: siteloc + scriptloc + "getTeamInfo.py",
-      data: {
-	    },
-      dataType: 'json',
-      success: function (res) {
-      
-                  if(res[0][0] != "None")
-                  {
-					 handleData(res);
- 
-				  } 
-        }
-    });
-   
-    return x;
 }
 
 function fetchmanager(manager_id)
@@ -145,7 +122,7 @@ function fetchmanager(manager_id)
              },
       dataType: 'json',
       success: function (res) {
- 
+                  console.log(res);
                   if(res[0][0] != "None")
 				  {}
         }
@@ -240,6 +217,9 @@ function checkScore(ide)
                   if(res[0][0] != "None" )
                   {
 					string = "okay";
+				  }
+				  else{
+					
 				  }
               }
 	});
@@ -458,8 +438,8 @@ CreateTimer.prototype={
 	}
  }	
 }
- 
- 
+
+
 function fetchLeagueBracketInfo(league_id)
 {
    $.ajax({
@@ -479,15 +459,15 @@ function fetchLeagueBracketInfo(league_id)
 				teams :t,
 				results : r
 						
-				}			
+			}
+			  $(function()
+			  {				
 				$('#leagueinfo').bracket
 				({
-					init:minimalData,
-					onMatchClick: onclickbracket,
- 
+					init:minimalData
 				});		
 				$('#teamdraft').empty();
- 
+			  })
 			} 
 			else
 			{
@@ -497,12 +477,7 @@ function fetchLeagueBracketInfo(league_id)
         }
    }); 
 }
-function onclickbracket(data) {
-  alert("onclick(data: '" + data[0]['name'] +" vs "+data[1]['name']+" MatchID: "+ data[2][2]+"')");
-  console.log(data);
-}
- 
- 
+
 
 function login(username,password)
 {
@@ -603,35 +578,6 @@ function logout()
     window.location.replace("login.html");	
 }
 
-function setCookie(cname, cvalue, exdays) {
-    var d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    
-    var expires = "expires="+d.toUTCString();
-    document.cookie = cname + "=" + cvalue + "; " + expires;
-}
-
- 
-function getCookie(cname) 
-{
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    
-    for(var i=0; i<ca.length; i++) 
-	{
-	    var c = ca[i];
-		
-		while (c.charAt(0)==' ') 
-			c = c.substring(1);
-        	
-        if (c.indexOf(name) != -1) 
-        	return c.substring(name.length, c.length);
-			
-    } 
-}
-
-
- 
 
 function editLeague(managerid,leagueid)
 {
@@ -660,6 +606,8 @@ function editLeague(managerid,leagueid)
     });
 	
 }
+
+
 function setleague(managerid,leaguename,fixturetype,sport)
 {
 	$.ajax({
@@ -912,7 +860,6 @@ function lockTeams(userid,leagueid,managerid)
 			{ 
 				participants = randomPairs(participants);
 				setbracketinfo(userid,leagueid,managerid,results,participants)
-				location.reload();
 			}
 		}
    });
@@ -949,20 +896,5 @@ function setbracketinfo(userid,leagueid,managerid,results,participants)
 			console.log(res);
 		}
    });
+	
 }
-
-function searchAutocomplete()
-{
-	fetchAllTeamInfo(function(output)
-	{
-		var availableTags = [];
-		for (i=0;i<output.length;i++)
-			availableTags.push(output[i][1]);
-		
-		$( "#teamname" ).autocomplete({
-		  source: availableTags
-    });
-		
-	});
-
- }
