@@ -311,7 +311,7 @@ function createDiv()
         
         divTag.style.margin = "20px auto";
         
-        divTag.innerHTML = '<a href = "http://localhost/GameOverseer/details.html?k=' + k + '"> insertTN' + (e) + 'vs insertTN' + (e+1) + '</a>';
+        divTag.innerHTML = '<a href = "http://localhost/GameOverseer/details.html?k=' + k + '"> insertTN' + (e) + ' vs insertTN' + (e+1) + '</a>';
 		
 		$('#r').append(document.body.appendChild(divTag));
 		
@@ -337,7 +337,7 @@ function createD(w)
     divTag.style.margin = "20px auto";
         
     divTag.innerHTML = 'insertTN' + w + ' vs insertTN' + (w+1); 
-		
+	
 	$('#k').append(document.body.appendChild(divTag));
 		
 	getStart(w, createDiv(), "okay"); 
