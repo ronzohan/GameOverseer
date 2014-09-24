@@ -227,6 +227,16 @@ function fetchLeagueByManagerId(managerid)
   
 }
 
+function getQueryVariable() {
+	var query = window.location.search.substring(1);
+	var m = query.split("?");
+
+	for (var i=0;i<m.length;i++) {
+		var key = m[i].split("=");
+			return key[1];
+	}
+} 
+					
 function displayLeagueByManagerName(username)
 {
   $.ajax({
