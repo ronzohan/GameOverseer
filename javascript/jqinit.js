@@ -25,6 +25,7 @@ $(function()
     $("#addteams").click(
 		function(){
 			$("#addteamdialog").dialog('open');
+			searchAutocomplete();
 		}
     );
 	
@@ -38,6 +39,5 @@ $(function()
 	$(document).on("click", "a.removeteams", function(){
 		 $(this).parent().parent().remove();
 	});
-	
-	
+
 }); 
