@@ -27,3 +27,17 @@ def getManagerPerUserId(userid):
         result.append(stringed)
 
     return json.dumps(result)
+	
+def getManagerLeague(username):
+    username = cgi.escape(username)
+    x = doSql()
+    rets = x.execqry("SELECT users.userid, name, sport_type, fixture_type FROM league \
+    INNER JOIN manager ON manager.manager_id = manager.userid_fk \
+    INNER JOIN users ON users.userid = manager.userid_fk \
+    where users.username='" + username + "';", False)
+    result = []
+    for ret in rets:
+        stringed = map(str, ret)
+        result.append(stringed)
+
+    return json.dumps(result)

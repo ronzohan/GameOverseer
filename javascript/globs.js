@@ -227,6 +227,42 @@ function fetchLeagueByManagerId(managerid)
   
 }
 
+function getQueryVariable() {
+	var query = window.location.search.substring(1);
+	var m = query.split("?");
+
+	for (var i=0;i<m.length;i++) {
+		var key = m[i].split("=");
+			return key[1];
+	}
+} 
+					
+function displayLeagueByManagerName(username)
+{
+  $.ajax({
+      url: siteloc + scriptloc + "manager.py/getManagerLeague",
+      data: {username:username},
+      dataType: 'json',
+      success: function (res) {
+                  console.log(res); 
+				  if(res[0][0] != "None")                  
+                  {
+					$("#leaguetable tr").remove();
+					for (i=0;i<res.length;i++)
+					{
+						row = res[i];
+						
+						$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='
+												+row[0]+'>'+row[1]+'</a></td>'
+											+'<td>'+row[2]+'</td>' + '<td>'+row[3]
+											+'</td></tr>');
+					}
+				  }
+        }
+  });
+  
+}
+
 function checkScore(ide)
 {
   var string;
@@ -322,21 +358,24 @@ function createDiv()
 		return divTag.id;
 	}
 	
-function div(e){   
-    createD(parseInt(e));
-}
-	
 function createD(w)
 {
+	var t = 0;
+		
+	while (t < (w-1))
+		t++;
+			
+	t = (2*t) + 1;
+	
 	divTag = document.createElement("div");
         
 	divTag.id = "d" + w ;
         
 	divTag.setAttribute("align","right");
         
-    divTag.style.margin = "20px auto";
-        
-    divTag.innerHTML = 'insertTN' + w + ' vs insertTN' + (w+1); 
+    divTag.style.margin = "20px auto";  
+	
+	divTag.innerHTML = 'insertTN' + t + ' vs insertTN' + (t+1); 
 		
 	$('#k').append(document.body.appendChild(divTag));
 		
@@ -727,65 +766,68 @@ function redirect_ifNotloggedin()
 		window.location.replace("login.html");
 }
 
-function fetchusername()
+function redirect(n) {
+    if(n == 0)
+		document.location.href = '/GameOverseer/searchresult.html?query=' + document.getElementById('usename').value;
+	else
+		document.location.href = '/GameOverseer/searchusername.html?query=' + document.getElementById('name').innerHTML;
+}
+
+function fetchusername(name)
 {
- $("#container").load("searchresult.html");
    $.ajax({
       url: siteloc + scriptloc + "getusername.py",
-      data: {username:$("#usename").val().toLowerCase()},
+      data: {username:name.toLowerCase()},
    
       dataType: 'json',
       success: function (res) {
    
 				if(res[0][0] != "None")
 				{
+					$("#k").append('<h2> results found: </h2>');
 					for (i = 0; i < res.length; i++)
 					{
 						row = res[i];
       
 						for (j = 0; j < row.length ; j++)
 						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-						$("h3").append(row[j]);  
+						$("#name").append(row[j]);  
        
 					} 
 				}
-							 else {
-				    fetchleaguename();
-				 }
-				
-				
+				else 
+				    fetchleaguename(name);
 		} 
     }); 
 }
 
-function fetchleaguename()
+function fetchleaguename(name)
 {
-$("#container").load("searchresult.html");
    $.ajax({
       url: siteloc + scriptloc + "getleaguename.py",
-     data: {name:$("#usename").val().toLowerCase()},
+     data: {name:name.toLowerCase()},
    
       dataType: 'json',
       success: function (res) {
-   
+				
 				if(res[0][0] != "None")
 				{
+					$("#k").append('<h2> results found: </h2>');
 					for (i = 0; i < res.length; i++)
 					{
 						row = res[i];
       
 						for (j = 0; j < row.length ; j++)
 						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-						$("h3").append(row[j]);  
-       
+						$("#name").append(row[j]);
 					} 
                  }
 				 
 				 else{
-				  window.location.replace("noresult.html");
-				
+				  $("#k").text('');
+				  $("#k").append("No Results Found");
 				}
-				} 
+		} 
      }); 
  }
 
@@ -826,7 +868,7 @@ function deleteTeamsInLeague(participantTeam,managerid,leagueid)
 		success:
 		function (res){
 			 $("#teamcollection tbody").remove();
-			 viewParticipantsInLeague(leagueid);
+			 //viewParticipantsInLeague(leagueid);
 		}
    }); 
 	
@@ -844,7 +886,6 @@ function getManagerPerUserId(userid)
 		function (res){
 			 
 			 $.cookie("managerid",res[0][0]);
-			//setCookie("managerid",res[0][0],2);
 		}
    }); 
 }

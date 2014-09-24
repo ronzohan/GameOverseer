@@ -4,10 +4,16 @@
         <link href="css/bootstrap-theme.min.css" rel="stylesheet">	
 		<link rel="stylesheet" href="css/custom.css"> 
 		<link href="https://assets-cdn.github.com/assets/github-0ee9064842419bc947ae49576d87065a9fa954d5.css" media="all" rel="stylesheet" type="text/css" />
-		<link href="https://assets-cdn.github.com/assets/github2-fdf72e5a92bee3dcbf0220f2d727814f13d53277.css" media="all" rel="stylesheet" type="text/css" />	
+		<link href="https://assets-cdn.github.com/assets/github2-fdf72e5a92bee3dcbf0220f2d727814f13d53277.css" media="all" rel="stylesheet" type="text/css" />
+		<script src="javascript/jquery.js"></script>
 	
 	<style type ="text/css">
 	</style>
+	<script>
+		$(document).ready(function(){
+			fetchusername(getQueryVariable());
+		});
+	</script>
    </head>
    <body>
 		<div id="fullscreen_bg" class="fullscreen_bg"/> 
@@ -29,10 +35,12 @@
 			
 		<div class="main-content">
 			<div class="blankslate">
-			<h2> results found: </h2>
-				<a href="league.html" >
+				<div id = "k"></div>
+				<a onclick="redirect(1);" >
 					<h3>
-					</h3>
+					<div id = "name">
+					</div>
+					<h3>
 				</a>
 			</div>
 		</div>
@@ -40,12 +48,18 @@
 		</div>	   
    </body>
    
-   	<script src="javascript/jquery.js"></script>
+   	
     <script src="javascript/bootstrap.min.js"></script>
 	<script src="javascript/globs.js"></script>
     <script src="javascript/jqinit.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
+	<script>
+	  $(function(){
+	    $("#header").load("header.html"); 
+	  });
+   	</script>
 		
    
 </html>
