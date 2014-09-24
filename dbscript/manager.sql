@@ -8,6 +8,32 @@ CREATE TABLE Manager(
 	email text
     );
 
+	
+	
+create or replace 
+    function checkemail(p_email text) 
+    returns text as
+$$
+  declare
+     v_manager_id int;
+  begin
+      select into  v_manager_id manager_id from Manager 
+         where email = p_email;
+         
+      if v_manager_id isnull then
+          return 'true';
+      else
+           return 'false';
+      end if;   
+         
+      return 'OK';
+  end;
+  $$
+  language 'plpgsql';
+
+--SELECT checkemail(ron@yolo.com);
+
+	
 create or replace 
     function setmanager(p_userid int,p_first_name text,p_last_name text,p_address text, p_contact_no text,p_email text) 
     returns text as
@@ -47,6 +73,8 @@ $$
  language 'sql';
 
 --select * from  get_Manager_per_id(1);
+
+
 
 create or replace function
    getManagerPerUserId(in int, out int)

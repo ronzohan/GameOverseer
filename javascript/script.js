@@ -23,8 +23,7 @@ $('#register').validate({
                     minlength: 6,
 					remote: { 
 					url: siteloc + scriptloc + "checkusername.py",
-					data: 
-						{username:$("#username").val() } 
+					  
                      }
                 },
                 password1: {
@@ -38,7 +37,11 @@ $('#register').validate({
                 },
                 inputEmail: {
                     required: true,
-                    email: true
+                    email: true,
+					remote: { 
+					url: siteloc + scriptloc + "checkemail.py",
+					 
+                     }, 
                 },
                 agree: "required",
                 phone: {
@@ -54,8 +57,11 @@ $('#register').validate({
 				
             },
             messages: {
-			
-                email: "Invalid email",
+				inputEmail:{
+				required: "input email",
+                email: "Invalid email", 
+				remote: "You  have already registered" 
+				 },
 				address:  {
                     required:  "Enter Address",
                     minlength: "Block no. Purok Province City"
