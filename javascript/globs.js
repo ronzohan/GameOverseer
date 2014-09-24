@@ -803,14 +803,14 @@ function fetchusername(name)
 
 function fetchleaguename(name)
 {
-$("#container").load("searchresult.html");
    $.ajax({
       url: siteloc + scriptloc + "getleaguename.py",
      data: {name:name.toLowerCase()},
    
       dataType: 'json',
       success: function (res) {
-   
+				
+				$("#k").append('<h2> results found: </h2>');
 				if(res[0][0] != "None")
 				{
 					for (i = 0; i < res.length; i++)
@@ -819,13 +819,12 @@ $("#container").load("searchresult.html");
       
 						for (j = 0; j < row.length ; j++)
 						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-						$("h3").append(row[j]);  
-       
+						$("#name").append(row[j]);
 					} 
                  }
 				 
 				 else{
-				  window.location.replace("noresult.html");
+				  $("#name").append("No Results Found");
 				
 				}
 				} 
