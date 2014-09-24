@@ -57,6 +57,28 @@ function postMethod(id)
 
 }
 
+
+function updateUser()
+{
+  $.ajax({
+      url: siteloc + scriptloc + "updatemanager.py",
+      data: {}
+      dataType: 'json',
+      success: function (res) {
+                  console.log(res);
+                  if(res[0][0] != "None")
+                  {
+
+      
+      
+      
+      
+      
+      } // end if
+              }
+    });
+}
+
    
 function fetchProfileInfo(userid, userid_fk)
 {
