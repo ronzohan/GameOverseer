@@ -227,6 +227,32 @@ function fetchLeagueByManagerId(managerid)
   
 }
 
+function displayLeagueByManagerName(username)
+{
+  $.ajax({
+      url: siteloc + scriptloc + "manager.py/getManagerLeague",
+      data: {username:username},
+      dataType: 'json',
+      success: function (res) {
+                  console.log(res); 
+                  if(res[0][0] != "None")                  
+                  {
+					$("#leaguetable tr").remove();
+					for (i=0;i<res.length;i++)
+					{
+						row = res[i];
+						
+						$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='
+												+row[0]+'>'+row[1]+'</a></td>'
+											+'<td>'+row[2]+'</td>' + '<td>'+row[3]
+											+'</td></tr>');
+					}
+				  }
+        }
+  });
+  
+}
+
 function checkScore(ide)
 {
   var string;
@@ -727,12 +753,18 @@ function redirect_ifNotloggedin()
 		window.location.replace("login.html");
 }
 
-function fetchusername()
+function redirect(n) {
+    if(n == 0)
+		document.location.href = '/GameOverseer/searchresult.html?query=' + document.getElementById('usename').value;
+	else
+		document.location.href = '/GameOverseer/searchusername.html?query=' + document.getElementById('name').innerHTML;
+}
+
+function fetchusername(name)
 {
- $("#container").load("searchresult.html");
    $.ajax({
       url: siteloc + scriptloc + "getusername.py",
-      data: {username:$("#usename").val().toLowerCase()},
+      data: {username:name.toLowerCase()},
    
       dataType: 'json',
       success: function (res) {
@@ -745,12 +777,12 @@ function fetchusername()
       
 						for (j = 0; j < row.length ; j++)
 						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-						$("h3").append(row[j]);  
+						$("#name").append(row[j]);  
        
 					} 
 				}
 							 else {
-				    fetchleaguename();
+				    fetchleaguename(name);
 				 }
 				
 				
@@ -758,12 +790,12 @@ function fetchusername()
     }); 
 }
 
-function fetchleaguename()
+function fetchleaguename(name)
 {
 $("#container").load("searchresult.html");
    $.ajax({
       url: siteloc + scriptloc + "getleaguename.py",
-     data: {name:$("#usename").val().toLowerCase()},
+     data: {name:name.toLowerCase()},
    
       dataType: 'json',
       success: function (res) {
