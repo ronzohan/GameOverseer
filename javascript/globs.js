@@ -73,19 +73,19 @@ function fetchProfileInfo(userid, userid_fk)
 						row = res[i];
 					for (j = 0; j < row.length ; j++){
 						
-						if(k == 1)
+						if(k == 2)
 							document.getElementById("firstname1").value = row[j]; 
        					
-						if(k == 2)
+						if(k == 3)
 							document.getElementById("lastname1").value = row[j];
         
-						if(k == 3)
+						if(k == 4)
 							document.getElementById("address1").value = row[j];
 
-						if(k == 4)
+						if(k == 5)
 							document.getElementById("phone1").value = row[j];
        
-						if(k == 5)
+						if(k == 6)
 							document.getElementById("emailadd1").value = row[j];
        
 						k = k+1;      
