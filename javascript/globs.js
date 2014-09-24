@@ -792,11 +792,8 @@ function fetchusername(name)
        
 					} 
 				}
-							 else {
+				else 
 				    fetchleaguename(name);
-				 }
-				
-				
 		} 
     }); 
 }
@@ -810,9 +807,9 @@ function fetchleaguename(name)
       dataType: 'json',
       success: function (res) {
 				
-				$("#k").append('<h2> results found: </h2>');
 				if(res[0][0] != "None")
 				{
+					$("#k").append('<h2> results found: </h2>');
 					for (i = 0; i < res.length; i++)
 					{
 						row = res[i];
@@ -824,10 +821,10 @@ function fetchleaguename(name)
                  }
 				 
 				 else{
-				  $("#name").append("No Results Found");
-				
+				  $("#k").text('');
+				  $("#k").append("No Results Found");
 				}
-				} 
+		} 
      }); 
  }
 
@@ -886,7 +883,6 @@ function getManagerPerUserId(userid)
 		function (res){
 			 
 			 $.cookie("managerid",res[0][0]);
-			//setCookie("managerid",res[0][0],2);
 		}
    }); 
 }
