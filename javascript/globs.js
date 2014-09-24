@@ -781,6 +781,7 @@ function fetchusername(name)
    
 				if(res[0][0] != "None")
 				{
+					$("#k").append('<h2> results found: </h2>');
 					for (i = 0; i < res.length; i++)
 					{
 						row = res[i];
