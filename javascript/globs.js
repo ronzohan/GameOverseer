@@ -57,6 +57,28 @@ function postMethod(id)
 
 }
 
+
+function updateUser()
+{
+  $.ajax({
+      url: siteloc + scriptloc + "updatemanager.py",
+      data: {}
+      dataType: 'json',
+      success: function (res) {
+                  console.log(res);
+                  if(res[0][0] != "None")
+                  {
+
+      
+      
+      
+      
+      
+      } // end if
+              }
+    });
+}
+
    
 function fetchProfileInfo(userid, userid_fk)
 {
@@ -72,8 +94,6 @@ function fetchProfileInfo(userid, userid_fk)
 					for (i=0;i<res.length;i++){
 						row = res[i];
 					for (j = 0; j < row.length ; j++){
-						if(k == 1)
-							document.getElementById("username1").value = row[j];
 						
 						if(k == 2)
 							document.getElementById("firstname1").value = row[j]; 
