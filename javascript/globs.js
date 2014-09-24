@@ -245,7 +245,7 @@ function displayLeagueByManagerName(username)
       dataType: 'json',
       success: function (res) {
                   console.log(res); 
-                  if(res[0][0] != "None")                  
+				  if(res[0][0] != "None")                  
                   {
 					$("#leaguetable tr").remove();
 					for (i=0;i<res.length;i++)
@@ -358,21 +358,24 @@ function createDiv()
 		return divTag.id;
 	}
 	
-function div(e){   
-    createD(parseInt(e));
-}
-	
 function createD(w)
 {
+	var t = 0;
+		
+	while (t < (w-1))
+		t++;
+			
+	t = (2*t) + 1;
+	
 	divTag = document.createElement("div");
         
 	divTag.id = "d" + w ;
         
 	divTag.setAttribute("align","right");
         
-    divTag.style.margin = "20px auto";
-        
-    divTag.innerHTML = 'insertTN' + w + ' vs insertTN' + (w+1); 
+    divTag.style.margin = "20px auto";  
+	
+	divTag.innerHTML = 'insertTN' + t + ' vs insertTN' + (t+1); 
 		
 	$('#k').append(document.body.appendChild(divTag));
 		
@@ -865,7 +868,7 @@ function deleteTeamsInLeague(participantTeam,managerid,leagueid)
 		success:
 		function (res){
 			 $("#teamcollection tbody").remove();
-			 viewParticipantsInLeague(leagueid);
+			 //viewParticipantsInLeague(leagueid);
 		}
    }); 
 	
