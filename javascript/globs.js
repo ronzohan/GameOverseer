@@ -799,11 +799,8 @@ function redirect_ifNotloggedin()
 		window.location.replace("login.html");
 }
 
-function redirect(n) {
-    if(n == 0)
-		document.location.href = '/GameOverseer/searchresult.html?query=' + document.getElementById('usename').value;
-	else
-		document.location.href = '/GameOverseer/searchusername.html?query=' + document.getElementById('name').innerHTML;
+function redirect() {
+    document.location.href = '/GameOverseer/searchresult.html?query=' + document.getElementById('usename').value;
 }
 
 function fetchusername(name)
@@ -818,15 +815,7 @@ function fetchusername(name)
 				if(res[0][0] != "None")
 				{
 					$("#k").append('<h2> results found: </h2>');
-					for (i = 0; i < res.length; i++)
-					{
-						row = res[i];
-      
-						for (j = 0; j < row.length ; j++)
-						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-						$("#name").append(row[j]);  
-       
-					} 
+					$("#name").append('<a href = searchusername.html?query=' + res[0][0] + '>' + res[0][0] + '</a>');
 				}
 				else 
 				    fetchleaguename(name);
@@ -846,16 +835,8 @@ function fetchleaguename(name)
 				if(res[0][0] != "None")
 				{
 					$("#k").append('<h2> results found: </h2>');
-					for (i = 0; i < res.length; i++)
-					{
-						row = res[i];
-      
-						for (j = 0; j < row.length ; j++)
-						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-						$("#name").append(row[j]);
-					} 
-                 }
-				 
+					$("#league").append('<a href = leagueinfo.html?id=' + getLeagueID(name) + '>' + res[0][0] + '</a>');
+				 }
 				 else{
 				  $("#k").text('');
 				  $("#k").append("No Results Found");
