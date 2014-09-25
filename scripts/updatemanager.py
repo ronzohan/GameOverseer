@@ -24,11 +24,9 @@ def index(req,username2,password2,firstname2,lastname2,email2,contactno2,address
     query = "SELECT login('"+ username2+"','"+ password2+"');" 
     items = a.execqry(query,False)
     for item in items:
-        stringed = map(int,item)
-        [a] =  stringed
+        stringed = ''.join(map(str,item))
 
-    id = str(a)
- 
+    id = stringed 
    
  
        

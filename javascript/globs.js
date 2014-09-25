@@ -62,15 +62,22 @@ function updateUser()
 {
   $.ajax({
       url: siteloc + scriptloc + "updatemanager.py",
-      data: {},
+      data: {
+	  username2:$("#username1").val(),
+	  password2:$("#password1").val(),
+	  firstname2:$("#firstname1").val(),
+			 lastname2:$("#lastname1").val(),
+			 address2:$("#address1").val(),
+			 contactno2:$("#phone1").val(),
+			 email2:$("#emailadd1").val(),},
       dataType: 'json',
       success: function (res) {
                   console.log(res);
                   if(res[0][0] != "None")
                   {
+					$("#container2").html(
+					'<h1> Successfully Changed!</h1>');     
 
-      
-      
       
       
       

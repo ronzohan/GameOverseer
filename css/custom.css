@@ -1,6 +1,6 @@
  
 body {
-	background: url('http://localhost/GameOverseer/picture/all.jpg') no-repeat center center fixed;
+	background: white no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -254,10 +254,9 @@ margin-left:  36px;
             padding: 45px 15px 15px;  
 			height: 1500px;
 		}
-        .registernabox {
-            background-color: #9a7c8c;
-			background: rgba(240, 240, 240, 1.0);
-            border: 11px solid #620c0c;
+        .registernabox { 
+			background: #ffffff;
+            border: 11px solid #000000;
             padding: 45px 15px 15px; 
 			top:90px;
 			right:30%;
