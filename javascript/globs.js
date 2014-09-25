@@ -62,7 +62,7 @@ function updateUser()
 {
   $.ajax({
       url: siteloc + scriptloc + "updatemanager.py",
-      data: {}
+      data: {},
       dataType: 'json',
       success: function (res) {
                   console.log(res);
@@ -517,20 +517,25 @@ CreateTimer.prototype={
 	}
  }	
 }
- 
- 
-function fetchLeagueBracketInfo(league_id)
+
+function getBracketInfo(league_id,handle)
 {
-   $.ajax({
+	  $.ajax({
       url: siteloc + scriptloc + "getLeague.py/getBracketInfo?",
       data: {league_id:league_id},
       dataType: 'json',
       success:
-	  
 	  function (res){
+		 handle(res); //pass data to the desired function
+	  }
+		}); 
+}
+ 
+function fetchLeagueBracketInfo(res)
+{
 		  var r = new Array(res[0][1]);
 		  var t = res[0][2];
- 
+
           if(res[0][0] != "None" && res[0][4] == 1)
             {
 				var minimalData = {
@@ -553,12 +558,12 @@ function fetchLeagueBracketInfo(league_id)
 				$('#leaguetitle').empty();
 				$('#leaguetitle').append(res[0][0]);
 			}
-        }
-   }); 
+  
 }
 function onclickbracket(data) {
   alert("onclick(data: '" + data[0]['name'] +" vs "+data[1]['name']+" MatchID: "+ data[2][2]+"')");
   console.log(data);
+  console.log("ok");
 }
  
  
@@ -771,7 +776,7 @@ function addTeamsInLeague(leagueid,managerid,participantTeam)
                   	{
 						alert(res[0][0]);
 						$("#teamcollection tbody").remove();
-						viewParticipantsInLeague(leagueid);
+						getBracketInfo(leagueid,viewParticipantsInLeague);
 					} 
               	}
 	});
@@ -851,14 +856,8 @@ function fetchleaguename(name)
      }); 
  }
 
-function viewParticipantsInLeague(league_id)
+function viewParticipantsInLeague(res)
 {
-	$.ajax({
-		url: siteloc + scriptloc + "getLeague.py/getBracketInfo?",
-		data: {league_id:league_id},
-		dataType: 'json',
-		success:
-		function (res){
  
 			row = res[0][3];
 			if (row)
@@ -872,8 +871,7 @@ function viewParticipantsInLeague(league_id)
 				}
 				$("#teamcollection").append(table);
 			}
-		}
-   }); 
+ 
 }
 
 function deleteTeamsInLeague(participantTeam,managerid,leagueid)
@@ -929,15 +927,9 @@ function lockTeams(userid,leagueid,managerid)
 		},
 		dataType: 'json',
 		success:
-		//i am repeating myself now
-		function (res){
-			var results = [];
-			$.ajax({
-			url: siteloc + scriptloc + "getLeague.py/getBracketInfo?",
-			data: {league_id:leagueid},
-			dataType: 'json',
-			success:
+		getBracketInfo(leagueid,
 			function (res){
+			results = [null,null,null];
 			var participants = res[0][3];
 			if (participants)
 			{ 
@@ -945,10 +937,10 @@ function lockTeams(userid,leagueid,managerid)
 				setbracketinfo(userid,leagueid,managerid,results,participants)
 				location.reload();
 			}
-		}
+		})
    });
-		}
-   }); 
+	 
+ 
 	
 }
 

@@ -2,11 +2,11 @@ $(function()
 {
 	redirect_ifNotloggedin();
 	
-	fetchLeagueBracketInfo(getParameterByName('id'));
+	getBracketInfo(getParameterByName('id'),fetchLeagueBracketInfo);
 	//parameter depends on who's the user, used on leagueinfo.html
 	
 	if (getParameterByName('id'))
-		viewParticipantsInLeague(getParameterByName('id'));
+		getBracketInfo(getParameterByName('id'),viewParticipantsInLeague);
 	
 	getManagerPerUserId($.cookie('userid'));
 	
@@ -25,6 +25,7 @@ $(function()
     $("#addteams").click(
 		function(){
 			$("#addteamdialog").dialog('open');
+			searchAutocomplete();
 		}
     );
 	
@@ -38,6 +39,5 @@ $(function()
 	$(document).on("click", "a.removeteams", function(){
 		 $(this).parent().parent().remove();
 	});
-	
-	
+
 }); 
