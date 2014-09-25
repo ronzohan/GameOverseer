@@ -75,8 +75,9 @@ function updateUser()
                   console.log(res);
                   if(res[0][0] != "None")
                   {
-					console.log("ok");      
-      
+					$("#container2").html(
+					'<h1> Successfully Changed!</h1>');     
+
       
       
       

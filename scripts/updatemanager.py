@@ -25,7 +25,6 @@ def index(req,username2,password2,firstname2,lastname2,email2,contactno2,address
     items = a.execqry(query,False)
     for item in items:
         stringed = ''.join(map(str,item))
-        #[a] =  stringed
 
     id = stringed 
    
