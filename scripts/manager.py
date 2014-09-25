@@ -1,4 +1,4 @@
-[10:36:22 PM] Kay Apao: from dosql import *
+from doSql import *
 import cgi
 try:
     import json
