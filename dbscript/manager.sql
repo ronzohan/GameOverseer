@@ -89,15 +89,3 @@ $$
 -- HOW TO USE:
 -- select * from getManagerPerUserId(1)
 
-create or replace function
-   get_userID(in text, out int)
-returns int as
-$$
-	select userid from users
-	where LOWER(username)= $1;
-    
-$$
-  language 'sql';
-
--- HOW TO USE:
--- select * from get_userID(username)
