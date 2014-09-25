@@ -47,8 +47,8 @@ $('#register').validate({
                 phone: {
                     required: true,
                     digits: true,
-                    minlength: 11,
-                    maxlength: 11
+                    minlength: 10,
+                    maxlength: 10 
                 },
 				address: {
 					required: true,
@@ -58,44 +58,44 @@ $('#register').validate({
             },
             messages: {
 				inputEmail:{
-				required: "input email",
-                email: "Invalid email", 
-				remote: "You  have already registered" 
+				required:  "* Empty",
+                email: "* Invalid email", 
+				remote: "* your registered!" 
 				 },
 				address:  {
-                    required:  "Enter Address",
-                    minlength: "Block no. Purok Province City"
+                    required:   "* Empty",
+                    minlength: "* province,city"
                 },
                 firstname:  {
-                    required:    "Enter Firstname",
-					letters: "Enter Valid firstname",
-                    minlength: "Enter Firstname"
+                    required: "* Empty",
+					letters: "* Valid firstname",
+                    minlength: "*Enter Firstname"
                 },
                 lastname:  {
-                    required:    "Enter Lastname",
-					letters: "Enter Valid Lastname",
-                    minlength: "Please Enter lastname"
+                    required:     "* Empty",
+					letters: "* Enter Valid Lastname",
+                    minlength: "* Please Enter lastname"
                 },
                 username: {
-                    required:    "Enter Username",
-                    minlength: "Enter at least 6 characters",
-					remote: "Username already exist"
+                    required:    "* Empty",
+                    minlength: "* Enter at least 6 characters",
+					remote: " * already exist"
                 },
                 password1: {
-                    required:    "Enter password",
-                    minlength: "Must be at least 5 characters long"
+                    required:    " * Enter password",
+                    minlength: "* min 5 chars"
                 },
                 password2: {
-                    required:   "Please confirm your password",
-					minlength: "Must at least 5 characters long",
-                    equalTo:    "Enter the same password as above"
+                    required:   "* Confirm password",
+					minlength: "* min 5 chars",
+                    equalTo:    "* not the same"
                 },
-                agree: "Check it",
+                agree: " Check it",
                 phone: {
-                    required:"Please enter phone number",
-                    digits: "Please enter only digits",
-                    minlength:"Must be a valid phone number    ex. '09309134970' ",
-                    maxlength:"Must be a valid phone number    ex. '09309134970' "
+                    required:"* Empty",
+                    digits: "* digits only",
+                    minlength:"* ex. '9309134970' ",
+                    maxlength:"* ex. '9309134970' "
                 }
 			 
             }
