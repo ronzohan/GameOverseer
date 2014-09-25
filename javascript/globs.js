@@ -914,10 +914,12 @@ function randomPairs( teams ) {
     for( var i = 0, n = teams.length;  i < n;  i += 2 ) {
         output.push([ teams[i], teams[i+1] ]);
     }
-    return output;
+    if (teams.length % 2 != 0)
+		output.push([null,null]);
+    return output;	
 }
 
-function lockTeams(userid,leagueid,managerid)
+function lockTeams(usderid,leagueid,managerid)
 {
 	$.ajax({
 		url: siteloc + scriptloc + "getLeague.py/lockLeague?",
@@ -927,21 +929,27 @@ function lockTeams(userid,leagueid,managerid)
 		},
 		dataType: 'json',
 		success:
-		getBracketInfo(leagueid,
+		$.ajax({	
+			url: siteloc + scriptloc + "getLeague.py/getBracketInfo?",
+			data: {
+			   league_id:leagueid
+			   
+		},
+		dataType: 'json',
+		success:
 			function (res){
+				console.log(res);
 			results = [null,null,null];
 			var participants = res[0][3];
 			if (participants)
 			{ 
 				participants = randomPairs(participants);
 				setbracketinfo(userid,leagueid,managerid,results,participants)
-				location.reload();
+				
 			}
+		}
 		})
    });
-	 
- 
-	
 }
 
 // Shuffle an array in place using the Fisher-Yates algorithm,
