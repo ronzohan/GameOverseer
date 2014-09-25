@@ -62,15 +62,22 @@ function updateUser()
 {
   $.ajax({
       url: siteloc + scriptloc + "updatemanager.py",
-      data: {}
+      data: {
+	  username2:$("#username1").val(),
+	  password2:$("#password1").val(),
+	  firstname2:$("#firstname1").val(),
+			 lastname2:$("#lastname1").val(),
+			 address2:$("#address1").val(),
+			 contactno2:$("#phone1").val(),
+			 email2:$("#emailadd1").val(),},
       dataType: 'json',
       success: function (res) {
                   console.log(res);
                   if(res[0][0] != "None")
                   {
+					$("#container2").html(
+					'<h1> Successfully Changed!</h1>');     
 
-      
-      
       
       
       
@@ -517,20 +524,25 @@ CreateTimer.prototype={
 	}
  }	
 }
- 
- 
-function fetchLeagueBracketInfo(league_id)
+
+function getBracketInfo(league_id,handle)
 {
-   $.ajax({
+	  $.ajax({
       url: siteloc + scriptloc + "getLeague.py/getBracketInfo?",
       data: {league_id:league_id},
       dataType: 'json',
       success:
-	  
 	  function (res){
+		 handle(res); //pass data to the desired function
+	  }
+		}); 
+}
+ 
+function fetchLeagueBracketInfo(res)
+{
 		  var r = new Array(res[0][1]);
 		  var t = res[0][2];
- 
+
           if(res[0][0] != "None" && res[0][4] == 1)
             {
 				var minimalData = {
@@ -553,12 +565,12 @@ function fetchLeagueBracketInfo(league_id)
 				$('#leaguetitle').empty();
 				$('#leaguetitle').append(res[0][0]);
 			}
-        }
-   }); 
+  
 }
 function onclickbracket(data) {
   alert("onclick(data: '" + data[0]['name'] +" vs "+data[1]['name']+" MatchID: "+ data[2][2]+"')");
   console.log(data);
+  console.log("ok");
 }
  
  
@@ -771,7 +783,7 @@ function addTeamsInLeague(leagueid,managerid,participantTeam)
                   	{
 						alert(res[0][0]);
 						$("#teamcollection tbody").remove();
-						viewParticipantsInLeague(leagueid);
+						getBracketInfo(leagueid,viewParticipantsInLeague);
 					} 
               	}
 	});
@@ -851,14 +863,8 @@ function fetchleaguename(name)
      }); 
  }
 
-function viewParticipantsInLeague(league_id)
+function viewParticipantsInLeague(res)
 {
-	$.ajax({
-		url: siteloc + scriptloc + "getLeague.py/getBracketInfo?",
-		data: {league_id:league_id},
-		dataType: 'json',
-		success:
-		function (res){
  
 			row = res[0][3];
 			if (row)
@@ -872,8 +878,7 @@ function viewParticipantsInLeague(league_id)
 				}
 				$("#teamcollection").append(table);
 			}
-		}
-   }); 
+ 
 }
 
 function deleteTeamsInLeague(participantTeam,managerid,leagueid)
@@ -916,10 +921,12 @@ function randomPairs( teams ) {
     for( var i = 0, n = teams.length;  i < n;  i += 2 ) {
         output.push([ teams[i], teams[i+1] ]);
     }
-    return output;
+    if (teams.length % 2 != 0)
+		output.push([null,null]);
+    return output;	
 }
 
-function lockTeams(userid,leagueid,managerid)
+function lockTeams(usderid,leagueid,managerid)
 {
 	$.ajax({
 		url: siteloc + scriptloc + "getLeague.py/lockLeague?",
@@ -929,27 +936,27 @@ function lockTeams(userid,leagueid,managerid)
 		},
 		dataType: 'json',
 		success:
-		//i am repeating myself now
-		function (res){
-			var results = [];
-			$.ajax({
+		$.ajax({	
 			url: siteloc + scriptloc + "getLeague.py/getBracketInfo?",
-			data: {league_id:leagueid},
-			dataType: 'json',
-			success:
+			data: {
+			   league_id:leagueid
+			   
+		},
+		dataType: 'json',
+		success:
 			function (res){
+				console.log(res);
+			results = [null,null,null];
 			var participants = res[0][3];
 			if (participants)
 			{ 
 				participants = randomPairs(participants);
 				setbracketinfo(userid,leagueid,managerid,results,participants)
-				location.reload();
+				
 			}
 		}
+		})
    });
-		}
-   }); 
-	
 }
 
 // Shuffle an array in place using the Fisher-Yates algorithm,
