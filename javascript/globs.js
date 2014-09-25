@@ -765,7 +765,7 @@ function verifydelete(leagueid,managerid)
 
 }
 
-function addTeamsInLeague(leagueid,managerid,participantTeam)
+function addTeamsInLeague(leagueid,managerid,participantTeam,participantTeamname)
 {
 	redirect_ifNotloggedin();
 	$.ajax({
@@ -774,7 +774,8 @@ function addTeamsInLeague(leagueid,managerid,participantTeam)
 		data: {
 			leagueid:leagueid,
       		managerid:managerid,
-			participantTeam:participantTeam,      
+			participantTeam:participantTeam,
+			participantTeamname:participantTeamname    
       	},
       	
       	dataType: 'json',	
@@ -798,11 +799,8 @@ function redirect_ifNotloggedin()
 		window.location.replace("login.html");
 }
 
-function redirect(n) {
-    if(n == 0)
-		document.location.href = '/GameOverseer/searchresult.html?query=' + document.getElementById('usename').value;
-	else
-		document.location.href = '/GameOverseer/searchusername.html?query=' + document.getElementById('name').innerHTML;
+function redirect() {
+    document.location.href = '/GameOverseer/searchresult.html?query=' + document.getElementById('usename').value;
 }
 
 function fetchusername(name)
@@ -817,15 +815,7 @@ function fetchusername(name)
 				if(res[0][0] != "None")
 				{
 					$("#k").append('<h2> results found: </h2>');
-					for (i = 0; i < res.length; i++)
-					{
-						row = res[i];
-      
-						for (j = 0; j < row.length ; j++)
-						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-						$("#name").append(row[j]);  
-       
-					} 
+					$("#name").append('<a href = searchusername.html?query=' + res[0][0] + '>' + res[0][0] + '</a>');
 				}
 				else 
 				    fetchleaguename(name);
@@ -845,16 +835,8 @@ function fetchleaguename(name)
 				if(res[0][0] != "None")
 				{
 					$("#k").append('<h2> results found: </h2>');
-					for (i = 0; i < res.length; i++)
-					{
-						row = res[i];
-      
-						for (j = 0; j < row.length ; j++)
-						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-						$("#name").append(row[j]);
-					} 
-                 }
-				 
+					$("#league").append('<a href = leagueinfo.html?id=' + getLeagueID(name) + '>' + res[0][0] + '</a>');
+				 }
 				 else{
 				  $("#k").text('');
 				  $("#k").append("No Results Found");
@@ -862,32 +844,63 @@ function fetchleaguename(name)
 		} 
      }); 
  }
+ 
+ function getLeagueID(name)
+{
+	var id;
+	$.ajax({
+		url: siteloc + scriptloc + "getLeagueId.py",
+		async:false,
+		data: { name:name
+      	},
+      	dataType: 'json',	
+      	success: function (res) {
+                  	if(res[0][0] != "None")
+                  	{
+						for (i = 0; i < res.length; i++)
+						{
+							row = res[i];
+      
+							for (j = 0; j < row.length ; j++)
+								if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"'){
+									id = row[j]; 			
+								}	
+						} 
+						
+					} 
+              	}
+	});
+	return id;
+	
+}
 
 function viewParticipantsInLeague(res)
 {
  
-			row = res[0][3];
+			row = res[0][5];
+			rowid = res[0][3];
 			if (row)
 			{ 
 				table = "";
 				for (i = 0;i<row.length;i++)
 				{
 					table += "<tr><td>"+row[i]+"</td><td>"
-					+'<a href="#" onClick = deleteTeamsInLeague("'+row[i]+'",'+$.cookie("managerid")
-					+','+getParameterByName('id')+') class="glyphicon glyphicon-remove">Remove</a></td></tr>)';
+					+'<a href="#" onClick = deleteTeamsInLeague('+rowid[i]+','+$.cookie("managerid")
+					+','+getParameterByName('id')+',\''+row[i]+'\') class="glyphicon glyphicon-remove">Remove</a></td></tr>)';
 				}
 				$("#teamcollection").append(table);
 			}
  
 }
 
-function deleteTeamsInLeague(participantTeam,managerid,leagueid)
+function deleteTeamsInLeague(participantTeam,managerid,leagueid,participantTeamname)
 {
 	$.ajax({
 		url: siteloc + scriptloc + "getLeague.py/deleteTeamInLeague?",
 		data: {leagueid:leagueid,
 			   managerid:managerid,
-			   participantTeam:participantTeam
+			   participantTeam:participantTeam,
+			   participantTeamname:participantTeamname
 		},
 		dataType: 'json',
 		success:
@@ -921,12 +934,12 @@ function randomPairs( teams ) {
     for( var i = 0, n = teams.length;  i < n;  i += 2 ) {
         output.push([ teams[i], teams[i+1] ]);
     }
-    if (teams.length % 2 != 0)
+    if (output.length % 2 != 0)
 		output.push([null,null]);
     return output;	
 }
 
-function lockTeams(usderid,leagueid,managerid)
+function lockTeams(userid,leagueid,managerid)
 {
 	$.ajax({
 		url: siteloc + scriptloc + "getLeague.py/lockLeague?",
@@ -947,7 +960,7 @@ function lockTeams(usderid,leagueid,managerid)
 			function (res){
 				console.log(res);
 			results = [null,null,null];
-			var participants = res[0][3];
+			var participants = res[0][5];
 			if (participants)
 			{ 
 				participants = randomPairs(participants);
@@ -993,12 +1006,23 @@ function searchAutocomplete()
 {
 	fetchAllTeamInfo(function(output)
 	{
-		var availableTags = [];
+		var data = [];
 		for (i=0;i<output.length;i++)
-			availableTags.push(output[i][1]);
-		
+		{
+			data.push({"label":output[i][1],"value":output[i][1],"id":output[i][0]});
+		}
+		var source  = [ ];
+		var mapping = { };
+		for(var i = 0; i < data.length; ++i) {
+			source.push(data[i].label);
+			mapping[data[i].label] = data[i].value;
+		}
+		console.log(data);
 		$( "#teamname" ).autocomplete({
-		  source: availableTags
+		  source: data,
+		 select: function(event, ui) {
+		 $("#addedteamid").val(ui.item.id);
+		}
     });
 		
 	});
