@@ -13,7 +13,8 @@
 		
 		<p id="leagueid" hidden></p>
 		<div id="addteamdialog" title="Add Teams">
-			<input type="text" name="Name" id="teamname">
+			<input type="text" name="Name" id="teamname" width=50>
+			<p id="addedteamid"></p>
 		</div>
 		
 		<div id="teamdraft" class="container">
@@ -65,9 +66,7 @@
 		            	text: 'Add Team',
 						id : 'addteam',
 						click: function(){
-							var teamname = $('#teamname').val(); 
-							
-							addTeamsInLeague(getParameterByName('id'),$.cookie('managerid'),teamname);
+							addTeamsInLeague(getParameterByName('id'),$.cookie('managerid'),$("#addedteamid").val(),$("#teamname").val());
 							
 						}						
 		            },	

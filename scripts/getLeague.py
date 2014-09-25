@@ -68,22 +68,24 @@ def deleteLeague(req,leagueid,managerid):
     rets = x.execqry("select * from deleteLeague("+leagueid+"," + managerid+");",True)
     return json.dumps(rets)
  
-def addTeamsInLeague(req,leagueid,managerid,participantTeam):
+def addTeamsInLeague(req,leagueid,managerid,participantTeam,participantTeamname):
     leagueid = cgi.escape(leagueid)
     managerid = cgi.escape(managerid)
     participantTeam = cgi.escape(participantTeam)
+    participantTeamname = cgi.escape(participantTeamname);
 	
     x = doSql()
-    rets = x.execqry("select addTeamsInLeague("+leagueid+"," + managerid+",'"+participantTeam+"');",True)
+    rets = x.execqry("select addTeamsInLeague("+leagueid+"," + managerid+","+participantTeam+",'"+participantTeamname+"');",True)
     return json.dumps(rets)
 
-def deleteTeamInLeague(req,leagueid,managerid,participantTeam):
+def deleteTeamInLeague(req,leagueid,managerid,participantTeam,participantTeamname):
     leagueid = cgi.escape(leagueid)
     managerid = cgi.escape(managerid)
     participantTeam = cgi.escape(participantTeam)
+    participantTeamname = cgi.escape(participantTeamname);
     
     x = doSql()
-    rets = x.execqry("select deleteTeamsInLeague("+leagueid+"," + managerid+",'"+participantTeam+"');",True)
+    rets = x.execqry("select deleteTeamsInLeague("+leagueid+"," + managerid+","+participantTeam+",'"+participantTeamname+"');",True)
     return json.dumps(rets)
 
 def lockLeague(req,leagueid,managerid,userid):

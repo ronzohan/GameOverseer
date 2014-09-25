@@ -7,7 +7,7 @@ except ImportError:
 
 
 def index(req,name = None):
-		if name is None:
+    if name is None:
         query = "SELECT * FROM get_allTeams();"
     else:
         name = cgi.escape(name)
