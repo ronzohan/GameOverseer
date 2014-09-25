@@ -844,6 +844,35 @@ function fetchleaguename(name)
 		} 
      }); 
  }
+ 
+ function getLeagueID(name)
+{
+	var id;
+	$.ajax({
+		url: siteloc + scriptloc + "getLeagueId.py",
+		async:false,
+		data: { name:name
+      	},
+      	dataType: 'json',	
+      	success: function (res) {
+                  	if(res[0][0] != "None")
+                  	{
+						for (i = 0; i < res.length; i++)
+						{
+							row = res[i];
+      
+							for (j = 0; j < row.length ; j++)
+								if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"'){
+									id = row[j]; 			
+								}	
+						} 
+						
+					} 
+              	}
+	});
+	return id;
+	
+}
 
 function viewParticipantsInLeague(res)
 {
