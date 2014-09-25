@@ -1,13 +1,19 @@
 <html>
    <head>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="css/custom.css" rel="stylesheet">
     <script src="javascript/jquery.js"></script>
 	<script src="javascript/bootstrap.min.js"></script>
 	<script src="javascript/globs.js"></script>
-    <script src="javascript/jqinit.js"></script>  
+    <script src="javascript/jqinit.js"></script>
     <script src="javascript/jquery.cookie.js"></script> 
+	<script>
+	  $(function(){
+	    $("#container").load("matchticker.html"); 
+	  });
+   	</script>
+	
  
    </head>
    <body>
@@ -15,5 +21,8 @@
 	<div id="header"></div>  
 	<div id = "container"></div>
    	</body>
+	
+		
+	
  
 </html>
