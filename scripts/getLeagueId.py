@@ -5,7 +5,7 @@ try:
 except ImportError:
     import simplejson as json
 	
-def getleagueID(req,name):
+def index(req,name):
     name= cgi.escape(name)    
     x = doSql() 
     rets = x.execqry("select league_id from league where name = '" + name + "';",False)
