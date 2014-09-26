@@ -86,13 +86,11 @@ function updateUser()
     });
 }
 
-   
-function fetchProfileInfo(userid, userid_fk)
+function fetchProfileInfo(name)
 {
    $.ajax({
       url: siteloc + scriptloc + "getProfileInfo.py",
-      data: {userid:userid, userid_fk:userid_fk 
-             },
+      data: {name:name},
       dataType: 'json',
       success: function (res) {
 				var k = 1;
@@ -101,6 +99,9 @@ function fetchProfileInfo(userid, userid_fk)
 					for (i=0;i<res.length;i++){
 						row = res[i];
 					for (j = 0; j < row.length ; j++){
+						
+						if(k == 1)
+							document.getElementById("username1").value = row[j]; 
 						
 						if(k == 2)
 							document.getElementById("firstname1").value = row[j]; 
