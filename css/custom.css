@@ -249,7 +249,8 @@ margin-left:  36px;
      }
 	 
 		.jumbotron{ 
-			background: rgba(255, 255, 255, 1); 
+			background: rgba(255, 255, 255, 1);
+            border: 1px solid #000000;
             padding: 45px 15px 15px;  
 			height: 1500px;
 		}
