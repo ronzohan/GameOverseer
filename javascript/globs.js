@@ -280,7 +280,7 @@ function displayLeagueByManagerName(username)
 					{
 						row = res[i];
 						
-						$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='
+						$("#leaguetable").append('<tr><td><a href=searchleague.html?id='
 												+row[0]+'>'+row[1]+'</a></td>'
 											+'<td>'+row[2]+'</td>' + '<td>'+row[3]
 											+'</td></tr>');
@@ -841,7 +841,7 @@ function fetchleaguename(name)
 				if(res[0][0] != "None")
 				{
 					$("#k").append('<h2> results found: </h2>');
-					$("#league").append('<a href = leagueinfo.html?id=' + getLeagueID(name) + '>' + res[0][0] + '</a>');
+					$("#league").append('<a href = searchleague.html?id=' + getLeagueID(name) + '>' + res[0][0] + '</a>');
 				 }
 				 else{
 				  $("#k").text('');
