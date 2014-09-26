@@ -805,6 +805,8 @@ function redirect(n) {
 		document.location.href = '/GameOverseer/searchresult.html?query=' + document.getElementById('usename').value;
 	if(n == 1)
 		document.location.href = '/GameOverseer/leaguemanager_profile.html?query=' + document.getElementById('username').innerHTML;
+	if(n == 2)
+		document.location.href = '/GameOverseer/editprofile.html?query=' + document.getElementById('username').innerHTML;
 }
 
 function fetchusername(name)
