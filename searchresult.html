@@ -5,18 +5,17 @@
 		<link rel="stylesheet" href="css/custom.css"> 
 		<link href="https://assets-cdn.github.com/assets/github-0ee9064842419bc947ae49576d87065a9fa954d5.css" media="all" rel="stylesheet" type="text/css" />
 		<link href="https://assets-cdn.github.com/assets/github2-fdf72e5a92bee3dcbf0220f2d727814f13d53277.css" media="all" rel="stylesheet" type="text/css" />
-		<script src="javascript/jquery.js"></script>
-	
-	<style type ="text/css">
-	</style>
+		<script src="javascript/jquery.js"></script> 
 	<script>
+		$(function(){
+	    $("#header").load("header.html"); 
+	    });
 		$(document).ready(function(){
 			fetchusername(getQueryVariable());
 		});
 	</script>
-   </head>
+	</head>
    <body>
-		<div id="fullscreen_bg" class="fullscreen_bg"/> 
 		<div id="header"> </div>
 		<div id="target"></div>
 
@@ -51,17 +50,13 @@
    </body>
    
    	
-    <script src="javascript/bootstrap.min.js"></script>
+    
+	<script src="javascript/bootstrap.min.js"></script>
 	<script src="javascript/globs.js"></script>
-    <script src="javascript/jqinit.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 	
-	<script>
-	  $(function(){
-	    $("#header").load("header.html"); 
-	  });
-   	</script>
+	
 		
    
 </html>
