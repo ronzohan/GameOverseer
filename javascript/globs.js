@@ -800,8 +800,11 @@ function redirect_ifNotloggedin()
 		window.location.replace("login.html");
 }
 
-function redirect() {
-    document.location.href = '/GameOverseer/searchresult.html?query=' + document.getElementById('usename').value;
+function redirect(n) {
+    if(n == 0)
+		document.location.href = '/GameOverseer/searchresult.html?query=' + document.getElementById('usename').value;
+	else
+		document.location.href = '/GameOverseer/leaguemanager_profile.html?query=' + document.getElementById('username').innerHTML;
 }
 
 function fetchusername(name)
