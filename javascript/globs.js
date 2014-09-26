@@ -803,7 +803,7 @@ function redirect_ifNotloggedin()
 function redirect(n) {
     if(n == 0)
 		document.location.href = '/GameOverseer/searchresult.html?query=' + document.getElementById('usename').value;
-	else
+	if(n == 1)
 		document.location.href = '/GameOverseer/leaguemanager_profile.html?query=' + document.getElementById('username').innerHTML;
 }
 
