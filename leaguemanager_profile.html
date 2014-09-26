@@ -9,10 +9,15 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 	<link rel="stylesheet" href="css/custom.css">  
+	<script src="javascript/jquery.js"></script>
+	<script src="javascript/globs.js"></script>
 	<script>
 		  $(function(){
 	    $("#header").load("header.html"); 
 	  });
+		$(document).ready(function(){
+			fetchProfileInfo(getQueryVariable());	
+		});
 	</script>
 	
 	<style>
@@ -37,11 +42,7 @@
  <div    class="registernabox2 col-sm-6">
  <h1   face="Arial"   align="center"   style="color:#400e1b;  "   > <font face="Arial">   Profile </font><br><br> </h1>
    <form class="form-horizontal" role="form" id="register">
-        <script language = "JavaScript">
-			fetchProfileInfo(1,1);
-		</script>
-		   
-                <div class="form-group">
+			<div class="form-group">
                     <label for="lastname" class="col-sm-4 control-label">First Name :</label>
                     <div class="controls form-inline">
                         <div class="input-group">
@@ -131,10 +132,8 @@
 </div>
 
 </body> 
-
-	
 	 
-	<script src="javascript/jquery.js"></script>
+	
 	<script src="javascript/bootstrap.min.js"></script>
 	<script src="javascript/globs.js"></script>
     <script src="javascript/jquery-1.10.2.min.js"></script>
