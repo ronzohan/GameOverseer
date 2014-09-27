@@ -1,4 +1,4 @@
-from doSql import *
+from dosql import *
 import cgi
 try:
     import json
