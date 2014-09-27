@@ -6,8 +6,7 @@ create table league (
      fixture_type text,
      results int[],
      teams text[],
-     participants int[],
-     participantsName text[],
+     participants text[],
      locked int
 );
  
@@ -67,11 +66,11 @@ $$
 
 --view
 create or replace function 
-    get_league_bracket_info(in int, out text,out int[],out text[],out int[],out int,out text[]) 
+    get_league_bracket_info(in int, out text,out int[],out text[],out text[],out int) 
 returns setof record as
  
 $$ 
-     select  name,results,teams,participants,locked,participantsname from league
+     select  name,results,teams,participants,locked from league
      where league_id = $1;
      
 $$
@@ -116,7 +115,7 @@ $$
   language 'plpgsql'; 
   
 
-create or replace function addTeamsInLeague(p_league_id int,p_managerid_fk int,p_participant_team int,p_participant_teamname text) 
+create or replace function addTeamsInLeague(p_league_id int,p_managerid_fk int,p_participant_team text) 
     returns text as
 $$
   declare     
@@ -129,7 +128,7 @@ $$
 		return 'Failed';	
       else
         update League
-           set participants = participants || p_participant_team, participantsname = participantsname || p_participant_teamname
+           set participants = participants || p_participant_team
              where managerid_fk = p_managerid_fk and league_id = v_id;
         return 'Success';
       end if;  
@@ -139,7 +138,7 @@ $$
 $$
   language 'plpgsql';
 
-create or replace function deleteTeamsInLeague(p_league_id int,p_managerid_fk int,p_participant_team int,p_participant_team_name text) 
+create or replace function deleteTeamsInLeague(p_league_id int,p_managerid_fk int,p_participant_team text) 
     returns text as
 $$
   declare     
@@ -152,7 +151,7 @@ $$
 		return 'Failed';	
       else 
         update league
-           set participants = array_remove(participants,p_participant_team), participantsname = array_remove(participantsname,p_participant_team_name)
+           set participants = array_remove(participants,p_participant_team)
              where managerid_fk = p_managerid_fk and league_id = v_id;
         return 'Success';
       end if;  

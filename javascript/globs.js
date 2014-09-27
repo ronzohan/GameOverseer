@@ -766,7 +766,7 @@ function verifydelete(leagueid,managerid)
 
 }
 
-function addTeamsInLeague(leagueid,managerid,participantTeam,participantTeamname)
+function addTeamsInLeague(leagueid,managerid,participantTeam)
 {
 	redirect_ifNotloggedin();
 	$.ajax({
@@ -775,8 +775,7 @@ function addTeamsInLeague(leagueid,managerid,participantTeam,participantTeamname
 		data: {
 			leagueid:leagueid,
       		managerid:managerid,
-			participantTeam:participantTeam,
-			participantTeamname:participantTeamname    
+			participantTeam:participantTeam,      
       	},
       	
       	dataType: 'json',	
@@ -883,30 +882,30 @@ function fetchleaguename(name)
 function viewParticipantsInLeague(res)
 {
  
-			row = res[0][5];
-			rowid = res[0][3];
+			row = res[0][3];
 			if (row)
 			{ 
+				
 				table = "";
 				for (i = 0;i<row.length;i++)
 				{
+					console.log(row[i]);
 					table += "<tr><td>"+row[i]+"</td><td>"
-					+'<a href="#" onClick = deleteTeamsInLeague('+rowid[i]+','+$.cookie("managerid")
-					+','+getParameterByName('id')+',\''+row[i]+'\') class="glyphicon glyphicon-remove">Remove</a></td></tr>)';
+					+'<a href="#" onClick = deleteTeamsInLeague("'+row[i]+'")>Remove</a>';
 				}
+				console.log(table);
 				$("#teamcollection").append(table);
 			}
  
 }
 
-function deleteTeamsInLeague(participantTeam,managerid,leagueid,participantTeamname)
+function deleteTeamsInLeague(participantTeam,managerid,leagueid)
 {
 	$.ajax({
 		url: siteloc + scriptloc + "getLeague.py/deleteTeamInLeague?",
 		data: {leagueid:leagueid,
 			   managerid:managerid,
-			   participantTeam:participantTeam,
-			   participantTeamname:participantTeamname
+			   participantTeam:participantTeam
 		},
 		dataType: 'json',
 		success:
@@ -966,7 +965,7 @@ function lockTeams(userid,leagueid,managerid)
 			function (res){
 				console.log(res);
 			results = [null,null,null];
-			var participants = res[0][5];
+			var participants = res[0][3];
 			if (participants)
 			{ 
 				participants = randomPairs(participants);
@@ -1012,23 +1011,13 @@ function searchAutocomplete()
 {
 	fetchAllTeamInfo(function(output)
 	{
-		var data = [];
+		var availableTags = [];
 		for (i=0;i<output.length;i++)
-		{
-			data.push({"label":output[i][1],"value":output[i][1],"id":output[i][0]});
-		}
-		var source  = [ ];
-		var mapping = { };
-		for(var i = 0; i < data.length; ++i) {
-			source.push(data[i].label);
-			mapping[data[i].label] = data[i].value;
-		}
-		console.log(data);
+			availableTags.push(output[i][1]);
+ 
 		$( "#teamname" ).autocomplete({
-		  source: data,
-		 select: function(event, ui) {
-		 $("#addedteamid").val(ui.item.id);
-		}
+		  source: availableTags,
+		 
     });
 		
 	});

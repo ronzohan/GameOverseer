@@ -7,22 +7,22 @@
 		<link href="css/jquery-ui.min.css" rel="stylesheet">
     </head>
     <body>
+	 
 		<div id="fullscreen_bg" class="fullscreen_bg"></div> 
 		<div id="header"></div> 
-		<div class="container"   id="leagueinfo"></div>
+		<div class="container"   style="margin-top:100px;"  id="leagueinfo"></div>
 		
 		<p id="leagueid" hidden></p>
 		<div id="addteamdialog" title="Add Teams">
 			<input type="text" name="Name" id="teamname" width=50>
-			<p id="addedteamid"></p>
 		</div>
 		
 		<div id="teamdraft" class="container">
  				
 		<div class="container center">
 			<div class="panel panel-default" id="teampanel">
-				<div class="panel-heading clearfix"> 
-					<h4 class="panel-title pull-left" style="padding-top: 7.5px;" id="leaguetitle"> </h4>
+				<div class="panel-heading clearfix"  style=" background:#262421;" > 
+					<h4 class="panel-title pull-left" style=" color:white;  padding-top: 7.5px;" id="leaguetitle"> </h4>
 					<div class="btn-group pull-right">
 						<a 
 						   href="#" 
@@ -76,8 +76,9 @@
 		            	text: 'Add Team',
 						id : 'addteam',
 						click: function(){
-							addTeamsInLeague(getParameterByName('id'),$.cookie('managerid'),$("#addedteamid").val(),$("#teamname").val());
-							
+							 var teamname = $('#teamname').val(); 
+-							
+-							addTeamsInLeague(getParameterByName('id'),$.cookie('managerid'),teamname);
 						}						
 		            },	
 		            close:{
