@@ -133,7 +133,7 @@ div.jQBracket {
       border-color: #0C0; }
   div.jQBracket .np .connector,
   div.jQBracket .np .connector div.connector {
-    border-color: #FFF; }
+    border-color: #000; }
   div.jQBracket .bubble {
     height: 22px;
     line-height: 22px;
