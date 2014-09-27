@@ -1,7 +1,7 @@
 create table events(
     e_id serial primary key,
-    teamID1_FK serial references team (team_id),
-    teamID2_FK serial references team (team_id),
+    teamname1 text,
+    teamname2  text,
     leagueID_FK serial references league (league_id),
     eDate date,
     eLocation text,
@@ -132,7 +132,7 @@ declare
 
 begin
   select into v_e_id e_id from events
-	where e_id = p_e_id
+	where e_id = p_e_id;
   
   update events
 	set eDate = p_eDate,eLocation = p_eLocation,
