@@ -32,7 +32,7 @@ $$
 --HOW TO USE:
 -- SELECT setFixE(1,1,1,'December 5, 2014', 'Iligan City', '08:00 AM', '04:00 PM');
 
-create or replace function setFixE(p_teamID1_FK int, p_teamID2_FK int, 
+create or replace function setFixE(p_teamname1 text, p_teamname2 text, 
 								   p_leagueID_FK int, p_eDate date, 
 								   p_eLocation text, p_eTime_start time, 
 								   p_eTime_end time) 
@@ -44,12 +44,12 @@ declare
 
 begin
   select into v_e_id e_id from events
-	where teamID1_FK = p_teamID1_FK and teamID2_FK = p_teamID2_FK and leagueID_FK = p_leagueID_FK;
+	where teamname1 = p_teamname1 and teamname2 = p_teamname2 and leagueID_FK = p_leagueID_FK;
   
-  insert into events(teamID1_FK, teamID2_FK, leagueID_FK, eDate, 
+  insert into events(teamname1, teamname2, leagueID_FK, eDate, 
 					eLocation, eTime_start, eTime_end) 
 					values
-					(p_teamID1_FK, p_teamID2_FK, p_leagueID_FK, 
+					(p_teamname1, p_teamname2, p_leagueID_FK, 
 					p_eDate, p_eLocation, p_eTime_start, p_eTime_end);
   return 'OK';
   end;
@@ -145,3 +145,4 @@ end;
 $$
 
     language 'plpgsql';
+
