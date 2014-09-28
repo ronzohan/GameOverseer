@@ -1,6 +1,9 @@
 //define functions and global variables here...
 var siteloc = "http://localhost/GameOverseer";
 var scriptloc = "/scripts/";
+
+var latestEventID; //for holding the id of the recently created event
+				   //during locking of teams
  
 function fetchEvent()
 {
@@ -569,9 +572,17 @@ function fetchLeagueBracketInfo(res)
   
 }
 function onclickbracket(data) {
-  alert("onclick(data: '" + data[0]['name'] +" vs "+data[1]['name']+" MatchID: "+ data[2][2]+"')");
-  console.log(data);
-  console.log("ok");
+	//alert("onclick(data: '" + data[0]['name'] +" vs "+data[1]['name']+" MatchID: "+ data[2][2]+"')");
+	if (data[0]['name'] && data[1]['name'])
+	{
+		$("#teamversus").empty();
+		$("#teamversus").append(data[0]['name']);
+		$("#teamversus").append(" vs ");
+		$("#teamversus").append(data[1]['name']);
+ 		$("#myModal").modal('show');
+ 		
+
+ 	}
 }
  
  
@@ -889,11 +900,9 @@ function viewParticipantsInLeague(res)
 				table = "";
 				for (i = 0;i<row.length;i++)
 				{
-					console.log(row[i]);
 					table += "<tr><td>"+row[i]+"</td><td>"
 					+'<a href="#" onClick = deleteTeamsInLeague("'+row[i]+'")>Remove</a>';
 				}
-				console.log(table);
 				$("#teamcollection").append(table);
 			}
  
@@ -964,14 +973,26 @@ function lockTeams(userid,leagueid,managerid)
 		success:
 			function (res){
 				console.log(res);
-			results = [null,null,null];
-			var participants = res[0][3];
-			if (participants)
-			{ 
-				participants = randomPairs(participants);
-				setbracketinfo(userid,leagueid,managerid,results,participants)
-				
-			}
+				results = [];
+				var participants = res[0][3];
+				if (participants)
+				{ 
+					participants = randomPairs(participants);
+					for (i=0;i<participants.length;i++)
+					{
+						if (participants[i][0] || participants[i][1])
+						{
+							setEvent(participants[i][0],participants[i][1],leagueid,null,null,null,null);
+							
+							//latestEventID was set upon call of setbracketinfo
+							results.push([null,null,parseInt(latestEventID)]);
+							
+							latestEventID = "";
+						}
+					}
+					console.log(results);
+					setbracketinfo(userid,leagueid,managerid,results,participants);
+				}
 		}
 		})
    });
@@ -1053,3 +1074,27 @@ function searchAutocomplete()
 				} 
      }); 
  }
+
+
+function setEvent(teamname1,teamname2,leagueid,eDate,eLocation,eTime_start,eTime_end)
+{
+	var event_id = $.ajax({
+		 url: siteloc + scriptloc + "Event.py/setFixE",
+		 data: {
+			 teamname1:teamname1,
+			 teamname2:teamname2,
+			 leagueid:leagueid,
+			 eDate:eDate,
+			 eLocation:eLocation,
+			 eTime_start:eTime_start,
+			 eTime_end:eTime_end
+		  },
+		  dataType: 'json',
+		  async:false,
+		  success: function (res) {
+				if (res != "None")
+					latestEventID = res[0][0];
+		 }
+		 }); 
+}
+
