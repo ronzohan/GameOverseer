@@ -18,20 +18,7 @@
 		$(document).ready(function(){
 			fetchProfileInfo(getQueryVariable());	
 		});
-	</script>
-	
-	<style>
-	        .registernabox2 {
-            background-color: #9a7c8c;
-			background: rgba(150, 154, 154, 0.9);
-            border: 11px solid #620c0c;
-            padding: 45px 15px 15px; 
-			top:50px;
-			margin  :65px; 
-			float:left;
-			
-	</style>
-	
+	</script>	
 </head> 
 
 
@@ -39,12 +26,20 @@
 <div id="header"></div> 
 								
  <div class="container">
- <div    class="registernabox2 col-sm-6">
- <h1   face="Arial"   align="center"   style="color:#400e1b;  "   > <font face="Arial">   Profile </font><br><br> </h1>
-   <form class="form-horizontal" role="form" id="register">
-			<div class="form-group">
-                    <label for="lastname" class="col-sm-4 control-label">First Name :</label>
-                    <div class="controls form-inline">
+  <div id="loginbox" style="margin-top:180px; right:-10px; " class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            
+			<div class="panel panel-info" >
+			
+                    <div style="background:#262421;" class="panel-heading" >
+                    <div style="color:white;" class="panel-title">Profile</div>
+                    <div style="color:white; float:right; font-size: 80%; position: relative; top:-10px"> </div>
+                    </div>     
+			<div style="padding-top:50px" class="panel-body" >
+			<form   class="form-horizontal" role="form" id="register">
+           		   
+                <div style="margin-bottom: 25px" class="form-group">
+                    <label for="firstname" class="col-sm-4 control-label">First Name :</label>
+                    <div   class="controls form-inline">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
@@ -53,7 +48,7 @@
                     </div>
                 </div>
 				
-				<div class="form-group">
+				<div style="margin-bottom: 25px" class="form-group">
                     <label for="lastname" class="col-sm-4 control-label">Last Name :</label>
                     <div class="controls form-inline">
                         <div class="input-group">
@@ -61,74 +56,80 @@
                             </span>
                               <input id="lastname1" class="form-control" name="lastname" disabled />
                         </div>
+                        <label class="error" for="lastname"></label>
                     </div>
                 </div>
 				
 				
-                <div class="form-group">
+                <div style="margin-bottom: 25px" class="form-group">
                     <label for="username" class="col-sm-4 control-label">Username :</label>
                     <div class="controls form-inline">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                               <input id="username1" class="form-control" name="username" disabled />
+                              <input id="username1" class="form-control" name="username" disabled />
                         </div>
                     </div>
                 </div>
+								
 				
-				
-                <div class="form-group">
+                <div style="margin-bottom: 25px"  class="form-group">
                     <label for="inputEmail" class="col-sm-4 control-label">Email :</label>
                     <div class="controls form-inline">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span>
                             </span>
-                            <input id="emailadd1" class="form-control" name="emailadd" disabled>
+                              <input id="emailadd1" class="form-control" name="emailadd" disabled />
                         </div>
                     </div>
                 </div>
 				
 				
 				
-                <div class="form-group">
+                <div style="margin-bottom: 25px" class="form-group">
                     <label for="address" class="col-sm-4 control-label">Address :</label>
                     <div class="controls form-inline">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
                             </span>
-                              <input id="address1" class="form-control" name="address" disabled>
+                              <input id="address1" class="form-control" name="address" disabled />
                         </div>
                     </div>
                 </div>
 				
 				
-                <div class="form-group">
+                <div style="margin-bottom: 25px" class="form-group">
                     <label for="phone" class="col-sm-4 control-label">Phone :</label>
                     <div class="controls form-inline">
                         <div class="input-group">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-phone-alt"> +63</span>
                             </span>
-                              <input id="phone1" class="form-control" name="phone" disabled>
+                            <input style="width:150px;" type="tel" class="form-control" id="phone1" name="phone" disabled />
                         </div>
                     </div>
                 </div>
-			
 				
+
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <div class="form-group">
-                    <div class="col-sm-offset-4 col-sm-6">
-							<button 
+                    <div style="color:#000000;" class="col-sm-offset-4 col-sm-6">
+							<button  
 							type="button" 
+							style="margin-left:45px;"
 							class="btn btn-default signup">
-							<a 
-							href = "#" onclick = "redirect(2);"
+							<a href = "#" onclick = "redirect(2);"
 							style="text-decoration:none;">
 							Edit Profile
 							</a>
 							</button>
                     </div>
                 </div>
+				
+				
   </form>
 </div>   
+</div>
+</div>
 </div>
 
 </body> 
