@@ -815,7 +815,7 @@ function redirect_ifNotloggedin()
 
 function redirect(n) {
     if(n == 0)
-		document.location.href = '/GameOverseer/searchresult.html?query=' + document.getElementById('usename').value;
+		document.location.href = '/GameOverseer/search.html?query=' + document.getElementById('usename').value;
 	if(n == 1)
 		document.location.href = '/GameOverseer/leaguemanager_profile.html?query=' + document.getElementById('username').innerHTML;
 	if(n == 2)
@@ -833,6 +833,8 @@ function fetchusername(name)
    
 				if(res[0][0] != "None")
 				{
+				     $("#k").append('<h2> -------- </h2>');
+					 $("#k").append('<h2> users </h2>');
 					$("#k").append('<h2> results found: </h2>');
 					$("#name").append('<a href = searchusername.html?query=' + res[0][0] + '>' + res[0][0] + '</a>');
 				}
@@ -853,6 +855,8 @@ function fetchleaguename(name)
 				
 				if(res[0][0] != "None")
 				{
+				     $("#k").append('<h2> -------- </h2>');
+					 $("#k").append('<h2> league </h2>');
 					$("#k").append('<h2> results found: </h2>');
 					$("#league").append('<a href = searchleague.html?id=' + getLeagueID(name) + '>' + res[0][0] + '</a>');
 				 }
