@@ -14,14 +14,20 @@ function fetchEvent(ide)
       dataType: 'json',
       success: function (res) {
                   console.log(res);
-                  if(res[0][0] != "None")
-                  {
-					$("#datepicker").val(res[0][0]);
-					$("#location").val(res[0][1]);
-					$("#starttime").val(res[0][2]);
-					$("#endtime").val(res[0][3]);
+                	if(res[0][0] != "None")
+						$("#datepicker").val(res[0][0]);
 
-				  }
+					if (res[0][1] != "None")
+						$("#location").val(res[0][1]);
+
+					if (res[0][2] != "None")
+						$("#starttime").val(res[0][2]);
+
+					if (res[0][3] != "None")
+						$("#endtime").val(res[0][3]);
+
+
+
       }
     });
 }
@@ -1010,6 +1016,7 @@ function lockTeams(userid,leagueid,managerid)
 							setEvent(participants[i][0],participants[i][1],leagueid,null,null,null,null);
 							
 							//latestEventID was set upon call of setbracketinfo
+							alert(latestEventID);
 							results.push([null,null,parseInt(latestEventID)]);
 							
 							latestEventID = "";
@@ -1112,10 +1119,13 @@ function setEvent(teamname1,teamname2,leagueid,eDate,eLocation,eTime_start,eTime
 			 eDate:eDate,
 			 eLocation:eLocation,
 			 eTime_start:eTime_start,
-			 eTime_end:eTime_end
+			 eTime_end:eTime_end,
+
 		  },
 		  dataType: 'json',
+		  async:false,
 		  success: function (res) {
+		  		console.log(res);
 				if (res != "None")
 					latestEventID = res[0][0];
 		 }
@@ -1136,7 +1146,7 @@ function ReSchedE(e_id,eDate,eLocation ,eTime_start,eTime_end)
 		  dataType: 'json',
 		  success: function (res) {
 				if (res != "None")
-					latestEventID = res[0][0];
+					alert("ok");
 		 }
 		 }); 
 
