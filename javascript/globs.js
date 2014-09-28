@@ -21,7 +21,6 @@ function fetchEvent()
     });
 }
 
-
 function fetchUser(userid)
 {
   $.ajax({
@@ -294,26 +293,6 @@ function displayLeagueByManagerName(username)
   
 }
 
-function checkScore(ide)
-{
-  var string;
-  $.ajax({
-      url: siteloc + scriptloc + "getScore.py",
-	  async:false,
-	  data: {ide:ide
-             },
-	  dataType: 'json',
-	  success: function (res) {
-                  if(res[0][0] != "None" )
-                  {
-					string = "okay";
-				  }
-              }
-	});
-	return string;
-}
-
-
 function getScore(ide)
 {
   $.ajax({
@@ -364,6 +343,30 @@ function getNumMatches()
 	return num;
 }
 
+function scoreNotNull()
+{
+  var num = "";
+  $.ajax({
+      url: siteloc + scriptloc + "checkScore.py",
+	  async:false,
+	  dataType: 'json',
+	  success: function (res) {
+				if(res[0][0] != "None" )
+                  {
+					
+					for (i = 0; i < res.length; i++)
+					{
+						row = res[i];
+      
+						for (j = 0; j < row.length ; j++)
+							if(row[j] != "[" && row[j] != "]")
+								num += row[j];  
+					} 
+				  }
+              }
+	});
+	return num;
+}
 
 var k = 1;
 var e = 1;
