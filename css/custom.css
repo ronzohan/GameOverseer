@@ -5,11 +5,10 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;  
-  	font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
+  	font-family: 'Open Sans',Arial,Helvetica,Sans-Serif; 
+    background-image: url('http://localhost/GameOverseer/picture/background.jpg');
 }
 
-.input-group .form-control {
-    z-index: 10000;
  
 .aboutus{
 	background: white no-repeat center center fixed;
@@ -22,14 +21,15 @@ body {
     background-image: url('http://localhost/GameOverseer/picture/aboutus.jpg');
 	
 }
+ 
+
+}
 
  
 .form-control{
 
     width:100px;
 }
-
-
 .input-xlarge{
 	width: 240px;
 
@@ -129,7 +129,7 @@ margin-left:  36px;
     left: 0;
     background-size: cover;j
     background-position: 50% 50%;
-    background-image: url('http://localhost/GameOverseer/picture/all.jpg');
+    background-image: url('http://localhost/GameOverseer/picture/home.jpg');
     background-repeat:repeat;
   }
     
