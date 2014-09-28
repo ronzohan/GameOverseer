@@ -5,17 +5,22 @@ var scriptloc = "/scripts/";
 var latestEventID; //for holding the id of the recently created event
 				   //during locking of teams
  
-function fetchEvent()
+function fetchEvent(ide)
 {
   $.ajax({
       url: siteloc + scriptloc + "Event.py",
-      data: {ide:$("#ide").val(),
+      data: {ide:ide,
              },
       dataType: 'json',
       success: function (res) {
                   console.log(res);
                   if(res[0][0] != "None")
                   {
+					$("#datepicker").val(res[0][0]);
+					$("#location").val(res[0][1]);
+					$("#starttime").val(res[0][2]);
+					$("#endtime").val(res[0][3]);
+
 				  }
       }
     });
@@ -576,13 +581,26 @@ function fetchLeagueBracketInfo(res)
 }
 function onclickbracket(data) {
 	//alert("onclick(data: '" + data[0]['name'] +" vs "+data[1]['name']+" MatchID: "+ data[2][2]+"')");
+	$("#eventid").empty();
+	$("#datepicker").empty();
+	$("#location").empty();
+	$("#starttime").empty();
+	$("#endtime").empty();
+
+
 	if (data[0]['name'] && data[1]['name'])
 	{
+		
+
 		$("#teamversus").empty();
+		$("#eventid").empty();
+		$("#eventid").append(data[2][2]);
 		$("#teamversus").append(data[0]['name']);
 		$("#teamversus").append(" vs ");
 		$("#teamversus").append(data[1]['name']);
  		$("#myModal").modal('show');
+
+ 		fetchEvent($("#eventid").text());
  		
 
  	}
@@ -1093,7 +1111,6 @@ function setEvent(teamname1,teamname2,leagueid,eDate,eLocation,eTime_start,eTime
 			 eTime_end:eTime_end
 		  },
 		  dataType: 'json',
-		  async:false,
 		  success: function (res) {
 				if (res != "None")
 					latestEventID = res[0][0];
@@ -1101,3 +1118,24 @@ function setEvent(teamname1,teamname2,leagueid,eDate,eLocation,eTime_start,eTime
 		 }); 
 }
 
+function ReSchedE(e_id,eDate,eLocation ,eTime_start,eTime_end)
+{
+	var event_id = $.ajax({
+		 url: siteloc + scriptloc + "Event.py/ReSchedE",
+		 data: {
+			 e_id:e_id,
+			 eDate:eDate,
+			 eLocation:eLocation,
+			 eTime_start:eTime_start,
+			 eTime_end:eTime_end
+		  },
+		  dataType: 'json',
+		  success: function (res) {
+				if (res != "None")
+					latestEventID = res[0][0];
+		 }
+		 }); 
+
+
+
+}
