@@ -8,6 +8,8 @@ body {
   	font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
 }
 
+.input-group .form-control {
+    z-index: 10000;
  
 .aboutus{
 	background: white no-repeat center center fixed;
@@ -26,6 +28,8 @@ body {
 
     width:100px;
 }
+
+
 .input-xlarge{
 	width: 240px;
 
