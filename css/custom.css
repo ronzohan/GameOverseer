@@ -8,11 +8,11 @@ body {
   	font-family: 'Open Sans',Arial,Helvetica,Sans-Serif;
 }
 
- 
-.form-control{
-
-    width:100px;
+.input-group .form-control {
+    z-index: 10000;
 }
+
+
 .input-xlarge{
 	width: 240px;
 
