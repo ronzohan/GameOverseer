@@ -631,3 +631,9 @@ section {
 	#no-more-tables td:before { content: attr(data-title); }
 }
   
+  #sidebar {
+	float:right;
+	width:240px;
+}
+
+ 
