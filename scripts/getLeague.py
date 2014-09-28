@@ -102,7 +102,7 @@ def setBracketInfo(req,leagueid,managerid,userid,results,participants):
     
     participants = participants.replace('[', '{').replace(']', '}').replace('\'', '\"')
     x = doSql()
-    query = "select setbracketinfo("+leagueid+"," + managerid+","+userid+",Array[]::integer[],'"+participants+"'"
-    rets = x.execqry("select setbracketinfo("+leagueid+"," + managerid+","+userid+",Array[]::integer[],'"+participants+"');",True)
+    query = "select setbracketinfo("+leagueid+"," + managerid+","+userid+","+results+",'"+participants+"'"
+    rets = x.execqry("select setbracketinfo("+leagueid+"," + managerid+","+userid+",Array"+results+",'"+participants+"');",True)
    
     return json.dumps(rets)

@@ -40,4 +40,11 @@ $(function()
 		 $(this).parent().parent().remove();
 	});
 
+	$("#savechanges").click(
+		function(){
+			ReSchedE($("#eventid").text(),$("#datepicker").val(),$("#location").val(),$("#starttime").val(),$("#endtime").val())
+
+		}
+	);
+
 }); 

@@ -2,9 +2,13 @@
 	<head>
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
-		<link href="css/custom.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/custom.css">
 		<link href="css/jquery.bracket.min.css" rel="stylesheet">
 		<link href="css/jquery-ui.min.css" rel="stylesheet">
+		<link type="text/css" href="css/bootstrap-timepicker.min.css">
+		<script src="javascript/jquery.js"></script>
+		<script src="javascript/bootstrap.min.js"></script>		
+	    <script type="text/javascript" src="javascript/bootstrap-timepicker.min.js"></script>
     </head>
     <body>
 	 
@@ -19,53 +23,105 @@
 		
 		<div id="teamdraft" class="container">
  				
-		<div class="container center">
-			<div class="panel panel-default" id="teampanel">
-				<div class="panel-heading clearfix"  style=" background:#262421;" > 
-					<h4 class="panel-title pull-left" style=" color:white;  padding-top: 7.5px;" id="leaguetitle"> </h4>
-					<div class="btn-group pull-right">
-						<a 
-						   href="#" 
-						   class="btn btn-default btn-sm glyphicon glyphicon-plus" 
-						   id="addteams"> 
-						   Add Teams
-						</a>
-						<a 
-							href="#" 
-							class="btn btn-default btn-sm glyphicon glyphicon-ok" 
-							id="lockteams"> 
-							Lock Teams
-						</a>
-					</div>	    
-				</div>
-	    
-				<table id="teamcollection" class="table table-striped table-bordered table-condensed">	
-				<thead><tr><th class="teamnameHeader col-md-8">Team Name</th><th class="col-md-4">Edit</th></tr></thead>
-				<tbody>
-					
-				</tbody>
-			</table>
-			</div>		 
+			<div class="container center">
+				<div class="panel panel-default" id="teampanel">
+					<div class="panel-heading clearfix"  style=" background:#262421;" > 
+						<h4 class="panel-title pull-left" style=" color:white;  padding-top: 7.5px;" id="leaguetitle"> </h4>
+						<div class="btn-group pull-right">
+							<a 
+							   href="#" 
+							   class="btn btn-default btn-sm glyphicon glyphicon-plus" 
+							   id="addteams"> 
+							   Add Teams
+							</a>
+							<a 
+								href="#" 
+								class="btn btn-default btn-sm glyphicon glyphicon-ok" 
+								id="lockteams"> 
+								Lock Teams
+							</a>
+						</div>	    
+					</div>
+		    
+					<table id="teamcollection" class="table table-striped table-bordered table-condensed">	
+					<thead><tr><th class="teamnameHeader col-md-8">Team Name</th><th class="col-md-4">Edit</th></tr></thead>
+					<tbody>
+						
+					</tbody>
+				</table>
+				</div>		 
+			</div>
 		</div>
-		
 		<div id="confirm-dialog" title="Confirm Delete">
 			<p id="confirm-message">Are all the teams set?</p>
 		</div>
+
 		
+ 		 
+	    <!-- Modal HTML -->
+	    <div id="myModal" class="modal fade">
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                    <h4 class="modal-title">Set Match</h4>
+	                </div>
+	                <div class="modal-body">
+	                	<p hidden id="eventid"></p>
+	                    <p id="teamversus" class="text-center"></p>
+	                   	<br>
+	                   	<div class="form-group">
+							<label class="control-label">Location</label>
+							<input type="text" class="form-control" id="location">
+						</div>
+						<br>
+						<div class="form-group">
+							<label class="col-xs-1 control-label" for="textinput">Date</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="datepicker">
+							</div>
+							<label class="col-xs-1 control-label" for="textinput" value="">Start</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="starttime">
+							</div>
+							<label class="col-xs-1 control-label" for="textinput" value="">End</label>
+							<div class="col-sm-3">
+								<input type="text" class="form-control" id="endtime" >
+							</div>
+						</div>
+						<div class="form-group">
+							
+						</div>
+						 	
+	                </div>
+	                <br>
+					<br>
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                    <button type="button" class="btn btn-primary" id="savechanges">Save changes</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+	 
+ 
     </body>
-    <script src="javascript/jquery.js"></script>
-	<script src="javascript/bootstrap.min.js"></script>
+ 
+   
+
 	<script src="javascript/globs.js"></script>
     <script src="javascript/jqinit.js"></script>  
     <script src="javascript/jquery.bracket.min.js"></script>
     <script src="javascript/jquery-ui.min.js"></script> 
     <script src="javascript/jquery.cookie.js"></script> 
+
 	<script>
- 
-	  
- 
-	  
-	
+
+ 	$("#myModal #datepicker").datepicker({ 
+ 		dateFormat: 'yy-mm-dd'
+ 	});
+ 	
 	$("#addteamdialog").dialog({ 
 			autoOpen: false,
 			height: 160,
@@ -76,9 +132,8 @@
 		            	text: 'Add Team',
 						id : 'addteam',
 						click: function(){
-							 var teamname = $('#teamname').val(); 
--							
--							addTeamsInLeague(getParameterByName('id'),$.cookie('managerid'),teamname);
+							 var teamname = $('#teamname').val(); 							
+							addTeamsInLeague(getParameterByName('id'),$.cookie('managerid'),teamname);
 						}						
 		            },	
 		            close:{
@@ -113,7 +168,6 @@
 
    	</script>
  
-	
 </html>
 
  
