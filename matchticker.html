@@ -1,29 +1,80 @@
 <head>
-<style type="text/css">  
-  .block-update-card {
-  height: 90%;
-  border: 1px silver solid;
-  width: 380px;
-  float: right;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  padding: 0;
-  box-shadow: 1px 1px 8px silver;
-  background-image: url('http://localhost/GameOverseer/picture/matchticker.jpg');
+<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+	<script src="javascript/jquery.js"></script>
+	<script src="javascript/globs.js"></script>
+	<script src="javascript/bootstrap.min.js"></script>
+<style type = "text/css">
+.clickable
+{
+    cursor: pointer;
 }
+
+.clickable .glyphicon
+{
+    background: rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 4px
+}
+
+.panel-heading span
+{
+    margin-top: -23px;
+    font-size: 15px;
+    margin-right: -9px;
+}
+a.clickable { color: inherit; }
+a.clickable:hover { text-decoration:none; }
+
 </style>
-</head> 
+<script src="javascript/jquery.js"></script>
+<script>
+$(document).on('click', '.panel-heading span.clickable', function (e) {
+    var $this = $(this);
+    if (!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+});
+$(document).on('click', '.panel div.clickable', function (e) {
+    var $this = $(this);
+    if (!$this.hasClass('panel-collapsed')) {
+        $this.parents('.panel').find('.panel-body').slideUp();
+        $this.addClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-minus').addClass('glyphicon-plus');
+    } else {
+        $this.parents('.panel').find('.panel-body').slideDown();
+        $this.removeClass('panel-collapsed');
+        $this.find('i').removeClass('glyphicon-plus').addClass('glyphicon-minus');
+    }
+});
+$(document).ready(function () {
+    $('.panel-heading span.clickable').click();
+    $('.panel div.clickable').click();
+});
 
- <div class="media block-update-card">
-	<h1 align="center"><font size = "5"> <font color = "white"> Matchticker </font></font></h1>
-
-	<span class="media-body update-card-body">
-		<h4 align = "center">
-		  <font color = "white">
-			
-			<div id ="r" style="margin-right:50px;"></div>
-			<div id = "extra"></div>
-			<script language = "JavaScript">
+</script>
+</head>
+<div class="container" style="float:right;margin-top:10px;">
+    <div class="row">
+        <div class="col-md-6" style="float:right;margin-left:300px;">
+            <div class="panel panel-primary" style="margin-left:200px;">
+                <div class="panel-heading" >
+                    <h3 class="panel-title">
+                        Upcoming Matches</h3>
+                    <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>
+                </div>
+                <div class="panel-body" id ="r"></div>
+				
+				<div class="panel-body" id = "extra" style="text-align:center;"></div>
+				
+				<script language = "JavaScript">
 				var n = getNumMatches();
 				for(i = 1; i <= n; i++){ 
 					getStart(i, createDiv());
@@ -33,19 +84,20 @@
 					}
 				}	
 			</script>
-	
-	<br>
-	<br>
-			
-			
-	Recent Matches
-		
-	<br>
-	<br>		
-			
-		<div id ="k1" style="margin:20px auto;"></div>
-		<div id = "more"></div>
-		<script language = "JavaScript">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6" style="float:right;">
+            <div class="panel panel-info" style="margin-left:200px">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        Recent Matches</h3>
+                    <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>
+                </div>
+                <div class="panel-body" id="k1" style="text-align:center;"></div>
+				<div id = "more"></div>
+				<script language = "JavaScript">
 				var n = scoreNotNull();
 				var k = 0;
 				for(i = 1; i <= n; i++){ 
@@ -58,16 +110,7 @@
 					}
 				}
 		</script>
-		
-	</font>
-	</h4>
-			
-	
-	</span>
-
-
-</div> 
-
-
-                              		
- 
+            </div>
+        </div>
+    </div>
+    </div>
