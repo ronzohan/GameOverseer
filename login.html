@@ -9,16 +9,208 @@
 	<script src="http://localhost/GameOverseer/javascript/jquery-1.10.2.min.js"></script>
 	<script src="http://localhost/GameOverseer/javascript/bootstrap.min.js"></script>
 	<script src="javascript/globs.js"></script>
-	<script src="javascript/jquery.cookie.js"></script>
+	<script src="javascript/jquery.js"></script>
+	
 	 
 	 
-</head> 
+<style type = "text/css">
+body
+{
+    background: url('http://localhost/GameOverseer/picture/sign-in2.jpg') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
 
+.wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+p.form-title
+{
+    font-family: 'Open Sans' , sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 5%;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+form
+{
+    width: 250px;
+    margin: 0 auto;
+}
+
+form.login input[type="text"], form.login input[type="password"]
+{
+    width: 100%;
+    margin: 0;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border-bottom: 1px solid #FFFFFF;
+    outline: 0;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: #FFFFFF;
+    outline: 0;
+}
+
+form.login input[type="submit"]
+{
+    width: 100%;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 16px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+form.login input[type="submit"]:hover
+{
+    transition: background-color 0.5s ease;
+}
+
+form.login .remember-forgot
+{
+    float: left;
+    width: 100%;
+    margin: 10px 0 0 0;
+}
+form.login .forgot-pass-content
+{
+    min-height: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+form.login label, form.login a
+{
+    font-size: 12px;
+    font-weight: 400;
+    color: #FFFFFF;
+}
+
+form.login a
+{
+    transition: color 0.5s ease;
+}
+
+form.login a:hover
+{
+    color: #2ecc71;
+}
+
+.pr-wrap
+{
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    display: none;
+}
+
+.show-pass-reset
+{
+    display: block !important;
+}
+
+.pass-reset
+{
+    margin: 0 auto;
+    width: 250px;
+    position: relative;
+    margin-top: 22%;
+    z-index: 999;
+    background: #FFFFFF;
+    padding: 20px 15px;
+}
+
+.pass-reset label
+{
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.pass-reset input[type="email"]
+{
+    width: 100%;
+    margin: 5px 0 0 0;
+    padding: 5px 10px;
+    background: 0;
+    border: 0;
+    border-bottom: 1px solid #000000;
+    outline: 0;
+    font-style: italic;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    color: #000000;
+    outline: 0;
+}
+
+.pass-reset input[type="submit"]
+{
+    width: 100%;
+    border: 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 10px;
+    outline: 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+.pass-reset input[type="submit"]:hover
+{
+    transition: background-color 0.5s ease;
+}
+.posted-by
+{
+    position: absolute;
+    bottom: 26px;
+    margin: 0 auto;
+    color: #FFF;
+    background-color: rgba(0, 0, 0, 0.66);
+    padding: 10px;
+    left: 45%;
+}
+
+
+</style>
+<script src="javascript/jquery.js"></script>
+<script>
+$(document).ready(function () {
+    $('.forgot-pass').click(function(event) {
+      $(".pr-wrap").toggleClass("show-pass-reset");
+    }); 
+    
+    $('.pass-reset-submit').click(function(event) {
+      $(".pr-wrap").removeClass("show-pass-reset");
+    }); 
+});</script>
+</head>
 <body>
-
-<div id="fullscreen_bg" class="fullscreen_bg"/> 
-
-
 <div class="bs">
     <nav role="navigation" class="navbar navbar-inverse">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -55,91 +247,63 @@
         </div>
     </nav>
 </div>
- 
 
-    <div  class="container">
-	
-        <div id="loginbox" style="margin-top:90px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
-            
-			<div class="panel panel-info" >
-			
-                    <div style="background:#262421;" class="panel-heading" >
-                        <div style="color:white;" class="panel-title">Log In</div>
-                        <div style="color:white; float:right; font-size: 80%; position: relative; top:-10px"><a style="color:white;" href="#">Forgot password?</a></div>
-                    </div>     
-
-                    <div style="padding-top:30px" class="panel-body" >
-
-                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                            
-                        <form id="loginform" class="form-horizontal" role="form">
-                          
-							<p id="status"></p>             
-                           
-						   <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
-                           </div>
-                                
-                            <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pr-wrap">
+                <div class="pass-reset">
+                    <label>
+                        Enter the email you signed up with</label>
+                    <input type="email" placeholder="Email" />
+                    <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
+                </div>
+            </div>
+            <div class="wrap">
+                <p class="form-title">
+                    Sign In</p>
+                <p id="status" style="margin-left:490px"></p> 
+				<form class="login">
+                <input type="text" id="login-username" placeholder="Username" >
+				<br>
+				<br>
+                <input type="password" id="login-password" placeholder="Password" >
+				<br>
+				<br>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a id="btn-login" href="#" class="btn btn-success btn-sm" value="Sign In"
+					onclick="login($('#login-username').val(),$('#login-password').val())">
+					Login 
+				</a>
+                <div class="remember-forgot">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" />
+                                    Remember Me
+                                </label>
                             </div>
-                                    
-
-                                
-                            <div class="input-group">
-							
-                                 <div  class=" form-inline checkbox">
-									 
-									 <div class="col-sm-12 controls form-inline ">
-										
-										<div class="form-inline form-group">
-                                    <!-- Button -->
-
-									         <a   
-												  id="btn-login" href="#" class="form-inline btn btn-success" 
-												  onclick="login($('#login-username').val(),$('#login-password').val())">
-												  Login 
-											 </a>
-											 
-												<label> 
-													   <input style="margin-left:1px"  class="form-inline"   id="login-remember" type="checkbox" name="remember" value="1">
-													  <p   >&nbsp;&nbsp;&nbsp;&nbsp;Remember me</p>
-												</label>
-												
-										</div>    
-									</div>   
-                                 </div>
-                            </div>
-
-
-                                
-                                 <br> 
-
-
-                                <div class="form-group">
+                        </div>
+                        <div class="col-md-6 forgot-pass-content">
+                            <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
+                        </div>
+                    </div>
+                </div>
+				 <div class="form-group">
                                     <div class="col-md-12 control">
-                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                                            Don't have an account! 
+                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%; color:white;" >
+                                            Don't have an account?
                                         <a href="register.html" >
                                             Sign Up Here
                                         </a>
                                         </div>
                                     </div>
-                                </div>    
-								
-                         </form>     
-
-
-
-                        </div>                     
-                    </div>  
-               </div>
-		</div>
-		
-		 
- 
-
+                                </div>  
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
-</html>                                		
+	<script src="javascript/jquery.cookie.js"></script>

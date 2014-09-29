@@ -385,11 +385,11 @@ function createDiv()
         
 		divTag.id = "div" + k ;
         
-		divTag.setAttribute("align","right");
+		divTag.setAttribute("align","center");
         
         divTag.style.margin = "20px auto";
         
-        divTag.innerHTML = '<a href = "http://localhost/GameOverseer/details.html?k=' + k + '"> insertTN' + (e) + 'vs insertTN' + (e+1) + '</a>';
+        divTag.innerHTML = '<a href = "http://localhost/GameOverseer/details.html?k=' + k + '"> insertTN' + (e) + ' vs insertTN' + (e+1) + '</a>';
 		
 		$('#r').append(document.body.appendChild(divTag));
 		
@@ -431,7 +431,7 @@ function getStart(ide, timer, o)
 {
 	var Time;
 	$.ajax({
-      url: siteloc + scriptloc + "getStartDate.py",
+      url: siteloc + scriptloc + "Event.py/getStartDate",
 	  datatype:'json',
 	  data: {ide:ide
              },
@@ -622,7 +622,7 @@ function login(username,password)
 
 	  function (res) 
 	  {
-			if (res[0][0] != "Error") //if login is successful redirect page
+			if (res[0][0] != "Your password did not match") //if login is successful redirect page
 			{
 				$.cookie("username",username);
 				$.cookie("userid",res[0][0]);
@@ -633,7 +633,7 @@ function login(username,password)
 			else
 			{
 				$('#status').empty();
-				$('#status').append("Login error.");
+				$('#status').append("Invalid username or password");
 				$('#status').css('color','#FF0000');
 			}
 		
