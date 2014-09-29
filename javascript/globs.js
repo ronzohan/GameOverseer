@@ -585,10 +585,10 @@ function fetchLeagueBracketInfo(res)
 function onclickbracket(data) {
 	//alert("onclick(data: '" + data[0]['name'] +" vs "+data[1]['name']+" MatchID: "+ data[2][2]+"')");
 	$("#eventid").empty();
-	$("#datepicker").empty();
-	$("#location").empty();
-	$("#starttime").empty();
-	$("#endtime").empty();
+	$("#datepicker").val("");
+	$("#location").val("");
+	$("#starttime").val("");
+	$("#endtime").val("");
 
 
 	if (data[0]['name'] && data[1]['name'])
