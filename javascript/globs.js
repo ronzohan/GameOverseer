@@ -876,7 +876,7 @@ function fetchusername(name)
 				if(res[0][0] != "None")
 				{
 				     
-				 
+				    $("#k").append('<h2> users </h2>');
 					$("#name").append('<a href = searchusername.html?query=' + res[0][0] + '>' + res[0][0] + '</a>');
 				    $("#k").append('<hr>');
 				}
@@ -897,9 +897,7 @@ function fetchleaguename(name)
 				
 				if(res[0][0] != "None")
 				{
-				     $("#k").append('<h2> -------- </h2>');
 					 $("#k").append('<h2> league </h2>');
-					$("#k").append('<h2> results found: </h2>');
 					$("#league").append('<a href = searchleague.html?id=' + getLeagueID(name) + '>' + res[0][0] + '</a>');
 				 }
 				 else{
