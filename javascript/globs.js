@@ -640,6 +640,27 @@ function login(username,password)
       } 
       }); 
 }
+
+function setPassword(username,password)
+{
+   $.ajax({
+      url: siteloc + scriptloc + "password.py",
+      data: {username:username,
+	     password:password },
+      dataType: 'json',
+      success:
+
+	  function (res) 
+	  {
+			if (res[0][0] == "OK") //if login is successful redirect page
+			{
+				$('#status').empty();
+				$('#status').append("Successfully changed");
+				$('#status').css('color','#FF0000');
+			}
+      } 
+      }); 
+}
  
 function getParameterByName(name)
 {
