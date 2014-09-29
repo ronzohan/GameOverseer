@@ -14,14 +14,17 @@ function fetchEvent(ide)
       dataType: 'json',
       success: function (res) {
                   console.log(res);
-                  if(res[0][0] != "None")
-                  {
+                 if(res[0][0] != "None")
 					$("#datepicker").val(res[0][0]);
-					$("#location").val(res[0][1]);
-					$("#starttime").val(res[0][2]);
-					$("#endtime").val(res[0][3]);
 
-				  }
+				if (res[0][1] != "None")
+					$("#location").val(res[0][1]);
+
+				if (res[0][2] != "None")
+					$("#starttime").val(res[0][2]);
+
+				if (res[0][3] != "None")
+					$("#endtime").val(res[0][3]);
       }
     });
 }
@@ -973,8 +976,14 @@ function randomPairs( teams ) {
     for( var i = 0, n = teams.length;  i < n;  i += 2 ) {
         output.push([ teams[i], teams[i+1] ]);
     }
-    if (output.length % 2 != 0)
-		output.push([null,null]);
+
+    //check if number of pairings is a power of 2
+    while (((output.length+1) & (output.length)) == 0)
+	{
+	    output.push([null,null]);
+	}
+    
+		
     return output;	
 }
 
@@ -1007,6 +1016,8 @@ function lockTeams(userid,leagueid,managerid)
 					{
 						if (participants[i][0] || participants[i][1])
 						{
+							
+
 							setEvent(participants[i][0],participants[i][1],leagueid,null,null,null,null);
 							
 							//latestEventID was set upon call of setbracketinfo
@@ -1015,7 +1026,7 @@ function lockTeams(userid,leagueid,managerid)
 							latestEventID = "";
 						}
 					}
-					console.log(results);
+					console.log(participants);
 					setbracketinfo(userid,leagueid,managerid,results,participants);
 				}
 		}
@@ -1115,6 +1126,7 @@ function setEvent(teamname1,teamname2,leagueid,eDate,eLocation,eTime_start,eTime
 			 eTime_end:eTime_end
 		  },
 		  dataType: 'json',
+		  async:false,
 		  success: function (res) {
 				if (res != "None")
 					latestEventID = res[0][0];
