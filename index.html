@@ -23,28 +23,28 @@
  
 	 
 	
-	<div style="margin-top:60px;" id="matchticker">	
-	</div>
+	<div style=" margin-left:-50px;position:absolute;margin-top:60px;" id="matchticker">	 </div>
 	
     <div class="container2">
     <div class="navbar1"> 
       <a1 class="link" href="#">
-        <span class="active"><span class="valign"><span class="vertical">MATCH  </span></span></span>
-        <span class="hover"><span class="valign"><span class="vertical"> TICKER</span></span></span>
+        <div1 id="matchticker1"> <span  class="active"><span class="valign"><span class="vertical">MATCH  </span></span></span> </div1> 
+		 <div1 id="matchticker2"> <span class="hover"><span class="valign"><span class="vertical">TICKER</span></span></span></div1>
       </a1>
       <a1 class="link" href="#">
-        <span class="active"><span class="valign"><span class="vertical">AUTHORITY</span></span></span>
-        <span class="hover"><span class="valign"><span class="vertical">AUTHORITY</span></span></span>
+         <div1 id="authority1"><span   class="active"><span class="valign"><span class="vertical">AUTHORITY</span></span></span> </div1>
+         <div1  id="authority2"><span   class="hover"><span class="valign"><span class="vertical">AUTHORITY</span></span></span> </div1>
       </a1>
       <a1 class="link" href="#">
-        <span class="active"><span class="valign"><span class="vertical">LEAGUES </span></span></span>
-        <span class="hover"><span class="valign"><span class="vertical">LEAGUES</span></span></span>
+        <div1 id="leagues1">  <span  class="active"><span class="valign"><span class="vertical">LEAGUES </span></span></span> </div1>
+        <div1 id="leagues2">  <span  class="hover"><span class="valign"><span class="vertical">LEAGUES</span></span></span>	<div1>
       </a1>
     </div>
      
   </div>
 
 
+  
 	
 	</body>
 	<link href="css/bootstrap.min.css" rel="stylesheet">
@@ -54,4 +54,45 @@
 	<script src="javascript/globs.js"></script>
     <script src="javascript/jquery.cookie.js"></script> 
 	<script src="javascript/jqinit.js"></script>
+	
+	
+	<script>
+		
+		 
+		$("#authority1").on("click", displayauthority1);
+		$("#authority2").on("click", displayauthority);
+		
+	
+		function displayauthority()
+		{   
+			 $("#matchticker").fadeOut();  
+		}	
+		function displayauthority1()
+		{  
+			 $("#matchticker").fadeOut();   
+		}	
+ 
+		
+	</script>
+	
+		
+	<script>
+	
+		$("#matchticker1").on("click", displaymatchticker);
+		$("#matchticker2").on("click", displaymatchticker1);
+		function displaymatchticker()
+		{  
+			 $("#matchticker").fadeIn();  
+			 $("#authority").fadeOut();  
+		}
+		function displaymatchticker1()
+		{  
+			 $("#matchticker").fadeIn();  
+		     $("#authority").fadeOut(); 
+		}
+	 
+ 
+		
+	</script>
+		
 </html>
