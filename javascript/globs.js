@@ -431,7 +431,7 @@ function getStart(ide, timer, o)
 {
 	var Time;
 	$.ajax({
-      url: siteloc + scriptloc + "Event.py/getStartDate",
+      url: siteloc + scriptloc + "getStartDate.py",
 	  datatype:'json',
 	  data: {ide:ide
              },
