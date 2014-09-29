@@ -254,9 +254,19 @@ $(document).ready(function () {
             <div class="pr-wrap">
                 <div class="pass-reset">
                     <label>
-                        Enter the email you signed up with</label>
-                    <input type="email" placeholder="Email" />
-                    <input type="submit" value="Submit" class="pass-reset-submit btn btn-success btn-sm" />
+                        Enter the username you signed up with</label>
+                    <input type="username" id = "username" placeholder="Username" />
+					<label>
+                        Enter new password</label>
+					<input type="password" id = "password" placeholder="New Password" />
+                   <!-- <input type="submit" value="Submit"  />-->
+				   <br>
+				   <br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<a id="btn-login" href="#" class="pass-reset-submit btn btn-success btn-sm" value="Sign In"
+					onclick="setPassword($('#username').val(),$('#password').val());">
+					Submit
+				</a>
                 </div>
             </div>
             <div class="wrap">
