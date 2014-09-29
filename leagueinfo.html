@@ -66,33 +66,58 @@
 	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 	                    <h4 class="modal-title">Set Match</h4>
 	                </div>
-	                <div class="modal-body">
-	                	<p hidden id="eventid"></p>
-	                    <p id="teamversus" class="text-center"></p>
-	                   	<br>
-	                   	<div class="form-group">
-							<label class="control-label">Location</label>
-							<input type="text" class="form-control" id="location">
-						</div>
-						<br>
-						<div class="form-group">
-							<label class="col-xs-1 control-label" for="textinput">Date</label>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" id="datepicker">
+	                <div class="modal-body with-nav-tabs">
+	                	<p id="teamversus" class="text-center"></p>
+	                	<ul class="nav nav-tabs" role="tablist">
+						  	<li class="active"><a href="#matchinfo"  data-toggle="tab">Home</a></li>
+						 	<li><a href="#scoreinfo" data-toggle="tab">Score</a></li>
+						</ul>
+						<div id="my-tab-content" class="tab-content">
+							<div id="matchinfo" class="tab-pane active">
+			                	<p hidden id="eventid"></p>
+			                    
+			                   	<br>
+			                   	<div class="form-group">
+									<label class="control-label">Location</label>
+									<input type="text" class="form-control" id="location">
+								</div>
+								<br>
+								<div class="form-group">
+									<label class="col-xs-1 control-label" for="textinput">Date</label>
+									<div class="col-sm-3">
+										<input type="text" class="form-control" id="datepicker">
+									</div>
+									<label class="col-xs-1 control-label" for="textinput" value="">Start</label>
+									<div class="col-sm-3">
+										<input type="text" class="form-control" id="starttime">
+									</div>
+									<label class="col-xs-1 control-label" for="textinput" value="">End</label>
+									<div class="col-sm-3">
+										<input type="text" class="form-control" id="endtime" >
+									</div>
+								</div>
+							</div>	
+							<div class="tab-pane "  id="scoreinfo">
+								<p id="teamname1">Score 1</p>
+								<p id="teamname1">Score 2</p>
+								<div class="row">
+									<div class="col-sm-2 center-block">
+										<input type="text" id="score1" class="form-control col-sm-1">
+									</div>
+									
+									<div class="col-sm-2 center-block	">
+										<input type="text" id="score2" class="form-control col-sm-1">
+									</div>
+								</div>
+								
+								
 							</div>
-							<label class="col-xs-1 control-label" for="textinput" value="">Start</label>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" id="starttime">
-							</div>
-							<label class="col-xs-1 control-label" for="textinput" value="">End</label>
-							<div class="col-sm-3">
-								<input type="text" class="form-control" id="endtime" >
-							</div>
+
+
+
+
 						</div>
-						<div class="form-group">
-							
-						</div>
-						 	
+
 	                </div>
 	                <br>
 					<br>
