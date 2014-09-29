@@ -7,35 +7,8 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
 <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="css/custom.css">  
-   
-<!--
- <script src="javascript/jquery-1.7.1.min.js" type="text/javascript"></script>
- 
-	<script type="text/javascript">
-		$(function(){ // document ready
+<link href="css/ihover.css" rel="stylesheet">  
 
-		  if (!!$('.sticky').offset()) { // make sure ".sticky" element exists
-
-		    var stickyTop = $('.sticky').offset().top; // returns number 
-
-		    $(window).scroll(function(){ // scroll event
-
-		      var windowTop = $(window).scrollTop(); // returns number 
-
-		      if (stickyTop < windowTop){
-		        $('.sticky').css({ position: 'fixed', top: 0 });
-		      }
-		      else {
-		        $('.sticky').css('position','static');
-		      }
-
-		    });
-
-		  }
-
-		});
-	</script>
-	-->
  </head>
  
 
@@ -44,15 +17,7 @@
 
  <div id="header"></div>  
  
- <!--
-<div id="sidebar">
- <div  style="margin-top:70px; margin-left:30px;" id="widget" class="sticky">
-				 
-					 <img style = "   margin-right:50px; width: 260px; height: 250px;   " 
-						  src="http://localhost/GameOverseer/picture/gameoverseer1.png "  />
-				</div>
-	</div>			
-	-->			
+ 
 	 <div data-spy="affix" id="dot-nav">
     	<ul>
 	      <li class="awesome-tooltip active" title="Home"><a href="#home"></a></li>
@@ -75,7 +40,11 @@
 				   <div style="margin-left:50px;"
 						class="container">
 						
-					    <font style="color:white; "  size="5"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Build and manage your league with GAMEOVERSEER !  <br>
+							<font style="color:white; "  size="5">
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+								Build and manage your league with GAMEOVERSEER !  <br>
+						
+						
 										<br> 
 										<span class="glyphicon glyphicon-star"></span>
 										&nbsp;&nbsp; Choose between soccer and Basketball (Single Elim or Double Elim) <br> 
@@ -98,7 +67,7 @@
 										<span class="glyphicon glyphicon-calendar "></span>  
 										&nbsp;&nbsp; Notes when matches will occur with matchticker
 							
-                       </font>
+							</font>
 					   </div>
                    </div>
                </div>
@@ -118,14 +87,15 @@
 				
 					<div style="margin-left:50px;"
 						 class =" container">
-                       <font  style="color:white; " size="5">  Teamoga is the team behind GameOverseer which is composed of <br>
+                       <font  style="color:white; " size="5"> 
+										Teamoga is the team behind GameOverseer which is composed of <br>
 										 5 undergraduate Computer Science students from  MSU-IIT. <br>	
 					   
 					   
 					   </font>
 				    </div>
 					   
-						 <h1 align="center">  <br><br></h1>
+		            <h1 align="center">  <br><br></h1>
 								 
 							 <div  id="no-more-tables"> 
 								 <table   class="col-md-12 table-bordered table-striped table-condensed cf" >
@@ -135,43 +105,60 @@
 									
 									<tr style="  background-color:rgba(0,0,0,0.8);">
 										
-										<td style="  background-color:rgba(0,0,0,0.2);"  >   </td>  <td style="  background-color:rgba(0,0,0,0.3);"  >   </td>
-									   
-									 
-									 <td  style="  background-color:rgba(0,0,0,0.2);" > 
-												 &nbsp;&nbsp;&nbsp;&nbsp;
+										<td style="  background-color:rgba(0,0,0,0.2);"  >   </td>  
+										<td style="  background-color:rgba(0,0,0,0.3);"  >   </td>
+									    <td  style="  background-color:rgba(0,0,0,0.2);" > 
+										
+										&nbsp;&nbsp;&nbsp;&nbsp;
 												
-												<div class=" holder  ">
+										  <div class=" holder  ">
 												     
-													 <th style="  background-color:rgba(0,0,0,0.2);">
-															<h1 style="color:white; text-shadow: white 0.1em 0.1em 0.2em "> &nbsp;&nbsp; &nbsp;&nbsp;  Piando </h1>
-															<div class="avatar">
-																
-																<a href="#" data-toggle="modal" data-target=".pop-up-1">
-																<img style = "  margin-left:20px; width: 200px; height: 200px; border-radius: 200px; " 
-																src="http://localhost/GameOverseer/picture/onna.jpg " class="user"/>
-																</a>
-								    	 
-																	<p> </p>
-														   </div>
+													 <th style="  background-color:rgba(0,0,0,0.2);"> 
+															 
+														   
+														   
+														    <div class="ih-item circle effect8 bottom_to_top">
+															<a href="#" data-toggle="modal" data-target=".pop-up-1">
+																<div class="img-container">
+																	<div class="img">
+																	<img 
+																		src="http://localhost/GameOverseer/picture/onna.jpg " 
+																		alt="img">
+																	</div>
+															    </div>
+																<div class="info-container">
+																		<div class="info">
+																		<br><br> <h3>Onna Piando</h3> 
+																		</div>
+																</div></a>
+															</div>
 													</th>	 												
 												</div> 
-									     </td>
+									  </td>
 										 
 										
 										<td  style="  background-color:rgba(0,0,0,0.2);"> 
 											<div class="holder "> 
-													<th style="  background-color:rgba(0,0,0,0.2);">
-													<h1 style="color:white; text-shadow: white 0.1em 0.1em 0.2em">  &nbsp;&nbsp;  &nbsp;&nbsp;   Pallega  </h1>
+													<th style="  background-color:rgba(0,0,0,0.2);"> 
+													 
+														 <div class="ih-item circle effect8 bottom_to_top">
+														 <a href="#" data-toggle="modal" data-target=".pop-up-2">
+																
+																<div class="img-container">
+																	<div class="img">
+																	<img 
+																		src="http://localhost/GameOverseer/picture/diofel.jpg" 
+																		alt="img">
+																	</div>
+															    </div>
+																
+																<div class="info-container">
+																		<div class="info">
+																		<br><br> <h3>Diofel Pallega</h3> 
+																		</div>
+																</div></a>
+														</div>
 														
-														<div class="avatar">
-															<a href="#" data-toggle="modal" data-target=".pop-up-2">
-															 
-															<img style = "  margin-left:20px;    width: 200px; height: 200px; border-radius: 200px; " 
-															src="http://localhost/GameOverseer/picture/diofel.jpg" class="user"/>
-															</a> 
-															<p> </p>
-												    	</div>
 													</th> 
 											</div>
 										</td>
@@ -179,46 +166,73 @@
 										 
 										<td  style="  background-color:rgba(0,0,0,0.2);" > 
 											<div class="holder  ">
-												<th style="  background-color:rgba(0,0,0,0.2);">
-													<h1 style="color:white; text-shadow: white 0.1em 0.1em 0.2em">  &nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp; Apao </h1> 
-														<div class="avatar">
-															
-															<a href="#" data-toggle="modal" data-target=".pop-up-3">
-																 <img style = "  margin-left:20px;  width: 200px; height: 200px; border-radius: 200px; " 
-																src="http://localhost/GameOverseer/picture/kay.jpg" class="user"/>
-															</a> 
-															<p> </p> 
-													 </div>
+												<th style="  background-color:rgba(0,0,0,0.2);"> 
+														 
+													 <div class="ih-item circle effect8 bottom_to_top">
+													 <a href="#" data-toggle="modal" data-target=".pop-up-3">
+																<div class="img-container">
+																	<div class="img">
+																	<img 
+																		src="http://localhost/GameOverseer/picture/kay.jpg" 
+																		alt="img">
+																</div>
+																
+															    </div>
+																<div class="info-container">
+																		<div class="info">
+																		<br><br> <h3> Kay Apao</h3> 
+																		</div>
+																</div></a>
+														</div>
+													 
+													 
 												</th> 
 											</div>
 										</td>
 										
 										<td style="  background-color:rgba(0,0,0,0.2);" >  
 											<div style="margin-top:15px;" class="holder  ">
-												<th style="  background-color:rgba(0,0,0,0.2);"> 
-													<h1 style="color:white; text-shadow: white 0.1em 0.1em 0.2em"> &nbsp;&nbsp; &nbsp;   Magno </h1>
-														<div class="avatar">
-															<a href="#" data-toggle="modal" data-target=".pop-up-4">
-																	&nbsp; &nbsp;&nbsp;&nbsp;<img style = "  width: 200px; height: 200px; border-radius: 200px; " 
-																	src="http://localhost/GameOverseer/picture/ron.jpg" class="user"/>
-														    </a>
-																<p> </p>
-												    	</div>
-												</th> 
-											</div>
+												<th style="  background-color:rgba(0,0,0,0.2);">  
+													  
+														<div class="ih-item circle effect8 bottom_to_top">
+														<a href="#" data-toggle="modal" data-target=".pop-up-4">
+																<div class="img-container">
+																	<div class="img">
+																	<img 
+																		src="http://localhost/GameOverseer/picture/ron.jpg" 
+																		alt="img"></div>
+															    </div>
+																
+																<div class="info-container">
+																		<div class="info">
+																		<br><br> <h3>Ron Magno</h3> 
+																		</div>
+																</div></a>
+														</div>
+												   </th> 
+											  </div>
 										</td>
 										
 										<td  style="  background-color:rgba(0,0,0,0.2);">  
 										    <div class="holder  ">
 												 <th style="  background-color:rgba(0,0,0,0.2);"> 
-													 <h1 style="color:white; text-shadow: white 0.1em 0.1em 0.2em">&nbsp;&nbsp; &nbsp;&nbsp; Ramos </h1>
-														<div class="avatar">
-															<a href="#" data-toggle="modal" data-target=".pop-up-5">  
-																	<img style = " margin-left:20px; width: 200px; height: 200px; border-radius: 200px; " 
-																	src="http://localhost/GameOverseer/picture/jennie.jpg" class="user"/>
-															</a> 
-															 <p> </p>
-												       </div>
+												  
+														 
+														<div class="ih-item circle effect8 bottom_to_top">
+														<a href="#" data-toggle="modal" data-target=".pop-up-5">
+																<div class="img-container">
+																	<div class="img">
+																		<img 
+																			src="http://localhost/GameOverseer/picture/jennie.jpg" 
+																			alt="img"></div>
+															    </div>
+																
+																<div class="info-container">
+																		<div class="info">
+																		<br><br> <h3>  Jennie Ramos</h3> 
+																		</div>
+																</div></a>
+														</div>
 													</th> 
 												</div> 	
 											</td>
@@ -238,7 +252,12 @@
 	 
 	 <!-- Pop up div part -->
 	 
-  <div style="margin-top:90px;" class="modal fade pop-up-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
+  <div style="margin-top:90px;" 
+	   class="modal fade pop-up-1" 
+	   tabindex="-1" role="dialog" 
+	   aria-labelledby="myLargeModalLabel-1" 
+	   aria-hidden="true">
+	   
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
 
@@ -280,12 +299,21 @@
   
   
   
-  <div class="modal fade pop-up-2" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-2" aria-hidden="true">
+  <div class="modal fade pop-up-2" 
+	   tabindex="-1" 
+	   role="dialog" 
+	   aria-labelledby="myLargeModalLabel-2"
+	   aria-hidden="true">
+	   
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
 
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <button type="button" 
+				  class="close" 
+			      data-dismiss="modal" 
+				  aria-hidden="true">×</button>
+				  
           <h4 class="modal-title" id="myLargeModalLabel-2">Email Me</h4>
         </div>
 		
@@ -307,8 +335,16 @@
 						<div class="cover"></div>
 						<div class="paper">
 								  
-							<a class="call" href="https://www.facebook.com/nyxnice.guy">  Visit my Fb Page</a>
-							<a class="mail" href="https://mail.google.com/mail/u/0/#inbox?compose=148994d419175040"> diofel.pallega@gmail.com</a>
+							<a class="call"
+							   href="https://www.facebook.com/nyxnice.guy"> 
+							   Visit my Fb Page
+							</a>
+							
+							<a class="mail"
+							   href="https://mail.google.com/mail/u/0/#inbox?compose=148994d419175040"> 
+							   diofel.pallega@gmail.com
+							</a>
+							
 						</div>
 					</div>
 				 </div> 
@@ -321,35 +357,58 @@
   
     
  
-  <div class="modal fade pop-up-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-2" aria-hidden="true">
+  <div class="modal fade pop-up-3" 
+	   tabindex="-1" 
+	   role="dialog" 
+	   aria-labelledby="myLargeModalLabel-2"
+	   aria-hidden="true">
+	   
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
 
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          <h4 class="modal-title" id="myLargeModalLabel-2">Email Me</h4>
+          <button type="button" 
+				  class="close" 
+				  data-dismiss="modal"
+				  aria-hidden="true">×</button>
+				  
+          <h4 class="modal-title" 
+			  id="myLargeModalLabel-2">
+			  Email Me
+		  </h4>
         </div>
 		
         <div class="modal-body">
         
 		
-			<div style="height:290px;" class="modal-body">
+			<div style="height:290px;"
+				 class="modal-body">
          
 				<div id="bg"></div>
 		 
 				<div class="contact">
 					<div class="envelope">
 						<div class="top">
-							<div class="outer"><div class="inner"></div></div>
+							<div class="outer">
+							<div class="inner"></div></div>
 						</div>
+						
 						<div class="bottom"></div>
 						<div class="left"></div>
 						<div class="right"></div>
 						<div class="cover"></div>
 						<div class="paper">
 								  
-							<a class="call" href="https://www.facebook.com/kay.apao">  Visit my Fb Page</a>
-							<a class="mail" href="https://mail.google.com/mail/u/0/#inbox?compose=148994e033ea9cc3"> kayapao@yahoo.com</a>
+							<a class="call" 
+							   href="https://www.facebook.com/kay.apao"> 
+							   Visit my Fb Page
+							</a>
+							
+							<a class="mail" 
+							   href="https://mail.google.com/mail/u/0/#inbox?compose=148994e033ea9cc3">
+							   kayapao@yahoo.com
+							</a>
+							
 						</div>
 					</div>
 				</div> 
@@ -361,7 +420,12 @@
 	 
 
 	  
-  <div class="modal fade pop-up-4" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-2" aria-hidden="true">
+  <div class="modal fade pop-up-4" 
+	   tabindex="-1"
+	   role="dialog" 
+	   aria-labelledby="myLargeModalLabel-2" 
+	   aria-hidden="true">
+	   
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
 
@@ -388,8 +452,16 @@
 						<div class="cover"></div>
 						<div class="paper">
 								  
-							<a class="call" href="https://www.facebook.com/ronzohan">  Visit my Fb Page</a>
-							<a class="mail" href="https://mail.google.com/mail/u/0/#inbox?compose=148994ec5b496cd2"> ron.zohan@gmail.com</a>
+							<a class="call" 
+							   href="https://www.facebook.com/ronzohan"> 
+							   Visit my Fb Page
+							</a>
+							
+							<a class="mail"
+  						       href="https://mail.google.com/mail/u/0/#inbox?compose=148994ec5b496cd2">
+							   ron.zohan@gmail.com
+							</a>
+							
 						</div>
 					</div>
 				</div> 
@@ -400,12 +472,21 @@
   </div> 
    
    
-  <div class="modal fade pop-up-5" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-2" aria-hidden="true">
+  <div class="modal fade pop-up-5" 
+	   tabindex="-1" 
+	   role="dialog" 
+	   aria-labelledby="myLargeModalLabel-2"
+	   aria-hidden="true">
+	   
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
 
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <button type="button" 
+				  class="close"
+				  data-dismiss="modal" 
+				  aria-hidden="true">×</button>
+				  
           <h4 class="modal-title" id="myLargeModalLabel-2">Email Me</h4>
         </div>
 		
@@ -427,8 +508,14 @@
 						<div class="cover"></div>
 						<div class="paper">
 								  
-							<a class="call" href="https://www.facebook.com/jennie.ramos.395">  Visit my Fb Page</a>
-							<a class="mail" href="https://mail.google.com/mail/u/0/#inbox?compose=148994ec5b496cd2"> <font size="2" >jennieramos06@gmail.com </font> </a>
+							<a class="call" 
+							   href="https://www.facebook.com/jennie.ramos.395"> 
+							   Visit my Fb Page
+							</a>
+							
+							<a class="mail" 
+							   href="https://mail.google.com/mail/u/0/#inbox?compose=148994ec5b496cd2">
+							   <font size="2" >jennieramos06@gmail.com </font> </a>
 						</div>
 					</div>
 				</div> 
