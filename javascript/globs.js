@@ -1025,6 +1025,7 @@ function lockTeams(userid,leagueid,managerid)
 			   
 		},
 		dataType: 'json',
+		async:false,
 		success:
 			function (res){
 				console.log(res);
