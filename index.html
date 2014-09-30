@@ -73,11 +73,25 @@
 	
 		function displayauthority()
 		{   
-			 $("#matchticker").fadeOut();  
+			if( $("#authority").is(':visible') )
+			 {
+				$("#authority").fadeOut();
+			 }
+			else{
+			 $("#authority").fadeIn();  
+		     $("#matchticker").fadeOut(); 
+			 } 
 		}	
 		function displayauthority1()
 		{  
-			 $("#matchticker").fadeOut();   
+			if( $("#authority").is(':visible') )
+			 {
+				$("#authority").fadeOut();
+			 }
+			else{
+			 $("#authority").fadeIn();  
+		     $("#matchticker").fadeOut(); 
+			 } 
 		}	
  
 		
@@ -88,15 +102,29 @@
 	
 		$("#matchticker1").on("click", displaymatchticker);
 		$("#matchticker2").on("click", displaymatchticker1);
+		
 		function displaymatchticker()
 		{  
+		 if( $("#matchticker").is(':visible') )
+			 {
+				$("#matchticker").fadeOut();
+			 }
+			else{
 			 $("#matchticker").fadeIn();  
-			 $("#authority").fadeOut();  
+		     $("#authority").fadeOut(); 
+			 }
 		}
 		function displaymatchticker1()
 		{  
+		
+			 if( $("#matchticker").is(':visible') )
+			 {
+				$("#matchticker").fadeOut();
+			 }
+			else{
 			 $("#matchticker").fadeIn();  
 		     $("#authority").fadeOut(); 
+			 }
 		}
 	 
  
