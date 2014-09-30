@@ -9,7 +9,7 @@ def index(req, username, password):
     username = cgi.escape(username) 
     password = cgi.escape(password)
     x = doSql()
-    rets = x.execqry("SELECT * FROM setpassword('"+ username+"','"+ password+"');", False)
+    rets = x.execqry("SELECT * FROM setpassword('"+ username+"','"+ password+"');", True)
    
     result = []
     for ret in rets:
