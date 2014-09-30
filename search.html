@@ -1,91 +1,59 @@
-<html>
-   <head>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/bootstrap-theme.min.css" rel="stylesheet">	
-		<link rel="stylesheet" href="css/custom.css"> 
-		<script src="javascript/jquery.js"></script> 
-	<script>
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">	
+	<link rel="stylesheet" href="css/custom.css"> 
+	<script src="javascript/jquery.js"></script>
+	<script src="javascript/globs.js"></script>	 
+<style type = "text/css">
+body
+{
+    background: url('http://localhost/GameOverseer/picture/match2.png') fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+.container { margin-top: 20px; }
+.mb20 { margin-bottom: 20px; } 
+
+hgroup { padding-left: 15px; border-bottom: 1px solid #ccc; }
+
+</style>
+
+<script>
 		$(function(){
 	    $("#header").load("header.html"); 
 	    });
 		$(document).ready(function(){
 			fetchusername(getQueryVariable());
 		});
-	</script>
-	</head>
-   <body>
-		<div id="header"> </div>
-		 </h2> 
-			
-			
-			
-		  <h2>
-		<div id="target"></div>
+</script>
 
-        <div id="container" data-pjax-container>
-			<div class="container codesearch-cols">
-			<div class="aside">
-			<div class="search-menu-container">
-			<div class="menu-container">
-				<ul class="menu" data-pjax>
-				</ul>
-			</div>
-			</div>
-			</div>
-		
-		
- <div  id="no-more-tables"> 
-  <table  class="col-md-12 table-bordered table-striped table-condensed cf">
-	<tbody   >
-	 
-	 
-	 
-	 <div style=" text-align: center;" class="container">
-	 
-	 
-					<div style=" color:black;" class="col-md-12">
-					 <div style="background:#262421;" class="panel-heading" >
-                        <div style="color:white;" class="panel-title">Search Result</div>
-                      
-                    </div>   
-						<div     class="well">
-							 
-							<hr>
-							 <center><div id = "k">
-							</div>  </center>
-							<center>
-							<div id = "name">
-							</div>
-							</center>
-							<center>
-							<div id = "league">
-							</div>
-							</center>
-							<hr>
-							 
-						</div>
-					</div>
-		  </div> 
-	 		
- 	
-</tbody>	 
- </table>
+</head>
 
+<body>
+<div id="header"></div>
+<div class="container" style="margin-top:100px">
+
+    <hgroup class="mb20">
+		<h3 class="lead" style="color:white">Results Found</h3>								
+	</hgroup>
+
+    <section class="col-xs-12 col-sm-6 col-md-12" style="margin-top:-150px;" >
+		<article class="search-result row">
+			<div class="col-xs-12 col-sm-12 col-md-7 excerpet" style="margin-left:50px">
+				<h3 align="left">
+					<div id = "name"></div>
+					<div id = "league"></div>
+				</h3>
+			</div>
+			<span class="clearfix borda"></span>
+		</article>
+
+
+	</section>
 </div>
-			
- 
-
-		</div>
-		</div>	   
-   </body>
-   
-   	
-    
-	<script src="javascript/bootstrap.min.js"></script>
-	<script src="javascript/globs.js"></script>
-   
-	
-	
-		
-   
-</html>
+</body>
+	<script src="javascript/jquery.cookie.js"></script>

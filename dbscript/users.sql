@@ -107,6 +107,29 @@ $$
 -- HOW TO USE:
 -- select * from get_users_perid(userid)
 
-
+create or replace function
+   setpassword(p_username text, p_password text)
+     returns text as
+$$
+   declare
+      userid1 int;
+   begin
+      select into userid1 userid from users
+         where username = p_username;
+	  
+      if userid1 isnull then
+         insert into users(password) values
+            (p_username,crypt(p_password, gen_salt('bf')));
+     else
+          update users
+			set username = p_username, password = crypt(p_password, gen_salt('bf')) 
+			--this gen_salt generates a new random salt string
+			-- crypt() does the hashing
+			where username = p_username;
+      end if;
+	  return 'OK';
+  end;
+$$
+language 'plpgsql';
 
 
