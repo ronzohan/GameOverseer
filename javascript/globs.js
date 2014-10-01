@@ -655,8 +655,8 @@ function setPassword(username,password)
 			if (res[0][0] == "OK") //if login is successful redirect page
 			{
 				$('#status').empty();
-				$('#status').append("Successfully changed");
-				$('#status').css('color','#FF0000');
+				$('#status').append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Successfully changed");
+				$('#status').css('color','white');
 			}
       } 
       }); 
@@ -1101,35 +1101,6 @@ function searchAutocomplete()
 
  }
  
- function fetchleaguemanage(usename)
-{
-   $.ajax({
-      url: siteloc + scriptloc + "getleaguemanage.py",
-     data: {username:username},
-   
-      dataType: 'json',
-      success: function (res) {
-   
-				if(res[0][0] != "None")
-				{
-					for (i = 0; i < res.length; i++)
-					{
-						row = res[i];
-      
-						for (j = 0; j < row.length ; j++)
-						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-						$("h3").append(row[j]);  
-       
-					} 
-                 }
-				 
-				 else{
-				 
-				    
-				}
-				} 
-     }); 
- }
 
 
 function setEvent(teamname1,teamname2,leagueid,eDate,eLocation,eTime_start,eTime_end)
