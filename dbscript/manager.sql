@@ -6,7 +6,7 @@ CREATE TABLE Manager(
     address text,
     contact_no text,
 	email text,
-    temManager text,
+    temManager int,
 	gatePass text
     );
 
