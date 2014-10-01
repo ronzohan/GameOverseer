@@ -662,12 +662,8 @@ function setPassword(username,password)
       }); 
 }
 
-<<<<<<< HEAD
 
 
-
-=======
->>>>>>> 00b5088e6f29e4f11d1bb6108fa37f6d79a12c92
 function setTempManPass(mainMan, tempMan,password)
 {
    $.ajax({
@@ -691,18 +687,14 @@ function setTempManPass(mainMan, tempMan,password)
 }
 
 
-
-<<<<<<< HEAD
 function fetchEmail_f(username,password,email)
 
-=======
-function fetchEmail_f(username,password)
->>>>>>> 00b5088e6f29e4f11d1bb6108fa37f6d79a12c92
+
 {
    $.ajax({
       url: siteloc + scriptloc + "getEmail.py",
       data: {username:username,
-	     password:password
+	     password:password,
 		 email:email},
    
       dataType: 'json',
