@@ -21,7 +21,7 @@ function fetchEvent(ide)
 					$("#location").val(res[0][1]);
 
 				if (res[0][2] != "None")
-					$("#starttime").val(res[0][2]);
+					$("#timepicker1").val(res[0][2]);
 
 				if (res[0][3] != "None")
 					$("#endtime").val(res[0][3]);
@@ -587,7 +587,7 @@ function onclickbracket(data) {
 	$("#eventid").empty();
 	$("#datepicker").val("");
 	$("#location").val("");
-	$("#starttime").val("");
+	$("#timepicker1").val("");
 	$("#endtime").val("");
 
 
