@@ -12,7 +12,7 @@ CREATE TABLE Manager(
 
 	
 create or replace 
-    function setAuthority(p_userid int,p_ text,p_last_name text,p_address text, p_contact_no text,p_email text) 
+    function setAuthority(p_userid int,p_temManager int,p_gatePass text) 
     returns text as
 $$
   declare
@@ -22,11 +22,11 @@ $$
          where userid_fk = p_userid;
          
       if v_manager_id isnull then
-          insert into Manager(userid_fk,first_name,last_name,address,contact_no,email) values
-             (p_userid,p_first_name,p_last_name, p_address, p_contact_no, p_email);
+          insert into Manager(userid_fk,temManager,gatePass) values
+             (p_userid,p_temManager,p_gatePass);
       else
           update Manager
-          set first_name = p_first_name,last_name = p_last_name,address = p_address,contact_no = p_contact_no, email = p_email
+          set temManager = p_temManager,gatePass = p_gatePass
           where userid_fk = p_userid;
       end if;   
          
@@ -35,7 +35,7 @@ $$
   $$
   language 'plpgsql';
 
---SELECT setmanager(1, 'ron','magno','iligan city',1234,ron@yolo.com);
+--SELECT setAuthority(1, 2,'gatePass');
 
 	
 create or replace 
