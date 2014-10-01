@@ -5,10 +5,38 @@ CREATE TABLE Manager(
     last_name text,
     address text,
     contact_no text,
-	email text
+	email text,
+    temManager int,
+	gatePass text
     );
 
 	
+create or replace 
+    function setAuthority(p_userid int,p_temManager int,p_gatePass text) 
+    returns text as
+$$
+  declare
+     v_manager_id int;
+  begin
+      select into  v_manager_id manager_id from Manager 
+         where userid_fk = p_userid;
+         
+      if v_manager_id isnull then
+          insert into Manager(userid_fk,temManager,gatePass) values
+             (p_userid,p_temManager,p_gatePass);
+      else
+          update Manager
+          set temManager = p_temManager,gatePass = p_gatePass
+          where userid_fk = p_userid;
+      end if;   
+         
+      return 'OK';
+  end;
+  $$
+  language 'plpgsql';
+
+--SELECT setAuthority(1, 2,'gatePass');
+
 	
 create or replace 
     function checkemail(p_email text) 
