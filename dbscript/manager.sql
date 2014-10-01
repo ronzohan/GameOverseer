@@ -6,28 +6,28 @@ CREATE TABLE Manager(
     address text,
     contact_no text,
 	email text,
-    temManager int,
+    tempManager int,
 	gatePass text
     );
 
 	
 create or replace 
-    function setAuthority(p_userid int,p_temManager int,p_gatePass text) 
+    function setAuthority(p_manager_id int, p_tempManager int, p_gatePass text) 
     returns text as
 $$
   declare
      v_manager_id int;
   begin
       select into  v_manager_id manager_id from Manager 
-         where userid_fk = p_userid;
+         where manager_id = p_manager_id;
          
       if v_manager_id isnull then
-          insert into Manager(userid_fk,temManager,gatePass) values
-             (p_userid,p_temManager,p_gatePass);
+          insert into Manager(tempManager, gatePass) values
+             (p_tempManager, p_gatePass);
       else
           update Manager
-          set temManager = p_temManager,gatePass = p_gatePass
-          where userid_fk = p_userid;
+          set tempManager = p_tempManager, gatePass = p_gatePass
+          where manager_id = p_manager_id;
       end if;   
          
       return 'OK';
@@ -35,7 +35,7 @@ $$
   $$
   language 'plpgsql';
 
---SELECT setAuthority(1, 2,'gatePass');
+--SELECT setAuthority(1, 2,'12345');
 
 	
 create or replace 
