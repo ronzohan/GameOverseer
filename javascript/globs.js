@@ -652,11 +652,37 @@ function setPassword(username,password)
 
 	  function (res) 
 	  {
-			if (res[0][0] == "OK") //if login is successful redirect page
+			if (res[0][0] == "OK") 
+			{
+				$('#alert').empty();
+				$('#alert').append("Your password has been successfully changed.");
+				$('#alert').css('color','white');
+			}
+      } 
+      }); 
+}
+
+function checkEmail(email)
+{
+   $.ajax({
+      url: siteloc + scriptloc + "email.py",
+      data: {email:email},
+      dataType: 'json',
+      success:
+
+	  function (res) 
+	  {
+			if (res[0][0] != "None") 
+			{
+				$('#reset').empty();
+				$('#reset').append("<a href='#' onclick=$('#reset').hide() data-toggle='modal' data-target='#forgotpassword'> Click here to renew password</a>");
+				$('#reset').css('color','black');
+			}
+			else
 			{
 				$('#status').empty();
-				$('#status').append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Successfully changed");
-				$('#status').css('color','white');
+				$('#status').append("Email or username does not exist. Please try again.");
+				$('#status').css('color','#FF0000');
 			}
       } 
       }); 
