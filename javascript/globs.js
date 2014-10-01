@@ -678,7 +678,7 @@ function fetchEmail_f(username,password)
 				    setPassword(username,password);
 				}
 				else  
-				   $('#status').append(" Not Successfully changed");
+				  $('#status').append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not Successfully changed");
 		} 
     }); 
 }
