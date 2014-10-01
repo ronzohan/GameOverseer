@@ -198,7 +198,6 @@ form.login a:hover
 
 
 </style>
-
 <script src="javascript/jquery.js"></script>
 <script>
 $(document).ready(function () {
@@ -232,7 +231,17 @@ $(document).ready(function () {
                 <!-- <li><a href="http://localhost/GameOverseer/AboutUs.html">About Us</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
+			 <li class="dropdown">
 			 
+			    <a href= "#" class = "dropdown-toggle" data-toggle = "dropdown">Developers <b class="caret"></b> </a>
+				<ul class="dropdown-menu">
+				     <li> <a href="#">Onna Piando</a></li>
+				     <li> <a href="#">Jennie Ramos</a></li>
+				     <li> <a href="#">Kay Apao</a></li>
+				     <li> <a href="#">Ron Daryl Magno</a></li>
+			             <li> <a href="#">Diofel Pallega</a></li>
+				</ul>
+			</li>
 			    <li><a href="http://localhost/GameOverseer/register.html">Register</a></li>
             </ul>
         </div>
@@ -243,27 +252,25 @@ $(document).ready(function () {
     <div class="row">
         <div class="col-md-12">
             <div class="pr-wrap">
-                <div class="pass-reset">
-					<label>Enter your username</label>
-					<input type="text" id="username" placeholder="Username" />
+                <div class="pass-reset" id="reset">
+                    <label>
+                        Enter the email you signed up with</label>
+                    <input type="email" id="email" placeholder="Email" />
 					<br>
 					<br>
-					<label>Enter new password</label>
-					<input type="password" id ="password" placeholder="New Password" />
-				   <br>
-				   <br>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<a id="btn-login" href="#" class="pass-reset-submit btn btn-success btn-sm" value="Sign In"
-					onclick="setPassword($('#username').val(),$('#password').val());">
-					Submit
-					</a>
-				</div>
+					<a id="btn-login" href="#" class="btn btn-success btn-sm" value="Sign In"
+					onclick="checkEmail($('#email').val())">
+					Submit 
+				</a>
+                </div>
             </div>
             <div class="wrap">
                 <p class="form-title">
                     Sign In</p>
-                <p id="status" style="margin-left:490px"></p> 
-				<form class="login">
+				
+				<div id = "status"></div>
+                <form class="login">
                 <input type="text" id="login-username" placeholder="Username" >
 				<br>
 				<br>
@@ -287,11 +294,9 @@ $(document).ready(function () {
                                 </label>
                             </div>
                         </div>
-						
                         <div class="col-md-6 forgot-pass-content">
-                            <a href="javascription:void(0)"   data-toggle="modal" data-target="#forgotpassword">Forgot Password</a>
+                            <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
                         </div>
-						
                     </div>
                 </div>
 				 <div class="form-group">
@@ -301,39 +306,32 @@ $(document).ready(function () {
                                         <a href="register.html" >
                                             Sign Up Here
                                         </a>
-                                </div>
-                           </div>
-                      </div>  
+                                        </div>
+                                    </div>
+                                </div>  
                 </form>
             </div>
         </div>
     </div>
 </div>
- 
- 
- 
- <div    style="background-color:rgba(0,0,0,0.2);margin-top:150px;" class="modal fade" id="forgotpassword">
+
+<div    style="background-color:rgba(0,0,0,0.2);margin-top:150px;" class="modal fade" id="forgotpassword">
 	
 	 
   <div  style="background-color:rgba(0,0,0,0.9);" class="modal-dialog">
     <div  style="background-color:rgba(0,0,0,0.2); "class="modal-content">
       <div style="background-color:rgba(0,0,0,0.2); "  class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Forgot Password ?</h4>
+        <h4 class="modal-title" id="myModalLabel">Enter New Password </h4>
       </div>
+	  <div id="alert"></div>
       <div  style="background-color:rgba(0,0,0,0.2); " class="modal-body">
         
 		<form class="login">
-                <input style="color:white;" type="text" id="login-username" placeholder="Username" >
+                <input style="color:white;" type="text" id="username" placeholder="Username" >
 				<br>
 				<br>
-				<input style="color:white;" type="text" id="email" placeholder="email" > 
-				<br>
-				<br>
-                <input style="color:white;" type="password" id="login-password" placeholder="Password" >
-				<br>
-				<br>
-				
+				<input style="color:white;" type="password" id="password" placeholder="Password" >
 			 
              
 				 
@@ -341,11 +339,11 @@ $(document).ready(function () {
       </div>
       <div  style="background-color:rgba(0,0,0,0.2); " class="modal-footer">
         
-        <button type="button" class="btn btn-primary">Confirm changes</button>
+		<button type="button" class="btn btn-primary" onclick="setPassword($('#username').val(), $('#password').val());">Confirm changes</button>
       </div>
     </div>
   </div>
 </div>
-
 </body>
 	<script src="javascript/jquery.cookie.js"></script>
+
