@@ -655,8 +655,8 @@ function setPassword(username,password)
 			if (res[0][0] == "OK") //if login is successful redirect page
 			{
 				$('#status').empty();
-				$('#status').append("Successfully changed");
-				$('#status').css('color','#FF0000');
+				$('#status').append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Successfully changed");
+				$('#status').css('color','white');
 			}
       } 
       }); 
