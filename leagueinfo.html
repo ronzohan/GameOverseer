@@ -6,6 +6,8 @@
 		<link href="css/jquery.bracket.min.css" rel="stylesheet">
 		<link href="css/jquery-ui.min.css" rel="stylesheet">
 		<link type="text/css" href="css/bootstrap-timepicker.min.css">
+		<link href="css/bootstrap-responsive.css" rel="stylesheet">
+		
 		<script src="javascript/jquery.js"></script>
 		<script src="javascript/bootstrap.min.js"></script>		
 	    <script type="text/javascript" src="javascript/bootstrap-timepicker.min.js"></script>
@@ -14,7 +16,7 @@
 	 
 		<div id="fullscreen_bg" class="fullscreen_bg"></div> 
 		<div id="header"></div> 
-		<div class="container"   style="margin-top:100px;"  id="leagueinfo"></div>
+		<div class="container"   style="margin-top:20px;"  id="leagueinfo"></div>
 		
 		<p id="leagueid" hidden></p>
 		<div id="addteamdialog" title="Add Teams">
@@ -89,7 +91,7 @@
 									</div>
 									<label class="col-xs-1 control-label" for="textinput" value="">Start</label>
 									<div class="col-sm-3">
-										<input type="text" class="form-control" id="starttime">
+										<input type="text" class="form-control" id="timepicker1">
 									</div>
 									<label class="col-xs-1 control-label" for="textinput" value="">End</label>
 									<div class="col-sm-3">
@@ -147,6 +149,9 @@
  		dateFormat: 'yy-mm-dd'
  	});
  	
+	$("#myModal #timepicker1").timepicker();
+	$("#myModal #endtime").timepicker();
+	
 	$("#addteamdialog").dialog({ 
 			autoOpen: false,
 			height: 160,

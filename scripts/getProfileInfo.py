@@ -7,10 +7,9 @@ except ImportError:
 
 def index(req, name):
     name = cgi.escape(name) 
-    #id2 = cgi.escape(userid_fk)
     x = doSql()
-    rets = x.execqry("SELECT manager_id FROM users \
-    INNER JOIN manager ON users.userid = manager.userid_fk \
+    rets = x.execqry("SELECT manager_id FROM manager \
+    INNER JOIN users ON users.userid = manager.userid_fk \
     where users.username = '" + name + "';", False)
     
     for ret in rets:

@@ -21,7 +21,7 @@ function fetchEvent(ide)
 					$("#location").val(res[0][1]);
 
 				if (res[0][2] != "None")
-					$("#starttime").val(res[0][2]);
+					$("#timepicker1").val(res[0][2]);
 
 				if (res[0][3] != "None")
 					$("#endtime").val(res[0][3]);
@@ -599,7 +599,7 @@ function onclickbracket(data,rId) {
 	$("#eventid").empty();
 	$("#datepicker").val("");
 	$("#location").val("");
-	$("#starttime").val("");
+	$("#timepicker1").val("");
 	$("#endtime").val("");
 
 	console.log(data); 
@@ -665,15 +665,91 @@ function setPassword(username,password)
 
 	  function (res) 
 	  {
-			if (res[0][0] == "OK") //if login is successful redirect page
+			if (res[0][0] == "OK") 
+			{
+				$('#alert').empty();
+				$('#alert').append("Your password has been successfully changed.");
+				$('#alert').css('color','white');
+			}
+      } 
+      }); 
+}
+
+function checkEmail(email)
+{
+   $.ajax({
+      url: siteloc + scriptloc + "email.py",
+      data: {email:email},
+      dataType: 'json',
+      success:
+
+	  function (res) 
+	  {
+			if (res[0][0] != "None") 
+			{
+				$('#reset').empty();
+				$('#reset').append("<a href='#' onclick=$('#reset').hide() data-toggle='modal' data-target='#forgotpassword'> Click here to renew password</a>");
+				$('#reset').css('color','black');
+			}
+			else
 			{
 				$('#status').empty();
-				$('#status').append("Successfully changed");
+				$('#status').append("Email or username does not exist. Please try again.");
 				$('#status').css('color','#FF0000');
 			}
       } 
       }); 
 }
+
+
+
+function setTempManPass(mainMan, tempMan,password)
+{
+   $.ajax({
+      url: siteloc + scriptloc + "setTempManPass.py",
+      data: {mainMan:mainMan,
+	     tempMan:tempMan,
+		 password: password},
+      dataType: 'json',
+      success:
+	  function (res) 
+	  {
+			if (res[0][0] == "OK") 
+			{
+				
+				$('#status').empty();
+				$('#status').append("Ok");
+				$('#status').css('color','white');
+			}
+      } 
+      }); 
+}
+
+
+function fetchEmail_f(username,password,email)
+
+
+{
+   $.ajax({
+      url: siteloc + scriptloc + "getEmail.py",
+      data: {username:username,
+	     password:password,
+		 email:email},
+   
+      dataType: 'json',
+      success: function (res) {
+   
+				if(res[0][0] == email)
+				{
+				     
+				    setPassword(username,password);
+				}
+				else  
+				  $('#status').append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not Successfully changed");
+		} 
+    }); 
+}
+
  
 function getParameterByName(name)
 {
@@ -889,7 +965,7 @@ function fetchusername(name)
 				if(res[0][0] != "None")
 				{
 				     
-				 
+				    $("#k").append('<h2> users </h2>');
 					$("#name").append('<a href = searchusername.html?query=' + res[0][0] + '>' + res[0][0] + '</a>');
 				    $("#k").append('<hr>');
 				}
@@ -910,9 +986,7 @@ function fetchleaguename(name)
 				
 				if(res[0][0] != "None")
 				{
-				     $("#k").append('<h2> -------- </h2>');
 					 $("#k").append('<h2> league </h2>');
-					$("#k").append('<h2> results found: </h2>');
 					$("#league").append('<a href = searchleague.html?id=' + getLeagueID(name) + '>' + res[0][0] + '</a>');
 				 }
 				 else{
@@ -1174,6 +1248,7 @@ function searchAutocomplete()
 				} 
      }); 
  } 	
+
 
 
 function setEvent(teamname1,teamname2,leagueid,eDate,eLocation,eTime_start,eTime_end)
