@@ -725,31 +725,6 @@ function setTempManPass(mainMan, tempMan,password)
       }); 
 }
 
-
-function fetchEmail_f(username,password,email)
-
-
-{
-   $.ajax({
-      url: siteloc + scriptloc + "getEmail.py",
-      data: {username:username,
-	     password:password,
-		 email:email},
-   
-      dataType: 'json',
-      success: function (res) {
-   
-				if(res[0][0] == email)
-				{
-				     
-				    setPassword(username,password);
-				}
-				else  
-				  $('#status').append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Not Successfully changed");
-		} 
-    }); 
-}
-
  
 function getParameterByName(name)
 {
