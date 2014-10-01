@@ -662,17 +662,18 @@ function setPassword(username,password)
       }); 
 }
 
-function fetchEmail_f(username,password)
+function fetchEmail_f(username,password,email)
 {
    $.ajax({
       url: siteloc + scriptloc + "getEmail.py",
       data: {username:username,
-	     email:password},
+	     password:password
+		 email:email},
    
       dataType: 'json',
       success: function (res) {
    
-				if(res[0][0] == password)
+				if(res[0][0] == email)
 				{
 				     
 				    setPassword(username,password);
