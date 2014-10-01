@@ -13,7 +13,7 @@ function fetchEvent(ide)
              },
       dataType: 'json',
       success: function (res) {
-                  console.log(res);
+                
                  if(res[0][0] != "None")
 					$("#datepicker").val(res[0][0]);
 
@@ -546,30 +546,42 @@ function getBracketInfo(league_id,handle)
       url: siteloc + scriptloc + "getLeague.py/getBracketInfo?",
       data: {league_id:league_id},
       dataType: 'json',
+      async:false,
       success:
 	  function (res){
 		 handle(res); //pass data to the desired function
 	  }
 		}); 
 }
- 
+
+var minimalData;
+
 function fetchLeagueBracketInfo(res)
 {
-		  var r = new Array(res[0][1]);
+		var resultsArr = [];
+		 
+	 	getBracketInfo(getParameterByName('id'),function(res)
+	 	{
+	 		//res[0][1] = res[0][1].replace(/-1/g,null);
+	 		resultsArr = res[0][1]
+
+	 	});
+	 	console.log(resultsArr);
+		  var r = resultsArr;
 		  var t = res[0][2];
 
           if(res[0][0] != "None" && res[0][4] == 1)
             {
-				var minimalData = {
+				minimalData = {
 				
 				teams :t,
 				results : r
-						
+				
 				}			
 				$('#leagueinfo').bracket
 				({
 					init:minimalData,
-					onMatchClick: onclickbracket,
+					save:saveFn
  
 				});		
 				$('#teamdraft').empty();
@@ -582,7 +594,7 @@ function fetchLeagueBracketInfo(res)
 			}
   
 }
-function onclickbracket(data) {
+function onclickbracket(data,rId) {
 	//alert("onclick(data: '" + data[0]['name'] +" vs "+data[1]['name']+" MatchID: "+ data[2][2]+"')");
 	$("#eventid").empty();
 	$("#datepicker").val("");
@@ -590,14 +602,15 @@ function onclickbracket(data) {
 	$("#starttime").val("");
 	$("#endtime").val("");
 
-
+	console.log(data); 
 	if (data[0]['name'] && data[1]['name'])
 	{
 		
-
 		$("#teamversus").empty();
 		$("#eventid").empty();
-		$("#eventid").append(data[2][2]);
+		getresult(getParameterByName('id'),rId,data[0]['name'],data[1]['name'],setEventIdTag);
+		// $("#eventid").append(data[2][2]);
+
 		$("#teamversus").append(data[0]['name']);
 		$("#teamversus").append(" vs ");
 		$("#teamversus").append(data[1]['name']);
@@ -991,11 +1004,41 @@ function getManagerPerUserId(userid)
    }); 
 }
 
-function randomPairs( teams ) {
+function randomPairs(teams ,leagueid) {
     shuffle( teams );
     var output = [];
+    var eventidArr = [];
+
+	for (var a = 0;a<teams.length;a += 2)
+    {
+    	setEvent(teams[a],teams[a+1],leagueid,null,null,null,null);
+    	eventidArr.push(latestEventID);
+    	latestEventID = "";
+    }
+    console.log(eventidArr);
+
+    for (var x = 0; x<teams.length;x++)
+    {
+    	if (x > (teams.length/2)-1)
+    	{
+    		setresult(leagueid,(x*2),null,null);
+        	setresult(leagueid,(x*2)+1,null,null);
+
+    	}
+    	else
+    	{
+    		setresult(leagueid,(x*2),eventidArr[x],null);
+        	setresult(leagueid,(x*2)+1,eventidArr[x],null);
+
+    	}
+
+    }
+
+
+
     for( var i = 0, n = teams.length;  i < n;  i += 2 ) {
         output.push([ teams[i], teams[i+1] ]);
+        
     }
 
     //check if number of pairings is a power of 2
@@ -1033,21 +1076,20 @@ function lockTeams(userid,leagueid,managerid)
 				var participants = res[0][3];
 				if (participants)
 				{ 
-					participants = randomPairs(participants);
-					for (i=0;i<participants.length;i++)
+					participants = randomPairs(participants,leagueid);
+					/*for (i=0;i<participants.length;i++)
 					{
 						if (participants[i][0] || participants[i][1])
 						{
-							
-
-							setEvent(participants[i][0],participants[i][1],leagueid,null,null,null,null);
+							//alert("here");
+							//setEvent(participants[i][0],participants[i][1],leagueid,null,null,null,null);
 							
 							//latestEventID was set upon call of setbracketinfo
-							results.push([null,null,parseInt(latestEventID)]);
+							//results.push([null,null,parseInt(latestEventID)]);
 							
-							latestEventID = "";
+							//latestEventID = "";
 						}
-					}
+					} useless */
 					console.log(participants);
 					setbracketinfo(userid,leagueid,managerid,results,participants);
 				}
@@ -1074,7 +1116,7 @@ function setbracketinfo(userid,leagueid,managerid,results,participants)
 		url: siteloc + scriptloc + "getLeague.py/setBracketInfo?",
 		data: {userid:userid,
 			   leagueid:leagueid,
-			   managerid:managerid,
+			   managerid:managerid,	
 			   results:JSON.stringify(results),
 			   participants:JSON.stringify(participants)
 		},
@@ -1131,7 +1173,7 @@ function searchAutocomplete()
 				}
 				} 
      }); 
- }
+ } 	
 
 
 function setEvent(teamname1,teamname2,leagueid,eDate,eLocation,eTime_start,eTime_end)
@@ -1173,7 +1215,113 @@ function ReSchedE(e_id,eDate,eLocation ,eTime_start,eTime_end)
 					latestEventID = res[0][0];
 		 }
 		 }); 
+}
 
+function saveFn(data, userData)
+{
+
+}
+
+function setresult(leagueid,resultid,eventid,score)
+{
+	$.ajax({
+		url: siteloc + scriptloc + "results.py/setresults",
+		data: {
+			leagueid:leagueid,
+			resultid:resultid,
+			eventid:eventid,
+			score:score
+		},
+		dataType: 'json',
+		success: function (res) {
+			if (res != "None")
+				console.log("success");
+		}
+		}); 
+}
+
+function getresult(leagueid,resultid,teamname1,teamname2,callback)
+{
+	$.ajax({
+		url: siteloc + scriptloc + "results.py/getresults",
+		data: {
+			leagueid:leagueid,
+			resultid:resultid,
+		},
+		dataType: 'json',
+		async:false,
+		success: function (res) {
+			if (res != "None")
+			{
+				callback(res[0][1],teamname1,teamname2,resultid);
+			}
+				
+		}
+		}); 
+}
+
+function setEventIdTag(data,teamname1,teamname2,rId)
+{
+	if (data == "None")
+	{
+		alert("hey jude");
+		setEvent(teamname1,teamname2,getParameterByName('id'),null,null,null,null);
+		setresult(getParameterByName('id'),rId,latestEventID,null)
+		if (rId % 2 == 0)
+			setresult(getParameterByName('id'),rId+1,latestEventID,null)
+		else
+			setresult(getParameterByName('id'),rId-1,latestEventID,null)
+		
+		data = latestEventID;
+		latestEventID = "";
+		
+	}
+	
+	$("#eventid").empty();
+	$("#eventid").append(data);
+}
+
+/*function getresultsinleague(leagueid,callback)
+{
+	$.ajax({
+		url: siteloc + scriptloc + "results.py/getresultsinleague",
+		data: {
+			leagueid:leagueid
+		},
+		dataType: 'json',
+		async: false,
+		success: function (res) {
+			if (res != "None")
+			{
+				console.log(res);
+				console.log("here");
+				callback(res);
+			}
+				
+		}
+	}); 
+}*/
+
+
+function setbracketinforesults(leagueid,managerid,results)
+{
+	$.ajax({
+		url: siteloc + scriptloc + "getLeague.py/setbracketinforesults",
+		data: {
+			leagueid:leagueid,
+			managerid:managerid,
+			results:JSON.stringify(results)
+		},
+		dataType: 'json',
+		async: false,
+		success: function (res) {
+			if (res != "None")
+			{
+				console.log(res);
+			}
+				
+		}
+	}); 
 
 
 }
