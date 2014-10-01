@@ -662,6 +662,30 @@ function setPassword(username,password)
       }); 
 }
 
+function setTempManPass(mainMan, tempMan,password)
+{
+   $.ajax({
+      url: siteloc + scriptloc + "setTempManPass.py",
+      data: {mainMan:mainMan,
+	     tempMan:tempMan,
+		 password: password},
+      dataType: 'json',
+      success:
+	  function (res) 
+	  {
+			if (res[0][0] == "OK") 
+			{
+				
+				$('#status').empty();
+				$('#status').append("Ok");
+				$('#status').css('color','white');
+			}
+      } 
+      }); 
+}
+
+
+
 function fetchEmail_f(username,password)
 {
    $.ajax({
