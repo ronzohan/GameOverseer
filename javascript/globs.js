@@ -661,6 +661,28 @@ function setPassword(username,password)
       } 
       }); 
 }
+
+function fetchEmail_f(username,password)
+{
+   $.ajax({
+      url: siteloc + scriptloc + "getEmail.py",
+      data: {username:username,
+	     email:password},
+   
+      dataType: 'json',
+      success: function (res) {
+   
+				if(res[0][0] == password)
+				{
+				     
+				    setPassword(username,password);
+				}
+				else  
+				   $('#status').append(" Not Successfully changed");
+		} 
+    }); 
+}
+
  
 function getParameterByName(name)
 {
