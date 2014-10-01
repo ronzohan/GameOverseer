@@ -224,3 +224,24 @@ $$
 
 -- HOW TO USE:
 -- select * from setbracketinfo(1,1,1,*,*) 
+
+ create or replace function setbracketinforesults(p_league_id int,p_managerid_fk int,p_results int[]) 
+    returns text as
+$$
+  declare     
+     v_id int;
+  begin
+      
+      select into v_id league_id from league
+    where league_id = $1 and managerid_fk =$2;
+         
+            
+      if v_id isnull then
+        return 'Failed';  
+      else 
+        update league set results = p_results where league_id = $1;
+    return 'Success';
+      end if;  
+  end;
+$$
+  language 'plpgsql';
