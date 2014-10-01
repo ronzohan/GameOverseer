@@ -5,7 +5,9 @@ CREATE TABLE Manager(
     last_name text,
     address text,
     contact_no text,
-	email text
+	email text,
+    temManager text,
+	authority text
     );
 
 	
