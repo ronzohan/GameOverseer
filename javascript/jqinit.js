@@ -42,7 +42,7 @@ $(function()
 
 	$("#savechanges").click(
 		function(){
-			ReSchedE($("#eventid").text(),$("#datepicker").val(),$("#location").val(),$("#starttime").val(),$("#endtime").val())
+			ReSchedE($("#eventid").text(),$("#datepicker").val(),$("#location").val(),$("#timepicker1").val(),$("#endtime").val())
 			$("#myModal").modal('toggle');
 		}
 	);
