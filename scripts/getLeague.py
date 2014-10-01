@@ -27,6 +27,11 @@ def getBracketInfo(req,league_id):
     rets = x.execqry("select * from get_league_bracket_info('" \
     + league_id +  "');", False)
     
+    result = []
+    for ret in rets:
+        stringed = map(str, ret)
+        result.append(stringed)
+        
     return json.dumps(rets)
 
 def getLeagueInfoByManager(req,managerid):
@@ -102,7 +107,22 @@ def setBracketInfo(req,leagueid,managerid,userid,results,participants):
     
     participants = participants.replace('[', '{').replace(']', '}').replace('\'', '\"')
     x = doSql()
-    query = "select setbracketinfo("+leagueid+"," + managerid+","+userid+","+results+",'"+participants+"'"
-    rets = x.execqry("select setbracketinfo("+leagueid+"," + managerid+","+userid+",Array"+results+",'"+participants+"');",True)
+    rets = x.execqry("select setbracketinfo("+leagueid+"," + managerid+","+userid+",Array[]::integer[]"+",'"+participants+"');",True)
    
     return json.dumps(rets)
+
+def setbracketinforesults(req,leagueid,managerid,results):
+    leagueid = cgi.escape(leagueid)
+    managerid = cgi.escape(managerid)
+    
+    results = results.replace('null','-1');
+    x = doSql()
+    rets = x.execqry("select setbracketinforesults("+leagueid+"," + managerid
+    +",Array"+results+");",True)
+   
+    result = []
+    for ret in rets:
+        stringed = map(str, ret)
+        result.append(stringed)
+    
+    return json.dumps(result)
