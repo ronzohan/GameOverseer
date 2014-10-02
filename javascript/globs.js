@@ -85,12 +85,13 @@ function updateUser()
                   console.log(res[0][0]);
                   if(res[0][0] == 'OK')
                   {    console.log(res[0][0]);
-					$("#container2").html(
-					'<h1> Successfully Changed!</h1>');     
+					$("p4").html(
+					'<h1> Successfully Changed!</h1>' +
+					'<h6><a href ="#" onclick = redirect(2);>go back to your profile  &rarr;</a></h6>');    
 					} // end if
 				else{
-				  	$("#container2").html(
-					'<h1> Wrong Username/Password</h1>');   
+				  	$("p5").html(
+					'<h4 align="center"> Wrong Username/Password</h4>');   
 					}
               }
     });
@@ -1369,6 +1370,55 @@ function setbracketinforesults(leagueid,managerid,results)
 				
 		}
 	}); 
+}
+
+function setscore(e_id,rId,score)
+{
+	var scriptFunction = "";
+	if (rId % 2 == 0)
+		scriptFunction = "setScoreT1";
+	else
+		scriptFunction = "setScoreT2";
+
+
+	$.ajax({
+		url: siteloc + scriptloc + "Event.py/"+scriptFunction,
+		data: {
+			e_id:e_id,
+			score:score
+		},
+		dataType: 'json',
+		async: false,
+		success: function (res) {
+			if (res != "None")
+			{
+				console.log(res);
+			}
+				
+		}
+	}); 
+
+}
+
+function getEventIdOfResult(leagueid,resultid,callback)
+{
+	$.ajax({
+		url: siteloc + scriptloc + "results.py/getresults",
+		data: {
+			leagueid:leagueid,
+			resultid:resultid,
+		},
+		dataType: 'json',
+		async:false,
+		success: function (res) {
+			if (res != "None")
+			{
+				callback(res[0][1]);
+			}
+				
+		}
+		}); 
+
 
 
 }
@@ -1406,3 +1456,4 @@ function searchAutocompleteusername()
 	});
 
  }
+

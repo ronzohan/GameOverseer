@@ -47,10 +47,6 @@ $(function()
 		}
 	);
 
-	$("#saveresults").click(
-		function(){
-			setbracketinforesults(getParameterByName('id'),$.cookie('managerid'),minimalData['results']);
-		}
-	);
+	
 
 }); 
