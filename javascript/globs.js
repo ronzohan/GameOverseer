@@ -1400,7 +1400,6 @@ function setscore(e_id,rId,score)
 
 }
 
-<<<<<<< HEAD
 function getEventIdOfResult(leagueid,resultid,callback)
 {
 	$.ajax({
@@ -1423,7 +1422,7 @@ function getEventIdOfResult(leagueid,resultid,callback)
 
 
 }
-=======
+
 function searchAutocompleteusername()
 {
 	fetchusername(function(output)
@@ -1457,4 +1456,4 @@ function searchAutocompleteusername()
 	});
 
  }
->>>>>>> origin/master
+
