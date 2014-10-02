@@ -85,12 +85,12 @@ function updateUser()
                   console.log(res[0][0]);
                   if(res[0][0] == 'OK')
                   {    console.log(res[0][0]);
-					$("#container2").html(
+					$("p4").html(
 					'<h1> Successfully Changed!</h1>');     
 					} // end if
 				else{
-				  	$("#container2").html(
-					'<h1> Wrong Username/Password</h1>');   
+				  	$("p5").html(
+					'<h4 align="center"> Wrong Username/Password</h4>');   
 					}
               }
     });
