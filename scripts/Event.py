@@ -100,3 +100,33 @@ def ReSchedE(req,e_id,eDate,eLocation ,eTime_start,eTime_end):
         result.append(stringed)
     
     return json.dumps(result)
+
+def setScoreT1(e_id, score):
+    e_id = cgi.escape(e_id)
+    score = cgi.escape(score)
+    
+    x = doSql()
+    rets = x.execqry("select * from setScoreT1(" + e_id +","+score+");", True)
+    
+    result = []
+    
+    for ret in rets:
+        stringed = map(str, ret)
+        result.append(stringed)
+    
+    return json.dumps(result)
+
+def setScoreT2(e_id, score):
+    e_id = cgi.escape(e_id)
+    score = cgi.escape(score)
+    
+    x = doSql()
+    rets = x.execqry("select * from setScoreT2(" + e_id +","+score+");", True)
+    
+    result = []
+    
+    for ret in rets:
+        stringed = map(str, ret)
+        result.append(stringed)
+    
+    return json.dumps(result)
