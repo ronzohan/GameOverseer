@@ -702,7 +702,7 @@ function checkEmail(email)
 
 
 
-function setTempManPass(mainMan, tempMan,password)
+function setTempManPass(mainMan, tempMan, password)
 {
    $.ajax({
       url: siteloc + scriptloc + "setTempManPass.py",
@@ -715,10 +715,15 @@ function setTempManPass(mainMan, tempMan,password)
 	  {
 			if (res[0][0] == "OK") 
 			{
-				
 				$('#status').empty();
-				$('#status').append("Ok");
+				$('#status').append("Temporary Manager already set");
 				$('#status').css('color','white');
+			}
+			else
+			{
+				$('#status').empty();
+				$('#status').append("Username does not exist");
+				$('#status').css('color','#FF0000');
 			}
       } 
       }); 
