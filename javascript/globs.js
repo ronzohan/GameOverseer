@@ -82,16 +82,16 @@ function updateUser()
 			 email2:$("#emailadd1").val(),},
       dataType: 'json',
       success: function (res) {
-                  console.log(res);
-                  if(res[0][0] != "None")
-                  {
+                  console.log(res[0][0]);
+                  if(res[0][0] == 'OK')
+                  {    console.log(res[0][0]);
 					$("#container2").html(
 					'<h1> Successfully Changed!</h1>');     
-
-      
-      
-      
-      } // end if
+					} // end if
+				else{
+				  	$("#container2").html(
+					'<h1> Wrong Username/Password</h1>');   
+					}
               }
     });
 }
