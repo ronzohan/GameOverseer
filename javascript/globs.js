@@ -73,9 +73,9 @@ function updateUser()
   $.ajax({
       url: siteloc + scriptloc + "updatemanager.py",
       data: {
-			 username2:$("#username1").val(),
-			 password2:$("#password1").val(),
-			 firstname2:$("#firstname1").val(),
+	  username2:$("#username1").val(),
+	  password2:$("#password1").val(),
+	  firstname2:$("#firstname1").val(),
 			 lastname2:$("#lastname1").val(),
 			 address2:$("#address1").val(),
 			 contactno2:$("#phone1").val(),
