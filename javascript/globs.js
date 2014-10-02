@@ -713,7 +713,7 @@ function checkTempMan(username)
 	  {
 			if (res[0][0] != "None") 
 			{
-				alert("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
+				$("#notice").append("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
 				"to manage his/her league. Your password is: " + res[0][3]);
 			}
 			else
