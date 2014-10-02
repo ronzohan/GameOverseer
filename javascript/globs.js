@@ -1220,36 +1220,6 @@ function searchAutocomplete()
 	});
 
  }
- 
- function fetchleaguemanage(usename)
-{
-   $.ajax({
-      url: siteloc + scriptloc + "getleaguemanage.py",
-     data: {username:username},
-   
-      dataType: 'json',
-      success: function (res) {
-   
-				if(res[0][0] != "None")
-				{
-					for (i = 0; i < res.length; i++)
-					{
-						row = res[i];
-      
-						for (j = 0; j < row.length ; j++)
-						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-						$("h3").append(row[j]);  
-       
-					} 
-                 }
-				 
-				 else{
-				 
-				    
-				}
-				} 
-     }); 
- } 	
 
 
 
