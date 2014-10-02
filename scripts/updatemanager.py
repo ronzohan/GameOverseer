@@ -24,8 +24,11 @@ def index(req,username2,password2,firstname2,lastname2,email2,contactno2,address
     query = "SELECT login('"+ username2+"','"+ password2+"');" 
     items = a.execqry(query,False)
     for item in items:
-        stringed = ''.join(map(str,item))
-
+        if (item == "Your password did not match"):
+             return json.dumps("None")
+        else: 
+             stringed = ''.join(map(str,item))
+     
     id = stringed 
    
  

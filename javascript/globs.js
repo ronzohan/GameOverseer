@@ -82,16 +82,17 @@ function updateUser()
 			 email2:$("#emailadd1").val(),},
       dataType: 'json',
       success: function (res) {
-                  console.log(res);
-                  if(res[0][0] != "None")
-                  {
-					$("#container2").html(
-					'<h1> Successfully Changed!</h1>');     
-
-      
-      
-      
-      } // end if
+                  console.log(res[0][0]);
+                  if(res[0][0] == 'OK')
+                  {    console.log(res[0][0]);
+					$("p4").html(
+					'<h1> Successfully Changed!</h1>' +
+					'<h6><a href ="#" onclick = redirect(2);>go back to your profile  &rarr;</a></h6>');    
+					} // end if
+				else{
+				  	$("p5").html(
+					'<h4 align="center"> Wrong Username/Password</h4>');   
+					}
               }
     });
 }
@@ -645,6 +646,7 @@ function login(username,password)
 			
 			else
 			{
+				$('#status').empty();
 				$('#status').append("Invalid username or password");
 				$('#status').css('color','#FF0000');
 			}
@@ -695,6 +697,28 @@ function checkEmail(email)
 				$('#status').empty();
 				$('#status').append("Email or username does not exist. Please try again.");
 				$('#status').css('color','#FF0000');
+			}
+      } 
+      }); 
+}
+
+function checkTempMan(username)
+{
+   $.ajax({
+      url: siteloc + scriptloc + "checkTempMan.py",
+      data: {username:username},
+      dataType: 'json',
+      success:
+	  function (res) 
+	  {
+			if (res[0][0] != "None") 
+			{
+				alert("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
+				"to manage his/her league. Your password is: " + res[0][3]);
+			}
+			else
+			{
+				alert("None.");
 			}
       } 
       }); 
@@ -1197,36 +1221,6 @@ function searchAutocomplete()
 	});
 
  }
- 
- function fetchleaguemanage(usename)
-{
-   $.ajax({
-      url: siteloc + scriptloc + "getleaguemanage.py",
-     data: {username:username},
-   
-      dataType: 'json',
-      success: function (res) {
-   
-				if(res[0][0] != "None")
-				{
-					for (i = 0; i < res.length; i++)
-					{
-						row = res[i];
-      
-						for (j = 0; j < row.length ; j++)
-						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-						$("h3").append(row[j]);  
-       
-					} 
-                 }
-				 
-				 else{
-				 
-				    
-				}
-				} 
-     }); 
- } 	
 
 
 
@@ -1406,6 +1400,7 @@ function setscore(e_id,rId,score)
 
 }
 
+<<<<<<< HEAD
 function getEventIdOfResult(leagueid,resultid,callback)
 {
 	$.ajax({
@@ -1428,3 +1423,38 @@ function getEventIdOfResult(leagueid,resultid,callback)
 
 
 }
+=======
+function searchAutocompleteusername()
+{
+	fetchusername(function(output)
+	{
+		var availableTags = [];
+		for (i=0;i<output.length;i++)
+			availableTags.push(output[i][1]);
+ 
+		$( "#usename" ).autocomplete({
+		  source: availableTags,
+		 
+    });
+		
+	});
+
+ }
+ 
+  function searchAutocompleteleague()
+{
+	fetchleaguename(function(output)
+	{
+		var availableTags = [];
+		for (i=0;i<output.length;i++)
+			availableTags.push(output[i][1]);
+ 
+		$( "#usename" ).autocomplete({
+		  source: availableTags,
+		 
+    });
+		
+	});
+
+ }
+>>>>>>> origin/master
