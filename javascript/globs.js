@@ -73,26 +73,25 @@ function updateUser()
   $.ajax({
       url: siteloc + scriptloc + "updatemanager.py",
       data: {
-	  username2:$("#username1").val(),
-	  password2:$("#password1").val(),
-	  firstname2:$("#firstname1").val(),
+			 username2:$("#username1").val(),
+			 password2:$("#password1").val(),
+			 firstname2:$("#firstname1").val(),
 			 lastname2:$("#lastname1").val(),
 			 address2:$("#address1").val(),
 			 contactno2:$("#phone1").val(),
 			 email2:$("#emailadd1").val(),},
       dataType: 'json',
       success: function (res) {
-                  console.log(res[0][0]);
-                  if(res[0][0] == 'OK')
-                  {    console.log(res[0][0]);
-					$("p4").html(
-					'<h1> Successfully Changed!</h1>' +
-					'<h6><a href ="#" onclick = redirect(2);>go back to your profile  &rarr;</a></h6>');    
-					} // end if
-				else{
-				  	$("p5").html(
-					'<h4 align="center"> Wrong Username/Password</h4>');   
-					}
+                  console.log(res);
+                  if(res[0][0] != "None")
+                  {
+					$("#container2").html(
+					'<h1> Successfully Changed!</h1>');     
+
+      
+      
+      
+      } // end if
               }
     });
 }
@@ -713,7 +712,7 @@ function checkTempMan(username)
 	  {
 			if (res[0][0] != "None") 
 			{
-				alert("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
+				$("#notice").append("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
 				"to manage his/her league. Your password is: " + res[0][3]);
 			}
 			else
@@ -1221,6 +1220,36 @@ function searchAutocomplete()
 	});
 
  }
+ 
+ function fetchleaguemanage(usename)
+{
+   $.ajax({
+      url: siteloc + scriptloc + "getleaguemanage.py",
+     data: {username:username},
+   
+      dataType: 'json',
+      success: function (res) {
+   
+				if(res[0][0] != "None")
+				{
+					for (i = 0; i < res.length; i++)
+					{
+						row = res[i];
+      
+						for (j = 0; j < row.length ; j++)
+						if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
+						$("h3").append(row[j]);  
+       
+					} 
+                 }
+				 
+				 else{
+				 
+				    
+				}
+				} 
+     }); 
+ } 	
 
 
 
@@ -1370,90 +1399,6 @@ function setbracketinforesults(leagueid,managerid,results)
 				
 		}
 	}); 
-}
-
-function setscore(e_id,rId,score)
-{
-	var scriptFunction = "";
-	if (rId % 2 == 0)
-		scriptFunction = "setScoreT1";
-	else
-		scriptFunction = "setScoreT2";
-
-
-	$.ajax({
-		url: siteloc + scriptloc + "Event.py/"+scriptFunction,
-		data: {
-			e_id:e_id,
-			score:score
-		},
-		dataType: 'json',
-		async: false,
-		success: function (res) {
-			if (res != "None")
-			{
-				console.log(res);
-			}
-				
-		}
-	}); 
-
-}
-
-function getEventIdOfResult(leagueid,resultid,callback)
-{
-	$.ajax({
-		url: siteloc + scriptloc + "results.py/getresults",
-		data: {
-			leagueid:leagueid,
-			resultid:resultid,
-		},
-		dataType: 'json',
-		async:false,
-		success: function (res) {
-			if (res != "None")
-			{
-				callback(res[0][1]);
-			}
-				
-		}
-		}); 
-
 
 
 }
-
-function searchAutocompleteusername()
-{
-	fetchusername(function(output)
-	{
-		var availableTags = [];
-		for (i=0;i<output.length;i++)
-			availableTags.push(output[i][1]);
- 
-		$( "#usename" ).autocomplete({
-		  source: availableTags,
-		 
-    });
-		
-	});
-
- }
- 
-  function searchAutocompleteleague()
-{
-	fetchleaguename(function(output)
-	{
-		var availableTags = [];
-		for (i=0;i<output.length;i++)
-			availableTags.push(output[i][1]);
- 
-		$( "#usename" ).autocomplete({
-		  source: availableTags,
-		 
-    });
-		
-	});
-
- }
-
