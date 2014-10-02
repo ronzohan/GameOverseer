@@ -61,10 +61,9 @@ $$
     
 	
 --HOW TO USE:
--- SELECT setScore(1, 98, 100);
+-- SELECT setScoreT1(1, 98);
 
-create or replace function setScore(p_e_id int, p_scoret1 int, 
-										p_scoret2 int) 
+create or replace function setScoreT1(p_e_id int, p_scoret1 int) 
 returns text as
 
 $$
@@ -73,26 +72,45 @@ declare
 
 begin
   select into v_e_id e_id from events
-	where e_id = p_e_id;
-  
-  if v_e_id isnull then
-	insert into events(scoret1, scoret2) values
-	(p_scoret1, p_scoret2);
-  
-  else
+	where e_id = p_e_id;  
 	
 	update events
-		set scoret1 = p_scoret1, scoret2 = p_scoret2 
+		set scoret1 = p_scoret1
 		where e_id = p_e_id;
 	
-  end if;
 
 	return 'OK';
   
   end;
 $$
     language 'plpgsql';	
+
 	
+--HOW TO USE:
+-- SELECT setScoreT2(1, 98);
+
+create or replace function setScoreT2(p_e_id int, p_scoret2 int) 
+returns text as
+
+$$
+declare
+  v_e_id int; 
+
+begin
+  select into v_e_id e_id from events
+	where e_id = p_e_id;  
+	
+	update events
+		set scoret2 = p_scoret2
+		where e_id = p_e_id;
+	
+ 
+
+	return 'OK';
+  
+  end;
+$$
+    language 'plpgsql';	
 	
 --HOW TO USE:
 -- SELECT getScore(1);
