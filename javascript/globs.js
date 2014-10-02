@@ -86,7 +86,8 @@ function updateUser()
                   if(res[0][0] == 'OK')
                   {    console.log(res[0][0]);
 					$("p4").html(
-					'<h1> Successfully Changed!</h1>');     
+					'<h1> Successfully Changed!</h1>' +
+					'<h6><a href ="#" onclick = redirect(2);>go back to your profile  &rarr;</a></h6>');    
 					} // end if
 				else{
 				  	$("p5").html(
