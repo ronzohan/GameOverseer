@@ -1372,3 +1372,37 @@ function setbracketinforesults(leagueid,managerid,results)
 
 
 }
+
+function searchAutocompleteusername()
+{
+	fetchusername(function(output)
+	{
+		var availableTags = [];
+		for (i=0;i<output.length;i++)
+			availableTags.push(output[i][1]);
+ 
+		$( "#usename" ).autocomplete({
+		  source: availableTags,
+		 
+    });
+		
+	});
+
+ }
+ 
+  function searchAutocompleteleague()
+{
+	fetchleaguename(function(output)
+	{
+		var availableTags = [];
+		for (i=0;i<output.length;i++)
+			availableTags.push(output[i][1]);
+ 
+		$( "#usename" ).autocomplete({
+		  source: availableTags,
+		 
+    });
+		
+	});
+
+ }
