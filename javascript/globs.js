@@ -1376,6 +1376,55 @@ function setbracketinforesults(leagueid,managerid,results)
 				
 		}
 	}); 
+}
+
+function setscore(e_id,rId,score)
+{
+	var scriptFunction = "";
+	if (rId % 2 == 0)
+		scriptFunction = "setScoreT1";
+	else
+		scriptFunction = "setScoreT2";
+
+
+	$.ajax({
+		url: siteloc + scriptloc + "Event.py/"+scriptFunction,
+		data: {
+			e_id:e_id,
+			score:score
+		},
+		dataType: 'json',
+		async: false,
+		success: function (res) {
+			if (res != "None")
+			{
+				console.log(res);
+			}
+				
+		}
+	}); 
+
+}
+
+function getEventIdOfResult(leagueid,resultid,callback)
+{
+	$.ajax({
+		url: siteloc + scriptloc + "results.py/getresults",
+		data: {
+			leagueid:leagueid,
+			resultid:resultid,
+		},
+		dataType: 'json',
+		async:false,
+		success: function (res) {
+			if (res != "None")
+			{
+				callback(res[0][1]);
+			}
+				
+		}
+		}); 
+
 
 
 }
