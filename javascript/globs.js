@@ -645,7 +645,6 @@ function login(username,password)
 			
 			else
 			{
-				$('#status').empty();
 				$('#status').append("Invalid username or password");
 				$('#status').css('color','#FF0000');
 			}
