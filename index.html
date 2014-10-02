@@ -288,16 +288,18 @@ $(document).ready(function () {
 			
 			
             <div class="wrap">
-                <p class="form-title">
-                  &nbsp; &nbsp; &nbsp; &nbsp;  Give your fellow manager an access to your leagues</p>
-                <p id="status" style="margin-left:490px"></p> 
+                <p class="form-title" align="center">
+                  &nbsp; &nbsp; &nbsp; &nbsp;  Give your fellow manager an access to your leagues
+				  <p align="center" id="status"></p></p>
+				<br>
+				<br>
 				<form class="login">
                
 				
 				
 				    <div   class="controls form-inline">
                         <div class="input-group">
-                             <input type="text" id="login-username" placeholder="Username" />  
+                             <input type="text" id="temp-manager" placeholder="Username" />  
 								<div style=" margin-left:-860px;" class="container">
 								<div style=" margin-left:40px;margin-top:-15px; "class="help-tip">
 								<p>The manager's username you want to give access to your leagues.</p>
@@ -311,10 +313,10 @@ $(document).ready(function () {
 				<br>
 				      <div   class="controls form-inline">
                         <div class="input-group">
-                             <input type="password" id="login-password" placeholder="Password" />
-							     <div style="margin-top:150px;" class="input-group">
+                             <input type="password" id="temp-password" placeholder="Password" />
+							     <div style="margin-top:10px;" class="input-group">
 								<div style=" margin-left:-860px;" class="container">
-								<div style=" margin-left:90px;margin-top:-200px; "class="help-tip">
+								<div style=" margin-left:90px;margin-top:-60px; "class="help-tip">
 								<p>The password you will give away to the person you want to give access to</p>
 								</div>
 								</div>
@@ -327,8 +329,8 @@ $(document).ready(function () {
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a style="margin-top:-400px;" id="btn-login" href="#" class="btn btn-success btn-sm" value="Sign In"
-					onclick="login($('#login-username').val(),$('#login-password').val())">
+				<a style="margin-top:-10px;" id="btn-login" href="#" class="btn btn-success btn-sm" value="Sign In"
+					onclick="setTempManPass($.cookie('username'),$('#temp-manager').val(),$('#temp-password').val())">
 					Confirm
 				</a>
 				<br>

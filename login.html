@@ -241,21 +241,9 @@ $(document).ready(function () {
         <!-- Collection of nav links and other content for toggling -->
         <div id="navbarCollapse" class="collapse navbar-collapse">
             <ul class="nav navbar-nav"> <!--The <ul> tag defines an unordered (bulleted) list.-->
- 
-                <!-- <li><a href="http://localhost/GameOverseer/AboutUs.html">About Us</a></li> -->
             </ul>
             <ul class="nav navbar-nav navbar-right">
-			 <li class="dropdown">
-			 
-			    <a href= "#" class = "dropdown-toggle" data-toggle = "dropdown">Developers <b class="caret"></b> </a>
-				<ul class="dropdown-menu">
-				     <li> <a href="#">Onna Piando</a></li>
-				     <li> <a href="#">Jennie Ramos</a></li>
-				     <li> <a href="#">Kay Apao</a></li>
-				     <li> <a href="#">Ron Daryl Magno</a></li>
-			             <li> <a href="#">Diofel Pallega</a></li>
-				</ul>
-			</li>
+			
 			    <li><a href="http://localhost/GameOverseer/register.html">Register</a></li>
             </ul>
         </div>
@@ -281,10 +269,10 @@ $(document).ready(function () {
             </div>
             <div class="wrap">
                 <p class="form-title">
-                    Sign In</p>
+                    Sign In
+				<p id="status" align="center"></p></p>
 				
-				<div id = "status"></div>
-                <form class="login">
+				<form class="login">
                 <input type="text" id="login-username" placeholder="Username" >
 				<br>
 				<br>
@@ -298,7 +286,8 @@ $(document).ready(function () {
 				</a>
 				<br>
 				<br>
-                <div class="remember-forgot">
+                
+				<div class="remember-forgot">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="checkbox">
@@ -308,36 +297,34 @@ $(document).ready(function () {
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-6 forgot-pass-content">
-                            <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
-                        </div>
+                    
+					<div class="col-md-6 forgot-pass-content">
+                        <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
+                    </div>
                     </div>
                 </div>
 				 <div class="form-group">
-                                    <div class="col-md-12 control">
-                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%; color:white;" >
-                                            Don't have an account?
-                                        <a href="register.html" >
-                                            Sign Up Here
-                                        </a>
-                                        </div>
-                                    </div>
-                                </div>  
+                    <div class="col-md-12 control">
+                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%; color:white;" >
+							Don't have an account?
+							<a href="register.html">Sign Up Here</a>
+                        </div>
+                    </div>
+                </div>  
 								
 				<div class="form-group">
-                                  <div class="col-md-12 control">
-                                      <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%; color:white;" >
-				  <ul class="horizontal">
-					<li><a href="#">About</a><span class="dot divider"> &middot;</span></li>
-					<li><a href="#">Help</a><span class="dot divider"> &middot;</span></li>
-					<li><a href="#">Terms</a><span class="dot divider"> &middot;</span></li>
-					<li><a href="#">Developers</a><span class="dot divider"> &middot;</span></li>
-					  <li><a href="#">Directory</a><span class="dot divider"> &middot;</span></li>
-					<li><span class="copyright">&copy; 2014 GameOverseer</span></li>
-				  </ul>
-
-                                        </div>
-                                    </div>
+					<div class="col-md-12 control">
+                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%; color:white;" >
+							<ul class="horizontal">
+								<li><a href="#">About</a><span class="dot divider"> &middot;</span></li>
+								<li><a href="#">Help</a><span class="dot divider"> &middot;</span></li>
+								<li><a href="#">Terms</a><span class="dot divider"> &middot;</span></li>
+								<li><a href="#">Developers</a><span class="dot divider"> &middot;</span></li>
+								<li><a href="#">Directory</a><span class="dot divider"> &middot;</span></li>
+								<li><span class="copyright">&copy; 2014 GameOverseer</span></li>
+							</ul>
+                        </div>
+                    </div>
                   </div> 
                 </form>
             </div>
@@ -362,11 +349,9 @@ $(document).ready(function () {
 				<br>
 				<br>
 				<input style="color:white;" type="password" id="password" placeholder="Password" >
-			 
-             
-				 
-                </form>
-      </div>
+		</form>
+      
+	  </div>
       <div  style="background-color:rgba(0,0,0,0.2); " class="modal-footer">
         
 		<button type="button" class="btn btn-primary" onclick="setPassword($('#username').val(), $('#password').val());">Confirm changes</button>
