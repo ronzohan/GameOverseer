@@ -73,9 +73,9 @@ function updateUser()
   $.ajax({
       url: siteloc + scriptloc + "updatemanager.py",
       data: {
-	  username2:$("#username1").val(),
-	  password2:$("#password1").val(),
-	  firstname2:$("#firstname1").val(),
+			 username2:$("#username1").val(),
+			 password2:$("#password1").val(),
+			 firstname2:$("#firstname1").val(),
 			 lastname2:$("#lastname1").val(),
 			 address2:$("#address1").val(),
 			 contactno2:$("#phone1").val(),
@@ -645,6 +645,7 @@ function login(username,password)
 			
 			else
 			{
+				$('#status').empty();
 				$('#status').append("Invalid username or password");
 				$('#status').css('color','#FF0000');
 			}
@@ -695,6 +696,28 @@ function checkEmail(email)
 				$('#status').empty();
 				$('#status').append("Email or username does not exist. Please try again.");
 				$('#status').css('color','#FF0000');
+			}
+      } 
+      }); 
+}
+
+function checkTempMan(username)
+{
+   $.ajax({
+      url: siteloc + scriptloc + "checkTempMan.py",
+      data: {username:username},
+      dataType: 'json',
+      success:
+	  function (res) 
+	  {
+			if (res[0][0] != "None") 
+			{
+				alert("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
+				"to manage his/her league. Your password is: " + res[0][3]);
+			}
+			else
+			{
+				alert("None.");
 			}
       } 
       }); 
