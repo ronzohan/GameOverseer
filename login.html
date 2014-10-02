@@ -286,7 +286,8 @@ $(document).ready(function () {
 				</a>
 				<br>
 				<br>
-                <div class="remember-forgot">
+                
+				<div class="remember-forgot">
                     <div class="row">
                         <div class="col-md-6">
                             <div class="checkbox">
@@ -296,36 +297,34 @@ $(document).ready(function () {
                                 </label>
                             </div>
                         </div>
-                        <div class="col-md-6 forgot-pass-content">
-                            <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
-                        </div>
+                    
+					<div class="col-md-6 forgot-pass-content">
+                        <a href="javascription:void(0)" class="forgot-pass">Forgot Password</a>
+                    </div>
                     </div>
                 </div>
 				 <div class="form-group">
-                                    <div class="col-md-12 control">
-                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%; color:white;" >
-                                            Don't have an account?
-                                        <a href="register.html" >
-                                            Sign Up Here
-                                        </a>
-                                        </div>
-                                    </div>
-                                </div>  
+                    <div class="col-md-12 control">
+                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%; color:white;" >
+							Don't have an account?
+							<a href="register.html">Sign Up Here</a>
+                        </div>
+                    </div>
+                </div>  
 								
 				<div class="form-group">
-                                  <div class="col-md-12 control">
-                                      <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%; color:white;" >
-				  <ul class="horizontal">
-					<li><a href="#">About</a><span class="dot divider"> &middot;</span></li>
-					<li><a href="#">Help</a><span class="dot divider"> &middot;</span></li>
-					<li><a href="#">Terms</a><span class="dot divider"> &middot;</span></li>
-					<li><a href="#">Developers</a><span class="dot divider"> &middot;</span></li>
-					  <li><a href="#">Directory</a><span class="dot divider"> &middot;</span></li>
-					<li><span class="copyright">&copy; 2014 GameOverseer</span></li>
-				  </ul>
-
-                                        </div>
-                                    </div>
+					<div class="col-md-12 control">
+                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%; color:white;" >
+							<ul class="horizontal">
+								<li><a href="#">About</a><span class="dot divider"> &middot;</span></li>
+								<li><a href="#">Help</a><span class="dot divider"> &middot;</span></li>
+								<li><a href="#">Terms</a><span class="dot divider"> &middot;</span></li>
+								<li><a href="#">Developers</a><span class="dot divider"> &middot;</span></li>
+								<li><a href="#">Directory</a><span class="dot divider"> &middot;</span></li>
+								<li><span class="copyright">&copy; 2014 GameOverseer</span></li>
+							</ul>
+                        </div>
+                    </div>
                   </div> 
                 </form>
             </div>
@@ -350,11 +349,9 @@ $(document).ready(function () {
 				<br>
 				<br>
 				<input style="color:white;" type="password" id="password" placeholder="Password" >
-			 
-             
-				 
-                </form>
-      </div>
+		</form>
+      
+	  </div>
       <div  style="background-color:rgba(0,0,0,0.2); " class="modal-footer">
         
 		<button type="button" class="btn btn-primary" onclick="setPassword($('#username').val(), $('#password').val());">Confirm changes</button>
