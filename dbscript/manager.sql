@@ -12,7 +12,7 @@ CREATE TABLE Manager(
 
 	
 create or replace 
-    function setAuthority(p_manager_id int, p_tempManager int, p_gatePass text) 
+    function setAuthority(p_manager_id int, p_tempManager int, p_gatePass text, p_tempManLeague int) 
     returns text as
 $$
   declare
@@ -22,11 +22,11 @@ $$
          where manager_id = p_manager_id;
          
       if v_manager_id isnull then
-          insert into Manager(tempManager, gatePass) values
-             (p_tempManager, p_gatePass);
+          insert into Manager(tempManager, gatePass, tempManLeague) values
+             (p_tempManager, p_gatePass, p_tempManLeague);
       else
           update Manager
-          set tempManager = p_tempManager, gatePass = p_gatePass
+          set tempManager = p_tempManager, gatePass = p_gatePass, tempManLeague = p_tempManLeague
           where manager_id = p_manager_id;
       end if;   
          
@@ -35,7 +35,7 @@ $$
   $$
   language 'plpgsql';
 
---SELECT setAuthority(1, 2,'12345');
+--SELECT setAuthority(1, 2,'12345', 1);
 
 	
 create or replace 
