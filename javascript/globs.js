@@ -726,13 +726,14 @@ function checkTempMan(username)
 
 
 
-function setTempManPass(mainMan, tempMan, password)
+function setTempManPass(mainMan, tempMan, password, tempLeague)
 {
    $.ajax({
       url: siteloc + scriptloc + "setTempManPass.py",
       data: {mainMan:mainMan,
 	     tempMan:tempMan,
-		 password: password},
+		 password: password,
+		 tempLeague: tempLeague},
       dataType: 'json',
       success:
 	  function (res) 
