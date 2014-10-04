@@ -48,6 +48,26 @@ def getLeagueInfoByManager(req,managerid):
 
     return json.dumps(result)
 	
+def getTeamLeagueByID(req,managerid):
+    managerid = cgi.escape(managerid)
+
+    x = doSql()
+	
+    rets = x.execqry("select tempManLeague from manager where tempManager='" + managerid + "';", False);
+    
+    for ret in rets:
+        stringed = ''.join(map(str, ret))
+    
+    id = stringed
+    
+    rets = x.execqry("select name, teams from league where league_id='" + id +"';", False);
+    result = []	
+	
+    for ret in rets:
+        stringed = map(str, ret)
+        result.append(stringed)
+    	
+    return json.dumps(result)
 
 def setleague(req,managerid,leaguename,fixturetype,sport):
     leaguename = cgi.escape(leaguename)
