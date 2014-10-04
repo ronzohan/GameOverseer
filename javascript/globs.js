@@ -266,6 +266,36 @@ function fetchLeagueByManagerId(managerid)
   
 }
 
+function fetchOtherLeagueByManagerId(managerid)
+{
+  $.ajax({
+      url: siteloc + scriptloc + "getLeague.py/getLeagueInfoByManager",
+      data: {managerid:managerid},
+      dataType: 'json',
+      success: function (res) {
+                  console.log(res); 
+                  if(res[0][0] != "None")                  
+                  {
+					$("#leaguetable tr").remove();
+					for (i=0;i<res.length;i++)
+					{
+						row = res[i];
+				     
+						$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='
+												+row[0]+'>'+row[1]+'</a></td>'
+											+'<td>'+row[2]+'</td>' + '<td>'+row[3]
+											+'</td><td><a href="#" onClick=editLeague('
+											+$.cookie('managerid')+','+row[0]
+											+') class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
+											+'<a href="#" onClick = verifydelete('+row[0]+','+$.cookie("managerid")
+											+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
+					}
+				  }
+        }
+  });
+  
+}
+
 function getQueryVariable() {
 	var query = window.location.search.substring(1);
 	var m = query.split("?");
@@ -713,12 +743,16 @@ function checkTempMan(username)
 	  {
 			if (res[0][0] != "None") 
 			{
-				$("#notice").append("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
+				$('#notice').empty();
+				$('#notice').append("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
 				"to manage his/her league. Your password is: " + res[0][3]);
+				$('#notice').css('color','white');
 			}
 			else
 			{
-				alert("None.");
+				$('#notice').empty();
+				$('#notice').append("None");
+				$('#notice').css('color','white');
 			}
       } 
       }); 
@@ -726,11 +760,11 @@ function checkTempMan(username)
 
 
 
-function setTempManPass(mainMan, tempMan, password, tempLeague)
+function setTempManPass(mainManID, tempMan, password, tempLeague)
 {
    $.ajax({
       url: siteloc + scriptloc + "setTempManPass.py",
-      data: {mainMan:mainMan,
+      data: {mainManID:mainManID,
 	     tempMan:tempMan,
 		 password: password,
 		 tempLeague: tempLeague},
