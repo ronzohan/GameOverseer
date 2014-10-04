@@ -304,7 +304,7 @@ $(document).ready(function () {
 				<br>
 				      <div   class="controls form-inline">
                         <div class="input-group" style="margin-top:-180px;">
-                             <input type="password" id="temp-password" placeholder="League" />
+                             <input type="text" id="temp-league" placeholder="League" />
 							     <div style="margin-top:150px;" class="input-group">
 								<div style=" margin-left:-860px;" class="container">
 								<div style=" margin-left:90px;margin-top:-200px; "class="help-tip">
@@ -312,29 +312,24 @@ $(document).ready(function () {
 								</div>
 								</div>
 								
-                        </div> 
-						
-                    </div>
+								</div> 
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a style="margin-top:-400px;" id="btn-login" href="#" class="btn btn-success btn-sm" value="Sign In"
+							onclick="setTempManPass($.cookie('username'),$('#temp-manager').val(),$('#temp-password').val(), $('#temp-league').val())">
+								Confirm
+							</a>
+						</div>
                     </div>
                     </div>
                 
 				<br>
 				<br>
 				 
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a style="margin-top:-400px;" id="btn-login" href="#" class="btn btn-success btn-sm" value="Sign In"
-					onclick="setTempManPass($.cookie('username'),$('#temp-manager').val(),$('#temp-password').val())">
-					Confirm
-				</a>
-				<br>
-				<br>
-                 
-			 
-                </form>
+				</form>
             </div>
         </div>
     </div>
