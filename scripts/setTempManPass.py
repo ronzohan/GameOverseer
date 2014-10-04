@@ -6,10 +6,12 @@ except ImportError:
     import simplejson as json
 
 
-def index(req,mainMan,tempMan, password):
+def index(req,mainMan,tempMan, tempLeague, password):
     mainMan = cgi.escape(mainMan)
     tempMan = cgi.escape(tempMan)
+    tempLeague = cgi.escape(tempLeague)
     password = cgi.escape(password)
+	
     a = doSql()
     rets = a.execqry("SELECT manager_id FROM manager \
     INNER JOIN users ON users.userid = manager.userid_fk \
@@ -30,7 +32,16 @@ def index(req,mainMan,tempMan, password):
     
     id1 = stringed1
 	
-    items = a.execqry("SELECT * FROM setAuthority(" + id + ","+ id1 +",'"+ password+"');", True)
+    rets = a.execqry("SELECT league_id FROM league \
+    INNER JOIN manager ON league.managerid_fk = manager.manager_id \
+    where league.name = '" + tempLeague + "';", False)
+    
+    for ret in rets:
+        stringed2 = ''.join(map(str,ret))
+    
+    id2 = stringed2
+	
+    items = a.execqry("SELECT * FROM setAuthority(" + id + ","+ id1 +",'"+ password+"'," + id2 +");", True)
     result = []
     for item in items:
         stringed = map(str,item)
