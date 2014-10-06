@@ -1520,20 +1520,4 @@ function searchAutocompleteusername()
 
  }
  
-  function searchAutocompleteleague()
-{
-	fetchleaguename(function(output)
-	{
-		var availableTags = [];
-		for (i=0;i<output.length;i++)
-			availableTags.push(output[i][1]);
- 
-		$( "#usename" ).autocomplete({
-		  source: availableTags,
-		 
-    });
-		
-	});
-
- }
 
