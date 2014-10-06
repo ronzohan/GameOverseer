@@ -59,14 +59,17 @@ def getTeamLeagueByID(req,managerid):
         stringed = ''.join(map(str, ret))
     
     id = stringed
+    result = []
     
-    rets = x.execqry("select name, teams from league where league_id='" + id +"';", False);
-    result = []	
-	
-    for ret in rets:
-        stringed = map(str, ret)
-        result.append(stringed)
-    	
+    if id != "None":
+        rets = x.execqry("select name, teams from league where league_id='" + id +"';", False);
+        	
+        for ret in rets:
+            stringed = map(str, ret)
+            result.append(stringed)
+    else:
+        result.append('None')
+		
     return json.dumps(result)
 
 def setleague(req,managerid,leaguename,fixturetype,sport):
