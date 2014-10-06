@@ -11,6 +11,7 @@
 	    <script>
 			$(function(){
 				$("#header").load("header.html"); 
+				$("#GPass").hide();
 			});
 			$(document).ready(function(){
 				fetchTeamLeagueById($.cookie('managerid'));	
@@ -33,7 +34,7 @@
 					<div class="panel-heading clearfix"  style=" background:#262421;" > 
 						<h4 class="panel-title pull-left" style=" color:white;  padding-top: 7.5px;" id="leaguetitle"> </h4>
 						<div class="btn-group pull-right">
-							<a 
+							<a  id="GPass"
 								href="#" 
 								class="btn btn-default btn-sm" 
 								href="#" data-toggle="modal" data-target="#password"> 
