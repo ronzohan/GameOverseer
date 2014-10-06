@@ -266,6 +266,51 @@ function fetchLeagueByManagerId(managerid)
   
 }
 
+function confirmGatePass(managerid, password)
+{
+  $.ajax({
+	url: siteloc + scriptloc + "confirmGatePass.py",
+	data: {managerid: managerid,
+		   password: password},
+    dataType: 'json',
+	success: function (res) {
+				if (res[0][0] != "N"){
+					$('#incorrectGP').empty();
+					document.location.href = '/GameOverseer/leagueinfo.html?id=' + res[0][0];
+				}
+				else{
+					$('#incorrectGP').empty();
+					$('#incorrectGP').append("Incorrect password");
+					$('#incorrectGP').css('color','#FF0000');
+				}
+	}
+	});
+}
+
+function fetchTeamLeagueById(managerid)
+{
+  $.ajax({
+      url: siteloc + scriptloc + "getLeague.py/getTeamLeagueByID",
+      data: {managerid:managerid},
+      dataType: 'json',
+      success: function (res) {
+                  if(res[0][0] != "None")                  
+                  {
+					for (i=0;i<res.length;i++)
+					{
+						row = res[i];
+						$("#leaguetitle").append(row[0]);
+						$("#teamcollection").append('<tr><td>'+row[1]+'</td></tr>');
+					}
+				  }
+				  else{
+					alert("None");
+				  }
+        }
+  });
+  
+}
+
 function fetchOtherLeagueByManagerId(managerid)
 {
   $.ajax({
