@@ -11,6 +11,8 @@ def index(req,mainManID,tempMan, tempLeague, password):
     tempMan = cgi.escape(tempMan)
     tempLeague = cgi.escape(tempLeague)
     password = cgi.escape(password)
+
+    a = doSql()
 	
     rets = a.execqry("SELECT manager_id FROM manager \
     INNER JOIN users ON users.userid = manager.userid_fk \
