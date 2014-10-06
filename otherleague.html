@@ -9,7 +9,12 @@
 		<script src="javascript/jquery.cookie.js"></script> 
 		<script src="javascript/bootstrap.min.js"></script>		
 	    <script>
-			fetchTeamLeagueById($.cookie('managerid'));
+			$(function(){
+				$("#header").load("header.html"); 
+			});
+			$(document).ready(function(){
+				fetchTeamLeagueById($.cookie('managerid'));	
+			});
 		</script>
     </head>
     <body>
@@ -31,7 +36,7 @@
 							<a 
 								href="#" 
 								class="btn btn-default btn-sm" 
-								id="lockteams"> 
+								href="#" data-toggle="modal" data-target="#password"> 
 								Password
 							</a>
 						</div>	
@@ -46,6 +51,41 @@
 				</table>
 				</div>		 
 			</div>
+			
+	  <div class="modal fade pop-up-notice" id="password" >
+	   
+    <div style="margin-top:150px; width:500px;   background-color:rgba(0,0,0,0.2); " class="modal-dialog modal-sm">
+      <div  style=" background-color:rgba(0,0,0,0.2);" class="modal-content">
+
+        <div  style=" background-color:rgba(0,0,0,0.2);"   class="modal-header">
+          <button type="button" 
+				  class="close" 
+				  data-dismiss="modal">x</button>
+				  
+          <h4 style="color:white;"
+			  class="modal-title" 
+			  id="myLargeModalLabel-2">
+			  Enter Password
+		  </h4>
+		  
+        </div>
+		
+        <div   style=" background-color:rgba(0,0,0,0.2);" class="modal-body">
+        
+		
+			<div id = "confirmGP"
+				 style="height:290px;"
+				 class="modal-body">
+				<input type="password" style="margin-left:125px" id="gatePass" placeholder="Password"/>
+				<a style="margin-top:100px;margin-left:-125px;" id="btn-login" href="#" class="btn btn-success btn-sm" value="Sign In"
+							onclick="confirmGatePass($.cookie('managerid'),$('#gatePass').val())">
+								Confirm
+							</a>
+          	</div>  
+		</div>
+      </div> 
+    </div> 
+  </div> 
 
 
 	 	 
