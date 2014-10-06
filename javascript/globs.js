@@ -294,8 +294,9 @@ function fetchTeamLeagueById(managerid)
       data: {managerid:managerid},
       dataType: 'json',
       success: function (res) {
-                  if(res[0][0] != "None")                  
+                  if(res[0][0] != "N")                  
                   {
+					$('#GPass').show();
 					for (i=0;i<res.length;i++)
 					{
 						row = res[i];
@@ -304,7 +305,7 @@ function fetchTeamLeagueById(managerid)
 					}
 				  }
 				  else{
-					alert("None");
+					$("#leaguetitle").append("None");
 				  }
         }
   });
