@@ -33,22 +33,85 @@
 	</div>
 	</div>
  	</div>
- 	<div id="adddialog" title="Add New League">
- 			<p id="status"></p>
- 			League Name:&nbsp<input type="text" name="League Name" id="leaguename"/><br><br>
 
-			Sport:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-			<input type="text" name="Sport" id="sport"/><br><br>
+ 	 <!-- Modal HTML -->
+	    <div id="newleagueModal" class="modal fade">
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                    <h4 class="modal-title">Add New League</h4>
+	                </div>
+	                <div class="modal-body with-nav-tabs">
+	               		<p id="status" class="col-sm-2"></p>
+	               		 
+						<div class="row">
+						     <div class="col-md-12">
+						      <form class="form-horizontal" role="form">
+						        <fieldset>
 
-			Fixture Type:&nbsp 
+						          <!-- Text input-->
+						        <div class="form-group">
+						            <label class="col-sm-2 control-label" for="textinput">Name</label>
+						            <div class="col-sm-10">
+						            	<input type="text" placeholder="League Name" id="leaguename" class="form-control">
+						            </div>
+						       	</div>
+						 	
+						 		<div class="form-group">
+						            <label class="col-sm-2 control-label" for="textinput">Sport</label>
+						            <div class="col-sm-10">
+						            	<input type="text" placeholder="Sport" id="sport" class="form-control">
+						            </div>
+						       	</div>
 
-			<select id="fixturetype">
-				<option value="Single Elimination">Single Elimination</option>
-				<option value="Double Elimination">Double Elimination</option>						 
-			</select>	 		
+						       	<div class="form-group">
+						            <label class="col-sm-2 control-label" for="textinput">Type</label>
+						            <div class="col-sm-10">
+						            
+						            	<select id="fixturetype">
+											<option value="Single Elimination">Single Elimination</option>
+											<option value="Double Elimination">Double Elimination</option>						 
+										</select>	
+						            </div>
+						       	</div>
 
-	</div>
+						        </fieldset>
+						      </form>
+						    </div><!-- /.col-lg-12 -->
+						</div><!-- /.row -->	
+	                </div>
+	                
+
+	                <div class="modal-footer">
+	                	<button type="button" class="btn btn-primary" id="addleague">Add League</button>
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 	
+	<!-- Modal HTML -->
+	    <div id="modalconfirmdelete" class="modal fade">
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                    <h4 class="modal-title">Confrim Delete League</h4>
+	                </div>
+	                <div class="modal-body with-nav-tabs">
+	               		<p>Are you really sure you want to delete this league? Once deleted, it cannot be recovered anymore.</p>
+	                </div>
+	                
+
+	                <div class="modal-footer">
+	                	<button type="button" class="btn btn-primary" id="confirmdelete">Confirm Delete</button>
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
 	<div id="editdialog" title="Edit League Info">
 			<p id="editstatus"></p>
 			<p id="editleagueid" hidden></p>
@@ -69,7 +132,7 @@
 		<p id="confirm-message">Are you really sure you want to delete this league? Once deleted, it cannot be recovered anymore.</p>
 	</div>
 </body>
-        <script src="javascript/jquery.js"></script>
+    <script src="javascript/jquery.js"></script>
 	<script src="javascript/bootstrap.min.js"></script>
 	<script src="javascript/globs.js"></script>
 	<script src="javascript/jqinit.js"></script>   
@@ -119,31 +182,7 @@
       
         	});
 	
-	$("#adddialog").dialog({ 
-			autoOpen: false,
-			height: 280,
-            		width: 350,
-            		modal: true,
-            		resizable: false,
-		    	buttons: {
-		        	CreateLeague:{ 
-		            		text: 'Create',
-					id : 'create',
-		            		click : function (){
-		                			setleague($.cookie('managerid'),$('#leaguename').val(),
-							$('#fixturetype').val(),$('#sport').val());						
-		            			}
-		        	},
-		        Close: function () {
-				fetchLeagueByManagerId($.cookie('managerid'));
-				$("input").prop('disabled', false);
-			        $(this).dialog("close");
-		        }
-            		}
-      
-        	});
-
-	
+	 
    	</script>	  
 </html>
 
