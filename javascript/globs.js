@@ -1136,7 +1136,7 @@ function viewParticipantsInLeague(res)
 				//table=table.replace(/'/g,"&#39;").replace(/"/g,'\\"');
 				$("#teamcollection").append(table);
 			}
-			$.
+			
  	
 }
 
