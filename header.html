@@ -44,10 +44,12 @@
 
 	    <ul class="nav navbar-nav navbar-right">         			
    			 <li class="dropdown">
-			 <li><a href="#">Home</a></li>
+			 <li><a style="margin-top:4px;"  href="#" data-toggle="modal" data-target=".pop-up-notice" > <i  class="glyphicon glyphicon-envelope"></i> </a> </li>
+			 <li   ><a href="#">Home</a></li>
       			 <li><a href="#" style="margin-right:20px; " class="dropdown-toggle" data-toggle="dropdown" id="username"></a>
       			 <ul class="dropdown-menu">
       			 	<li><a href="leagues.html">My Leagues</a></li>
+					<li><a href="otherleague.html">Other League</a></li>
       			 	<li><a href="#" onclick = "redirect(1);">Profile</a> </li>
       			 	<li><a href="#" onclick="logout()">Log Out</a> </li>
       			 	<li class="divider"></li>
@@ -61,3 +63,35 @@
 </div>
 
 
+  <div class="modal fade pop-up-notice"     >
+	   
+    <div style="margin-top:150px; width:500px;   background-color:rgba(0,0,0,0.2); " class="modal-dialog modal-sm">
+      <div  style=" background-color:rgba(0,0,0,0.2);" class="modal-content">
+
+        <div  style=" background-color:rgba(0,0,0,0.2);"   class="modal-header">
+          <button type="button" 
+				  class="close" 
+				  data-dismiss="modal" >×</button>
+				  
+          <h4 style="color:white;"
+			  class="modal-title" 
+			  id="myLargeModalLabel-2">
+			  Authorization Alert
+		  </h4>
+		  
+        </div>
+		
+        <div   style=" background-color:rgba(0,0,0,0.2);" class="modal-body">
+        
+		
+			<div 
+				 style="height:290px;"
+				 class="modal-body">
+          <p id="notice"> </p>
+		 
+				 
+			</div>  
+		</div>
+      </div> 
+    </div> 
+  </div> 

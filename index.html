@@ -200,43 +200,21 @@ $(document).ready(function () {
 	<script>
 	  $(function(){
 	    $("#header").load("header.html"); 
+		$('#matchticker').hide();
+		$('#authority').hide();
 	  });
 	  $(document).ready(function(){
 			 $("#matchticker").load("matchticker.html"); 
-		});
+			 checkTempMan($.cookie('username'));
+	  });	 	
 	</script>
-	
-        <script> 
-	 
-			$(function() {
-					$('#matchticker').hide();
-				});
-		 	 
-	     </script>
-	        
-			
-		 <script> 
-	 
-			$(function() {
-					$('#authority').hide();
-				});
-		 	 
-	     </script>
-   </head>
-   <body>
-   
-   
-   	<div id="header"></div>  
-	
- 
-	 
-	
+</head>
+  <body>
+  	<div id="header"></div>  
+		
 	<div style=" margin-left:-50px;position:absolute;margin-top:60px;" id="matchticker">	 </div>
 	
-	
-	 
-  
-  <div class="modal fade pop-up-6" 
+	<div class="modal fade pop-up-6" 
 	   tabindex="-1" 
 	   role="dialog" 
 	   aria-labelledby="myLargeModalLabel-2"
@@ -260,7 +238,7 @@ $(document).ready(function () {
 			<div style=" background-color:rgba(0,0,0,0.2);"class="modal-body">
         
 		
-			<div style="height:290px;" class="modal-body">
+			<div style="height:430px;" class="modal-body">
          
 	 
     <div  style="margin-left:-50px; margin-top:-50px;" class="row">
@@ -289,7 +267,7 @@ $(document).ready(function () {
 			
             <div class="wrap">
                 <p class="form-title" align="center">
-                  &nbsp; &nbsp; &nbsp; &nbsp;  Give your fellow manager an access to your leagues
+                  &nbsp; &nbsp; &nbsp; &nbsp;  Give your fellow manager an access to one of your leagues
 				  <p align="center" id="status"></p></p>
 				<br>
 				<br>
@@ -308,10 +286,9 @@ $(document).ready(function () {
                         </div> 
                     </div>
 				
-				
 				<br>
 				<br>
-				      <div   class="controls form-inline">
+					<div   class="controls form-inline">
                         <div class="input-group" style="margin-top:-50px;">
                              <input type="password" id="temp-password" placeholder="Password" />
 							     <div style="margin-top:150px;" class="input-group">
@@ -320,24 +297,39 @@ $(document).ready(function () {
 								<p>The password you will give away to the person you want to give access to</p>
 								</div>
 								</div>
+								
                         </div> 
+				
+				<br>
+				<br>
+				      <div   class="controls form-inline">
+                        <div class="input-group" style="margin-top:-180px;">
+                             <input type="text" id="temp-league" placeholder="League" />
+							     <div style="margin-top:150px;" class="input-group">
+								<div style=" margin-left:-860px;" class="container">
+								<div style=" margin-left:90px;margin-top:-200px; "class="help-tip">
+								<p>The league you will let the person manage with</p>
+								</div>
+								</div>
+								
+								</div> 
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+							<a style="margin-top:-400px;" id="btn-login" href="#" class="btn btn-success btn-sm" value="Sign In"
+							onclick="setTempManPass($.cookie('managerid'),$('#temp-manager').val(),$('#temp-password').val(), $('#temp-league').val())">
+								Confirm
+							</a>
+						</div>
+                    </div>
                     </div>
                 
 				<br>
 				<br>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a style="margin-top:-400px;" id="btn-login" href="#" class="btn btn-success btn-sm" value="Sign In"
-					onclick="setTempManPass($.cookie('username'),$('#temp-manager').val(),$('#temp-password').val())">
-					Confirm
-				</a>
-				<br>
-				<br>
-                 
-			 
-                </form>
+				 
+				</form>
             </div>
         </div>
     </div>
