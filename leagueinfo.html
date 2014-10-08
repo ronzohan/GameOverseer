@@ -17,19 +17,68 @@
 		<div id="fullscreen_bg" class="fullscreen_bg"></div> 
 		<div id="header"></div> 
 		<br><br><br>
+		<div class="container" style="margin-top:0px">
+			<div class="container" style="margin-top:0px">
+				<button type="button" class="btn btn-default btn-md" onclick="window.history.back()">
+					<span class="glyphicon glyphicon-backward"></span>
+				</button>
+			</div>
+		</div>
+	    
 		<div class="container"   style="margin-top:20px;"  id="leagueinfo"></div>
 		
 		<p id="leagueid" hidden></p>
-		<div id="addteamdialog" title="Add Teams">
-			<input type="text" name="Name" id="teamname" width=50>
-		</div>
 		
-		<div id="teamdraft" class="container">
- 				
-			<div class="container center">
+		
+
+		<!-- Modal HTML -->
+	    <div id="addteammodal" class="modal fade" >
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                    <h4 class="modal-title">Add New Team</h4>
+	                </div>
+	                <div class="modal-body">
+	               		 
+	               		 
+						<div class="row">
+						     <div class="col-md-12">
+						      <form class="form-horizontal" role="form">
+						        <fieldset>
+
+						          <!-- Text input-->
+						        <div class="form-group">
+
+						            <label class="col-sm-2 control-label" for="textinput">Name</label>
+						            <div class="col-sm-10">
+						            	<input type="text" placeholder="League Name" id="teamname" class="form-control">
+						            </div>
+						       	</div>
+						 
+						        </fieldset>
+						      </form>
+						    </div><!-- /.col-lg-12 -->
+						</div><!-- /.row -->	
+	                </div>
+	                
+
+	                <div class="modal-footer">
+	                	<button type="button" class="btn btn-primary" id="addteaminleague">Add Team</button>
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	    
+		
+				 
+		<div id="teamdraft" class="container" style="margin-top:0px">
+			<div class="container center" style="margin-top:0px">
+				
 				<div class="panel panel-default" id="teampanel">
 					<div class="panel-heading clearfix"  style=" background:#262421;" > 
-						<h4 class="panel-title pull-left" style=" color:white;  padding-top: 7.5px;" id="leaguetitle"> </h4>
+						<h4 class="panel-title pull-left" style=" color:white;  " id="leaguetitle"> </h4>
 						<div class="btn-group pull-right">
 							<a 
 							   href="#" 
@@ -55,6 +104,27 @@
 				</div>		 
 			</div>
 		</div>
+		
+		<!-- Modal HTML -->
+	    <div id="confirmmodal" class="modal fade">
+	        <div class="modal-dialog modal-sm">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                    <h4 class="modal-title">Confirm</h4>
+	                </div>
+	                <div class="modal-body">
+	               		<p id="confirm-message">Are all the teams set?</p>
+	                </div>
+	             
+
+	                <div class="modal-footer">
+	                	<button type="button" class="btn btn-primary" id="confirmteamsmodal">Confirm</button>
+	                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 		<div id="confirm-dialog" title="Confirm Delete">
 			<p id="confirm-message">Are all the teams set?</p>
 		</div>
@@ -115,9 +185,6 @@
 								
 								
 							</div>
-
-
-
 
 						</div>
 
