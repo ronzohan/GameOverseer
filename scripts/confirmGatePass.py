@@ -13,15 +13,17 @@ def index(req, managerid, password):
     a =  doSql()
 	
     rets = a.execqry("SELECT gatepass FROM manager \
-    where tempManager = '" + managerid + "';", False)
+    where gatePass = '" + password + "';", False)
     
     for ret in rets:
         stringed = ''.join(map(str,ret))
     
+	#rets = x.execqry("select tempManLeague from manager where tempManager=" + managerid + ";", False);
+	
     result = []	
-    if stringed == password:
+    if stringed != 'None':
         rets = a.execqry("SELECT tempManLeague FROM manager \
-        where tempManager = " + managerid + ";", False)
+        where gatepass = '" + password + "';", False)
         for ret in rets:
             stringed = map(str,ret)
             result.append(stringed)
