@@ -808,6 +808,19 @@ function checkTempMan(username)
 }
 
 
+function modify_qty()
+{
+   var qty = document.getElementById('counts').value;
+				  var new_qty = 0;
+    
+				 if (new_qty < 0) 
+				 {
+					new_qty = 0;
+			     }
+    
+				document.getElementById('counts').value = new_qty; 
+}
+
 function datecheck()
 {
 var d = new Date();
