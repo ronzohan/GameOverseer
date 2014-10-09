@@ -271,8 +271,8 @@ function confirmGatePass(managerid, password)
 {
   $.ajax({
 	url: siteloc + scriptloc + "confirmGatePass.py",
-	data: {managerid: managerid,
-		   password: password},
+	data: { managerid: managerid,
+			password: password},
     dataType: 'json',
 	success: function (res) {
 				if (res[0][0] != "N"){
@@ -288,6 +288,7 @@ function confirmGatePass(managerid, password)
 	});
 }
 
+
 function fetchTeamLeagueById(managerid)
 {
   $.ajax({
@@ -295,17 +296,18 @@ function fetchTeamLeagueById(managerid)
       data: {managerid:managerid},
       dataType: 'json',
       success: function (res) {
-                  if(res[0][0] != "None")                  
+                  if(res[0][0] != "N")                  
                   {
 					for (i=0;i<res.length;i++)
 					{
 						row = res[i];
-						$("#leaguetitle").append(row[0]);
-						$("#teamcollection").append('<tr><td>'+row[1]+'</td></tr>');
+						$("#teamcollection").append('<tr><td>'+row[0]+'</td><td><div class="btn-group pull-right">' +
+							'<a  id="GPass" href="#" class="btn btn-default btn-sm" href="#" data-toggle="modal" data-target="#password">' + 
+							'Password </a> </div> </tr>');
 					}
 				  }
 				  else{
-					alert("None");
+					$("#teamcollection").append('<tr><td> None </td></tr>');
 				  }
         }
   });

@@ -53,20 +53,21 @@ def getTeamLeagueByID(req,managerid):
 
     x = doSql()
 	
-    rets = x.execqry("select tempManLeague from manager where tempManager='" + managerid + "';", False);
+    rets = x.execqry("select tempManLeague from manager where tempManager=" + managerid + ";", False);
     
+    id = []
     for ret in rets:
         stringed = ''.join(map(str, ret))
+        id.append(stringed)
     
-    id = stringed
     result = []
-    
     if id != "None":
-        rets = x.execqry("select name, teams from league where league_id='" + id +"';", False);
+        for ids in id:
+            rets = x.execqry("select name, teams from league where league_id='" + ids +"';", False);
         	
-        for ret in rets:
-            stringed = map(str, ret)
-            result.append(stringed)
+            for ret in rets:
+                stringed = map(str, ret)
+                result.append(stringed)
     else:
         result.append('None')
 		
