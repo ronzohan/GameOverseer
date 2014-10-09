@@ -808,6 +808,12 @@ function checkTempMan(username)
 }
 
 
+function datecheck()
+{
+var d = new Date();
+document.getElementById("date").innerHTML = d.toDateString();
+
+}
 
 function setTempManPass(mainManID, tempMan, password, tempLeague)
 {
