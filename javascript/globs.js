@@ -242,6 +242,7 @@ function fetchLeagueByManagerId(managerid)
       url: siteloc + scriptloc + "getLeague.py/getLeagueInfoByManager",
       data: {managerid:managerid},
       dataType: 'json',
+      async:false,
       success: function (res) {
                   console.log(res); 
                   if(res[0][0] != "None")                  
@@ -666,6 +667,7 @@ function fetchLeagueBracketInfo(res)
 			} 
 			else
 			{
+
 				$('#leaguetitle').empty();
 				$('#leaguetitle').append(res[0][0]);
 			}
@@ -940,13 +942,14 @@ function setleague(managerid,leaguename,fixturetype,sport)
 		   fixturetype:fixturetype,      
 		   sport:sport
       	},
+    async:false,
     dataType: 'json',	
     success: function (res) {
                 if(res[0][0] != "None")
                 {
 					if (res[0][0] == "Successfully Created")
 					{
-						$("#create").hide();
+						$("#addleague").hide();
 						$("#status").empty();
 						
 						$("#status").css('color','#00FF00');
@@ -988,10 +991,16 @@ function deleteLeague(leagueid,managerid)
 function verifydelete(leagueid,managerid)
 {
 	//pass the needed parameters by the dialogbox for deleteleague call later
-	$("#dialog-confirm")
+	/*$("#dialog-confirm")
 		.data('leagueid',leagueid)
 		.data('managerid',managerid)
 		.dialog('open');
+*/
+	$("#confirmdelete").click(function(){
+		 deleteLeague(leagueid,managerid);
+		 $("#modalconfirmdelete").modal('hide');
+	});
+	$("#modalconfirmdelete").modal();
 
 }
 
@@ -1011,8 +1020,9 @@ function addTeamsInLeague(leagueid,managerid,participantTeam)
       	success: function (res) {
                   	if(res[0][0] != "Fail")
                   	{
-						alert(res[0][0]);
+						//alert(res[0][0]);
 						$("#teamcollection tbody").remove();
+						$("#teamname").val('');
 						getBracketInfo(leagueid,viewParticipantsInLeague);
 					} 
               	}
@@ -1112,7 +1122,7 @@ function fetchleaguename(name)
 
 function viewParticipantsInLeague(res)
 {
- 
+ 			var name;
 			row = res[0][3];
 			if (row)
 			{ 
@@ -1120,12 +1130,15 @@ function viewParticipantsInLeague(res)
 				table = "";
 				for (i = 0;i<row.length;i++)
 				{
+				 
 					table += "<tr><td>"+row[i]+"</td><td>"
-					+'<a href="#" onClick = deleteTeamsInLeague("'+row[i]+'")>Remove</a>';
+					+'<a href=# onClick = deleteTeamsInLeague('+row[i]+','+$.cookie('managerid')+','+getParameterByName('id')+')">Remove</a>';
 				}
+				//table=table.replace(/'/g,"&#39;").replace(/"/g,'\\"');
 				$("#teamcollection").append(table);
 			}
- 
+			
+ 	
 }
 
 function deleteTeamsInLeague(participantTeam,managerid,leagueid)
@@ -1218,6 +1231,7 @@ function lockTeams(userid,leagueid,managerid)
 			   managerid:managerid
 		},
 		dataType: 'json',
+		async:false,
 		success:
 		$.ajax({	
 			url: siteloc + scriptloc + "getLeague.py/getBracketInfo?",
@@ -1279,6 +1293,7 @@ function setbracketinfo(userid,leagueid,managerid,results,participants)
 			   participants:JSON.stringify(participants)
 		},
 		dataType: 'json',
+		async:false,
 		success:
 		function (res){
 			console.log(res);
@@ -1393,7 +1408,7 @@ function setEventIdTag(data,teamname1,teamname2,rId)
 {
 	if (data == "None")
 	{
-		alert("hey jude");
+		//alert("hey jude");
 		setEvent(teamname1,teamname2,getParameterByName('id'),null,null,null,null);
 		setresult(getParameterByName('id'),rId,latestEventID,null)
 		if (rId % 2 == 0)
