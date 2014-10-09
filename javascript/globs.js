@@ -276,8 +276,8 @@ function confirmGatePass(managerid, password)
 {
   $.ajax({
 	url: siteloc + scriptloc + "confirmGatePass.py",
-	data: {managerid: managerid,
-		   password: password},
+	data: { managerid: managerid,
+			password: password},
     dataType: 'json',
 	success: function (res) {
 				if (res[0][0] != "N"){
@@ -293,6 +293,7 @@ function confirmGatePass(managerid, password)
 	});
 }
 
+
 function fetchTeamLeagueById(managerid)
 {
   $.ajax({
@@ -300,7 +301,7 @@ function fetchTeamLeagueById(managerid)
       data: {managerid:managerid},
       dataType: 'json',
       success: function (res) {
-                  if(res[0][0] != "None")                  
+                  if(res[0][0] != "N")                  
                   {
 					for (i=0;i<res.length;i++)
 					{
@@ -308,10 +309,13 @@ function fetchTeamLeagueById(managerid)
 						
 						$("#leaguetitle").append(row[0]);
 						$("#teamcollection").append('<tr><td>'+row[1]+'</td></tr>');
+						$("#teamcollection").append('<tr><td>'+row[0]+'</td><td><div class="btn-group pull-right">' +
+							'<a  id="GPass" href="#" class="btn btn-default btn-sm" href="#" data-toggle="modal" data-target="#password">' + 
+							'Password </a> </div> </tr>');
 					}
 				  }
 				  else{
-					alert("None");
+					$("#teamcollection").append('<tr><td> None </td></tr>');
 				  }
         }
   });
@@ -817,6 +821,25 @@ function checkTempMan(username)
 }
 
 
+function modify_qty()
+{
+   var qty = document.getElementById('counts').value;
+				  var new_qty = 0;
+    
+				 if (new_qty < 0) 
+				 {
+					new_qty = 0;
+			     }
+    
+				document.getElementById('counts').value = new_qty; 
+}
+
+function datecheck()
+{
+var d = new Date();
+document.getElementById("date").innerHTML = d.toDateString();
+
+}
 
 function setTempManPass(mainManID, tempMan, password, tempLeague)
 {
@@ -841,6 +864,32 @@ function setTempManPass(mainManID, tempMan, password, tempLeague)
 				$('#status').empty();
 				$('#status').append("Username does not exist");
 				$('#status').css('color','#FF0000');
+			}
+      } 
+      }); 
+	  
+	   $.ajax({
+      url: siteloc + scriptloc + "checkTempMan.py",
+      data: {username:mainMan},
+      dataType: 'json',
+      success:
+	  function (res) 
+	  {
+ 
+			if (res[0][0] != "None") 
+			{
+			var d = new Date(); 
+	        var adlaw = d.toDateString();	 
+				$("#notice").append("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
+				"to manage his/her league. The password is: " + res[0][3] +'<br>  <h4 style="color:green;">'+ adlaw  +'</h4> <br> <hr   width="300"> ' );
+				
+			 
+		 
+				 
+			}
+			else
+			{
+				alert("None.");
 			}
       } 
       }); 
@@ -1528,6 +1577,17 @@ function getEventIdOfResult(leagueid,resultid,callback)
 
 
 }
+
+
+function autocomplete()
+ {
+	var availableTags = [];
+	$( "#temp-league" ).autocomplete({
+		  source: availableTags,
+		 
+    });
+}
+
 
 
 

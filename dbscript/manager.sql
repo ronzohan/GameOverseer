@@ -7,6 +7,7 @@ CREATE TABLE Manager(
     contact_no text,
 	email text,
     tempManager int,
+	tempManLeague text,
 	gatePass text
     );
 

@@ -17,7 +17,7 @@ $$
       userid1 int;
    begin
       select into userid1 userid from users
-         where username = p_username;
+         where LOWER(username) = LOWER(p_username);
 	  
       if userid1 isnull then
          return 'true';
