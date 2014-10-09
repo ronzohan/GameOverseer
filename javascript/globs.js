@@ -1566,4 +1566,15 @@ function getEventIdOfResult(leagueid,resultid,callback)
 }
 
 
+function autocomplete()
+ {
+	var availableTags = [];
+	$( "#temp-league" ).autocomplete({
+		  source: availableTags,
+		 
+    });
+}
+
+
+
 
