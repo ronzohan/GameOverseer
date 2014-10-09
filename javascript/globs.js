@@ -236,7 +236,7 @@ function confirmAddTeamsInLeague(leagueid,managerid,participantTeams)
 	});
 }
 
-function fetchLeagueByManagerId(managerid)
+function fetchLeagueByManagerId(managerid,handle)
 {
   $.ajax({
       url: siteloc + scriptloc + "getLeague.py/getLeagueInfoByManager",
@@ -244,27 +244,32 @@ function fetchLeagueByManagerId(managerid)
       dataType: 'json',
       async:false,
       success: function (res) {
-                  console.log(res); 
+                   
                   if(res[0][0] != "None")                  
                   {
-					$("#leaguetable tr").remove();
-					for (i=0;i<res.length;i++)
-					{
-						row = res[i];
-				     
-						$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='
-												+row[0]+'>'+row[1]+'</a></td>'
-											+'<td>'+row[2]+'</td>' + '<td>'+row[3]
-											+'</td><td><a href="#" onClick=editLeague('
-											+$.cookie('managerid')+','+row[0]
-											+') class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
-											+'<a href="#" onClick = verifydelete('+row[0]+','+$.cookie("managerid")
-											+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
-					}
+					handle(res);
 				  }
         }
   });
   
+}
+
+function displayTableManagerLeague(res)
+{
+	$("#leaguetable tr").remove();
+	for (i=0;i<res.length;i++)
+	{
+		row = res[i];
+     
+		$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='
+								+row[0]+'>'+row[1]+'</a></td>'
+							+'<td>'+row[2]+'</td>' + '<td>'+row[3]
+							+'</td><td><a href="#" onClick=editLeague('
+							+$.cookie('managerid')+','+row[0]
+							+') class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
+							+'<a href="#" onClick = verifydelete('+row[0]+','+$.cookie("managerid")
+							+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
+	}
 }
 
 function confirmGatePass(managerid, password)
@@ -300,6 +305,7 @@ function fetchTeamLeagueById(managerid)
 					for (i=0;i<res.length;i++)
 					{
 						row = res[i];
+						
 						$("#leaguetitle").append(row[0]);
 						$("#teamcollection").append('<tr><td>'+row[1]+'</td></tr>');
 					}
@@ -403,29 +409,34 @@ function getScore(ide)
 }
 
 
-function getNumMatches()
+function getNumMatches(leagueidarray)
 {
-  var num = "";
+  var n;
   $.ajax({
       url: siteloc + scriptloc + "getNumMatch.py",
+      data:{
+      		leagueidarray:JSON.stringify(leagueidarray)
+      },
 	  async:false,
 	  dataType: 'json',
 	  success: function (res) {
 				if(res[0][0] != "None" )
                   {
 					
-					for (i = 0; i < res.length; i++)
+					/*for (i = 0; i < res.length; i++)
 					{
 						row = res[i];
       
 						for (j = 0; j < row.length ; j++)
 							if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
 								num += row[j];  
-					} 
+					} */
+					console.log(res);
+					n = res;
 				  }
               }
 	});
-	return num;
+	return n;
 }
 
 function scoreNotNull()
@@ -455,7 +466,7 @@ function scoreNotNull()
 
 var k = 1;
 var e = 1;
-function createDiv()
+function createDiv(team1,team2)
 	{
 		
 		divTag = document.createElement("div");
@@ -466,7 +477,7 @@ function createDiv()
         
         divTag.style.margin = "20px auto";
         
-        divTag.innerHTML = '<a href = "http://localhost/GameOverseer/details.html?k=' + k + '"> insertTN' + (e) + ' vs insertTN' + (e+1) + '</a>';
+        divTag.innerHTML = '<a href = "details.html?k=' + k+"'>" +team1 + team2  + '</a>';
 		
 		$('#r').append(document.body.appendChild(divTag));
 		
@@ -979,7 +990,7 @@ function deleteLeague(leagueid,managerid)
                 if(res[0][0] != "None")
                 {
 					if (res[0][0])
-						fetchLeagueByManagerId($.cookie('managerid'));
+						fetchLeagueByManagerId($.cookie('managerid'),displayTableManagerLeague);
 					else 
 						alert("Failed to delete");
 				} 
