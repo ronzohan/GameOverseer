@@ -11,7 +11,7 @@ $(function()
 	getManagerPerUserId($.cookie('userid'));
 	
 	if ($.cookie('managerid'))
-		fetchLeagueByManagerId($.cookie('managerid'));
+		fetchLeagueByManagerId($.cookie('managerid'),displayTableManagerLeague);
 	
 	$("#newleague").click(
 		function () {
@@ -30,7 +30,7 @@ $(function()
 			$("#status").empty();
             setleague($.cookie('managerid'),$('#leaguename').val(),
 			$('#fixturetype').val(),$('#sport').val());	
-            fetchLeagueByManagerId($.cookie('managerid'));
+            fetchLeagueByManagerId($.cookie('managerid'),displayTableManagerLeague);
         }
     );
 
