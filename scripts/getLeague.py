@@ -61,15 +61,15 @@ def getTeamLeagueByID(req,managerid):
         id.append(stringed)
     
     result = []
-    if id != "None":
+    if id[-1] != "None":
         for ids in id:
-            rets = x.execqry("select name, teams from league where league_id='" + ids +"';", False);
+            rets = x.execqry("select name from league where league_id='" + ids +"';", False);
         	
             for ret in rets:
                 stringed = map(str, ret)
                 result.append(stringed)
     else:
-        result.append('None')
+        result.append(id)
 		
     return json.dumps(result)
 
