@@ -5,9 +5,12 @@ try:
 except ImportError:
     import simplejson as json
 
-def index(req):
+def index(req,leagueidarray):
+    leagueidarray = cgi.escape(leagueidarray)
+
+    leagueidarray = leagueidarray.replace('[', '(').replace(']', ')').replace('\"','\'')
     x = doSql()
-    rets = x.execqry("SELECT MAX(e_id) FROM events;", False)
+    rets = x.execqry("SELECT * FROM events WHERE leagueid_fk in "+leagueidarray+";", False)
     result = []
     for ret in rets:
         stringed = map(str, ret)
