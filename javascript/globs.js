@@ -301,14 +301,12 @@ function fetchTeamLeagueById(managerid)
       data: {managerid:managerid},
       dataType: 'json',
       success: function (res) {
-                  if(res[0][0] != "N")                  
+                  if(res[0][0] != "None")                  
                   {
 					for (i=0;i<res.length;i++)
 					{
 						row = res[i];
 						
-						$("#leaguetitle").append(row[0]);
-						$("#teamcollection").append('<tr><td>'+row[1]+'</td></tr>');
 						$("#teamcollection").append('<tr><td>'+row[0]+'</td><td><div class="btn-group pull-right">' +
 							'<a  id="GPass" href="#" class="btn btn-default btn-sm" href="#" data-toggle="modal" data-target="#password">' + 
 							'Password </a> </div> </tr>');
