@@ -143,3 +143,17 @@ $$
 -- HOW TO USE:
 -- select * from getManagerPerUserId(1)
 
+
+create or replace function
+   getmanager(in int)
+returns text as
+$$
+	select first_name,last_name from manager
+	where tempManager = $1
+    
+	 return first_name + " "+lastname;
+$$
+  language 'plpgsql';
+
+-- HOW TO USE:
+-- select getmanager(1)
