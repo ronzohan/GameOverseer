@@ -13,7 +13,8 @@
 				$("#header").load("header.html"); 
 			});
 			$(document).ready(function(){
-				fetchTeamLeagueById($.cookie('managerid'));	
+				fetchTeamLeagueById($.cookie('managerid'));
+				$("#GPass").hide();
 			});
 		</script>
     </head>
@@ -32,7 +33,7 @@
 				<div class="panel panel-default" id="teampanel">
 					<div class="panel-heading clearfix"  style=" background:#262421;" > 
 						<h4 class="panel-title pull-left" style=" color:white;  padding-top: 7.5px;" id="leaguetitle">My Other Leagues </h4>
-						<div class="btn-group pull-right"> <button  href="#" class="btn btn-default btn-sm" href="#" 
+						<div class="btn-group pull-right"> <button  id ="GPass" href="#" class="btn btn-default btn-sm" href="#" 
 						data-toggle="modal" data-target="#password">Password </button> </div>	
 						
 					</div>
