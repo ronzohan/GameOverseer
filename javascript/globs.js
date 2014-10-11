@@ -1627,3 +1627,19 @@ function autocomplete()
 
 
 
+function getmanager(managerid)
+{
+
+ $.ajax({
+      url: siteloc + scriptloc + "getmanager.py",
+      data: {managerid:managerid },
+      dataType: 'json',
+      success:
+	  function (res) 
+	  { 
+	  return res;
+      } 
+      }); 
+	 
+}
+
