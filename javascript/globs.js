@@ -306,6 +306,7 @@ function fetchTeamLeagueById(managerid)
                   {
 					for (i=0;i<res.length;i++)
 					{
+						$("#GPass").show();
 						row = res[i];
 						
 						$("#teamcollection").append('<tr><td>'+row[0]+'</td></tr>');
