@@ -816,7 +816,7 @@ function checkTempMan(id)
 					}
 					
 					$('#notice').append("(Username: " + res[4][i] + ") "+
-					"to manage his/her league: " + res[3][i] +". Your password is: " + res[i][2] + "<br><br>");
+					"to manage his/her league: " + res[3][i] +". Your password is: " + res[i][2] +' <br> <hr   width="300"> ' "<br><br>");
 				}
 			}
 			else
@@ -876,32 +876,7 @@ function setTempManPass(mainManID, tempMan, password, tempLeague)
 			}
       } 
       }); 
-	  
-	   $.ajax({
-      url: siteloc + scriptloc + "checkTempMan.py",
-      data: {username:mainMan},
-      dataType: 'json',
-      success:
-	  function (res) 
-	  {
  
-			if (res[0][0] != "None") 
-			{
-			var d = new Date(); 
-	        var adlaw = d.toDateString();	 
-				$("#notice").append("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
-				"to manage his/her league. The password is: " + res[0][3] +'<br>  <h4 style="color:green;">'+ adlaw  +'</h4> <br> <hr   width="300"> ' );
-				
-			 
-		 
-				 
-			}
-			else
-			{
-				alert("None.");
-			}
-      } 
-      }); 
 }
 
  
