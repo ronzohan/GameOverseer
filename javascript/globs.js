@@ -293,7 +293,7 @@ function confirmGatePass(managerid, password)
 	});
 }
 
-
+var n = 1;
 function fetchTeamLeagueById(managerid)
 {
   $.ajax({
@@ -307,13 +307,13 @@ function fetchTeamLeagueById(managerid)
 					{
 						row = res[i];
 						
-						$("#teamcollection").append('<tr><td>'+row[0]+'</td><td><div class="btn-group pull-right">' +
+						$("#teamcollection").append('<tr><td id="' + n + '">'+row[0]+'<div class="btn-group pull-right">' +
 							'<a  id="GPass" href="#" class="btn btn-default btn-sm" href="#" data-toggle="modal" data-target="#password">' + 
-							'Password </a> </div> </tr>');
+							'Password </a> </div></td></tr>');
 					}
 				  }
 				  else{
-					$("#teamcollection").append('<tr><td> None </td></tr>');
+					$("#teamcollection").append('<tr><td>None</td></tr>');
 				  }
         }
   });
@@ -804,7 +804,7 @@ function checkTempMan(id)
 			if (res[0][0] != "None") 
 			{
 				$('#notice').empty();
-				for (i = 0; i < 3; i++)
+				for (i = 1; i < res[0][0]; i++)
 				{
 					row = res[i];
 					for (j = 0; j < 1 ; j++){
