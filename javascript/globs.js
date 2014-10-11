@@ -1627,11 +1627,11 @@ function autocomplete()
 
 
 
-function getmanager(managerid)
+function removeAuthority(managerid)
 {
 
  $.ajax({
-      url: siteloc + scriptloc + "getmanager.py",
+      url: siteloc + scriptloc + "removeAuthority.py",
       data: {managerid:managerid },
       dataType: 'json',
       success:
