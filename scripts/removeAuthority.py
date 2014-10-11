@@ -12,14 +12,14 @@ def index(req,managerid):
     a = doSql()
   
    
-    query = "SELECT getmanager("+managerid+");"
+    query = "SELECT removeAuthority("+managerid+");"
     print query
     items = a.execqry(query,True) 
+	result=[]
     for item in items:
         stringed =  item 
-        a= ','.join(stringed)
-        b= ','.join(a for  elem !="("   in a)
+        result.append(stringed)
          
          
 	 
-    return json.dumps(a)
+    return json.dumps(result)
