@@ -801,7 +801,7 @@ function checkTempMan(id)
       success:
 	  function (res) 
 	  {
-			if (res[0][0] != "None") 
+			if (res[1][0] != "None") 
 			{
 				$('#notice').empty();
 				for (i = 1; i < res[0][0]; i++)
@@ -816,7 +816,7 @@ function checkTempMan(id)
 					}
 					
 					$('#notice').append("(Username: " + res[4][i] + ") "+
-					"to manage his/her league: " + res[3][i] +". Your password is: " + res[i][2] + "<br><br>");
+					"to manage his/her league: " + res[3][i-1] +". Your password is: " + res[i][2] + "<br><br>");
 				}
 			}
 			else
@@ -871,7 +871,7 @@ function setTempManPass(mainManID, tempMan, password, tempLeague)
 			else
 			{
 				$('#status').empty();
-				$('#status').append("Username does not exist");
+				$('#status').append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Username or league does not exist");
 				$('#status').css('color','#FF0000');
 			}
       } 
