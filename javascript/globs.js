@@ -792,11 +792,11 @@ function checkEmail(email)
       }); 
 }
 
-function checkTempMan(username)
+function checkTempMan(id)
 {
    $.ajax({
       url: siteloc + scriptloc + "checkTempMan.py",
-      data: {username:username},
+      data: {id:id},
       dataType: 'json',
       success:
 	  function (res) 
@@ -804,9 +804,20 @@ function checkTempMan(username)
 			if (res[0][0] != "None") 
 			{
 				$('#notice').empty();
-				$('#notice').append("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
-				"to manage his/her league. Your password is: " + res[0][3]);
-				$('#notice').css('color','white');
+				for (i = 0; i < 3; i++)
+				{
+					row = res[i];
+					for (j = 0; j < 1 ; j++){
+						
+						$('#notice').append("You have been given authority by Manager: " 
+						+ row[0] + " " + row[1] + " ");
+							
+						$('#notice').css('color','white');			
+					}
+					
+					$('#notice').append("(Username: " + res[4][i] + ") "+
+					"to manage his/her league: " + res[3][i] +". Your password is: " + res[i][2] + "<br><br>");
+				}
 			}
 			else
 			{
