@@ -415,7 +415,7 @@ function getNumMatches(leagueidarray)
 {
   var n;
   $.ajax({
-      url: siteloc + scriptloc + "getNumMatch.py",
+      url: siteloc + scriptloc + "getNumMatch.py?",
       data:{
       		leagueidarray:JSON.stringify(leagueidarray)
       },
@@ -468,9 +468,38 @@ function scoreNotNull()
 
 var k = 1;
 var e = 1;
-function createDiv(team1,team2)
+
+function daysBetween( date1, date2 ) {
+  //Get 1 day in milliseconds
+  var one_day=1000*60*60*24;
+
+  // Convert both dates to milliseconds
+  var date1_ms = date1.getTime();
+  var date2_ms = date2.getTime();
+
+  // Calculate the difference in milliseconds
+  var difference_ms = date2_ms - date1_ms;
+
+  // Convert back to days and return
+  return Math.round(difference_ms/one_day); 
+}
+
+function createDiv(team1,team2,time)
 	{
-		
+
+		console.log(time);
+		if (time == "None")
+			time = "No date yet"
+		else
+		{
+			time = daysBetween(new Date(),new Date(time));
+			if (time >= 0)
+				time +=  " day(s) to go";
+			else 
+				time += " day(s) ago";
+
+		}
+			
 		divTag = document.createElement("div");
         
 		divTag.id = "div" + k ;
@@ -479,17 +508,16 @@ function createDiv(team1,team2)
         
         divTag.style.margin = "20px auto";
         
-        divTag.innerHTML = '<a href = "details.html?k=' + k+"'>" +team1 + team2  + '</a>';
+        divTag.innerHTML = '<a href="#" >' +team1 +' vs '+ team2  + '</a> '+time;
 		
 		$('#r').append(document.body.appendChild(divTag));
 		
-		k++;
-		
-		e += 2;
-		
-		return divTag.id;
 	}
-	
+function showModal()
+{
+	$("#viewUpcomingmatchesmodal").modal("hide");
+
+}
 function createD(w)
 {
 	var t = 0;
@@ -580,7 +608,35 @@ function getStart(ide, timer, o)
 	});
 }
 
+function appendPaginate(numberRows)
+{
+	$.ajax({
+        url: siteloc + scriptloc + "getNumMatch.py/getEventInfoByPage?",
+        data: {leagueidarray:JSON.stringify(leagueArray),offset:0},
+        dataType: 'json',
+        async:false,
+        success:
+        function (res){
+            for (i=0;i<res.length;i++)
+                createDiv(res[i][1],res[i][2],res[i][4])
+        }
+    }); 
+	$('#extra').bootpag({
+	   total: Math.ceil(numberRows/4),
+	   page: 1,
+	   maxVisible: 5,
+	   href: "#pro-page-{{number}}",
+	   leaps: false,
+	   next: 'next',
+	   prev: 'prev' 
+	}).on('page', function(event, num){
+		
 
+	});
+		
+	
+
+}
 var Timer;
 var TotalSeconds;
 var p;
