@@ -357,6 +357,7 @@ $(document).ready(function () {
 			      data-dismiss="modal" 
 				  aria-hidden="true">X</button>
 				  
+				  
           <h4 style="color:white;" class="modal-title" id="myLargeModalLabel-2">Remove Authority</h4>
         </div>
 		
@@ -367,8 +368,11 @@ $(document).ready(function () {
          
 				<div id="bg"></div>
 					<div     style="color:white;  "> <h3 id="whoIs"> </h3> </div>
-				  <button style="margin-top:50px;margin-left:230px;" type="button" class="btn btn-success btn-lg  "> YES </button>
-				  <button style="margin-top:50px; " type="button" class="btn btn-danger btn-lg  "> NO </button>
+				  <button style="width:100px;margin-top:50px;margin-left:250px;"
+						  type="button" 
+						  class="btn btn-success btn-lg "
+                          onclick="removeAuthority($.cookie('managerid') "> YES </button>
+				 <div >  <h3 id="sowhat"> </h3> </div> 
 			  </div> 
 		  </div>
         </div> 
