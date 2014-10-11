@@ -843,12 +843,7 @@ function modify_qty()
 				document.getElementById('counts').value = new_qty; 
 }
 
-function datecheck()
-{
-var d = new Date();
-document.getElementById("date").innerHTML = d.toDateString();
-
-}
+ 
 
 function setTempManPass(mainManID, tempMan, password, tempLeague)
 {
