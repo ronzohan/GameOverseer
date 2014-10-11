@@ -272,12 +272,14 @@ function displayTableManagerLeague(res)
 	}
 }
 
-function confirmGatePass(managerid, password)
+function confirmGatePass(managerid, password, league)
 {
   $.ajax({
 	url: siteloc + scriptloc + "confirmGatePass.py",
 	data: { managerid: managerid,
-			password: password},
+			password: password,
+			league: league
+			},
     dataType: 'json',
 	success: function (res) {
 				if (res[0][0] != "N"){
@@ -293,7 +295,6 @@ function confirmGatePass(managerid, password)
 	});
 }
 
-var n = 1;
 function fetchTeamLeagueById(managerid)
 {
   $.ajax({
@@ -307,9 +308,8 @@ function fetchTeamLeagueById(managerid)
 					{
 						row = res[i];
 						
-						$("#teamcollection").append('<tr><td id="' + n + '">'+row[0]+'<div class="btn-group pull-right">' +
-							'<a  id="GPass" href="#" class="btn btn-default btn-sm" href="#" data-toggle="modal" data-target="#password">' + 
-							'Password </a> </div></td></tr>');
+						$("#teamcollection").append('<tr><td>'+row[0]+'</td></tr>');
+						
 					}
 				  }
 				  else{
@@ -815,7 +815,7 @@ function checkTempMan(id)
 						$('#notice').css('color','white');			
 					}
 					
-					$('#notice').append("(Username: " + res[4][i] + ") "+
+					$('#notice').append("(Username: " + res[4][i-1] + ") "+
 					"to manage his/her league: " + res[3][i-1] +". Your password is: " + res[i][2] + "<br><br>");
 				}
 			}
