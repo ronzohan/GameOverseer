@@ -207,7 +207,7 @@ $(document).ready(function () {
 	  });
 	  $(document).ready(function(){
 			 $("#matchticker").load("matchticker.html"); 
-			 checkTempMan($.cookie('username'));
+			 checkTempMan($.cookie('managerid'));
 	  });	 	
 	</script>
 </head>
@@ -236,7 +236,7 @@ $(document).ready(function () {
 
 	<div style=" margin-left:-50px;position:absolute;margin-top:60px;" id="matchticker">	 </div>
 	
-	<div class="modal fade pop-up-6" 
+ <div class="modal fade pop-up-6" 
 	   tabindex="-1" 
 	   role="dialog" 
 	   aria-labelledby="myLargeModalLabel-2"
@@ -244,8 +244,8 @@ $(document).ready(function () {
 	   style="margin-top:100px;background-color:rgba(0,0,0,0.2);">
 	   
 	   
-    <div style=" background-color:rgba(0,0,0,0.2);"class="modal-dialog modal-lg">
-      <div style=" background-color:rgba(0,0,0,0.2);"class="modal-content">
+  <div style=" background-color:rgba(0,0,0,0.2);"class="modal-dialog modal-lg">
+   <div style=" background-color:rgba(0,0,0,0.2);"class="modal-content">
 
         <div style=" background-color:rgba(0,0,0,0.2);"class="modal-header">
           <button  
@@ -257,36 +257,14 @@ $(document).ready(function () {
           <h4 style="color:white;" class="modal-title" id="myLargeModalLabel-2">Give Authority</h4>
         </div>
 		
-			<div style=" background-color:rgba(0,0,0,0.2);"class="modal-body">
+   <div style=" background-color:rgba(0,0,0,0.2);"class="modal-body">
         
 		
-			<div style="height:430px;" class="modal-body">
+   <div style="height:430px;" class="modal-body">
          
 	 
     <div  style="margin-left:-50px; margin-top:-50px;" class="row">
         <div class="col-md-12">
-           
-		
-		   <div class="pr-wrap">
-                <div class="pass-reset">
-                    
-                    <input   type="username" id = "username" placeholder="Username" />
-					
-					<input type="password" id = "password" placeholder="New Password" />
-                   <!-- <input type="submit" value="Submit"  />-->
-				   <br>
-				   <br>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					
-					<!-- may come out handy -->
-					<a id="btn-login" href="#" class="pass-reset-submit btn btn-success btn-sm" value="Sign In"
-					onclick="setPassword($('#username').val(),$('#password').val());">
-					Submit
-				    </a>
-                </div>
-            </div>
-			
-			
             <div class="wrap">
                 <p class="form-title" align="center">
                   &nbsp; &nbsp; &nbsp; &nbsp;  Give your fellow manager an access to one of your leagues
@@ -319,12 +297,12 @@ $(document).ready(function () {
 								<p>The password you will give away to the person you want to give access to</p>
 								</div>
 								</div>
-								
+								</div>
                         </div> 
+					</div>
 				
 				<br>
-				<br>
-				      <div   class="controls form-inline">
+				    <div   class="controls form-inline">
                         <div class="input-group" style="margin-top:-180px;">
                              <input type="text" id="temp-league" placeholder="League" />
 							     <div style="margin-top:150px;" class="input-group">
@@ -335,56 +313,87 @@ $(document).ready(function () {
 								</div>
 								
 								</div> 
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<a style="margin-top:-400px;" id="btn-login" href="#" class="btn btn-success btn-sm" value="Sign In"
+							 
+							<a style="margin-left:120px;margin-top:-185px;" id="btn-login" href="#" class="btn btn-success btn-sm" value="Sign In"
 							onclick="setTempManPass($.cookie('managerid'),$('#temp-manager').val(),$('#temp-password').val(), $('#temp-league').val())">
 								Confirm
 							</a>
 						</div>
                     </div>
-                    </div>
+                    
                 
 				<br>
 				<br>
-				 
 				</form>
-            </div>
-        </div>
-    </div>
- 
-         
 		  
-			</div> 
-		</div>
-      </div> 
+	     </div> 
+        </div>
+       </div>   
+	  </div> 
+     </div>
     </div> 
+   </div> 
   </div> 
-  </div>
-</body>
+ </div>
+ 
+ 
 
  
      
 
+ 
+   <div style=" margin-top:50px; background-color:rgba(0,0,0,0.2);" class="modal fade pop-up-7" 
+	   tabindex="-1" 
+	   role="dialog" 
+	   aria-labelledby="myLargeModalLabel-2"
+	   aria-hidden="true">
+	   
+    <div style=" background-color:rgba(0,0,0,0.2);" class="modal-dialog modal-lg">
+      <div style=" background-color:rgba(0,0,0,0.2);" class="modal-content">
+
+        <div style=" background-color:rgba(0,0,0,0.2);" class="modal-header">
+          <button type="button" 
+				  class="close" 
+			      data-dismiss="modal" 
+				  aria-hidden="true">X</button>
+				  
+          <h4 style="color:white;" class="modal-title" id="myLargeModalLabel-2">Remove Authority</h4>
+        </div>
+		
+        <div style=" background-color:rgba(0,0,0,0.2);" class="modal-body">
+        
+		
+			  <div style=" background-color:rgba(0,0,0,0.2);height:490px;"  class="modal-body">
+         
+				<div id="bg"></div>
+		 
+				 
+			  </div> 
+		  </div>
+        </div> 
+      </div> 
+	
+  </div> 
+ 
+
 	
 	
+   	
     <div class="container2">
     <div class="navbar1"> 
       <a1 class="link" href="#">
-        <div1 id="matchticker1"> <span  class="active"><span class="valign"><span class="vertical">MATCH  </span></span></span> </div1> 
+        <div1 id="matchticker1"> <span  class="active"><span class="valign"><span class="vertical">MATCH </span></span></span> </div1> 
 		 <div1 id="matchticker2"> <span class="hover"><span class="valign"><span class="vertical">TICKER</span></span></span></div1>
       </a1>
       <a1 id="authority1" class="link" href="#" data-toggle="modal" data-target=".pop-up-6">
-         <div1 ><span   class="active"><span class="valign"><span class="vertical">AUTHORITY</span></span></span> </div1>
-         <div1  id="authority2"><span   class="hover"><span class="valign"><span class="vertical">AUTHORITY</span></span></span> </div1>
+         <div1 ><span   class="active"><span class="valign"><span class="vertical">ENTRUST</span></span></span> </div1>
+         <div1  id="authority2"><span   class="hover"><span class="valign"><span class="vertical">LEAGUE</span></span></span> </div1>
       </a1>
-      <a1 class="link" href="#">
-        <div1 id="leagues1">  <span  class="active"><span class="valign"><span class="vertical">LEAGUES </span></span></span> </div1>
-        <div1 id="leagues2">  <span  class="hover"><span class="valign"><span class="vertical">LEAGUES</span></span></span>	<div1>
+	 <a1 id="authority3" class="link" href="#" data-toggle="modal" data-target=".pop-up-7">
+         <div1 ><span   class="active"><span class="valign"><span class="vertical">REMOVE</span></span></span> </div1>
+         <div1  id="authority3"><span   class="hover"><span class="valign"><span class="vertical">AUTHORITY</span></span></span> </div1>
       </a1>
+      
     </div>
      
   </div>

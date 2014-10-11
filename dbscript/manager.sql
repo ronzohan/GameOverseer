@@ -13,6 +13,31 @@ CREATE TABLE Manager(
 
 	
 create or replace 
+    function removeAuthority(p_manager_id int) 
+    returns text as
+$$
+  declare
+     v_manager_id int;
+  begin
+      select into  v_manager_id manager_id from Manager 
+         where manager_id = p_manager_id;
+         
+      if v_manager_id isnull then
+          return  'None';
+      else
+          update Manager
+          set tempManager = null, gatePass = null, tempManLeague = null
+          where manager_id = p_manager_id;
+      end if;   
+         
+      return 'OK';
+  end;
+  $$
+  language 'plpgsql';
+
+--SELECT removeAuthority(1);
+	
+create or replace 
     function setAuthority(p_manager_id int, p_tempManager int, p_gatePass text, p_tempManLeague int) 
     returns text as
 $$

@@ -272,12 +272,14 @@ function displayTableManagerLeague(res)
 	}
 }
 
-function confirmGatePass(managerid, password)
+function confirmGatePass(managerid, password, league)
 {
   $.ajax({
 	url: siteloc + scriptloc + "confirmGatePass.py",
 	data: { managerid: managerid,
-			password: password},
+			password: password,
+			league: league
+			},
     dataType: 'json',
 	success: function (res) {
 				if (res[0][0] != "N"){
@@ -293,7 +295,6 @@ function confirmGatePass(managerid, password)
 	});
 }
 
-
 function fetchTeamLeagueById(managerid)
 {
   $.ajax({
@@ -307,13 +308,12 @@ function fetchTeamLeagueById(managerid)
 					{
 						row = res[i];
 						
-						$("#teamcollection").append('<tr><td>'+row[0]+'</td><td><div class="btn-group pull-right">' +
-							'<a  id="GPass" href="#" class="btn btn-default btn-sm" href="#" data-toggle="modal" data-target="#password">' + 
-							'Password </a> </div> </tr>');
+						$("#teamcollection").append('<tr><td>'+row[0]+'</td></tr>');
+						
 					}
 				  }
 				  else{
-					$("#teamcollection").append('<tr><td> None </td></tr>');
+					$("#teamcollection").append('<tr><td>None</td></tr>');
 				  }
         }
   });
@@ -848,21 +848,32 @@ function checkEmail(email)
       }); 
 }
 
-function checkTempMan(username)
+function checkTempMan(id)
 {
    $.ajax({
       url: siteloc + scriptloc + "checkTempMan.py",
-      data: {username:username},
+      data: {id:id},
       dataType: 'json',
       success:
 	  function (res) 
 	  {
-			if (res[0][0] != "None") 
+			if (res[1][0] != "None") 
 			{
 				$('#notice').empty();
-				$('#notice').append("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
-				"to manage his/her league. Your password is: " + res[0][3]);
-				$('#notice').css('color','white');
+				for (i = 1; i < res[0][0]; i++)
+				{
+					row = res[i];
+					for (j = 0; j < 1 ; j++){
+						
+						$('#notice').append("You have been given authority by Manager: " 
+						+ row[0] + " " + row[1] + " ");
+							
+						$('#notice').css('color','white');			
+					}
+					
+					$('#notice').append("(Username: " + res[4][i-1] + ") "+
+					"to manage his/her league: " + res[3][i-1] +". Your password is: " + res[i][2] + "<br><br>");
+				}
 			}
 			else
 			{
@@ -888,12 +899,7 @@ function modify_qty()
 				document.getElementById('counts').value = new_qty; 
 }
 
-function datecheck()
-{
-var d = new Date();
-document.getElementById("date").innerHTML = d.toDateString();
-
-}
+ 
 
 function setTempManPass(mainManID, tempMan, password, tempLeague)
 {
@@ -916,37 +922,12 @@ function setTempManPass(mainManID, tempMan, password, tempLeague)
 			else
 			{
 				$('#status').empty();
-				$('#status').append("Username does not exist");
+				$('#status').append("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Username or league does not exist");
 				$('#status').css('color','#FF0000');
 			}
       } 
       }); 
-	  
-	   $.ajax({
-      url: siteloc + scriptloc + "checkTempMan.py",
-      data: {username:mainMan},
-      dataType: 'json',
-      success:
-	  function (res) 
-	  {
- 
-			if (res[0][0] != "None") 
-			{
-			var d = new Date(); 
-	        var adlaw = d.toDateString();	 
-				$("#notice").append("You have been given authority by Manager: " + res[0][1] + " " + res[0][2] + " (Username: " + res[1] + " ) "+
-				"to manage his/her league. The password is: " + res[0][3] +'<br>  <h4 style="color:green;">'+ adlaw  +'</h4> <br> <hr   width="300"> ' );
-				
-			 
-		 
-				 
-			}
-			else
-			{
-				alert("None.");
-			}
-      } 
-      }); 
+	 
 }
 
  

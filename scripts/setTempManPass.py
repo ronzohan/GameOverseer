@@ -25,18 +25,21 @@ def index(req,mainManID,tempMan, tempLeague, password):
 	
     rets = a.execqry("SELECT league_id FROM league \
     INNER JOIN manager ON league.managerid_fk = manager.manager_id \
-    where league.name = '" + tempLeague + "';", False)
+    where league.name = '" + tempLeague + "' and manager.manager_id=" + mainManID + ";", False)
     
     for ret in rets:
         stringed1 = ''.join(map(str,ret))
     
     id1 = stringed1
 	
-    items = a.execqry("SELECT * FROM setAuthority(" + mainManID + ","+ id +",'"+ password+"'," + id1 +");", True)
     result = []
-    for item in items:
-        stringed = map(str,item)
-        result.append(stringed)
-    
+    if id1 != 'None':
+        items = a.execqry("SELECT * FROM setAuthority(" + mainManID + ","+ id +",'"+ password+"'," + id1 +");", True)
+       
+        for item in items:
+            stringed = map(str,item)
+            result.append(stringed)
+    else:
+        result.append(id1);
     return json.dumps(result)
 
