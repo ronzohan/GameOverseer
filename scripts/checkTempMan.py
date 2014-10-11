@@ -9,19 +9,27 @@ def index(req, id):
     id = cgi.escape(id) 
     x = doSql()
     
-    rets = x.execqry("SELECT first_name, last_name, gatePass from manager \
+    rets = x.execqry("SELECT count(manager_id)+1 from manager \
     where tempManager=" + id + ";" , False)
     
+    temp = []
     result = []
 	
     for ret in rets:
         stringed = map(str,ret)
         result.append(stringed)
-		
+    
+    rets = x.execqry("SELECT first_name, last_name, gatePass from manager \
+    where tempManager=" + id + ";" , False)
+    
+    for ret in rets:
+        stringed = map(str,ret)
+        result.append(stringed)
+    
     rets = x.execqry("SELECT name from league INNER JOIN manager on league.managerid_fk = manager.manager_id \
     where tempManager=" + id + ";" , False)	
 	
-    temp = []
+    
     for ret in rets:
         stringed = ''.join(map(str,ret))
         temp.append(stringed)
