@@ -2,6 +2,9 @@
 	<script src="javascript/jquery.cookie.js"></script>
 <script>
     $("#username").append($.cookie("username"));
+	$(document).ready(function(){
+		checkTempMan($.cookie('managerid'));
+	});
 </script>
 </head>
 	
@@ -84,7 +87,7 @@
 </div>
 
 
-  <div class="modal fade pop-up-notice"     >
+  <div class="modal fade pop-up-notice">
 	   
     <div style="margin-top:150px; width:500px;   background-color:rgba(0,0,0,0.2); " class="modal-dialog modal-sm">
       <div  style=" background-color:rgba(0,0,0,0.2);" class="modal-content">
