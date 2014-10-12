@@ -1703,7 +1703,7 @@ function getmanagername(managerid)
 {
 
  $.ajax({
-      url: siteloc + scriptloc + "getmanagername.py",
+      url: siteloc + scriptloc + "getmanager.py",
       data: {managerid:managerid },
       dataType: 'json',
       success:
