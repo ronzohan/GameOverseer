@@ -1701,9 +1701,9 @@ function removeAuthority(managerid)
 
 function getmanagername(managerid)
 {
-
+ 
  $.ajax({
-      url: siteloc + scriptloc + "getmanager.py",
+      url: siteloc + scriptloc + " getmanagername.py  ",
       data: {managerid:managerid },
       dataType: 'json',
       success:
