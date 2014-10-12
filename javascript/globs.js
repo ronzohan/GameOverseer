@@ -478,26 +478,34 @@ function daysBetween( date1, date2 ) {
   var date2_ms = date2.getTime();
 
   // Calculate the difference in milliseconds
-  var difference_ms = date2_ms - date1_ms;
 
+  var difference_ms = date2_ms - date1_ms;
+ 
   // Convert back to days and return
   return Math.round(difference_ms/one_day); 
 }
 
-function createDiv(team1,team2,time)
+function createDiv(team1,team2,time,eid)
 	{
 
-		console.log(time);
+		
 		if (time == "None")
 			time = "No date yet"
 		else
 		{
 			time = daysBetween(new Date(),new Date(time));
-			if (time >= 0)
+			time +=1;
+			if (time > 0)
 				time +=  " day(s) to go";
+			else if (time < 0)
+				time += " day(s) ago"
 			else 
-				time += " day(s) ago";
+			{
+				time="";
+				time += " today";
 
+			}
+				
 		}
 			
 		divTag = document.createElement("div");
@@ -508,14 +516,17 @@ function createDiv(team1,team2,time)
         
         divTag.style.margin = "20px auto";
         
-        divTag.innerHTML = '<a href="#" >' +team1 +' vs '+ team2  + '</a> '+time;
+        divTag.innerHTML = '<a href="#" onClick=showModal('+eid+')>' +team1 +' vs '+ team2  + '</a> '+time;
 		
 		$('#r').append(document.body.appendChild(divTag));
 		
 	}
-function showModal()
+function showModal(eid)
 {
-	$("#viewUpcomingmatchesmodal").modal("hide");
+	jQuery.noConflict();
+	getEventFullInfo(eid);
+	$("#viewUpcomingmatchesmodal").modal();
+	
 
 }
 function createD(w)
@@ -608,7 +619,7 @@ function getStart(ide, timer, o)
 	});
 }
 
-function appendPaginate(numberRows)
+function appendPaginate(numberRows,leagueArray)
 {
 	$.ajax({
         url: siteloc + scriptloc + "getNumMatch.py/getEventInfoByPage?",
@@ -617,8 +628,13 @@ function appendPaginate(numberRows)
         async:false,
         success:
         function (res){
+        	
             for (i=0;i<res.length;i++)
-                createDiv(res[i][1],res[i][2],res[i][4])
+            {
+            	 createDiv(res[i][1],res[i][2],res[i][4],res[i][0])
+            	 console.log(i);
+            }
+               
         }
     }); 
 	$('#extra').bootpag({
@@ -712,7 +728,7 @@ function fetchLeagueBracketInfo(res)
 	 		resultsArr = res[0][1]
 
 	 	});
-	 	console.log(resultsArr);
+	 	
 		  var r = resultsArr;
 		  var t = res[0][2];
 
@@ -871,8 +887,8 @@ function checkTempMan(id)
 						$('#notice').css('color','white');			
 					}
 					
-					$('#notice').append("(Username: " + res[4][i-1] + ") "+
-					"to manage his/her league: " + res[3][i-1] +". Your password is: " + res[i][2] + "<br><br>");
+					//$('#notice').append("(Username: " + res[4][i-1] + ") "+
+					//"to manage his/her league: " + res[3][i-1] +". Your password is: " + res[i][2] + "<br><br>");
 				}
 			}
 			else
@@ -1223,10 +1239,10 @@ function viewParticipantsInLeague(res)
 				
 				table = "";
 				for (i = 0;i<row.length;i++)
-				{
-				 
+				{	
+				 	temp = row[i].replace(" ","/");
 					table += "<tr><td>"+row[i]+"</td><td>"
-					+'<a href=# onClick = deleteTeamsInLeague('+row[i]+','+$.cookie('managerid')+','+getParameterByName('id')+')">Remove</a>';
+					+'<a href="#" onClick = deleteTeamsInLeague("'+temp+'",'+$.cookie('managerid')+','+getParameterByName('id')+')>Remove</a></td>';
 				}
 				//table=table.replace(/'/g,"&#39;").replace(/"/g,'\\"');
 				$("#teamcollection").append(table);
@@ -1237,6 +1253,7 @@ function viewParticipantsInLeague(res)
 
 function deleteTeamsInLeague(participantTeam,managerid,leagueid)
 {
+	participantTeam = participantTeam.replace('/',' ');
 	$.ajax({
 		url: siteloc + scriptloc + "getLeague.py/deleteTeamInLeague?",
 		data: {leagueid:leagueid,
@@ -1245,9 +1262,10 @@ function deleteTeamsInLeague(participantTeam,managerid,leagueid)
 		},
 		dataType: 'json',
 		success:
-		function (res){
+		function (res){	
+				console.log(res);
 			 $("#teamcollection tbody").remove();
-			 //viewParticipantsInLeague(leagueid);
+			 getBracketInfo(leagueid,viewParticipantsInLeague);
 		}
    }); 
 	
@@ -1601,7 +1619,7 @@ function getEventIdOfResult(leagueid,resultid,callback)
 		dataType: 'json',
 		async:false,
 		success: function (res) {
-			if (res != "None")
+			if (res[0][0] != "None")
 			{
 				callback(res[0][1]);
 			}
@@ -1623,6 +1641,43 @@ function autocomplete()
     });
 }
 
+function getEventFullInfo(eid)
+{
+	$.ajax({
+		url: siteloc + scriptloc + "Event.py/getEventFullInfo?",
+		data:{
+			eid:eid
+		},
+		dataType:'json',
+		async:false,
+		success: function(res){
+			if (res[0][0] != "None")
+			{
+				console.log(res);
+				$("input").prop('disabled', true);
+				if(res[0][3] != "None")
+					$("#datepicker").val(res[0][3]);
+
+				if (res[0][4] != "None")
+					$("#location").val(res[0][4]);
+
+				if (res[0][5] != "None")
+					$("#timepicker1").val(res[0][5]);
+
+				if (res[0][6] != "None")
+					$("#endtime").val(res[0][6]);
+
+				$('#belongingleague').empty();
+				$('#belongingleague').attr("href","leagueinfo.html?id="+res[0][0])
+				$('#belongingleague').append(res[0][7]);
+				$('#teamversus').empty();
+				$('#teamversus').append("<h4>"+res[0][1] + " vs "+res[0][2]+"</h4>");
+
+			}
+		}
+	});
+
+}
 
 
 
