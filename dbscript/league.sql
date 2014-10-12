@@ -66,11 +66,11 @@ $$
 
 --view
 create or replace function 
-    get_league_bracket_info(in int, out text,out int[],out text[],out text[],out int) 
+    get_league_bracket_info(in int, out text,out int[],out text[],out text[],out int,out text) 
 returns setof record as
  
 $$ 
-     select  name,results,teams,participants,locked from league
+     select  name,results,teams,participants,locked,fixture_type from league
      where league_id = $1;
      
 $$
