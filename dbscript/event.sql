@@ -166,3 +166,17 @@ $$
 
     language 'plpgsql';
 	
+
+
+create or replace function getEventWithLeagueID(in int,out int,out text,out text,out date,
+													out text,out time,out time,out text) 
+		returns record as
+
+	$$ 
+	SELECT leagueid_fk,teamname1,teamname2,
+	edate,eLocation,eTime_start,eTime_end,league.name
+FROM events INNER JOIN league ON events.leagueid_fk = league.league_id WHERE e_id = $1
+	$$
+	 
+		language 'sql';
+		
