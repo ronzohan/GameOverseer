@@ -2,33 +2,34 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 	<script src="javascript/jquery.js"></script>
+    <script src="javascript/jquery.cookie.js"></script> 
 	<script src="javascript/globs.js"></script>
+    <script src="javascript/jquery.bootpag.min.js"></script>
     <link href="css/sidemenu.css" type="text/css" rel="stylesheet" media="screen,projection" />
 <style type = "text/css">
-.clickable
-{
-    cursor: pointer;
-}
+    .clickable
+    {
+        cursor: pointer;
+    }
 
-.clickable .glyphicon
-{
-    background: rgba(0, 0, 0, 0.15);
-    display: inline-block;
-    padding: 6px 12px;
-    border-radius: 4px
-}
+    .clickable .glyphicon
+    {
+        background: rgba(0, 0, 0, 0.15);
+        display: inline-block;
+        padding: 6px 12px;
+        border-radius: 4px
+    }
 
-.panel-heading span
-{
-    margin-top: -23px;
-    font-size: 15px;
-    margin-right: -9px;
-}
-a.clickable { color: inherit; }
-a.clickable:hover { text-decoration:none; }
+    .panel-heading span
+    {
+        margin-top: -23px;
+        font-size: 15px;
+        margin-right: -9px;
+    }
+    a.clickable { color: inherit; }
+    a.clickable:hover { text-decoration:none; }
 
 </style>
-<script src="javascript/jquery.js"></script>
 <script>
 $(document).on('click', '.panel-heading span.clickable', function (e) {
     var $this = $(this);
@@ -63,7 +64,7 @@ $(document).ready(function () {
 </head>
 
 
-<div class="container" style="  
+<div  id="upcomingmatches" class="container" style="  
 							  background-color: rgba(225,225,225,0.1);
 							  float:right;margin-top:10px;">
     <div class="row">
@@ -79,14 +80,39 @@ $(document).ready(function () {
 				<div class="panel-body" id = "extra" style="text-align:center;"></div>
 				
 				<script language = "JavaScript">
-				var n = getNumMatches();
-				for(i = 1; i <= n; i++){ 
-					getStart(i, createDiv());
-					if ((i-1) > 4){
-						$('#extra').append('<a href ="match.html">More Upcoming Matches</a>');	
-						i = n + 1;
-					}
-				}	
+                var leagueArray = [];
+                fetchLeagueByManagerId($.cookie('managerid'),function(res){
+                   for(i=0;i<res.length;i++)
+                   {
+                        row = res[i];
+                        leagueArray.push(row[0]);;
+                   }
+                });
+                
+				var n = getNumMatches(leagueArray);
+
+                 
+
+                appendPaginate(n[0][0],leagueArray);
+               
+                $('#extra').bootpag({}).on('page', function(event, num){
+                    $('#r').empty();
+                    $.ajax({
+                        url: siteloc + scriptloc + "getNumMatch.py/getEventInfoByPage?",
+                        data: {leagueidarray:JSON.stringify(leagueArray),offset:(num - 1) * 4},
+                        dataType: 'json',
+                        async:false,
+                        success:
+                        function (res){
+                            for (i=0;i<res.length;i++)
+                                createDiv(res[i][1],res[i][2],res[i][4],res[i][0])
+                        }
+                    }); 
+            
+                 });
+        
+    
+               
 			</script>
             </div>
         </div>
@@ -103,19 +129,10 @@ $(document).ready(function () {
                 <div class="panel-body" id="k1" style="text-align:center;"></div>
 				<div id = "more"></div>
 				<script language = "JavaScript">
-				var n = scoreNotNull();
-				var k = 0;
-				for(i = 1; i <= n; i++){ 
-					k++;
-					$('#k1').append($('#div' + i).html() + '<br><br>');
-					$('#div' + i).remove();
-					if (k > 4){
-						n = 0;
-						$('#more').append('<a href ="#">More Recent Matches</a>');
-					}
-				}
-		</script>
+				 
+		         </script>
             </div>
         </div>
     </div>
-    </div>
+</div>
+
