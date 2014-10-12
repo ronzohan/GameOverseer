@@ -33,12 +33,16 @@ def index(req, id):
         stringed = ''.join(map(str, ret))
         tmp.append(stringed)
     
-    for tmps in tmp:
-        rets = x.execqry("select name from league where league_id='" + tmps +"';", False);
+    if tmp[-1] != 'None':
+        for tmps in tmp:
+            rets = x.execqry("select name from league where league_id='" + tmps +"';", False);
         	
-        for ret in rets:
-            stringed = ''.join(map(str, ret))
-            temp.append(stringed)
+            for ret in rets:
+                stringed = ''.join(map(str, ret))
+                temp.append(stringed)
+				
+    else:
+        temp.append(tmp[-1])	    
     			
     result.append(temp)
     	
