@@ -9,8 +9,12 @@ def index(req,leagueidarray):
     leagueidarray = cgi.escape(leagueidarray)
 
     leagueidarray = leagueidarray.replace('[', '(').replace(']', ')').replace('\"','\'')
+    if (leagueidarray != "[]"):
+        query = "SELECT count(*) FROM events WHERE leagueid_fk in "+leagueidarray+" and scoret1 is null and scoret2 is null" 
+    else:
+        query = "SELECT count(*) FROM events WHERE leagueid_fk in (null) and scoret1 is null and scoret2 is null"
     x = doSql()
-    rets = x.execqry("SELECT count(*) FROM events WHERE leagueid_fk in "+leagueidarray+" and scoret1 is null and scoret2 is null", False)
+    rets = x.execqry(query, False)
     result = []
     for ret in rets:
         stringed = map(str, ret)
@@ -24,7 +28,11 @@ def getEventInfoByPage(req,leagueidarray,offset):
 
     leagueidarray = leagueidarray.replace('[', '(').replace(']', ')').replace('\"','\'')
     x = doSql()
-    rets = x.execqry("SELECT * FROM events WHERE leagueid_fk in "+leagueidarray+" and scoret1 is null and scoret2 is null ORDER by edate ASC limit 4 offset "+offset+" ;", False)
+    if (leagueidarray != "[]"):
+        query = "SELECT * FROM events WHERE leagueid_fk in "+leagueidarray+" and scoret1 is null and scoret2 is null ORDER by edate ASC limit 4 offset "+offset+" ;"
+    else:
+        query = "SELECT * FROM events WHERE leagueid_fk in (null) and scoret1 is null and scoret2 is null ORDER by edate ASC limit 4 offset "+offset+" ;"
+    rets = x.execqry(query, False)
     result = []
     for ret in rets:
         stringed = map(str, ret)
