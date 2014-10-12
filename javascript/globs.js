@@ -306,6 +306,7 @@ function fetchTeamLeagueById(managerid)
                   {
 					for (i=0;i<res.length;i++)
 					{
+						$("#GPass").show();
 						row = res[i];
 						
 						$("#teamcollection").append('<tr><td>'+row[0]+'</td></tr>');
@@ -1680,4 +1681,49 @@ function getEventFullInfo(eid)
 }
 
 
+
+function removeAuthority(managerid)
+{
+
+ $.ajax({
+      url: siteloc + scriptloc + "removeAuthority.py",
+      data: {managerid:managerid },
+      dataType: 'json',
+      success:
+	  function (res) 
+	  { 
+	  return res;
+      } 
+      }); 
+	 
+}
+
+
+function getmanagername(managerid)
+{
+
+ $.ajax({
+      url: siteloc + scriptloc + "getmanagername.py",
+      data: {managerid:managerid },
+      dataType: 'json',
+      success:
+	  function (res) 
+	  { 
+	  console.log(res);
+	  if(res == null){
+	   return "you have not given authority yet";
+	   var element5 = document.getElementById("whoIs");
+ 		element5.innerHTML = res;
+	  }
+	  else{
+	   var element5 = document.getElementById("whoIs");
+ 		element5.innerHTML = "Note: <br> <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "+
+							 "You have given 'Manager "+res+"' an authority to  one"+
+							 "  of your leagues <br> <br> &nbsp; &nbsp; &nbsp; &nbsp;"+
+							 "Do you want to end his or her authority? ";
+      } 
+	  }
+      }); 
+	 
+}
 
