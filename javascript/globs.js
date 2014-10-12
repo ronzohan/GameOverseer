@@ -1694,6 +1694,7 @@ function removeAuthority(managerid)
 	  { 
 	  var element5 = document.getElementById("sowhat");
  		element5.innerHTML = " You Have successfully ended the authorization";
+		document.getElementById("removemodule").reload();
 	  console.log("ning sulod sya");
 	  return res;
       } 
@@ -1717,22 +1718,22 @@ function getmanagername(managerid)
 	 
 	   var element5 = document.getElementById("whoIs"); 
 		element5.innerHTML =   " You have not entrusted an authority to a manager yet! </h2> ";
-		var btn = document.createElement("BUTTON");
-		var t = document.createTextNode("YES !");
-		 
-		document.getElementById("buttonmode").appendChild(btn);
+		
 	  }
 	  else{
 	   var element5 = document.getElementById("whoIs");
- 		element5.innerHTML = "Note: <br> <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "+
+ 		element5.innerHTML = "Note: "+
 							 "You have given 'Manager "+res+"' an authority to  one"+
-							 "  of your leagues <br> <br> &nbsp; &nbsp; &nbsp; &nbsp;"+
+							 "  of your leagues.  "+
 							 "Do you want to end his or her authority? ";
 							 
-	    var btn = document.getElementById("whoIs").createElement("BUTTON");
-		var t = document.getElementById("whoIs").createTextNode("CLICK ME");
+	    var btn = document.createElement("BUTTON");
+		var t = document.createTextNode("YES  ");
+		btn.onclick = function() { // Note this is a function
+         removeAuthority($.cookie('managerid'));  
+								};
 		btn.appendChild(t);
-		document.getElementById("whoIs").appendChild(btn);
+		document.getElementById("buttonmode").appendChild(btn);
       } 
 	  }
       }); 
