@@ -130,3 +130,17 @@ def setScoreT2(e_id, score):
         result.append(stringed)
     
     return json.dumps(result)
+
+def getEventFullInfo(req, eid):
+    eid = cgi.escape(eid)
+    
+    x = doSql()
+    rets = x.execqry("select * from getEventWithLeagueID(" + eid + ");", False)
+    
+    result = []
+    
+    for ret in rets:
+        stringed = map(str, ret)
+        result.append(stringed)
+    
+    return json.dumps(result)
