@@ -151,7 +151,7 @@ $$
 		return 'Failed';	
       else 
         update league
-           set participants = array_remove(participants,p_participant_team)
+           set participants = array_erase(participants,p_participant_team)
              where managerid_fk = p_managerid_fk and league_id = v_id;
         return 'Success';
       end if;  
@@ -161,7 +161,12 @@ $$
 $$
   language 'plpgsql';
   
-  
+CREATE OR REPLACE FUNCTION array_erase(anyarray, anyelement) 
+RETURNS anyarray AS $$
+  SELECT ARRAY(SELECT v FROM unnest($1) g(v) WHERE v <> $2)
+$$ LANGUAGE sql;
+
+--HTU: select array_erase(array[1,2,3,2,5], 2);
    create or replace function
    get_leaguename(in text, out text)
 returns text as
