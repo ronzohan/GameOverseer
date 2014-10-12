@@ -629,12 +629,17 @@ function appendPaginate(numberRows,leagueArray)
         async:false,
         success:
         function (res){
-        	
-            for (i=0;i<res.length;i++)
-            {
-            	 createDiv(res[i][1],res[i][2],res[i][4],res[i][0])
-            	 console.log(i);
-            }
+        	console.log(res);
+        	if (res[0][0] != "None")
+        	{
+        		 for (i=0;i<res.length;i++)
+	            {
+	            	 createDiv(res[i][1],res[i][2],res[i][4],res[i][0])
+	            	 console.log(i);
+	            }
+
+        	}
+	           
                
         }
     }); 
@@ -718,29 +723,30 @@ function getBracketInfo(league_id,handle)
 }
 
 var minimalData;
-
 function fetchLeagueBracketInfo(res)
 {
 		var resultsArr = [];
-		 
+		
 	 	getBracketInfo(getParameterByName('id'),function(res)
 	 	{
 	 		//res[0][1] = res[0][1].replace(/-1/g,null);
 	 		resultsArr = res[0][1]
 
 	 	});
-	 	
+
+	 		
 		  var r = resultsArr;
 		  var t = res[0][2];
-
+		  
           if(res[0][0] != "None" && res[0][4] == 1)
             {
 				minimalData = {
-				
 				teams :t,
-				results : r
+				results :resultsArr
 				
-				}			
+				}	
+				
+				
 				$('#leagueinfo').bracket
 				({
 					init:minimalData,
@@ -748,7 +754,10 @@ function fetchLeagueBracketInfo(res)
  
 				});		
 				$('#teamdraft').empty();
- 
+				 
+ 				
+
+
 			} 
 			else
 			{
@@ -1325,19 +1334,17 @@ function randomPairs(teams ,leagueid) {
         
     }
 
-    //check if number of pairings is a power of 2
-    while (((output.length+1) & (output.length)) == 0)
-	{
-	    output.push([null,null]);
-	}
-    
-		
+   
     return output;	
 }
 
 function lockTeams(userid,leagueid,managerid)
 {
-	$.ajax({
+	var rows = document.getElementById("teamcollection").getElementsByTagName("tbody")[0].getElementsByTagName("tr").length;
+	 /check if number of pairings is a power of 2/
+    if (((rows+1) & (rows)))
+	{
+	   $.ajax({
 		url: siteloc + scriptloc + "getLeague.py/lockLeague?",
 		data: {userid:userid,
 			   leagueid:leagueid,
@@ -1362,25 +1369,22 @@ function lockTeams(userid,leagueid,managerid)
 				if (participants)
 				{ 
 					participants = randomPairs(participants,leagueid);
-					/*for (i=0;i<participants.length;i++)
-					{
-						if (participants[i][0] || participants[i][1])
-						{
-							//alert("here");
-							//setEvent(participants[i][0],participants[i][1],leagueid,null,null,null,null);
-							
-							//latestEventID was set upon call of setbracketinfo
-							//results.push([null,null,parseInt(latestEventID)]);
-							
-							//latestEventID = "";
-						}
-					} useless */
+ 
 					console.log(participants);
 					setbracketinfo(userid,leagueid,managerid,results,participants);
 				}
 		}
 		})
    });
+	}
+	else
+	{
+		alert('Number of teams must be 2^n');
+
+	}
+    
+		
+	
 }
 
 // Shuffle an array in place using the Fisher-Yates algorithm,
