@@ -1,10 +1,7 @@
 $(function() 
 {
 	redirect_ifNotloggedin();
-	
-	getBracketInfo(getParameterByName('id'),fetchLeagueBracketInfo);
-	//parameter depends on who's the user, used on leagueinfo.html
-	
+
 	if (getParameterByName('id'))
 		getBracketInfo(getParameterByName('id'),viewParticipantsInLeague);
 	
