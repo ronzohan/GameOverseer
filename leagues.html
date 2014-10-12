@@ -2,8 +2,8 @@
    <head>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/bootstrap-theme.min.css" rel="stylesheet">
-	<link href="css/custom.css" rel="stylesheet">
-	<link href="css/jquery-ui.min.css" rel="stylesheet">
+		<link href="css/custom.css" rel="stylesheet">
+		<link href="css/jquery-ui.min.css" rel="stylesheet">
    </head>
    <body>
  
@@ -71,7 +71,7 @@
 						            
 						            	<select id="fixturetype">
 											<option value="Single Elimination">Single Elimination</option>
-											<option value="Double Elimination">Double Elimination</option>						 
+																 
 										</select>	
 						            </div>
 						       	</div>
@@ -139,7 +139,11 @@
     <script src="javascript/jquery-ui.min.js"></script> 
 	<script src="javascript/jquery.cookie.js"></script> 
 	<script>
-	 
+		//getBracketInfo(getParameterByName('id'),fetchLeagueBracketInfo);
+
+		if ($.cookie('managerid'))
+		fetchLeagueByManagerId($.cookie('managerid'),displayTableManagerLeague);
+
 		$("#dialog-confirm").dialog({
 		autoOpen: false,
 		resizable: false,
