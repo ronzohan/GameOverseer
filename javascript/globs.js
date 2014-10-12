@@ -1692,6 +1692,9 @@ function removeAuthority(managerid)
       success:
 	  function (res) 
 	  { 
+	  var element5 = document.getElementById("sowhat");
+ 		element5.innerHTML = " You Have successfully ended the authorization";
+	  console.log("ning sulod sya");
 	  return res;
       } 
       }); 
@@ -1701,19 +1704,23 @@ function removeAuthority(managerid)
 
 function getmanagername(managerid)
 {
- 
+
  $.ajax({
-      url: siteloc + scriptloc + " getmanagername.py  ",
+      url: siteloc + scriptloc + "getmanagername.py",
       data: {managerid:managerid },
       dataType: 'json',
       success:
 	  function (res) 
 	  { 
 	  console.log(res);
-	  if(res == null){
-	   return "you have not given authority yet";
-	   var element5 = document.getElementById("whoIs");
- 		element5.innerHTML = res;
+	  if(res == "None"){
+	 
+	   var element5 = document.getElementById("whoIs"); 
+		element5.innerHTML =   " You have not entrusted an authority to a manager yet! </h2> ";
+		var btn = document.createElement("BUTTON");
+		var t = document.createTextNode("YES !");
+		 
+		document.getElementById("buttonmode").appendChild(btn);
 	  }
 	  else{
 	   var element5 = document.getElementById("whoIs");
@@ -1721,6 +1728,11 @@ function getmanagername(managerid)
 							 "You have given 'Manager "+res+"' an authority to  one"+
 							 "  of your leagues <br> <br> &nbsp; &nbsp; &nbsp; &nbsp;"+
 							 "Do you want to end his or her authority? ";
+							 
+	    var btn = document.getElementById("whoIs").createElement("BUTTON");
+		var t = document.getElementById("whoIs").createTextNode("CLICK ME");
+		btn.appendChild(t);
+		document.getElementById("whoIs").appendChild(btn);
       } 
 	  }
       }); 
