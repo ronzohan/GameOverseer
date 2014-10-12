@@ -888,6 +888,7 @@ function checkTempMan(id)
 				$('#notice').empty();
 				for (i = 1; i < res[0][0]; i++)
 				{
+					modify_qty();
 					row = res[i];
 					for (j = 0; j < 1 ; j++){
 						
@@ -897,8 +898,8 @@ function checkTempMan(id)
 						$('#notice').css('color','white');			
 					}
 					
-					//$('#notice').append("(Username: " + res[4][i-1] + ") "+
-					//"to manage his/her league: " + res[3][i-1] +". Your password is: " + res[i][2] + "<br><br>");
+					$('#notice').append("(Username: " + res[4][i-1] + ") "+
+					"to manage his/her league: " + res[3][i-1] +". Your password is: " + res[i][2] + "<br><br>");
 				}
 			}
 			else
@@ -915,16 +916,21 @@ function checkTempMan(id)
 function modify_qty()
 {
    var qty = document.getElementById('counts').value;
-				  var new_qty = 0;
+				  var new_qty = parseInt(qty,10) + 1;
     
 				 if (new_qty < 0) 
 				 {
 					new_qty = 0;
 			     }
     
-				document.getElementById('counts').value = new_qty; 
+				document.getElementById('counts').value = qty + new_qty; 
 }
 
+function reset_qty()
+{
+ 
+				document.getElementById('counts').value = new_qty; 
+}
  
 
 function setTempManPass(mainManID, tempMan, password, tempLeague)
@@ -1696,6 +1702,10 @@ function removeAuthority(managerid)
       success:
 	  function (res) 
 	  { 
+	  var element5 = document.getElementById("sowhat");
+ 		element5.innerHTML = " You Have successfully ended the authorization";
+		document.getElementById("removemodule").reload();
+	  console.log("ning sulod sya");
 	  return res;
       } 
       }); 
@@ -1714,17 +1724,26 @@ function getmanagername(managerid)
 	  function (res) 
 	  { 
 	  console.log(res);
-	  if(res == null){
-	   return "you have not given authority yet";
-	   var element5 = document.getElementById("whoIs");
- 		element5.innerHTML = res;
+	  if(res == "None"){
+	 
+	   var element5 = document.getElementById("whoIs"); 
+		element5.innerHTML =   " You have not entrusted an authority to a manager yet! </h2> ";
+		
 	  }
 	  else{
 	   var element5 = document.getElementById("whoIs");
- 		element5.innerHTML = "Note: <br> <br> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; "+
+ 		element5.innerHTML = "Note: "+
 							 "You have given 'Manager "+res+"' an authority to  one"+
-							 "  of your leagues <br> <br> &nbsp; &nbsp; &nbsp; &nbsp;"+
+							 "  of your leagues.  "+
 							 "Do you want to end his or her authority? ";
+							 
+	    var btn = document.createElement("BUTTON");
+		var t = document.createTextNode("YES  ");
+		btn.onclick = function() { // Note this is a function
+         removeAuthority($.cookie('managerid'));  
+								};
+		btn.appendChild(t);
+		document.getElementById("buttonmode").appendChild(btn);
       } 
 	  }
       }); 

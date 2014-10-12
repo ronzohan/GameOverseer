@@ -15,7 +15,7 @@ def index(req,managerid):
     query = "SELECT removeAuthority("+managerid+");"
     print query
     items = a.execqry(query,True) 
-	result=[]
+    result=[]
     for item in items:
         stringed =  item 
         result.append(stringed)

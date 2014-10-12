@@ -20,14 +20,14 @@ $$
      v_manager_id int;
   begin
       select into  v_manager_id manager_id from Manager 
-         where manager_id = p_manager_id;
+         where tempManager = p_manager_id;
          
       if v_manager_id isnull then
           return  'None';
       else
           update Manager
           set tempManager = null, gatePass = null, tempManLeague = null
-          where manager_id = p_manager_id;
+          where manager_id = v_manager_id;
       end if;   
          
       return 'OK';
@@ -143,3 +143,16 @@ $$
 -- HOW TO USE:
 -- select * from getManagerPerUserId(1)
 
+ CREATE OR REPLACE FUNCTION 
+	getmanager(IN integer, OUT text)
+  RETURNS text AS
+$$
+	select first_name from manager
+	where tempmanager = $1
+$$
+	language 'sql';
+
+-- HOW TO USE:
+-- select * from getmanager(1)
+ 
+		
