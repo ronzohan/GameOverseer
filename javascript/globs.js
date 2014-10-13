@@ -5,7 +5,7 @@ var scriptloc = "/scripts/";
 var latestEventID; //for holding the id of the recently created event
 				   //during locking of teams
  
-function fetchEvent(ide)
+function fetchEvent(ide,callback)
 {
   $.ajax({
       url: siteloc + scriptloc + "Event.py",
@@ -13,8 +13,13 @@ function fetchEvent(ide)
              },
       dataType: 'json',
       success: function (res) {
-                
-                 if(res[0][0] != "None")
+               callback(res);
+      }
+    });
+}
+function setInputboxesEvents(res)
+{
+	 if(res[0][0] != "None")
 					$("#datepicker").val(res[0][0]);
 
 				if (res[0][1] != "None")
@@ -25,10 +30,7 @@ function fetchEvent(ide)
 
 				if (res[0][3] != "None")
 					$("#endtime").val(res[0][3]);
-      }
-    });
 }
-
 function fetchUser(userid)
 {
   $.ajax({
@@ -486,12 +488,13 @@ function daysBetween( date1, date2 ) {
   return Math.round(difference_ms/one_day); 
 }
 
-function createDiv(team1,team2,time,eid)
+//instruction 0 - viewupcoming events, 1 - view recent matches
+function createDiv(team1,team2,time,eid,instruction)
 	{
 
 		
 		if (time == "None")
-			time = "No date yet"
+			time = "No date set"
 		else
 		{
 			time = daysBetween(new Date(),new Date(time));
@@ -517,16 +520,49 @@ function createDiv(team1,team2,time,eid)
         
         divTag.style.margin = "20px auto";
         
-        divTag.innerHTML = '<a href="#" onClick=showModal('+eid+')>' +team1 +' vs '+ team2  + '</a> '+time;
+        if (!instruction)
+        {
+        
+        	divTag.innerHTML = '<a href="#" onClick=showModal('+eid+',0)>' +team1 +' vs '+ team2  + '</a> '+time;
+        	$('#r').append(document.body.appendChild(divTag));
+        }
+        	
+        else
+        {
+        	divTag.innerHTML = '<a href="#" onClick=showModal('+eid+',1)>' +team1 +' vs '+ team2  + '</a> '+time;
+        	$('#k1').append(document.body.appendChild(divTag));
+        }
+        	
+		//showmodal(anyid,instruction)
+		//instruction 0 - viewupcoming events, 1 - view recent matches
 		
-		$('#r').append(document.body.appendChild(divTag));
 		
 	}
-function showModal(eid)
+function showModal(eid,instruction)
 {
 	jQuery.noConflict();
 	getEventFullInfo(eid);
-	$("#viewUpcomingmatchesmodal").modal();
+	if (!instruction)
+	{
+		$("#viewUpcomingmatchesmodal").modal();
+		$('#myTab a:last').hide();
+	}
+	else
+	{
+		$("#viewUpcomingmatchesmodal").modal();
+		fetchEvent(eid,function(res)
+		{
+
+			$("#teamname1").empty();
+			$("#teamname2").empty();
+
+			$("#teamname1").append(res[0][6]);
+			$("#teamname2").append(res[0][7]);
+
+			$("#teamname1").append(" "+res[0][4]);
+			$("#teamname2").prepend(res[0][5]+" ");
+		});
+	}
 	
 
 }
@@ -620,6 +656,46 @@ function getStart(ide, timer, o)
 	});
 }
 
+function appendPaginateRecentMatches(numberRows,leagueArray)
+{
+	$.ajax({
+        url: siteloc + scriptloc + "getNumMatch.py/getEventInfoByPageScoreNotNull?",
+        data: {leagueidarray:JSON.stringify(leagueArray),offset:0},
+        dataType: 'json',
+        async:false,
+        success:
+        function (res){
+        	console.log(res);
+        	if (res[0][0] != "None")
+        	{
+        		 for (i=0;i<res.length;i++)
+	            {
+	            	 createDiv(res[i][1],res[i][2],res[i][4],res[i][0],1)
+	            	 console.log(i);
+	            }
+
+        	}
+	           
+               
+        }
+    }); 
+	$('#extra').bootpag({
+	   total: Math.ceil(numberRows/4),
+	   page: 1,
+	   maxVisible: 5,
+	   href: "#pro-page-{{number}}",
+	   leaps: false,
+	   next: 'next',
+	   prev: 'prev' 
+	}).on('page', function(event, num){
+		
+
+	});
+		
+	
+
+}
+
 function appendPaginate(numberRows,leagueArray)
 {
 	$.ajax({
@@ -634,8 +710,8 @@ function appendPaginate(numberRows,leagueArray)
         	{
         		 for (i=0;i<res.length;i++)
 	            {
-	            	 createDiv(res[i][1],res[i][2],res[i][4],res[i][0])
-	            	 console.log(i);
+	            	 createDiv(res[i][1],res[i][2],res[i][4],res[i][0],0)
+	            	 console.log("here");
 	            }
 
         	}
@@ -789,7 +865,7 @@ function onclickbracket(data,rId) {
 		$("#teamversus").append(data[1]['name']);
  		$("#myModal").modal('show');
 
- 		fetchEvent($("#eventid").text());
+ 		fetchEvent($("#eventid").text(),setInputboxesEvents);
  		
 
  	}
