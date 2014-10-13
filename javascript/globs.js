@@ -974,8 +974,8 @@ function checkTempMan(id)
 						$('#notice').css('color','white');			
 					}
 					
-					$('#notice').append("(Username: " + res[4][i-1] + ") "+
-					"to manage his/her league: " + res[3][i-1] +". Your password is: " + res[i][2] + "<br><br>");
+					$('#notice').append("(Username: " + res[3][i-1] + ") "+
+					"to manage his/her league: " + res[2][i-1] +". Your password is: " + res[i][2] + "<br><br>");
 				}
 			}
 			else

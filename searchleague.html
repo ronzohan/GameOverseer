@@ -6,6 +6,7 @@
 		<link href="css/jquery.bracket.min.css" rel="stylesheet">
 		<link href="css/jquery-ui.min.css" rel="stylesheet">
 		<script src="javascript/jquery.js"></script>
+		<script src="javascript/jqinit.js"></script>  
 		<script src="javascript/globs.js"></script>
     </head>
     <body>
@@ -35,14 +36,18 @@
 		
     </body>
     <script src="javascript/bootstrap.min.js"></script>
-	<script src="javascript/jqinit.js"></script>  
-    <script src="javascript/jquery.bracket.min.js"></script>
+	<script src="javascript/jquery.bracket.min.js"></script>
     <script src="javascript/jquery-ui.min.js"></script> 
     <script src="javascript/jquery.cookie.js"></script> 
 	<script>
 	  $(function(){
 	    $("#header").load("header.html"); 
 	  });
+	
+	getBracketInfo(getParameterByName('id'),fetchLeagueBracketInfo);
+
+
+   	</script>
    	</script>
 	
 </html>
