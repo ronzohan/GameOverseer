@@ -18,11 +18,11 @@ create table events(
 create or replace function loadCEvents(in int, out date, out text, 
 									   out time, 
 									   out time, 
-									   out int, out int) 
+									   out int, out int,out text,out text) 
 	returns setof record as
 
 $$ 
-    select eDate, eLocation, eTime_start, eTime_end, scoret1, scoret2 from events
+    select eDate, eLocation, eTime_start, eTime_end, scoret1, scoret2,teamname1,teamname2 from events
 				where e_id = $1;
 $$
  
