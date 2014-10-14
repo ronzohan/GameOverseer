@@ -241,12 +241,10 @@ $$
     where league_id = $1 and managerid_fk =$2;
          
             
-      if v_id isnull then
-        return 'Failed';  
-      else 
+
         update league set results = p_results where league_id = $1;
     return 'Success';
-      end if;  
+  
   end;
 $$
   language 'plpgsql';
