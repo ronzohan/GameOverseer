@@ -197,7 +197,6 @@ $(document).ready(function () {
 
 
     <link href="css/sidemenu.css" type="text/css" rel="stylesheet" media="screen,projection" />
-	<script src="javascript/jquery.js"></script> 
 	
 	<script>
 	  $(function(){
@@ -223,9 +222,9 @@ $(document).ready(function () {
                     </div>
                     <div class="modal-body with-nav-tabs">
                         <p id="teamversus" class="text-center"></p>
-                        <ul class="nav nav-tabs" role="tablist">
+                        <ul class="nav nav-tabs" role="tablist" id="myTab">
                             <li class="active"><a href="#matchinfo"  data-toggle="tab">Info</a></li>
-                            <!--<li><a href="#scoreinfo" data-toggle="tab">Score</a></li>-->
+                            <li><a href="#scoreinfo" data-toggle="tab">Score</a></li>
                         </ul>
                         <div id="my-tab-content" class="tab-content">
                             <div id="matchinfo" class="tab-pane active">
@@ -259,18 +258,13 @@ $(document).ready(function () {
                                 </div>
                             </div>  
                             <div class="tab-pane "  id="scoreinfo">
-                                <p id="teamname1">Score 1</p>
-                                <p id="teamname2">Score 2</p>
-                                <div class="row">
-                                    <div class="col-sm-2 center-block">
-                                        <input type="text" id="score1" class="form-control col-sm-1">
-                                    </div>
+                                <div class="form-group center text-center">
+                                    <span id="teamname1" ></span>
+                                    <span class="text-center"> vs </span>
                                     
-                                    <div class="col-sm-2 center-block   ">
-                                        <input type="text" id="score2" class="form-control col-sm-1">
-                                    </div>
+                                    <span id="teamname2"></span>
+                                     
                                 </div>
-                                
                                 
                             </div>
 
@@ -286,6 +280,8 @@ $(document).ready(function () {
                 </div>
             </div>
         </div>
+
+
 
 	<div style=" margin-left:-50px;position:absolute;margin-top:60px;" id="matchticker">	 </div>
 	
@@ -460,12 +456,14 @@ $(document).ready(function () {
 	<link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="css/custom.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
 	<script src="javascript/bootstrap.min.js"></script>
+    <script src="javascript/jquery-ui.min.js"></script>
 	<script src="javascript/globs.js"></script>
     <script src="javascript/jquery.cookie.js"></script> 
 	<script src="javascript/jqinit.js"></script>
 	
-	 
+ 
 	  <script>
  		getmanagername($.cookie('managerid')); 
       </script>
@@ -475,6 +473,7 @@ $(document).ready(function () {
 		$("#authority1").on("click", hidematchticker);
 		$("#authority2").on("click", hidematchticker1);
 		
+
 		function hidematchticker()
 		{  
 		 if( $("#matchticker").is(':visible') )
