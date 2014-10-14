@@ -256,6 +256,7 @@ function fetchLeagueByManagerId(managerid,handle)
   
 }
 
+
 function displayTableManagerLeague(res)
 {
 	$("#leaguetable tr").remove();
@@ -1499,7 +1500,18 @@ function setbracketinfo(userid,leagueid,managerid,results,participants)
 		}
    });
 }
+function searchAutocompleteLeagues(res)
+{
+	//jQuery.noConflict();
+	var availableTags = [];
+		for (i=0;i<res.length;i++)
+			availableTags.push(res[i][1]);
+    $( "#temp-league" ).autocomplete({
+      source: availableTags
+    });
+ 	console.log(availableTags);
 
+ }
 function searchAutocomplete()
 {
 	fetchAllTeamInfo(function(output)
