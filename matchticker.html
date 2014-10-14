@@ -79,41 +79,7 @@ $(document).ready(function () {
 				
 				<div class="panel-body" id = "extra" style="text-align:center;"></div>
 				
-				<script language = "JavaScript">
-                var leagueArray = [];
-                fetchLeagueByManagerId($.cookie('managerid'),function(res){
-                   for(i=0;i<res.length;i++)
-                   {
-                        row = res[i];
-                        leagueArray.push(row[0]);;
-                   }
-                });
-                
-				var n = getNumMatches(leagueArray);
-
-                 
-
-                appendPaginate(n[0][0],leagueArray);
-                appendPaginateRecentMatches(n[0][0],leagueArray);
-                $('#extra').bootpag({}).on('page', function(event, num){
-                    $('#r').empty();
-                    $.ajax({
-                        url: siteloc + scriptloc + "getNumMatch.py/getEventInfoByPage?",
-                        data: {leagueidarray:JSON.stringify(leagueArray),offset:(num - 1) * 4},
-                        dataType: 'json',
-                        async:false,
-                        success:
-                        function (res){
-                            for (i=0;i<res.length;i++)
-                                createDiv(res[i][1],res[i][2],res[i][4],res[i][0])
-                        }
-                    }); 
-            
-                 });
-        
-    
-               
-			</script>
+				
             </div>
         </div>
     </div>
@@ -126,8 +92,9 @@ $(document).ready(function () {
                         Recent Matches</h3>
                     <span class="pull-right clickable"><i class="glyphicon glyphicon-minus"></i></span>
                 </div>
+                <div class="panel-body" id ="s"></div>
                 <div class="panel-body" id="k1" style="text-align:center;"></div>
-				<div id = "more"></div>
+				
 				<script language = "JavaScript">
 				 
 		         </script>
@@ -136,3 +103,53 @@ $(document).ready(function () {
     </div>
 </div>
 
+<script language = "JavaScript">
+                var leagueArray = [];
+                fetchLeagueByManagerId($.cookie('managerid'),function(res){
+                   for(i=0;i<res.length;i++)
+                   {
+                        row = res[i];
+                        leagueArray.push(row[0]);;
+                   }
+                });
+                
+                var n = getNumMatches(leagueArray);
+                var x = getNumMatchesScoreNotNull(leagueArray);
+                console.log(x[0][0]);
+                console.log('rows');
+                appendPaginate(n[0][0],leagueArray);
+                appendPaginateRecentMatches(x[0][0],leagueArray);
+                $('#extra').bootpag({}).on('page', function(event, num){
+                    $('#r').empty();
+                    $.ajax({
+                        url: siteloc + scriptloc + "getNumMatch.py/getEventInfoByPage?",
+                        data: {leagueidarray:JSON.stringify(leagueArray),offset:(num - 1) * 4},
+                        dataType: 'json',
+                        async:false,
+                        success:
+                        function (res){
+                            for (i=0;i<res.length;i++)
+                                createDiv(res[i][1],res[i][2],res[i][4],res[i][0],0)
+                        }
+                    }); 
+            
+                 });
+                
+                $('#k1').bootpag({}).on('page', function(event, num){
+                    $('#s').empty();
+                    $.ajax({
+                        url: siteloc + scriptloc + "getNumMatch.py/getEventInfoByPageScoreNotNull?",
+                        data: {leagueidarray:JSON.stringify(leagueArray),offset:(num - 1) * 4},
+                        dataType: 'json',
+                        async:false,
+                        success:
+                        function (res){
+                            for (i=0;i<res.length;i++)
+                                createDiv(res[i][1],res[i][2],res[i][4],res[i][0],1)
+                        }
+                    }); 
+            
+                 });
+    
+               
+            </script>
