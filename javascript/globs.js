@@ -267,9 +267,7 @@ function displayTableManagerLeague(res)
 		$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='
 								+row[0]+'>'+row[1]+'</a></td>'
 							+'<td>'+row[2]+'</td>' + '<td>'+row[3]
-							+'</td><td><a href="#" onClick=editLeague('
-							+$.cookie('managerid')+','+row[0]
-							+') class="glyphicon glyphicon-pencil">Edit</a>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'
+							+'</td><td>'
 							+'<a href="#" onClick = verifydelete('+row[0]+','+$.cookie("managerid")
 							+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
 	}
@@ -528,11 +526,14 @@ function createDiv(team1,team2,time,eid,instruction)
 		else
 		{
 			time = daysBetween(new Date(),new Date(time));
-			time +=1;
+			
 			if (time > 0)
 				time +=  " day(s) to go";
 			else if (time < 0)
-				time += " day(s) ago"
+			{
+				time = Math.abs(time);
+				time += " day(s) ago";
+			}
 			else 
 			{
 				time="";
@@ -1560,7 +1561,6 @@ function setEventIdTag(data,teamname1,teamname2,rId)
 {
 	if (data == "None")
 	{
-		//alert("hey jude");
 		setEvent(teamname1,teamname2,getParameterByName('id'),null,null,null,null);
 		setresult(getParameterByName('id'),rId,latestEventID,null)
 		if (rId % 2 == 0)
@@ -1659,7 +1659,7 @@ function getEventIdOfResult(leagueid,resultid,callback)
 		dataType: 'json',
 		async:false,
 		success: function (res) {
-			if (res[0][0] != "None")
+			if (res[0][1] != "None")
 			{
 				callback(res[0][1]);
 			}
