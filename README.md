@@ -1,6 +1,6 @@
 
 ####Database Diagram
-*Please feel free to open an issue for comments/suggestions for changes on the database design.*
+
 
 *URL of the designer tool is down below.*
 
