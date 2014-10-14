@@ -104,8 +104,12 @@ $$
       if v_id isnull then
           return 'Failed to delete';	
       else
-      	     delete from league 
+      
+            delete from events where leagueID_FK =v_id;
+            delete from results where leagueid =v_id;
+      	    delete from league 
              where managerid_fk = p_managerid_fk and league_id = v_id;
+
 			  return 'Successfully Deleted!';
       end if;   
          
