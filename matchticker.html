@@ -94,7 +94,7 @@ $(document).ready(function () {
                  
 
                 appendPaginate(n[0][0],leagueArray);
-               
+                appendPaginateRecentMatches(n[0][0],leagueArray);
                 $('#extra').bootpag({}).on('page', function(event, num){
                     $('#r').empty();
                     $.ajax({

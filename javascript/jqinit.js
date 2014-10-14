@@ -20,7 +20,8 @@ $(function()
              
         }
     );
-        
+    
+    fetchLeagueByManagerId($.cookie('managerid'),searchAutocompleteLeagues);
     $("#addleague").click(
 		function () {
 			$("#create").show();
