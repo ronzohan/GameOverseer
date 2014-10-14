@@ -445,6 +445,35 @@ function getNumMatches(leagueidarray)
 	return n;
 }
 
+function getNumMatchesScoreNotNull(leagueidarray)
+{
+  var n;
+  $.ajax({
+      url: siteloc + scriptloc + "getNumMatch.py/getEventInfoByPageScoreNotNullCount?",
+      data:{
+      		leagueidarray:JSON.stringify(leagueidarray)
+      },
+	  async:false,
+	  dataType: 'json',
+	  success: function (res) {
+				if(res[0][0] != "None" )
+                  {
+					
+					/*for (i = 0; i < res.length; i++)
+					{
+						row = res[i];
+      
+						for (j = 0; j < row.length ; j++)
+							if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
+								num += row[j];  
+					} */
+					console.log(res);
+					n = res;
+				  }
+              }
+	});
+	return n;
+}
 function scoreNotNull()
 {
   var num = "";
@@ -531,7 +560,7 @@ function createDiv(team1,team2,time,eid,instruction)
         else
         {
         	divTag.innerHTML = '<a href="#" onClick=showModal('+eid+',1)>' +team1 +' vs '+ team2  + '</a> '+time;
-        	$('#k1').append(document.body.appendChild(divTag));
+        	$('#s').append(document.body.appendChild(divTag));
         }
         	
 		//showmodal(anyid,instruction)
@@ -567,95 +596,7 @@ function showModal(eid,instruction)
 	
 
 }
-function createD(w)
-{
-	var t = 0;
-		
-	while (t < (w-1))
-		t++;
-			
-	t = (2*t) + 1;
-	
-	divTag = document.createElement("div");
-        
-	divTag.id = "d" + w ;
-        
-	divTag.setAttribute("align","right");
-        
-    divTag.style.margin = "20px auto";  
-	
-	divTag.innerHTML = 'insertTN' + t + ' vs insertTN' + (t+1); 
-		
-	$('#k').append(document.body.appendChild(divTag));
-		
-	getStart(w, createDiv(), "okay"); 
-	
-	getScore(w);
-		
-}	
-	
-function getStart(ide, timer, o)
-{
-	var Time;
-	$.ajax({
-      url: siteloc + scriptloc + "getStartDate.py",
-	  datatype:'json',
-	  data: {ide:ide
-             },
-	  success: function (res) {
-				  if(res[0][0] != "None" ){
-				  
-				  var string = "";
-				  
-				  for (i = 0; i < res.length; i++)
-					{
-						row = res[i];
-      
-						for (j = 0; j < row.length ; j++)
-							if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-								string += row[j];  
-       
-					} 
-					
-					var date = new Date(string);
-					var hours = date.getHours();
-    				var minutes =  date.getMinutes();
-					
-					var string = ("0" + (date.getMonth() + 1)).slice(-2) + "/" + ("0" + date.getDate()).slice(-2) 
-									+ "/" + date.getFullYear() + " " + ("0" + hours) + ":" + ("0" + minutes);
-					
-					if(hours < 12)
-						string += " " + "AM";
-					else
-						string += " " + "PM";
 
-					if(o == "okay")
-						$("p").append('<br>' + string);
-					
-					
-					else{
-						string = '"' + string + '"';
-					
-						FinishMessage = "Live";
-					
-						var dtarg = new Date(string);
-						var dnow = new Date();
-				
-						diff = new Date(dtarg - dnow);
-						Time = Math.floor(diff.valueOf()/1000);
-				
-						if(diff < 0){
-							Time = 0;
-						}
-						
-						p = 0;
-						new CreateTimer(timer, Time, p);
-					}
-			}
-		}
-			
-	});
-}
 
 function appendPaginateRecentMatches(numberRows,leagueArray)
 {
@@ -672,7 +613,6 @@ function appendPaginateRecentMatches(numberRows,leagueArray)
         		 for (i=0;i<res.length;i++)
 	            {
 	            	 createDiv(res[i][1],res[i][2],res[i][4],res[i][0],1)
-	            	 console.log(i);
 	            }
 
         	}
@@ -680,7 +620,8 @@ function appendPaginateRecentMatches(numberRows,leagueArray)
                
         }
     }); 
-	$('#extra').bootpag({
+
+	$('#k1').bootpag({
 	   total: Math.ceil(numberRows/4),
 	   page: 1,
 	   maxVisible: 5,
