@@ -50,7 +50,7 @@ def getEventInfoByPageScoreNotNull(req,leagueidarray,offset):
     if (leagueidarray != "()"):
         query = "SELECT * FROM events WHERE leagueid_fk in "+leagueidarray+" and scoret1 is not null and scoret2 is not null ORDER by edate ASC limit 4 offset "+offset+" ;"
     else:
-        query = "SELECT * FROM events WHERE leagueid_fk in (null) and scoret1 is not null and scoret2 is not null ORDER by edate ASC limit 4 offset "+offset+" ;"
+        query = "SELECT * FROM events WHERE leagueid_fk in (null) and scoret1 is not null and scoret2 is not null ORDER by edate ASC offset "+offset+" ;"
     rets = x.execqry(query, False)
     result = []
     for ret in rets:
