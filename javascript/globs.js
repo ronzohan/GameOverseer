@@ -537,7 +537,7 @@ function createDiv(team1,team2,time,eid,instruction)
 			else 
 			{
 				time="";
-				time += " today";
+				time += " Today";
 
 			}
 				
@@ -748,7 +748,6 @@ function fetchLeagueBracketInfo(res)
 		
 	 	getBracketInfo(getParameterByName('id'),function(res)
 	 	{
-	 		//res[0][1] = res[0][1].replace(/-1/g,null);
 	 		resultsArr = res[0][1]
 
 	 	});
@@ -773,21 +772,51 @@ function fetchLeagueBracketInfo(res)
  
 				});		
 				$('#teamdraft').empty();
-				 
- 				
-
-
 			} 
 			else
 			{
+				$('#leaguetitle').empty();
+				$('#leaguetitle').append(res[0][0]);
+			} 
+}
+function fetchLeagueBracketInfoNoEdit(res)
+{
+		var resultsArr = [];
+		
+	 	getBracketInfo(getParameterByName('id'),function(res)
+	 	{
+	 		resultsArr = res[0][1]
 
+	 	});
+
+	 		
+		  var r = resultsArr;
+		  var t = res[0][2];
+		  
+          if(res[0][0] != "None" && res[0][4] == 1)
+            {
+				minimalData = {
+				teams :t,
+				results :resultsArr
+				
+				}	
+				
+				
+				$('#leagueinfo').bracket
+				({
+					init:minimalData,
+					onMatchClick: onclickbracket
+				});		
+				$('#teamdraft').empty();
+			} 
+			else
+			{
 				$('#leaguetitle').empty();
 				$('#leaguetitle').append(res[0][0]);
 			}
   
 }
 function onclickbracket(data,rId) {
-	//alert("onclick(data: '" + data[0]['name'] +" vs "+data[1]['name']+" MatchID: "+ data[2][2]+"')");
 	$("#eventid").empty();
 	$("#datepicker").val("");
 	$("#location").val("");
@@ -801,7 +830,6 @@ function onclickbracket(data,rId) {
 		$("#teamversus").empty();
 		$("#eventid").empty();
 		getresult(getParameterByName('id'),rId,data[0]['name'],data[1]['name'],setEventIdTag);
-		// $("#eventid").append(data[2][2]);
 
 		$("#teamversus").append(data[0]['name']);
 		$("#teamversus").append(" vs ");
@@ -1147,7 +1175,6 @@ function addTeamsInLeague(leagueid,managerid,participantTeam)
       	success: function (res) {
                   	if(res[0][0] != "Fail")
                   	{
-						//alert(res[0][0]);
 						$("#teamcollection tbody").remove();
 						$("#teamname").val('');
 						getBracketInfo(leagueid,viewParticipantsInLeague);
@@ -1558,27 +1585,6 @@ function setEventIdTag(data,teamname1,teamname2,rId)
 	$("#eventid").empty();
 	$("#eventid").append(data);
 }
-
-/*function getresultsinleague(leagueid,callback)
-{
-	$.ajax({
-		url: siteloc + scriptloc + "results.py/getresultsinleague",
-		data: {
-			leagueid:leagueid
-		},
-		dataType: 'json',
-		async: false,
-		success: function (res) {
-			if (res != "None")
-			{
-				console.log(res);
-				console.log("here");
-				callback(res);
-			}
-				
-		}
-	}); 
-}*/
 
 
 function setbracketinforesults(leagueid,managerid,results)
