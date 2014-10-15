@@ -39,11 +39,15 @@ $(function()
 		}
     );
     $("#addteaminleague").click(function(){
-    	var teamname = $('#teamname').val(); 							
-		addTeamsInLeague(getParameterByName('id'),$.cookie('managerid'),teamname);
+    	var teamname = $('#teamname').val(); 
+    	if (teamname != "")							
+			addTeamsInLeague(getParameterByName('id'),$.cookie('managerid'),teamname);
 		
 	    });
-	
+	$("#editbutton").click(function(){
+		getBracketInfo(getParameterByName('id'),fetchLeagueBracketInfo);
+		$("#editbutton").hide();
+	});
 	$("#lockteams").click(
 		function(){
 			$("#confirmmodal").modal();
