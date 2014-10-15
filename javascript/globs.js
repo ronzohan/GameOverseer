@@ -958,6 +958,13 @@ function setTempManPass(mainManID, tempMan, password, tempLeague)
 				$('#status').empty();
 				$('#status').append("Temporary Manager already set");
 				$('#status').css('color','white');
+
+  
+				 var auto_refresh = setInterval(
+					function()
+					{
+					 location.reload();	
+					}, 10);
 			}
 			else
 			{
@@ -1700,7 +1707,7 @@ function getmanagername(managerid)
 	  function (res) 
 	  { 
 	  console.log(res);
-	  if(res == "None"){
+	  if(res == "NONE"){
 	 
 	   var element5 = document.getElementById("whoIs"); 
 		element5.innerHTML =   " You have not entrusted an authority to a manager yet! </h2> ";
@@ -1716,7 +1723,12 @@ function getmanagername(managerid)
 	    var btn = document.createElement("BUTTON");
 		var t = document.createTextNode("YES  ");
 		btn.onclick = function() { // Note this is a function
-         removeAuthority($.cookie('managerid'));  
+         removeAuthority($.cookie('managerid')); 
+          var auto_refresh = setInterval(
+					function()
+					{
+					 location.reload();	
+					}, 14);
 								};
 		btn.appendChild(t);
 		document.getElementById("buttonmode").appendChild(btn);
