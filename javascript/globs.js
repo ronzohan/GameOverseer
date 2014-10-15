@@ -811,6 +811,7 @@ function fetchLeagueBracketInfoNoEdit(res)
 			} 
 			else
 			{
+				$("#editbutton").hide();
 				$('#leaguetitle').empty();
 				$('#leaguetitle').append(res[0][0]);
 			}
@@ -823,7 +824,7 @@ function onclickbracket(data,rId) {
 	$("#timepicker1").val("");
 	$("#endtime").val("");
 
-	console.log(data); 
+	//console.log(data); 
 	if (data[0]['name'] && data[1]['name'])
 	{
 		
