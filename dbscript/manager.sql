@@ -5,38 +5,31 @@ CREATE TABLE Manager(
     last_name text,
     address text,
     contact_no text,
-	email text,
+  email text,
     tempManager int,
-	tempManLeague text,
-	gatePass text
+  tempManLeague text,
+  gatePass text
     );
 
-	
+  
 create or replace 
     function removeAuthority(p_manager_id int) 
     returns text as
 $$
-  declare
-     v_manager_id int;
+   
   begin
-      select into  v_manager_id manager_id from Manager 
-         where tempManager = p_manager_id;
          
-      if v_manager_id isnull then
-          return  'None';
-      else
           update Manager
           set tempManager = null, gatePass = null, tempManLeague = null
-          where manager_id = v_manager_id;
-      end if;   
-         
+          where manager_id = p_manager_id;
+       
       return 'OK';
   end;
   $$
   language 'plpgsql';
 
 --SELECT removeAuthority(1);
-	
+  
 create or replace 
     function setAuthority(p_manager_id int, p_tempManager int, p_gatePass text, p_tempManLeague int) 
     returns text as
@@ -63,7 +56,7 @@ $$
 
 --SELECT setAuthority(1, 2,'12345', 1);
 
-	
+  
 create or replace 
     function checkemail(p_email text) 
     returns text as
@@ -87,7 +80,7 @@ $$
 
 --SELECT checkemail(ron@yolo.com);
 
-	
+  
 create or replace 
     function setmanager(p_userid int,p_first_name text,p_last_name text,p_address text, p_contact_no text,p_email text) 
     returns text as
@@ -134,8 +127,8 @@ create or replace function
    getManagerPerUserId(in int, out int)
 returns int as
 $$
-	select manager_id from manager
-	where userid_fk = $1
+  select manager_id from manager
+  where userid_fk = $1
     
 $$
   language 'sql';
@@ -143,16 +136,33 @@ $$
 -- HOW TO USE:
 -- select * from getManagerPerUserId(1)
 
+
  CREATE OR REPLACE FUNCTION 
-	getmanager(IN integer, OUT text)
+  getmanager(p_manager_id int)
   RETURNS text AS
 $$
-	select first_name from manager
-	where tempmanager = $1
-$$
-	language 'sql';
+  declare
+    v_tempmanager int;
+    v_firstname text;
+  begin
+     select into v_tempmanager tempmanager from manager
+         where manager_id = p_manager_id;
+
+     select into v_firstname first_name from manager
+      where  manager_id = v_tempmanager;
+
+       if v_firstname isnull then
+          return 'NONE';
+      else
+           return v_firstname;
+      end if;   
+         
+      return 'OK';
+  end;
+  $$
+  language 'plpgsql';
 
 -- HOW TO USE:
 -- select * from getmanager(1)
  
-		
+     
