@@ -907,7 +907,7 @@ function checkTempMan(id)
 				$('#notice').empty();
 				for (i = 1; i < res[0][0]; i++)
 				{
-					modify_qty();
+					 
 					row = res[i];
 					for (j = 0; j < 1 ; j++){
 						
@@ -932,24 +932,6 @@ function checkTempMan(id)
 }
 
 
-function modify_qty()
-{
-   var qty = document.getElementById('counts').value;
-				  var new_qty = parseInt(qty,10) + 1;
-    
-				 if (new_qty < 0) 
-				 {
-					new_qty = 0;
-			     }
-    
-				document.getElementById('counts').value = qty + new_qty; 
-}
-
-function reset_qty()
-{
- 
-				document.getElementById('counts').value = new_qty; 
-}
  
 
 function setTempManPass(mainManID, tempMan, password, tempLeague)
