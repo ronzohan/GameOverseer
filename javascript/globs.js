@@ -266,8 +266,7 @@ function displayTableManagerLeague(res)
      
 		$("#leaguetable").append('<tr><td><a href=leagueinfo.html?id='
 								+row[0]+'>'+row[1]+'</a></td>'
-							+'<td>'+row[2]+'</td>' + '<td>'+row[3]
-							+'</td><td>'
+							+'<td>'+row[2]+'</td>' + '<td>'
 							+'<a href="#" onClick = verifydelete('+row[0]+','+$.cookie("managerid")
 							+') class="glyphicon glyphicon-remove">Remove</a></td></tr>');
 	}
@@ -329,7 +328,6 @@ function fetchOtherLeagueByManagerId(managerid)
       data: {managerid:managerid},
       dataType: 'json',
       success: function (res) {
-                  console.log(res); 
                   if(res[0][0] != "None")                  
                   {
 					$("#leaguetable tr").remove();
@@ -369,7 +367,6 @@ function displayLeagueByManagerName(username)
       data: {username:username},
       dataType: 'json',
       success: function (res) {
-                  console.log(res); 
 				  if(res[0][0] != "None")                  
                   {
 					$("#leaguetable tr").remove();
@@ -426,16 +423,7 @@ function getNumMatches(leagueidarray)
 	  success: function (res) {
 				if(res[0][0] != "None" )
                   {
-					
-					/*for (i = 0; i < res.length; i++)
-					{
-						row = res[i];
-      
-						for (j = 0; j < row.length ; j++)
-							if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-								num += row[j];  
-					} */
-					console.log(res);
+
 					n = res;
 				  }
               }
@@ -457,15 +445,7 @@ function getNumMatchesScoreNotNull(leagueidarray)
 				if(res[0][0] != "None" )
                   {
 					
-					/*for (i = 0; i < res.length; i++)
-					{
-						row = res[i];
-      
-						for (j = 0; j < row.length ; j++)
-							if(row[j] != "[" && row[j] != "]" && row[j] != "," && row[j] != '"')
-								num += row[j];  
-					} */
-					console.log(res);
+
 					n = res;
 				  }
               }
@@ -654,7 +634,6 @@ function appendPaginate(numberRows,leagueArray)
         		 for (i=0;i<res.length;i++)
 	            {
 	            	 createDiv(res[i][1],res[i][2],res[i][4],res[i][0],0)
-	            	 console.log("here");
 	            }
 
         	}
@@ -824,7 +803,6 @@ function onclickbracket(data,rId) {
 	$("#timepicker1").val("");
 	$("#endtime").val("");
 
-	//console.log(data); 
 	if (data[0]['name'] && data[1]['name'])
 	{
 		
@@ -1075,7 +1053,6 @@ function editLeague(managerid,leagueid)
 		  },
       dataType: 'json',
       success: function (res) {
-                  console.log(res);
 				
                   if(res[0][0] != "None")
                   {
@@ -1132,7 +1109,6 @@ function deleteLeague(leagueid,managerid)
 		  },
     dataType: 'json',
     success: function (res) {
-				console.log(res);
                 if(res[0][0] != "None")
                 {
 					if (res[0][0])
@@ -1308,7 +1284,6 @@ function deleteTeamsInLeague(participantTeam,managerid,leagueid)
 		dataType: 'json',
 		success:
 		function (res){	
-				console.log(res);
 			 $("#teamcollection tbody").remove();
 			 getBracketInfo(leagueid,viewParticipantsInLeague);
 		}
@@ -1343,7 +1318,6 @@ function randomPairs(teams ,leagueid) {
     	eventidArr.push(latestEventID);
     	latestEventID = "";
     }
-    console.log(eventidArr);
 
     for (var x = 0; x<teams.length;x++)
     {
@@ -1398,14 +1372,12 @@ function lockTeams(userid,leagueid,managerid)
 		async:false,
 		success:
 			function (res){
-				console.log(res);
 				results = [];
 				var participants = res[0][3];
 				if (participants)
 				{ 
 					participants = randomPairs(participants,leagueid);
  
-					console.log(participants);
 					setbracketinfo(userid,leagueid,managerid,results,participants);
 				}
 		}
@@ -1448,7 +1420,6 @@ function setbracketinfo(userid,leagueid,managerid,results,participants)
 		async:false,
 		success:
 		function (res){
-			console.log(res);
 		}
    });
 }
@@ -1461,7 +1432,6 @@ function searchAutocompleteLeagues(res)
     $( "#temp-league" ).autocomplete({
       source: availableTags
     });
- 	console.log(availableTags);
 
  }
 function searchAutocomplete()
@@ -1602,7 +1572,6 @@ function setbracketinforesults(leagueid,managerid,results)
 		success: function (res) {
 			if (res != "None")
 			{
-				console.log(res);
 			}
 				
 		}
@@ -1629,7 +1598,6 @@ function setscore(e_id,rId,score)
 		success: function (res) {
 			if (res != "None")
 			{
-				console.log(res);
 			}
 				
 		}
@@ -1673,7 +1641,6 @@ function getEventFullInfo(eid)
 		success: function(res){
 			if (res[0][0] != "None")
 			{
-				console.log(res);
 				$("input").prop('disabled', true);
 				if(res[0][3] != "None")
 					$("#datepicker").val(res[0][3]);
