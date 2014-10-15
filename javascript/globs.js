@@ -925,7 +925,7 @@ function checkTempMan(id)
 					}
 					
 					$('#notice').append("(Username: " + res[3][i-1] + ") "+
-					"to manage his/her league: " + res[2][i-1] +". Your password is: " + res[i][2] + "<br><br>");
+					"to manage his/her league: " + res[2][i-1] +". Your password is: " + res[i][2] + "<hr><br><br>");
 				}
 			}
 			else
