@@ -1177,57 +1177,14 @@ function redirect_ifNotloggedin()
 }
 
 function redirect(n) {
-    if(n == 0)
-		document.location.href = '/GameOverseer/search.html?query=' + document.getElementById('usename').value;
+
 	if(n == 1)
 		document.location.href = '/GameOverseer/leaguemanager_profile.html?query=' + document.getElementById('username').innerHTML;
 	if(n == 2)
 		document.location.href = '/GameOverseer/editprofile.html?query=' + document.getElementById('username').innerHTML;
 }
 
-function fetchusername(name)
-{
-   $.ajax({
-      url: siteloc + scriptloc + "getusername.py",
-      data: {username:name.toLowerCase()},
-   
-      dataType: 'json',
-      success: function (res) {
-   
-				if(res[0][0] != "None")
-				{
-				     
-				    $("#k").append('<h2> users </h2>');
-					$("#name").append('<a href = searchusername.html?query=' + res[0][0] + '>' + res[0][0] + '</a>');
-				    $("#k").append('<hr>');
-				}
-				else 
-				    fetchleaguename(name);
-		} 
-    }); 
-}
 
-function fetchleaguename(name)
-{
-   $.ajax({
-      url: siteloc + scriptloc + "getleaguename.py",
-     data: {name:name.toLowerCase()},
-   
-      dataType: 'json',
-      success: function (res) {
-				
-				if(res[0][0] != "None")
-				{
-					 $("#k").append('<h2> league </h2>');
-					$("#league").append('<a href = searchleague.html?id=' + getLeagueID(name) + '>' + res[0][0] + '</a>');
-				 }
-				 else{
-				  $("#k").text('');
-				  $("#k").append("No Results Found");
-				}
-		} 
-     }); 
- }
  
  function getLeagueID(name)
 {
