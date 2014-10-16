@@ -1710,7 +1710,7 @@ function getmanagername(managerid)
 	  if(res == "NONE"){
 	 
 	   var element5 = document.getElementById("whoIs"); 
-		element5.innerHTML =   " You have not entrusted an authority to a manager yet! </h2> ";
+		element5.innerHTML =   "You have not entrusted an authority to a manager yet! </h2> ";
 		
 	  }
 	  else{
