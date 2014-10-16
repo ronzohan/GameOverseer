@@ -21,7 +21,7 @@ $$
          
           update Manager
           set tempManager = null, gatePass = null, tempManLeague = null
-          where tempManager = p_manager_id;
+          where manager_id = p_manager_id;
        
       return 'OK';
   end;
