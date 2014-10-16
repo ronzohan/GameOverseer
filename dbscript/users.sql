@@ -132,15 +132,3 @@ $$
 $$
 language 'plpgsql';
 
-create or replace function
- get_username(in text, out text)
-returns text as
-$$
-	select username from users
-	where LOWER(username)= $1;
-    
-$$
-  language 'sql';
-
---- HOW TO USE:
---- select * from get_username(username)
